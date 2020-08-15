@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.0.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cloud-32-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cloud-16-16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hlOn-1_0syRAQ_KaG8RgCqcTQY65yBNsdNE9Ps07Yb4">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -17,15 +18,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Ayun的博客">
 <meta property="og:url" content="http://ayunnn.gitee.io/page/6/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="Ayun的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Ayun">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://ayunnn.gitee.io/page/6/">
@@ -37,14 +38,23 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
-  <title>Hexo</title>
+  <title>Ayun的博客</title>
   
 
 
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43f8b361c612bb0da582892813484651";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -81,7 +91,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -92,9 +102,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
+      <h1 class="site-title">Ayun的博客</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">Nice to meet you！</p>
   </div>
 
   <div class="site-nav-right">
@@ -110,12 +121,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a>
 
   </li>
   </ul>
@@ -144,22 +165,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/19/20191119%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup9/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Ayun的博客">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/19/20191119%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup9/" class="post-title-link" itemprop="url">学术五百词Group9</a>
+            <a href="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">ImageJ/Fiji批量处理</a>
         </h2>
 
         <div class="post-meta">
@@ -167,28 +188,35 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2019-11-19 10:04:08" itemprop="dateCreated datePublished" datetime="2019-11-19T10:04:08+08:00">2019-11-19</time>
+              <time title="创建时间：2019-08-30 19:48:13" itemprop="dateCreated datePublished" datetime="2019-08-30T19:48:13+08:00">2019-08-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
                 </span>
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -199,14 +227,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Group9"><a href="#Group9" class="headerlink" title="Group9"></a>Group9</h2><ul>
-<li>import</li>
-<li>impinge</li>
-<li>impart
+          <p>有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。</p>
+<p>ImageJ官网上关于宏编程的介绍： <a target="_blank" rel="noopener" href="https://imagej.net/Introduction_into_Macro_Programming">https://imagej.net/Introduction_into_Macro_Programming</a><br>关于批处理的介绍： <a target="_blank" rel="noopener" href="https://imagej.net/Batch_Processing">https://imagej.net/Batch_Processing</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/19/20191119%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup9/#more" rel="contents">
-                Read more &raquo;
+              <a class="btn" href="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -228,22 +254,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/18/20191118%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup8/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/08/18/20190823%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF%E6%B8%B8%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Ayun的博客">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/18/20191118%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup8/" class="post-title-link" itemprop="url">学术五百词Group8</a>
+            <a href="/2019/08/18/20190823%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF%E6%B8%B8%E8%AE%B0/" class="post-title-link" itemprop="url">德累斯顿游记</a>
         </h2>
 
         <div class="post-meta">
@@ -251,701 +277,35 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2019-11-18 10:02:54" itemprop="dateCreated datePublished" datetime="2019-11-18T10:02:54+08:00">2019-11-18</time>
+              <time title="创建时间：2019-08-18 22:39:57" itemprop="dateCreated datePublished" datetime="2019-08-18T22:39:57+08:00">2019-08-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group8"><a href="#Group8" class="headerlink" title="Group8"></a>Group8</h2><ul>
-<li>index</li>
-<li>institutionalize</li>
-<li>incorporate
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/18/20191118%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/14/20191114%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/14/20191114%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup7/" class="post-title-link" itemprop="url">学术五百词Group7</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-14 09:19:49" itemprop="dateCreated datePublished" datetime="2019-11-14T09:19:49+08:00">2019-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group7"><a href="#Group7" class="headerlink" title="Group7"></a>Group7</h2><ul>
-<li>compound</li>
-<li>explicate</li>
-<li>locate
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/14/20191114%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/13/20191113%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/13/20191113%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup6/" class="post-title-link" itemprop="url">学术五百词Group6</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-13 14:51:15" itemprop="dateCreated datePublished" datetime="2019-11-13T14:51:15+08:00">2019-11-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group6"><a href="#Group6" class="headerlink" title="Group6"></a>Group6</h2><ul>
-<li>purify</li>
-<li>reiterate</li>
-<li>range
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/13/20191113%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/12/20191112%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/12/20191112%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup5/" class="post-title-link" itemprop="url">学术五百词Group5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-12 09:25:30" itemprop="dateCreated datePublished" datetime="2019-11-12T09:25:30+08:00">2019-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group5"><a href="#Group5" class="headerlink" title="Group5"></a>Group5</h2><ul>
-<li>clarify</li>
-<li>characterize</li>
-<li>circumvent
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/12/20191112%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/11/20191111%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/11/20191111%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup4/" class="post-title-link" itemprop="url">学术五百词Group4</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-11 09:37:52" itemprop="dateCreated datePublished" datetime="2019-11-11T09:37:52+08:00">2019-11-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group4"><a href="#Group4" class="headerlink" title="Group4"></a>Group4</h2><ul>
-<li>systematize</li>
-<li>assimilate</li>
-<li>industrialize
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/11/20191111%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/08/20191108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/08/20191108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup3/" class="post-title-link" itemprop="url">学术五百词Group3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-08 09:13:34" itemprop="dateCreated datePublished" datetime="2019-11-08T09:13:34+08:00">2019-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group3"><a href="#Group3" class="headerlink" title="Group3"></a>Group3</h2><ul>
-<li>isolate</li>
-<li>resolve</li>
-<li>socialize
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/08/20191108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/07/20191107%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/20191107%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup2/" class="post-title-link" itemprop="url">学术五百词Group2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-07 09:01:54" itemprop="dateCreated datePublished" datetime="2019-11-07T09:01:54+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Group2"><a href="#Group2" class="headerlink" title="Group2"></a>Group2</h2><ul>
-<li>conduct</li>
-<li>consist</li>
-<li>categorize
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/20191107%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/11/06/20191106%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/06/20191106%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup1/" class="post-title-link" itemprop="url">学术五百词Group1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-06 09:52:10" itemprop="dateCreated datePublished" datetime="2019-11-06T09:52:10+08:00">2019-11-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>开始加强英语，从学术英语的五百个动词学起，每组大约10个。Flag就不随便立了，希望尽可能坚持。</p>
-<h2 id="Group1"><a href="#Group1" class="headerlink" title="Group1"></a>Group1</h2><ul>
-<li>extend</li>
-<li>extract</li>
-<li>exclude
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/06/20191106%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/10/08/20191008%E4%BA%8C%E5%8D%81%E5%9B%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/08/20191008%E4%BA%8C%E5%8D%81%E5%9B%9B/" class="post-title-link" itemprop="url">二十四</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-10-08 19:04:54" itemprop="dateCreated datePublished" datetime="2019-10-08T19:04:54+08:00">2019-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-10 17:08:35" itemprop="dateModified" datetime="2020-04-10T17:08:35+08:00">2020-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/journal/" itemprop="url" rel="index"><span itemprop="name">journal</span></a>
                 </span>
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/08/18/20190823%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF%E6%B8%B8%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/18/20190823%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF%E6%B8%B8%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -956,11 +316,888 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>二十三岁的一年依旧是在迷茫中四处冲撞和摸索，只是相比于之前，许多事情开始逐渐尘埃落定，慢慢清晰起来。眼看着年龄跳向了二十四，不得不感慨，逝者如斯夫。</p>
-<p>这一年最大的变化就是尝试着打破自己的舒适圈。在一个习惯的环境下待太久，思维和行动都会开始倦怠。我试着像刚刚进入大学那样，抛开所有成见，强迫自己从零开始勇敢尝试。虽然这个过程很难，回头想想也的确收获良多。 比如理想。我想这可能是上天送给我的二十四岁生日礼物。对于我来说，这种感觉就像紧闭多年的大门吱呀一声被推开，有一双厚实的手拉着我走出去，我模模糊糊地看到了阳光洒落大地，空气弥漫芬芳。从陌生拘谨，到心有灵犀，从能够细数每一次见面的点滴，到回忆满得要溢出记忆。甜蜜和苦涩交织的生活里，永远都不缺少希望。愿一切终归平静后，我们都会成为更好的自己。</p>
-<p>这一年做出的最重大的一个决定就是读博。各种纷繁复杂的念头开始于2019年初一个失眠的夜晚，不同的人不同的观点在我的脑子里嗡嗡作响了一个晚上。大多数时候人的焦虑都来自于对未知的恐惧，以及自身能力与预期目标的落差。本科四年我就像一块海绵拼命地吸取养分，内心相信未来充满无限可能。随后逐渐发现，脚下的路越来越窄，身边的人越走越高越飞越远，而我还在一大堆不确定面前徘徊。其实这也是审视自己的一个过程，我是谁，我想要什么，我将会去哪，我的优势和劣势是什么。能力所及的范围里，一定要竭尽全力，那些无能为力的事情，就尽量放宽心态吧。</p>
-<p>这一年经历了阻生磨牙矫正的诸多坎坷，最后终于还算顺利地进行了下去；体验了零德语基础独自一人游历德国，尽管在登上飞机前最后一刻突然莫名地慌张。有一天妈妈突然对我说，你这个报喜不报忧的主儿，一下子击碎了我假装强大的外壳。不管长多大，在父母面前你永远都是个透明的小孩子呀。</p>
+          <p>坐在去柏林的火车上，再一次跨过易北河，远离德累斯顿。在过去的一周里，每天我们都会坐电车，往返于河流两岸。静静流淌的河流，见证了这座城市的沧桑变化，毁灭重生。</p>
+<p>1945年，盟军对德累斯顿实施毁灭性轰炸，整个德累斯顿内城被彻底摧毁。被整整轰炸了两天的德累斯顿到底有多少人死亡，众说纷纭，从两万五到十几万，历史学家到现在也说不清楚。1960年，面对德累斯顿的断垣残壁，肖斯塔科维奇用三天的时间，写下了他最有名的《第八弦乐四重奏》。他在《第八弦乐四重奏》的标题下写道：“献给法西斯主义战争受难者”。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/18/20190823%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF%E6%B8%B8%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/07/07/20190707%E5%B0%8F%E6%9A%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/07/20190707%E5%B0%8F%E6%9A%91/" class="post-title-link" itemprop="url">小暑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-07 16:26:12" itemprop="dateCreated datePublished" datetime="2019-07-07T16:26:12+08:00">2019-07-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solar-terms/" itemprop="url" rel="index"><span itemprop="name">solar terms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/07/07/20190707%E5%B0%8F%E6%9A%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/07/20190707%E5%B0%8F%E6%9A%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>小暑是夏天的第五个节气，表示季夏时节的正式开始。《月令七十二候集解》：“六月节……暑，热也，就热之中分为大小，月初为小，月中为大，今则热气犹小也。”暑，表示炎热的意思，意指天气开始炎热，但还没到最热。</p>
+<p>小暑三候：温风至；蟋蟀居壁；鹰始挚。温风至，温风是热风，东汉王粲的《大暑赋》中有”熹润土之溽暑，扇温风而至兴”之句，熹是炙、烤；蟋蟀居壁，后五日蟋蟀生而还在穴中面壁，不能出穴飞，农历七月后才出穴，活跃草丛间求偶，到八月天凉会聚到院中，令小院鸣声鼎沸，天越凉离人越近；鹰始挚，再五日，鹰已经先感知到肃杀之气将至，开始练习搏击长空了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/07/20190707%E5%B0%8F%E6%9A%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">最后一天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-30 21:41:36" itemprop="dateCreated datePublished" datetime="2019-06-30T21:41:36+08:00">2019-06-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/journal/" itemprop="url" rel="index"><span itemprop="name">journal</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天是6月的最后一天，2019年上半年的最后一天，也是我在四牌楼图书馆工作的最后一天。转眼在图书馆已经工作三年了，从中文书库，到报纸期刊、外文阅览室，在这里逐渐认识和熟悉了一楼到六楼的每一间阅览室和每一排书架，他们就像一群不会说话的朋友，永远都是这样不动声色地观望和倾听着一切，让人心安。</p>
+<p>每一个朋友都有自己的脾气和特点。中文书库有高大的书架和低矮的屋顶，当站在架子之间时，让人有一种书籍从四面八方涌来的压迫感。在许多周日的早晨，外文阅览室里，阳光把斑驳的树影投射在米色的窗帘上，一眼望去偌大的房间里只有整整齐齐的桌椅和书架。三年的时间见证了太多的改变，报刊装订登记的表格写了几大页，新书扫描的本子写满了整整一本，中文书库经历了几次倒架、重排，外文阅览室大的搬迁、统计和排序，还有许多地方都已经与之前大不相同，我们都一样，在一点点地变得更好。</p>
+<p>非常幸运地在这里认识了许多美好的人，一起欢乐工作的小伙伴，对我很好的谭老师、王老师和小陈老师，也许将来我们很难再遇见，默默祝福你们，未来可期。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/" class="post-title-link" itemprop="url">LBM中的无量纲化和离散化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-26 17:52:23" itemprop="dateCreated datePublished" datetime="2019-06-26T17:52:23+08:00">2019-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>国内文章很少有关于格子玻尔兹曼法中单位选择和换算的解释，最近读到一篇palabos上关于单位选择的文章，大致翻译和总结如下。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>格子玻尔兹曼模拟能够代表一个真实存在的物理系统。在实施过程中，总会出现如何选择模拟量单位的问题。有两个约束条件决定了这个选择。首先，模拟应该和物理系统等效。其次，为了达到要求的精度，需要对参数进行微调，即网格要有足够的分辨率，离散时间步长要足够小等。</p>
+<p>本文假设最终目标是求解一个宏观流体方程，比如不可压缩的N-S方程。这里介绍的方法包括两个步骤。第一步，将物理系统转化为无量纲系统，无量纲系统不依赖于原始的物理尺度，也不依赖于仿真参数。第二步，将无量纲系统转化为离散系统。这三个系统（物理系统P、无量纲系统D和离散系统LB）之间的对应是通过无量纲或者无尺度的数来实现的。例如，不可压缩N-S方程的解只依赖于一个无量纲参数，即雷诺数Re。因此，这三个系统具有相同的雷诺数。从（P）过渡到（D）是通过选择特征长度$l_{0}$和时间尺度$t_{0}$实现的，而从（D）到（LB）是通过选择离散空间步长Δx和时间步长Δt实现的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/" class="post-title-link" itemprop="url">宵漏自此长</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-21 17:13:57" itemprop="dateCreated datePublished" datetime="2019-06-21T17:13:57+08:00">2019-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solar-terms/" itemprop="url" rel="index"><span itemprop="name">solar terms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
+</blockquote>
+<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
+<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
+<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/" class="post-title-link" itemprop="url">C++中的static</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-14 11:31:22" itemprop="dateCreated datePublished" datetime="2019-06-14T11:31:22+08:00">2019-06-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>static是C++中关于存储类型的说明符，用static说明的变量称为静态变量。它被用来控制变量的存储方式和可见性。</p>
+<h2 id="什么情况下使用静态变量"><a href="#什么情况下使用静态变量" class="headerlink" title="什么情况下使用静态变量"></a>什么情况下使用静态变量</h2><p>在函数内部定义的变量，当程序执行到它的定义处时，编译器为它在栈上分配空间，函数在栈上分配的空间在此函数执行结束时会释放掉，这样就产生了一个问题: 如果想将函数中此变量的值保存至下一次调用时，如何实现？ 最容易想到的方法是定义为全局的变量，但定义一个全局变量有许多缺点，最明显的缺点是破坏了此变量的访问范围（使得在此函数中定义的变量，不仅仅只受此函数控制）。static关键字则可以很好的解决这个问题。<br>另外，在 C++ 中，需要一个数据对象为整个类而非某个对象服务,同时又力求不破坏类的封装性,即要求此成员隐藏在类的内部，对外不可见时，可将其定义为静态数据。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/" class="post-title-link" itemprop="url">时雨及芒种</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-06 09:49:06" itemprop="dateCreated datePublished" datetime="2019-06-06T09:49:06+08:00">2019-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solar-terms/" itemprop="url" rel="index"><span itemprop="name">solar terms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>时雨及芒种，四野皆插秧。家家麦饭美，处处菱歌长。<br>——陆游《时雨》</p>
+</blockquote>
+<p>芒种是夏季的第三个节气，表示仲夏时节的正式开始。《月令七十二侯集解》：“五月节，谓有芒之种谷可稼种矣。”此时中国长江中下游地区将进入多雨的黄梅时节。</p>
+<p>芒种一词，始于《周礼》：“泽草所生，种之芒种。”东汉郑玄释义曰：“泽草之所生，其地可种芒种，芒种，稻麦也。”林清玄曾写道：“稻子的背负是芒种，麦穗的传承是芒种，高粱的波浪是芒种，天人菊在野风中盛放是芒种……有时候感觉到那一丝丝落下的阳光，也是芒种。六月的明亮里，我们能感受到四处流动的光芒。”这是一个承上启下，充满希望的时节。田野间的辛劳，教室里的高考，各奔东西的朋友，连绵不断的阴雨，许多年后这一切又会成为充满夏天味道的记忆吧。</p>
+<p>芒种三候。一候螳螂生。“蝉响螳螂急，鱼深翡翠闲。”螳螂于深秋生子于林间，一壳百子，此时破壳而出。二候鹃始鸣。鹃即伯劳，“伯劳以五月鸣，其声鹃鹃然”，以声命名。《诗经》有“七月鸣鹃”，周七月即夏五月。三候螳反舌无声。“反舌”即百舌鸟，“螳螂、鹃皆阴类，感微阴生或鸣，反舌感阳而发，遇微阴无声也。”</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/" class="post-title-link" itemprop="url">东南大学百年校庆碑记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-05 10:09:20" itemprop="dateCreated datePublished" datetime="2019-06-05T10:09:20+08:00">2019-06-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>&emsp;&emsp;吾校據古城金陵，東枕鍾山，西倚鼓樓，北臨後湖，乃昔日六朝皇宮內苑之所在，古松郁郁，萬木蔥翠，山擁水映，人傑地靈。曩者東吳景帝之立五經博士，劉宋雷次宗之奉诏興學，祖沖之任職華林學省與校試指南車，沈約、蕭衍之開格律詩詞先河，蕭梁昭明太子之編《文選》，明初國子監且修《永樂大典》，清開江甯府學及文昌書院，其地皆在於斯。煌煌千載，其文化積澱之深厚,教育曆史之悠久，鮮有能與之比肩者！</p>
+<p>&emsp;&emsp;一九零二年張之洞創建三江師範學堂於茲，厥後又幾經更叠，曰：兩江師範學堂、南京高等師範學校、國立東南大學、國立第四中山大學、江蘇大學、國立中央大學、國立南京大學、南京大學、南京工學院，後複更名爲東南大學，建校至今，凡百年矣。</p>
+<p>&emsp;&emsp;百年間吾校俊彥雲集，英才輩出，辦學成就卓著，學術薪火相傳。自兩江師範“嚼得菜根，做得大事”，南高師“誠樸、勤奮、求實”之校風及“民族、民主、科學”之精神，與乎東大、中大“止於至善”之校訓，直至南工標舉“嚴謹求實，團結奮進”，爲吾校塑起“至善”、“誠樸”之形象，造就“創新”“雄偉”之業績。縱觀百年，吾校誠不愧爲中華文明傳承之學府，亦爲吾國科學及人文不斷創新之基地，其於中華民族複興之貢獻豈勝道哉！然欲跻身國際一流之大學，猶當與時俱進，自強不息，誠所謂任重而道遠也。凡我師生，能不共勉之乎！茲當百年慶典，謹立斯碑以記之。且爲之歌曰：飲長江以思源兮，登鍾阜以遠望。觀滄海之納百川兮，喜桂馥而蘭芳。探赜敢先天下兮，六藝相依而益彰。攬四海英才而育之兮，鑄千秋萬載之輝煌。</p>
+<div style="text-align: right"> 公元二零零二年五月東南大學立 </div>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/" class="post-title-link" itemprop="url">小得盈满</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-21 10:31:57" itemprop="dateCreated datePublished" datetime="2019-05-21T10:31:57+08:00">2019-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solar-terms/" itemprop="url" rel="index"><span itemprop="name">solar terms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>夜莺啼绿柳，皓月醒长空。<br>最爱垄头麦，迎风笑落红。<br>——《小满》 宋·欧阳修</p>
+</blockquote>
+<p>《月令七十二候集解》：”四月中，小满者，物致于此小得盈满。”这时候，中国北方冬小麦类的夏熟作物进入了灌浆期，子粒开始鼓涨饱满，到了下一个节气芒种就已经熟透，可以收割了；而南方的水稻田里，早稻的追肥，中稻插秧都仰颈企盼着雨水的润泽。”大落大满、小落小满”，江南称下雨为”落雨”，小满时节，落雨虽未及大落，但水稻田已将近盈满。小满的”满”字既意指北方麦粒的饱满，又关乎南方雨水的丰盈。万物生气盎然，又从容不迫。 </p>
+<p>小满分为三候:“一候苦菜秀, 二候靡草死, 三候麦秋至。”小满节气后, 苦菜已经枝叶繁茂;之后, 喜阴的一些枝条细软的草类在强烈的阳光下开始枯死;在小满的最后一个时段, 麦子开始成熟。</p>
+<p>最近的天空总是美得像一幅画，而生活虽然有一些小小的不如意，却也经常充满惊喜和感动。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决github无法访问或排版图片出错等问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-17 10:01:36" itemprop="dateCreated datePublished" datetime="2019-05-17T10:01:36+08:00">2019-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>因为某些原因在国内github经常出现无法访问、访问速度慢或者页面加载异常的问题，下面记录一种简单直接的办法（适用Windows系统），修改host文件解决这些问题。</p>
+<h1 id="github无法访问"><a href="#github无法访问" class="headerlink" title="github无法访问"></a>github无法访问</h1><p>基本方法是，利用DNS查询工具，查找github.com的IP地址，并将IP地址和网址写入host文件。</p>
+<h2 id="查询IP地址"><a href="#查询IP地址" class="headerlink" title="查询IP地址"></a>查询IP地址</h2><p>常用的DNS查询工具有：<a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns/" title="站长之家">站长之家</a> 以及 <a target="_blank" rel="noopener" href="https://www.ipaddress.com/" title="IP查询">IPAddress</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/05/12/20190512%E3%80%8A%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C%E3%80%8B%E8%88%9E%E5%8F%B0%E6%9C%AC%E3%80%90%E8%BD%AC%E3%80%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-ayun.jpg">
+      <meta itemprop="name" content="Ayun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ayun的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/12/20190512%E3%80%8A%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C%E3%80%8B%E8%88%9E%E5%8F%B0%E6%9C%AC%E3%80%90%E8%BD%AC%E3%80%91/" class="post-title-link" itemprop="url">《春江花月夜》舞台本【转】</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-12 21:44:36" itemprop="dateCreated datePublished" datetime="2019-05-12T21:44:36+08:00">2019-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/05/12/20190512%E3%80%8A%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C%E3%80%8B%E8%88%9E%E5%8F%B0%E6%9C%AC%E3%80%90%E8%BD%AC%E3%80%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/12/20190512%E3%80%8A%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C%E3%80%8B%E8%88%9E%E5%8F%B0%E6%9C%AC%E3%80%90%E8%BD%AC%E3%80%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>昆剧《春江花月夜》舞台本<br>编剧：罗周</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.douban.com/group/topic/76999864/">https://www.douban.com/group/topic/76999864/</a></p>
+<p>人物表<br>张若虚：唐代诗人，俊逸风流。<br>辛 夷：名门闺秀，有林下之风。<br>张 旭：张若虚好友，书法大家。<br>司 琴：辛夷侍女。<br>曹 娥：在幽冥修行五百载的汉代少女。<br>鬼 使：幽冥界小卒。<br>秦广王：幽冥界第一殿天子。<br>楚江王：幽冥界第二殿天子。<br>宋帝王：幽冥界第三殿天子。<br>黑无常：幽冥界拘魂之使。<br>白无常：幽冥界拘魂之使。<br>孟 婆：幽冥界熬汤人。<br>刘 安：得道成仙的西汉淮南王。 </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/12/20190512%E3%80%8A%E6%98%A5%E6%B1%9F%E8%8A%B1%E6%9C%88%E5%A4%9C%E3%80%8B%E8%88%9E%E5%8F%B0%E6%9C%AC%E3%80%90%E8%BD%AC%E3%80%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -978,7 +1215,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1022,10 +1259,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -1036,7 +1273,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Ayun"
+      src="/images/avatar-ayun.jpg">
+  <p class="site-author-name" itemprop="name">Ayun</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -1044,22 +1283,49 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
         <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ayunnn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ayunnn" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhangy099@foxmail.com" title="E-Mail → mailto:zhangy099@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://hexo.io/zh-cn/" title="https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;" rel="noopener" target="_blank">Hexo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.google.com.hk/" title="https:&#x2F;&#x2F;www.google.com.hk&#x2F;" rel="noopener" target="_blank">Google</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode.com/" title="https:&#x2F;&#x2F;leetcode.com&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.seu.edu.cn/" title="http:&#x2F;&#x2F;www.seu.edu.cn&#x2F;" rel="noopener" target="_blank">SEU</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
@@ -1079,17 +1345,37 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2018 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Ayun</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -1112,7 +1398,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -1139,6 +1425,90 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'fqE3SwpupAdE7mOkbSaDy9Sn-gzGzoHsz',
+      appKey     : 'zUJCMNn9DnHva1GT5UsyA0Rd',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
