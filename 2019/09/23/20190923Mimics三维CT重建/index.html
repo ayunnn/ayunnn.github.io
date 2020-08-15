@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。">
@@ -28,20 +28,20 @@
 <meta property="og:site_name" content="Ayun的博客">
 <meta property="og:description" content="CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png">
 <meta property="article:published_time" content="2019-09-23T02:08:56.000Z">
 <meta property="article:modified_time" content="2020-05-16T00:26:24.606Z">
 <meta property="article:author" content="Ayun">
@@ -49,7 +49,7 @@
 <meta property="article:tag" content="Mimics">
 <meta property="article:tag" content="ImageProcess">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png">
 
 <link rel="canonical" href="http://ayunnn.gitee.io/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/">
 
@@ -107,7 +107,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -251,33 +251,33 @@
       
         <p>CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。</p>
 <a id="more"></a>
-<p>下面以Mimics 21为例，总结最基础的利用多张dcm图片进行三维重建的步骤：<br><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png" alt="mimics 21"></p>
+<p>下面以Mimics 21为例，总结最基础的利用多张dcm图片进行三维重建的步骤：<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png" alt="mimics 21"></p>
 <h3 id="导入文件"><a href="#导入文件" class="headerlink" title="导入文件"></a>导入文件</h3><p>打开Mimics软件，点击New Project并导入CT图像。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png" alt="new project"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png" alt="new project"></p>
 <p>接下来确认信息，点open</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png" alt="import"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png" alt="import"></p>
 <p>转化完成后一般图像方向也会自动设置好，但有些文件需要手动设置方向，比如下图。一般要从六个方向对图像定位，即上下左右前后，Top、Bottom、Left、Right、Anterior、Posterior。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png" alt="orientation"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png" alt="orientation"></p>
 <p>直接点击“X”进行设置，设置完成后如下图。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png" alt="orientation"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png" alt="orientation"></p>
 <h3 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h3><p>确定图像方向后，Mimics会自动生成横断面、冠状位、矢状位和三维视图。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png" alt="imageshow"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png" alt="imageshow"></p>
 <p>界面排版可以在菜单栏VIEW下面的的Layouts处修改。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png" alt="layouts"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png" alt="layouts"></p>
 <h3 id="阈值分割"><a href="#阈值分割" class="headerlink" title="阈值分割"></a>阈值分割</h3><p>阈值分割是通过选择一定的像素灰度值范围来对对象进行分割的方法。在CT图像中即为通过设置CT值来分割。</p>
 <p>点击菜单栏SEGMENT中的Threshold</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png" alt="threshold"></p>
-<p>在这里设置需要提取的CT值范围。软件中提供了预设的阈值范围，可以先根据感兴趣区域选择一个预设值，然后进行微调。<br><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png" alt="threshold set"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png" alt="threshold"></p>
+<p>在这里设置需要提取的CT值范围。软件中提供了预设的阈值范围，可以先根据感兴趣区域选择一个预设值，然后进行微调。<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png" alt="threshold set"></p>
 <p>设置完成后在Project Management中的Masks会出现刚刚提取的区域。</p>
 <h3 id="三维显示及导出"><a href="#三维显示及导出" class="headerlink" title="三维显示及导出"></a>三维显示及导出</h3><p>点击当前Mask，右键菜单栏选择Calculate Part，Calculate。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png" alt="calculate part"></p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png" alt="calculate"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png" alt="calculate part"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png" alt="calculate"></p>
 <p>等待一段时间后，Objects栏会出现生成的物体。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png" alt="result"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png" alt="result"></p>
 <p>最后在Objects栏右键导出STL即可。</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png" alt="export stl"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png" alt="export stl"></p>
 <p>STL文件显示如下</p>
-<p><img src="20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png" alt="result"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png" alt="result"></p>
 
     </div>
 
@@ -487,12 +487,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。 ImageJ官网上关于宏编程的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Introduction_into_Macro_Programming关于批处理的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Batch_Processing">
@@ -28,17 +28,17 @@
 <meta property="og:site_name" content="Ayun的博客">
 <meta property="og:description" content="有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。 ImageJ官网上关于宏编程的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Introduction_into_Macro_Programming关于批处理的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Batch_Processing">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png">
 <meta property="article:published_time" content="2019-08-30T11:48:13.000Z">
 <meta property="article:modified_time" content="2020-05-16T00:24:40.102Z">
 <meta property="article:author" content="Ayun">
 <meta property="article:tag" content="ImageJ">
 <meta property="article:tag" content="software">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png">
 
 <link rel="canonical" href="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/">
 
@@ -96,7 +96,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,15 +243,15 @@
 <a id="more"></a>
 <h2 id="获取宏代码"><a href="#获取宏代码" class="headerlink" title="获取宏代码"></a>获取宏代码</h2><p>第一步是获取所需操作对应的宏指令。我们不必关心具体的语法，只需要用Macro Recorder把一步步操作记录下来，自动生成对应的语句。</p>
 <p>打开菜单栏中Plugins-&gt;Macros-&gt;Recorder，保持窗口开着，接下来所有动作都会自动记录。例如下图显示的是打开图片，转化为8-bit格式，二值化。</p>
-<p><img src="20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png" alt="Recorder"></p>
+<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png" alt="Recorder"></p>
 <p>当然关于宏编程也有官方的指导手册：<a target="_blank" rel="noopener" href="https://imagej.net/docs/macro_reference_guide.pdf" title="Macro Language">ImageJ Macro Language Programmer’s Reference Guide</a></p>
 <p>【图片读写路径需要注意，可能在windows系统中需要用双斜线//。】</p>
 <h2 id="用脚本文件批量处理"><a href="#用脚本文件批量处理" class="headerlink" title="用脚本文件批量处理"></a>用脚本文件批量处理</h2><p>第二步是生成脚本文件。点击”Create”按钮弹出新的编辑器页面，适当修改记录器记录的语句。或者从菜单栏里Plugins-New-Macro创建新的脚本。编写完成后可以点击Run运行。</p>
 <p>软件本身还提供了一些模版，比如批量处理一个文件夹下的所有文件，在编辑器页面点Templates-&gt;ImageJ 1.x-&gt;Batch-&gt;Process Folder(IJ1 Macro)。在函数相应位置添加若干语句即可。</p>
-<p><img src="20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png" alt="Process Folder"></p>
-<h2 id="关于Fiji"><a href="#关于Fiji" class="headerlink" title="关于Fiji"></a>关于Fiji</h2><p>就像Fiji软件标题所说的，Fiji Is Just ImageJ，整个软件界面、使用方法基本和ImageJ完全相同。<br><img src="20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png" alt="Fiji"></p>
+<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png" alt="Process Folder"></p>
+<h2 id="关于Fiji"><a href="#关于Fiji" class="headerlink" title="关于Fiji"></a>关于Fiji</h2><p>就像Fiji软件标题所说的，Fiji Is Just ImageJ，整个软件界面、使用方法基本和ImageJ完全相同。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png" alt="Fiji"></p>
 <p>Fiji可以从<a target="_blank" rel="noopener" href="http://fiji.sc/" title="Fiji官网">Fiji官网</a>上下载，将压缩包解压即可直接使用，不需要安装。</p>
-<p>当我在官网上看到contributors时，不由得吃了一惊。一周前在MPI-CBG的时候，曾经请教过Florian Jug关于使用Fiji进行图像处理的问题，他很耐心地一步步教给我，还讲了很多使用技巧。当时还以为他只是非常熟悉这个软件，没想到竟然是负责这个软件开发维护的团队领导者。<br><img src="20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png" alt="contributors"></p>
+<p>当我在官网上看到contributors时，不由得吃了一惊。一周前在MPI-CBG的时候，曾经请教过Florian Jug关于使用Fiji进行图像处理的问题，他很耐心地一步步教给我，还讲了很多使用技巧。当时还以为他只是非常熟悉这个软件，没想到竟然是负责这个软件开发维护的团队领导者。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png" alt="contributors"></p>
 
     </div>
 
@@ -460,12 +460,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

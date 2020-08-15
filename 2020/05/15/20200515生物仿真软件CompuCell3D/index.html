@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="CompuCell3D是用于模拟生物复杂性问题的三维C ++软件问题求解环境，集成了多个数学[形态发生]模型。其中包括细胞Potts模型（CPM），该模型可以对细胞聚类，生长，分裂，死亡，粘附以及体积和表面积约束进行建模；以及偏微分方程求解器，用于模拟外部化学场的反应-扩散和用于分化的细胞类型自动机。通过集成这些模型，CompuCell3D可以对细胞对外部化学场（例如分泌或吸收）的反应以及诸如趋">
@@ -94,7 +94,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,13 +256,13 @@
 <li><p><strong>相互作用的描述和动力学</strong>定义了GGH对象在生物学和物理上的行为方式。广义细胞的行为和相互作用主要体现在有效能量（effective energy）中，它决定了广义细胞的形状、运动性、粘附性以及对细胞外信号的反应。有效能量将真实能量（如细胞-细胞粘附）和模拟能量（如细胞对梯度场的反应）结合起来。在有效能量上增加限制条件可以描述许多其他细胞特性，如渗透压、膜面积等。</p>
 </li>
 </ul>
-<p><img src="detail.png" alt="detail of a GGH cell-lattice configuration"></p>
+<p><img src="/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/detail.png" alt="detail of a GGH cell-lattice configuration"></p>
 <h3 id="GGH在CompuCell中的实现"><a href="#GGH在CompuCell中的实现" class="headerlink" title="GGH在CompuCell中的实现"></a>GGH在CompuCell中的实现</h3><p>细胞网格的演变是通过广义细胞在细胞骨架驱动下运动而试图移动其边界得来的。这种边界移动称为index-copy attempts，能够改变有效能量，根据有效能量的变化ΔH，利用一个接受函数接受或拒绝每次尝试。非平衡统计物理学表明，细胞网格会逐渐演变达到局部有效能量最小。典型的GGH实现了一个经典随机蒙特卡洛模式演变动力学的修改版本，称为Metropolis dynamics with Boltzmann acceptance。一个蒙特卡洛步骤（MCS）包括每个格点各一次index-copy attempts。</p>
 <p>辅助方程描述了细胞对扩散物质和细胞外物质的吸收和分泌（如它们与场的相互作用），细胞内的状态变化，有丝分裂和细胞死亡。通常，状态变化通过改变有效能量中的参数（例如，细胞靶的体积或类型或特定细胞粘附分子的表面密度）来影响广义细胞的行为。</p>
 <p>场也会由于分泌，吸收，扩散，反应和衰减而演化，这些演化采用偏微分方程（PDE）描述。尽管有可能用到复杂的耦合PDE模型，但大多数模拟只需要分泌，吸收，扩散和衰减，而反应是在单个广义细胞内进行的，由常微分方程（ODE）描述。细胞的移动和局部扩散常数（或各向异性ECM中的扩散张量）的变化意味着扩散发生在边界条件移动且通常具有对流的环境中。</p>
 <p>初始条件指定了单元格的初始配置、场、细胞及及其与辅助方程相关的内部状态，以及完整描述模拟所需的任何其他信息。</p>
 <p>流程图如下：</p>
-<p><img src="flowchart_cc3d.png" alt="flowchart"></p>
+<p><img src="/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/flowchart_cc3d.png" alt="flowchart"></p>
 <h2 id="CompuCell软件实现"><a href="#CompuCell软件实现" class="headerlink" title="CompuCell软件实现"></a>CompuCell软件实现</h2><p>与专门的研究代码不同，CompuCell3D是一个仿真环境，使研究人员可以快速构建和运行可共享的基于GGH的仿真。</p>
 <p>CompuCell3D对非程序员比较友好，提供了可视化工具、用于定义模拟的可扩展标记语言（XML）接口以及通过专用模块扩展框架的功能。另外还可以使用Python脚本访问CompuCell3D的C ++计算内核，从而使用户无需使用C或C ++等低级语言进行编程即可创建复杂的仿真。与典型的研究代码不同，更改模拟不需要重新编译CompuCell3D。</p>
 <p>用户使用CompuCell3D XML（CC3DML）配置文件和/或Python脚本定义模拟所需的变量。CompuCell3D读取并解析CC3DML配置文件，并使用它定义基本的仿真结构，然后初始化适当的Python服务（如果已指定），最后执行基本的仿真算法。</p>
@@ -484,12 +484,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

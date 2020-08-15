@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="问题描述假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。 如何绘制四维图，表示这个立方体？ 基本思想利用matlab函数slice，通过体数据显示正交切平面。">
@@ -28,17 +28,17 @@
 <meta property="og:site_name" content="Ayun的博客">
 <meta property="og:description" content="问题描述假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。 如何绘制四维图，表示这个立方体？ 基本思想利用matlab函数slice，通过体数据显示正交切平面。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png">
-<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg">
-<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png">
 <meta property="article:published_time" content="2018-09-02T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-03-08T02:34:00.415Z">
 <meta property="article:author" content="Ayun">
 <meta property="article:tag" content="matlab">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
 
 <link rel="canonical" href="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/">
 
@@ -96,7 +96,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,10 +247,10 @@
 <h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[xsize, ysize, zsize] = size(v);</span><br><span class="line">[x,y,z] = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = xsize/<span class="number">2</span>; </span><br><span class="line">yslice = [ysize/<span class="number">2</span>, ysize]; </span><br><span class="line">zslice = zsize/<span class="number">2</span>;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
 <p>效果如图</p>
-<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
 <h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[xsize, ysize, zsize] = size(v);</span><br><span class="line">[x,y,z] = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
-<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
 <h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
 <h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
 <h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
@@ -258,15 +258,15 @@
 <h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
 <p>az为方位角，el为仰角，均以度为单位。</p>
 <p>增加改进后，现在似乎好看了一点点</p>
-<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
 <h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
-<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
 <p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
 <p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
 <p>最后，只显示其中圆柱体的完整的代码如下：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">v(v == <span class="number">1</span>) = NaN;</span><br><span class="line">[xsize, ysize, zsize] = size(v);</span><br><span class="line">[x,y,z] = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">h=slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line"><span class="keyword">set</span>(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">colorbar</span><br><span class="line">alpha(<span class="number">0.9</span>)</span><br><span class="line">caxis([<span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
 
-<p>效果如图：<br><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
+<p>效果如图：<br><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
 
     </div>
 
@@ -474,12 +474,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>
