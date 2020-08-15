@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="问题描述假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。 如何绘制四维图，表示这个立方体？ 基本思想利用matlab函数slice，通过体数据显示正交切平面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matlab四维图绘制">
+<meta property="og:url" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题描述假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。 如何绘制四维图，表示这个立方体？ 基本思想利用matlab函数slice，通过体数据显示正交切平面。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png">
+<meta property="article:published_time" content="2018-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-08T02:34:00.415Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="matlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png">
+
+<link rel="canonical" href="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>matlab四维图绘制 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          matlab四维图绘制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-03T00:00:00+08:00">2018-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。</p>
+<p>如何绘制四维图，表示这个立方体？</p>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>利用matlab函数slice，通过体数据显示正交切平面。</p>
+<a id="more"></a>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slice(V,sx,sy,sz)</span><br><span class="line">slice(X,Y,Z,V,sx,sy,sz)</span><br><span class="line">h &#x3D; slice(...)</span><br></pre></td></tr></table></figure>
+<p><code>slice(V,sx,sy,sz)</code> 沿三维体 V 中的 x、y、z 方向在 sx、sy 和 sz 向量中的点处绘制切片。V 是一个 m×n×p 的三维体数组，包含在 X = 1:n、Y = 1:m、Z = 1:p 处的数据值。向量 sx、sy 和 sz 中的每个元素在 x、y 或 z 轴方向定义一个切平面。<br><code>slice(X,Y,Z,V,sx,sy,sz)</code>  绘制三维体 V 的切片。X、Y 和 Z 是指定 V 的坐标的三维数组。X、Y 和 Z 必须是单调正交分布的（比如由 meshgrid 函数生成的）。每个点处的颜色由三维体 V 中的三维插值确定。<br><code>h = slice(...)</code> 将句柄向量返回至曲面图形对象。</p>
+<h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[xsize, ysize, zsize] &#x3D; size(v);</span><br><span class="line">[x,y,z] &#x3D; meshgrid(1:ysize,1:xsize,1:zsize);</span><br><span class="line">xslice &#x3D; xsize&#x2F;2; </span><br><span class="line">yslice &#x3D; [ysize&#x2F;2, ysize]; </span><br><span class="line">zslice &#x3D; zsize&#x2F;2;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p>效果如图</p>
+<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
+<h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[xsize, ysize, zsize] &#x3D; size(v);</span><br><span class="line">[x,y,z] &#x3D; meshgrid(1:ysize,1:xsize,1:zsize);</span><br><span class="line">xslice &#x3D; 1:xsize; </span><br><span class="line">yslice &#x3D; 1:ysize; </span><br><span class="line">zslice &#x3D; 1:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
+<h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
+<h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
+<h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
+<h3 id="色标"><a href="#色标" class="headerlink" title="色标"></a>色标</h3><p><code>colorbar</code><br>在图像一侧显示色标</p>
+<h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">az &#x3D; -20;</span><br><span class="line">el &#x3D; 10;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
+<p>az为方位角，el为仰角，均以度为单位。</p>
+<p>增加改进后，现在似乎好看了一点点</p>
+<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
+<p><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
+<p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
+<p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
+<p>最后，只显示其中圆柱体的完整的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">v(v &#x3D;&#x3D; 1) &#x3D; NaN;</span><br><span class="line">[xsize, ysize, zsize] &#x3D; size(v);</span><br><span class="line">[x,y,z] &#x3D; meshgrid(1:ysize,1:xsize,1:zsize);</span><br><span class="line">xslice &#x3D; 1:xsize; </span><br><span class="line">yslice &#x3D; 1:ysize; </span><br><span class="line">zslice &#x3D; 1:zsize;</span><br><span class="line">h&#x3D;slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line">set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</span><br><span class="line">colorbar</span><br><span class="line">alpha(0.9)</span><br><span class="line">caxis([0, 6])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az &#x3D; -20;</span><br><span class="line">el &#x3D; 10;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
+
+<p>效果如图：<br><img src="20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/matlab/" rel="tag"># matlab</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/23/20180823%E4%BB%8A%E6%97%A5%E5%A4%84%E6%9A%91/" rel="prev" title="今日处暑">
+      <i class="fa fa-chevron-left"></i> 今日处暑
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="next" title="文章发布问题记录">
+      文章发布问题记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">基本思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">简单实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%BB%98%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">整体绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">一些设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E6%98%8E%E5%BA%A6%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">透明度设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E8%BD%B4%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">坐标轴设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%A0%87"><span class="nav-number">3.3.</span> <span class="nav-text">色标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E8%A7%92%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.4.</span> <span class="nav-text">视角设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">最终效果</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

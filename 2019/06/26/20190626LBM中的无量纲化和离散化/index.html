@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="国内文章很少有关于格子玻尔兹曼法中单位选择和换算的解释，最近读到一篇palabos上关于单位选择的文章，大致翻译和总结如下。 基本原理格子玻尔兹曼模拟能够代表一个真实存在的物理系统。在实施过程中，总会出现如何选择模拟量单位的问题。有两个约束条件决定了这个选择。首先，模拟应该和物理系统等效。其次，为了达到要求的精度，需要对参数进行微调，即网格要有足够的分辨率，离散时间步长要足够小等。 本文假设最终目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LBM中的无量纲化和离散化">
+<meta property="og:url" content="http://ayunnn.gitee.io/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="国内文章很少有关于格子玻尔兹曼法中单位选择和换算的解释，最近读到一篇palabos上关于单位选择的文章，大致翻译和总结如下。 基本原理格子玻尔兹曼模拟能够代表一个真实存在的物理系统。在实施过程中，总会出现如何选择模拟量单位的问题。有两个约束条件决定了这个选择。首先，模拟应该和物理系统等效。其次，为了达到要求的精度，需要对参数进行微调，即网格要有足够的分辨率，离散时间步长要足够小等。 本文假设最终目">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-06-26T09:52:23.000Z">
+<meta property="article:modified_time" content="2020-05-10T01:55:07.661Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="LBM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ayunnn.gitee.io/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>LBM中的无量纲化和离散化 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LBM中的无量纲化和离散化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-26 17:52:23" itemprop="dateCreated datePublished" datetime="2019-06-26T17:52:23+08:00">2019-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-10 09:55:07" itemprop="dateModified" datetime="2020-05-10T09:55:07+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>国内文章很少有关于格子玻尔兹曼法中单位选择和换算的解释，最近读到一篇palabos上关于单位选择的文章，大致翻译和总结如下。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>格子玻尔兹曼模拟能够代表一个真实存在的物理系统。在实施过程中，总会出现如何选择模拟量单位的问题。有两个约束条件决定了这个选择。首先，模拟应该和物理系统等效。其次，为了达到要求的精度，需要对参数进行微调，即网格要有足够的分辨率，离散时间步长要足够小等。</p>
+<p>本文假设最终目标是求解一个宏观流体方程，比如不可压缩的N-S方程。这里介绍的方法包括两个步骤。第一步，将物理系统转化为无量纲系统，无量纲系统不依赖于原始的物理尺度，也不依赖于仿真参数。第二步，将无量纲系统转化为离散系统。这三个系统（物理系统P、无量纲系统D和离散系统LB）之间的对应是通过无量纲或者无尺度的数来实现的。例如，不可压缩N-S方程的解只依赖于一个无量纲参数，即雷诺数Re。因此，这三个系统具有相同的雷诺数。从（P）过渡到（D）是通过选择特征长度$l_{0}$和时间尺度$t_{0}$实现的，而从（D）到（LB）是通过选择离散空间步长Δx和时间步长Δt实现的。</p>
+<a id="more"></a>
+<p>物理系统（P）——$Re,l_{0},t_{0}$——&gt; 无量纲系统（D）——$Re,\delta_{x},\delta_{t}$——&gt; 离散系统（LB）</p>
+<p>这不是唯一可行的方法。显然可以直接从（P）到（LB），但是最好采用中间步骤生成无量纲系统。有几个原因，首先离散变量Δx和Δt对模拟的稳定性和准确性有很大影响，它们不依赖于物理系统的规模，也绝不依赖于所选择的物理单位。另外，很可能在模拟时出现没有物理系统可以参考的情况，例如当试图实现另一个LB系统时。最后，摆脱原始的物理系统时一个很重要的抽象过程，有助于专注后续的数学处理。</p>
+<h2 id="实例：不可压缩流体流动"><a href="#实例：不可压缩流体流动" class="headerlink" title="实例：不可压缩流体流动"></a>实例：不可压缩流体流动</h2><h3 id="控制方程"><a href="#控制方程" class="headerlink" title="控制方程"></a>控制方程</h3><p>在不可压缩流体中，密度定义为恒定值$ \rho = \rho _{0} $，不随时间和空间变化。 Navier-Stokes方程满足质量和动量守恒定律。质量守恒定律表明速度场是无散度(divergence-less)的</p>
+<p>$$ \Delta_ {p} u_{p}=0  \tag {1}$$</p>
+<p>其中$u$是速度，下标”p”表示变量和导数是以真实物理单位计算的。由动量守恒定律可以推出，</p>
+<p>$$ \partial _ {t_ {p}}u_ {p}+(u_ {p}\cdot \nabla_ {p})u_ {p}=-\frac{1}{\rho _ {0p}}\nabla_ {p}p_ {p}+\nu_ {p}\nabla_ {p}^{2}u_{p} \tag {2} $$</p>
+<p>其中$p_{p}$是压力，$v_{p}$是粘度</p>
+<h3 id="无量纲公式"><a href="#无量纲公式" class="headerlink" title="无量纲公式"></a>无量纲公式</h3><p>现在将方程(1)和(2)转化成无量纲形式。引入空间尺度 $l_{0}$ 和时间尺度 $t_{0}$ 。将时间$t_{p}$和位置向量$r_{p}$等物理变量替换为它们对应的无量纲项：<br>\begin{equation}<br>\begin{matrix}<br> t_ {d} = \frac{t_ {p}}{t_ {0,p}}&amp; and &amp;  r_ {d} = \frac{r_ {p}}{l_{0,p}}<br>\end{matrix}<br>\label{eq:时间空间无量纲化}<br>\end{equation}</p>
+<p>同样地，对其他变量引入单位换算:<br>\begin{equation}<br>\begin{matrix}<br> u_ {p} = \frac{l_ {0,p}}{t_ { 0,p}}u_ {d}&amp; \partial_ {t_ { p}} = \frac{1}{t_ {0,p}}\partial_{t_ {d}}&amp; \nabla_ {p} = \frac{1}{l_ {0,p}}\nabla_ {d} &amp;and &amp;p_ {p} = \rho _ {0}\frac{l_ {0,p}^2}{t_ {0,p}^2}p_{d}<br>\end{matrix}<br>\label{eq:其他无量纲化}<br>\end{equation}</p>
+<p>将换算后的变量带入方程(1)(2)，就得到了无量纲化的Navier-Stokes方程。</p>
+<p>\begin{equation}<br>\partial _ {t_ {d}}u_ {d}+(u_ {d}\cdot \nabla_ {d})u_ {d}=-\nabla_ {d}p_{d}+\frac{1}{Re}\nabla{d}^{2}u{d}<br>\label{eq:无量纲NS方程}<br>\end{equation}</p>
+<p>\begin{equation}<br>\Delta _ {d}\cdot u_{d}=0<br>\label{eq:无量纲NS方程2}<br>\end{equation}</p>
+<p>其中无量纲的雷诺数Re定义为</p>
+<p>\begin{equation}<br>Re = \frac{l_ {0}^2}{t_{0}\nu}<br>\label{eq:雷诺数}<br>\end{equation}</p>
+<p>在任何单位系统中该公式均成立。如果两种遵循N-S方程的流体处在相同的几何结构中(仅相差一个比例系数)并具有相同的雷诺数，则它们是等价的。</p>
+<p>通过在无量纲系统中表示引用变量，可以发现$l_{0,d} = 1$ 且 $t_{0,d} = 1$ 。我们可以认为无量纲系统是$l_{0}$和$t_{0}$归一化的系统。无量纲体系的粘度为$  \nu_{d}= {1}/{Re} $。</p>
+<h3 id="无量纲系统的离散化"><a href="#无量纲系统的离散化" class="headerlink" title="无量纲系统的离散化"></a>无量纲系统的离散化</h3><p>离散空间间隔$\delta_{x}$定义为参考长度除以网格个数$N$。同样，$\delta_{t}$定义为参考时间除以迭代次数$N_{iter}$。这两个变量在无量纲系统中是1，所以离散化参数为</p>
+<p>\begin{equation}<br>\begin{matrix}<br>\delta_{x} = 1/N &amp; and<br>\end{matrix}<br>\label{eq:空间步长}<br>\end{equation}</p>
+<p>\begin{equation}<br>\delta_{t} = 1/N_{iter}<br>\label{eq:时间步长}<br>\end{equation}</p>
+<p>其他参数，也可以很容易地从(D)转化到(LB)系统：</p>
+<p>\begin{equation}<br>\begin{matrix}<br>u_{d} = \frac{\delta_{x}}{\delta_{t}}u_{lb} &amp; and<br>\end{matrix}<br>\label{eq:速度d}<br>\end{equation}</p>
+<p>\begin{equation}<br>\nu_{d}= 1/Re = \frac{\delta_{x}^2}{\delta_{t}}\nu_{lb}<br>\label{eq:粘度d}<br>\end{equation}</p>
+<p>因此</p>
+<p>\begin{equation}<br>\begin{matrix}<br>u_{lb} = \frac{\delta_{t}}{\delta_{x}}u_{d} &amp; and<br>\end{matrix}<br>\label{eq:速度lb}<br>\end{equation}</p>
+<p>\begin{equation}<br>\nu_{lb}= \frac{\delta_{t}}{\delta_{x}^2}\frac{1}{Re}<br>\label{eq:粘度lb}<br>\end{equation}</p>
+<p>最后，定义参考速度$u_{0} = l_{0}/t_{0}$，可以发现根据定义，</p>
+<p>\begin{equation}<br>\begin{matrix}<br>u_{0,d} = 1 &amp; and<br>\end{matrix}<br>\label{eq:速度0d}<br>\end{equation}</p>
+<p>\begin{equation}<br>u_{0,lb} = \frac{\delta_{t}}{\delta_{x}}<br>\label{eq:速度0lb}<br>\end{equation}</p>
+<h3 id="模拟步骤"><a href="#模拟步骤" class="headerlink" title="模拟步骤"></a>模拟步骤</h3><p>下面我们数值实现一个二维方腔流，流动限制在一个3cm×3cm的盒子内，由顶盖带动流动，顶盖以$2cm/min$的速度向右移动。液体粘度为$5cm^2/min$。</p>
+<ol>
+<li><p>定义时间和空间的特征长度。考虑到问题的几何形状，将参考长度$l_{0}$定义为盒子边长，将参考速度$u_{0}$定义为顶盖的速度。因此，$l_{0,p} = 3cm$, $u_{0,p} = 2cm/min$。特征时间为$t_{0,p} = l_{0,p}/u_{0,p} =3/2min$。</p>
+</li>
+<li><p>计算雷诺数$Re = u_{0,p}l_{0,p}/\nu_{p} = 2\cdot<br>3/5 = 6/5$。</p>
+</li>
+<li><p>选择离散化参数。假设我们想要一个由101×101个节点组成的网格。如果边界的物理位置在网格节点的顶部(如Zou/He边界条件)，则系统的大小是100×100个格子。因此,离散网格间距$\delta_{x} = 1/100$。此外，给定一个时间分辨率，比如说$\delta_{t} = 2 \cdot 10^{-4}$。</p>
+</li>
+<li><p>计算仿真中变量的值。顶盖边界条件的速度$u_{lb}$是由方程(12)计算的。格子粘度$\nu_{lb}$是由方程(13)计算的。如果采用单松弛时间BGK,松弛时间通过方程$\tau = \nu_{lb}/c_{s}^2+1/2  $计算，其中声速是一个常数:$c_{s}^2 = 1/3$。</p>
+</li>
+</ol>
+<p>原文链接： [Choice of units in lattice Boltzmann simulations](Choice of units in lattice Boltzmann simulations.pdf)</p>
+<p>[参考文档1：Lattice Boltzmann Method applied to Diffusion in Heterogeneous Media](Lattice Boltzmann Method applied to Diffusion in Heterogeneous Media.pdf)<br>[参考文档2：On the relation between lattice variables and physical quantities in lattice Boltzmann simulations](On the relation between lattice variables and physical quantities in lattice Boltzmann simulations.pdf)</p>
+<blockquote><p>This document is part of the LBMethod.org documentation project, and may be used under the terms of a Creative Commons Attribution-Share Alike 3.0 License. See <a target="_blank" rel="noopener" href="http://www.lbmethod.org/legal">www.lbmethod.org/legal</a> for details</p>
+</blockquote>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LBM/" rel="tag"># LBM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/" rel="prev" title="宵漏自此长">
+      <i class="fa fa-chevron-left"></i> 宵漏自此长
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/" rel="next" title="最后一天">
+      最后一天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%EF%BC%9A%E4%B8%8D%E5%8F%AF%E5%8E%8B%E7%BC%A9%E6%B5%81%E4%BD%93%E6%B5%81%E5%8A%A8"><span class="nav-number">2.</span> <span class="nav-text">实例：不可压缩流体流动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">控制方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%87%8F%E7%BA%B2%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">无量纲公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%87%8F%E7%BA%B2%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A6%BB%E6%95%A3%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">无量纲系统的离散化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.4.</span> <span class="nav-text">模拟步骤</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CompuCell3D是用于模拟生物复杂性问题的三维C ++软件问题求解环境，集成了多个数学[形态发生]模型。其中包括细胞Potts模型（CPM），该模型可以对细胞聚类，生长，分裂，死亡，粘附以及体积和表面积约束进行建模；以及偏微分方程求解器，用于模拟外部化学场的反应-扩散和用于分化的细胞类型自动机。通过集成这些模型，CompuCell3D可以对细胞对外部化学场（例如分泌或吸收）的反应以及诸如趋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生物仿真软件CompuCell3D">
+<meta property="og:url" content="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CompuCell3D是用于模拟生物复杂性问题的三维C ++软件问题求解环境，集成了多个数学[形态发生]模型。其中包括细胞Potts模型（CPM），该模型可以对细胞聚类，生长，分裂，死亡，粘附以及体积和表面积约束进行建模；以及偏微分方程求解器，用于模拟外部化学场的反应-扩散和用于分化的细胞类型自动机。通过集成这些模型，CompuCell3D可以对细胞对外部化学场（例如分泌或吸收）的反应以及诸如趋">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/detail.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/flowchart_cc3d.png">
+<meta property="article:published_time" content="2020-05-15T09:35:39.000Z">
+<meta property="article:modified_time" content="2020-05-16T00:25:00.479Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="software">
+<meta property="article:tag" content="simulation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/detail.png">
+
+<link rel="canonical" href="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>生物仿真软件CompuCell3D | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2020/05/15/20200515%E7%94%9F%E7%89%A9%E4%BB%BF%E7%9C%9F%E8%BD%AF%E4%BB%B6CompuCell3D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          生物仿真软件CompuCell3D
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-15 17:35:39" itemprop="dateCreated datePublished" datetime="2020-05-15T17:35:39+08:00">2020-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-16 08:25:00" itemprop="dateModified" datetime="2020-05-16T08:25:00+08:00">2020-05-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>CompuCell3D是用于模拟生物复杂性问题的三维C ++软件问题求解环境，集成了多个数学[形态发生]模型。其中包括细胞Potts模型（CPM），该模型可以对细胞聚类，生长，分裂，死亡，粘附以及体积和表面积约束进行建模；以及偏微分方程求解器，用于模拟外部化学场的反应-扩散和用于分化的细胞类型自动机。通过集成这些模型，CompuCell3D可以对细胞对外部化学场（例如分泌或吸收）的反应以及诸如趋化性和趋触性的反应进行建模。</p>
+<p>CompuCell3D Wikipedia</p>
+</blockquote>
+<p>2004年介绍CompuCell的一篇文章发表在Bioinformatics上，题目是：CompuCell, a multi-model framework for simulation of morphogenesis.（当时还叫CompuCell，是二维计算框架）软件中包括一些独立的模块用来模拟基因调控网络和细胞机制的相互作用，包括形态发生蛋白的合成和扩散、细胞黏附、趋触性、趋化性。</p>
+<p>CompuCell 的三个主要组成部分是描述细胞和ECM行为的细胞Potts模型（CPM）、描述可扩散形态因子的反应-扩散（RD）模块和遗传调控网络和分化的组合ODE/状态模型。细胞Potts模型可以对细胞聚类，生长，分裂，死亡，粘附以及体积和表面积约束进行建模，偏微分方程求解器用于模拟外部化学场的反应-扩散。随后它很快发展为三维模型，并被许多研究者使用。</p>
+<a id="more"></a>
+
+<h2 id="Glazier-Graner-Hogeweg-GGH-方法"><a href="#Glazier-Graner-Hogeweg-GGH-方法" class="headerlink" title="Glazier-Graner-Hogeweg (GGH)方法"></a>Glazier-Graner-Hogeweg (GGH)方法</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在此之前已经发展了对单个细胞的模拟方法，而由于组织、器官层面的模拟往往涉及大量的细胞，如何简化和适应单细胞模拟以有效地应用于数百万细胞集合体的模拟成为挑战。一种方法是忽略细胞个体，例如将组织建模为具有整体机械特性和分子反应网络的连续体，这对于描述致密组织和非细胞材料比较有效，比如骨、细胞外基质、流体等，不适合用于描述细胞迁移或重组。</p>
+<p>另一种方法是多细胞模拟，（phenomenologically现象地） 将数百万基因产物的相互作用归纳为几种细胞行为：迁移、分裂、死亡、分化、改变形状、施加力、分泌和吸收化学物质、电荷改变等。GGH方法就是一种多细胞模拟方法，它通过定义generalized cells（本文里暂且翻译为广义细胞）实现多尺度模拟，广义细胞可以代表细胞簇、单个细胞、单个细胞的一部分或者非细胞物质的一个子区域。这种灵活的定义使得模拟能够适用于从细胞内到连续体的多个尺度。</p>
+<p>因为使用了规则的网格，GGH模拟通常比在相同空间粒度和建模尺度下运行的等效有限元（FE）模拟要快，从而可以在网格上模拟数以万计的广义细胞。</p>
+<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><p>GGH模拟包括一系列<strong>对象</strong>及它们之间的<strong>相互作用和动力学</strong>，同时包括适当的初始条件。GGH模拟中的对象一般是二维或者三维下的<strong>广义细胞（generalized cells）</strong>或<strong>场（fields）</strong>。</p>
+<ul>
+<li><p><strong>广义细胞</strong>位于一个单元网格里，代表一个细胞或者部分细胞或者非细胞材料。每一个格点用一个整数向量i表示，每个格点i都有一个细胞索引σ(i)，细胞的类型用τ(σ(i))表示。每个广义细胞有一个唯一的索引，但可能包含多个格点。多个广义细胞可能有相同的细胞类型。每个广义细胞有一个属性列表，例如细胞类型、表面积和体积，以及更多描述细胞状态的复杂属性、生物化学相互作用的网络等。</p>
+</li>
+<li><p><strong>场</strong>是连续可变的浓度，每个格点有一个浓度值。场可以表示以一种扩散的化学物质、非扩散的细胞外基质等。多个场可以组合起来表示有纹理的材料，例如纤维。</p>
+</li>
+<li><p><strong>相互作用的描述和动力学</strong>定义了GGH对象在生物学和物理上的行为方式。广义细胞的行为和相互作用主要体现在有效能量（effective energy）中，它决定了广义细胞的形状、运动性、粘附性以及对细胞外信号的反应。有效能量将真实能量（如细胞-细胞粘附）和模拟能量（如细胞对梯度场的反应）结合起来。在有效能量上增加限制条件可以描述许多其他细胞特性，如渗透压、膜面积等。</p>
+</li>
+</ul>
+<p><img src="detail.png" alt="detail of a GGH cell-lattice configuration"></p>
+<h3 id="GGH在CompuCell中的实现"><a href="#GGH在CompuCell中的实现" class="headerlink" title="GGH在CompuCell中的实现"></a>GGH在CompuCell中的实现</h3><p>细胞网格的演变是通过广义细胞在细胞骨架驱动下运动而试图移动其边界得来的。这种边界移动称为index-copy attempts，能够改变有效能量，根据有效能量的变化ΔH，利用一个接受函数接受或拒绝每次尝试。非平衡统计物理学表明，细胞网格会逐渐演变达到局部有效能量最小。典型的GGH实现了一个经典随机蒙特卡洛模式演变动力学的修改版本，称为Metropolis dynamics with Boltzmann acceptance。一个蒙特卡洛步骤（MCS）包括每个格点各一次index-copy attempts。</p>
+<p>辅助方程描述了细胞对扩散物质和细胞外物质的吸收和分泌（如它们与场的相互作用），细胞内的状态变化，有丝分裂和细胞死亡。通常，状态变化通过改变有效能量中的参数（例如，细胞靶的体积或类型或特定细胞粘附分子的表面密度）来影响广义细胞的行为。</p>
+<p>场也会由于分泌，吸收，扩散，反应和衰减而演化，这些演化采用偏微分方程（PDE）描述。尽管有可能用到复杂的耦合PDE模型，但大多数模拟只需要分泌，吸收，扩散和衰减，而反应是在单个广义细胞内进行的，由常微分方程（ODE）描述。细胞的移动和局部扩散常数（或各向异性ECM中的扩散张量）的变化意味着扩散发生在边界条件移动且通常具有对流的环境中。</p>
+<p>初始条件指定了单元格的初始配置、场、细胞及及其与辅助方程相关的内部状态，以及完整描述模拟所需的任何其他信息。</p>
+<p>流程图如下：</p>
+<p><img src="flowchart_cc3d.png" alt="flowchart"></p>
+<h2 id="CompuCell软件实现"><a href="#CompuCell软件实现" class="headerlink" title="CompuCell软件实现"></a>CompuCell软件实现</h2><p>与专门的研究代码不同，CompuCell3D是一个仿真环境，使研究人员可以快速构建和运行可共享的基于GGH的仿真。</p>
+<p>CompuCell3D对非程序员比较友好，提供了可视化工具、用于定义模拟的可扩展标记语言（XML）接口以及通过专用模块扩展框架的功能。另外还可以使用Python脚本访问CompuCell3D的C ++计算内核，从而使用户无需使用C或C ++等低级语言进行编程即可创建复杂的仿真。与典型的研究代码不同，更改模拟不需要重新编译CompuCell3D。</p>
+<p>用户使用CompuCell3D XML（CC3DML）配置文件和/或Python脚本定义模拟所需的变量。CompuCell3D读取并解析CC3DML配置文件，并使用它定义基本的仿真结构，然后初始化适当的Python服务（如果已指定），最后执行基本的仿真算法。</p>
+<p>CompuCell3D是模块化的，每个模块都执行一个特定的任务。计算有效能量项或监视单元格上的事件的模块称为插件，用于计算有效能量变化和对index copy 做出反应。每次像素index-copy attempts都会调用有效能量计算，而每当发生index copy时都会运行单元格监视插件。由于插件是CC3D中最常被调用的模块，因此大多数插件都使用C ++进行编码以提高速度。一些插件可能依赖于其他插件，存在隐含的插件依赖项时，CompuCell3D会自动加载并初始化依赖插件。</p>
+<p>除了插件外，CompuCell3D还定义了称为steppable的模块，这个模块不是在像素上运行的，而是在细胞上运行的。这些模块在每次Monte Carlo Steps后重复运行，或者在模拟开始或结束时运行一次。该模块通常定义初始条件，更改细胞状态，更新场或输出中间结果。大多数steppable模块是用Python实现的。CC3D内核支持并行计算（通过OpenMP），从而大大提高了在多核计算机上的运算速度。</p>
+<p>CompuCell3D包括图形用户界面（GUI）和可视化工具CompuCell Player（也称为Player）。Player是基于Qt的图形界面，用户可以从Player中打开CC3DML配置文件和/或Python文件，然后单击“播放”按钮以运行模拟。Player允许用户在模拟运行时实现多个2D或3D的关于广义细胞，场或各种矢量图的可视化，并自动保存它们以进行后处理。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>CompuCell3D 维基百科 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CompuCell3D">https://en.wikipedia.org/wiki/CompuCell3D</a></li>
+<li>CompuCell3D 官方网站 <a target="_blank" rel="noopener" href="https://compucell3d.org/FrontPage">https://compucell3d.org/FrontPage</a></li>
+<li>CompuCell3D Documentation <a target="_blank" rel="noopener" href="https://compucell3d.readthedocs.io/en/latest/index.html">https://compucell3d.readthedocs.io/en/latest/index.html</a></li>
+<li>Swat, Maciej H., et al. “Multicell simulations of development and disease using the CompuCell3D simulation environment.” <em>Systems Biology</em>. Humana Press, 2009. 361-428.</li>
+<li>Izaguirre, Jesús A., et al. “CompuCell, a multi-model framework for simulation of morphogenesis.” <em>Bioinformatics</em> 20.7 (2004): 1129-1137.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/software/" rel="tag"># software</a>
+              <a href="/tags/simulation/" rel="tag"># simulation</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/13/20200513%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup48/" rel="prev" title="学术五百词Group48">
+      <i class="fa fa-chevron-left"></i> 学术五百词Group48
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/11/20200611%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup49/" rel="next" title="学术五百词Group49">
+      学术五百词Group49 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Glazier-Graner-Hogeweg-GGH-%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Glazier-Graner-Hogeweg (GGH)方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GGH%E5%9C%A8CompuCell%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">GGH在CompuCell中的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CompuCell%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">CompuCell软件实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

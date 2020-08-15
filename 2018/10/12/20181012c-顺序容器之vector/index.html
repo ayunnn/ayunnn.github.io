@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vector是c++标准库中的一种顺序容器。顺序容器的类型有以下几种：   vector             可变大小数组 deque             双端队列 list             双向链表 forward_list     单向链表 array             固定大小数组 string             与vector相似的容器，专门用于字符串   其中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++顺序容器之vector">
+<meta property="og:url" content="http://ayunnn.gitee.io/2018/10/12/20181012c-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E4%B9%8Bvector/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vector是c++标准库中的一种顺序容器。顺序容器的类型有以下几种：   vector             可变大小数组 deque             双端队列 list             双向链表 forward_list     单向链表 array             固定大小数组 string             与vector相似的容器，专门用于字符串   其中">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-10-12T02:57:04.000Z">
+<meta property="article:modified_time" content="2020-04-10T09:08:35.091Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ayunnn.gitee.io/2018/10/12/20181012c-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E4%B9%8Bvector/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>c++顺序容器之vector | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2018/10/12/20181012c-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E4%B9%8Bvector/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          c++顺序容器之vector
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-12 10:57:04" itemprop="dateCreated datePublished" datetime="2018-10-12T10:57:04+08:00">2018-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-10 17:08:35" itemprop="dateModified" datetime="2020-04-10T17:08:35+08:00">2020-04-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index"><span itemprop="name">learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>vector是c++标准库中的一种顺序容器。顺序容器的类型有以下几种：</p>
+<hr>
+<ol>
+<li>vector             可变大小数组</li>
+<li>deque             双端队列</li>
+<li>list             双向链表</li>
+<li>forward_list     单向链表</li>
+<li>array             固定大小数组</li>
+<li>string             与vector相似的容器，专门用于字符串</li>
+</ol>
+<hr>
+<p>其中，<code>string</code>和<code>vector</code>将元素保存在连续的内存空间中，因此利用下标随机访问元素非常快，但是在中间位置插入或删除元素很慢。<code>list</code>和<code>forward_list</code>在任何位置插入或删除元素都很快，但都不支持元素的随机访问。为了访问一个元素需要遍历整个容器。<code>deque</code>是一个更为复杂的数据结构，与string和vector类似，deque支持快速的随机访问</p>
+<a id="more"></a>
+<h2 id="vector初始化"><a href="#vector初始化" class="headerlink" title="vector初始化"></a>vector初始化</h2><h3 id="一维vector"><a href="#一维vector" class="headerlink" title="一维vector"></a>一维vector</h3><p>以一个长为10，元素种类为int的名为S的vector为例。一维vector初始化的基本格式是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; S;             &#x2F;&#x2F; 初始化一个一维向量S</span><br><span class="line">vector&lt;int&gt; S(10);         &#x2F;&#x2F; 初始化一个长为10的向量S</span><br><span class="line">vector&lt;int&gt; S(10, 1);     &#x2F;&#x2F; 初始化一个长为10，初始值为1的向量S</span><br><span class="line">vector&lt;int&gt; a(10, 1);</span><br><span class="line">vector&lt;int&gt; S(a);         &#x2F;&#x2F; 用向量a初始化向量S（两向量必须类型相同）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>第一种初始化方法，即<code>vector&lt;int&gt; S</code>，初始化后vector为空，容器中没有元素，size为0，并且此时capacity也为0，表明并没有为S分配内存空间。<br>另外也可以用数组初始化vector：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int n[] &#x3D; &#123;1, 2, 3, 4, 5&#125;;</span><br><span class="line">vector&lt;int&gt; a(n, n+5);       &#x2F;&#x2F;将数组n的前5个元素作为向量a的初值</span><br><span class="line">vector&lt;int&gt; a(&amp;n[1], &amp;n[4]); &#x2F;&#x2F;将n[1] - n[4]范围内的元素作为向量a的初值</span><br></pre></td></tr></table></figure>
+<h3 id="多维vector"><a href="#多维vector" class="headerlink" title="多维vector"></a>多维vector</h3><p>多维向量的初始化可以用嵌套定义的方式，指定每一维的长度。例如，初始化一个大小为XSIZE*YSIZE*ZSIZE，初始值全部为0的三维向量S：<br><code>vector&lt;vector&lt;vector&lt;int&gt; &gt; &gt; S(XSIZE,vector&lt;vector&lt;int&gt; &gt;(YSIZE,vector&lt;int&gt;(ZSIZE, 0)));</code><br>这里需要注意，最好在&gt;之间加上空格，以免被误认为是操作符”&gt;&gt;”。</p>
+<p>另一种初始化方法，是先声明一个空的三维向量，再对各维分别resize：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;vector&lt;int&gt; &gt; &gt; S;</span><br><span class="line">S.resize(XSIZE);</span><br><span class="line">for (int i &#x3D; 0; i &lt; XSIZE; ++i) &#123;</span><br><span class="line">    S[i].resize(YSIZE);</span><br><span class="line">    for (int j &#x3D; 0; j &lt; YSIZE; ++j)&#123;</span><br><span class="line">        S[i][j].resize(ZSIZE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vector的几种重要操作"><a href="#vector的几种重要操作" class="headerlink" title="vector的几种重要操作"></a>vector的几种重要操作</h2><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>对vector中某一个元素进行操作，可以直接像普通数组一样使用<code>[]</code>进行下标索引。例如<code>S[2][3][4]</code>，但是这里要注意，下标操作只能获取已存在的元素，不可用于添加元素等。</p>
+<p>以打印三维向量vec所有元素为例，说明两种遍历方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;vector&lt;int&gt;&gt;&gt; vec;</span><br></pre></td></tr></table></figure>
+<p>第一种是利用下标索引，通过<code>size()</code>函数获取每一维的长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int i,j,k;</span><br><span class="line">for (i &#x3D; 0; i &lt; vec.size(); i++)</span><br><span class="line">&#123;</span><br><span class="line">    for(j &#x3D; 0; j &lt; vec[0].size(); j++)</span><br><span class="line">    &#123;</span><br><span class="line">        for (k &#x3D; 0; k &lt; vec[0][0].size(); k++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; vec[i][j][k] &lt;&lt; &quot; &quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种是采用vector的迭代器，用iterator的begin和end获取每一维的起始和终止位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt;::iterator it;</span><br><span class="line">vector&lt;vector&lt;int&gt;&gt;::iterator it2;</span><br><span class="line">vector&lt;vector&lt;vector&lt;int&gt;&gt;&gt;::iterator it3;</span><br><span class="line">vector&lt;int&gt; vec_tmp;</span><br><span class="line">vector&lt;vector&lt;int&gt;&gt; vec_tmp2;</span><br><span class="line"></span><br><span class="line">for(it3 &#x3D; vec.begin(); it3 !&#x3D; vec.end(); it3++)</span><br><span class="line">&#123;</span><br><span class="line">    vec_tmp2 &#x3D; *it3;</span><br><span class="line">    for(it2 &#x3D; vec_tmp2.begin(); it2 !&#x3D; vec_tmp2.end(); it2++)</span><br><span class="line">    &#123;</span><br><span class="line">        vec_tmp &#x3D; *it2;</span><br><span class="line">        for(it &#x3D; vec_tmp.begin(); it !&#x3D; vec_tmp.end(); it++)</span><br><span class="line">            cout &lt;&lt; *it &lt;&lt; &quot; &quot;;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><p><code>vec.push_back(t)</code> 在容器的最后加入一个值为t的数据，容器的size变大<br><code>vec.insert(p, t)</code> 在指针p指向的元素之前插入一个值为t的元素，返回指向新添加元素的指针<br><code>vec.insert(p, n, t)</code> 在指针p指向的元素之前插入n个值为t的元素，返回指向新添加元素中第一个元素的指针</p>
+<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p><code>vec.pop_back()</code> 删除容器中最后一个元素<br><code>vec.erase(p)</code> 删除指针p指向的元素，返回指向p后一个元素的指针<br><code>vec.erase(p1, p2)</code> 删除指针p1到p2之间的元素<br><code>vec.clear()</code> 删除容器中全部元素</p>
+<h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><p><code>vec.empty()</code> 判断是否为空<br><code>vec.size()</code> 返回容器中数据的个数</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cpp/" rel="tag"># Cpp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/08/20181008matlab%E4%B8%AD%E7%9A%84%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/" rel="prev" title="matlab中的取整函数">
+      <i class="fa fa-chevron-left"></i> matlab中的取整函数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/17/20181017%E9%87%8D%E9%98%B3/" rel="next" title="重阳">
+      重阳 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">vector初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4vector"><span class="nav-number">1.1.</span> <span class="nav-text">一维vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BB%B4vector"><span class="nav-number">1.2.</span> <span class="nav-text">多维vector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector%E7%9A%84%E5%87%A0%E7%A7%8D%E9%87%8D%E8%A6%81%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">vector的几种重要操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">2.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="nav-number">2.2.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">2.3.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">2.4.</span> <span class="nav-text">其他操作</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

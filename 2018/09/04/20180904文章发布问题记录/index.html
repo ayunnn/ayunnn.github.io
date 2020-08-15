@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ayunnn.gitee.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="昨天第一次发布稍复杂一点的文章，刚开始接触markdown语法，很多用法只好边查边用，中间遇到了很多问题（虽然都是菜鸟级别），在此记录以备查询。  MarkdownPad2渲染组件出错 markdown标题语法 本地图片插入问题 多行代码的换行问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文章发布问题记录">
+<meta property="og:url" content="http://ayunnn.gitee.io/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="昨天第一次发布稍复杂一点的文章，刚开始接触markdown语法，很多用法只好边查边用，中间遇到了很多问题（虽然都是菜鸟级别），在此记录以备查询。  MarkdownPad2渲染组件出错 markdown标题语法 本地图片插入问题 多行代码的换行问题">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ayunnn.gitee.io/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/1.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/2.jpg">
+<meta property="og:image" content="http://ayunnn.gitee.io/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/3.png">
+<meta property="og:image" content="http://ayunnn.gitee.io/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/4.png">
+<meta property="article:published_time" content="2018-09-04T01:50:00.000Z">
+<meta property="article:modified_time" content="2020-03-08T02:34:00.418Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ayunnn.gitee.io/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/1.png">
+
+<link rel="canonical" href="http://ayunnn.gitee.io/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>文章发布问题记录 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://ayunnn.gitee.io/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          文章发布问题记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-09-04 09:50:00" itemprop="dateCreated datePublished" datetime="2018-09-04T09:50:00+08:00">2018-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-08 10:34:00" itemprop="dateModified" datetime="2020-03-08T10:34:00+08:00">2020-03-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>昨天第一次发布稍复杂一点的文章，刚开始接触markdown语法，很多用法只好边查边用，中间遇到了很多问题（虽然都是菜鸟级别），在此记录以备查询。</p>
+<ol>
+<li>MarkdownPad2渲染组件出错</li>
+<li>markdown标题语法</li>
+<li>本地图片插入问题</li>
+<li>多行代码的换行问题<a id="more"></a>
+<h2 id="MarkdownPad2渲染组件出错"><a href="#MarkdownPad2渲染组件出错" class="headerlink" title="MarkdownPad2渲染组件出错"></a>MarkdownPad2渲染组件出错</h2></li>
+</ol>
+<p>安装好MarkdownPad2后还正常使用了一段时间，不知道为什么昨天突然就出错了，显示<strong>This view has crashed!</strong> 。右边的预览窗口不能显示，如下图</p>
+<p><img src="20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/1.png" alt="出错提示"></p>
+<p>并且弹出对话框，大致意思是这个问题可以通过安装某个缺失组件来解决，是否了解更多信息？选择”是”，跳转至<a target="_blank" rel="noopener" href="http://markdownpad.com/faq.html#livepreview-directx/" title="FAQ">官网FAQ页面</a>。</p>
+<blockquote>
+<p>This issue has been specifically observed in Windows 8. You may see an error message <a target="_blank" rel="noopener" href="http://markdownpad.com/img/faq/markdownpad-livepreview-crash-directx.png" title="message">as shown here</a>, and no HTML will be rendered when you type in the Markdown Editor pane.<br>To fix this issue, please try installing the <a target="_blank" rel="noopener" href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" title="Awesomium 1.6.6">Awesomium 1.6.6 SDK</a>.<br>If you continue to experience issues, please install <a target="_blank" rel="noopener" href="http://www.microsoft.com/en-us/download/details.aspx?id=8109" title="Microsoft&#39;s DirectX End-User Runtimes">Microsoft’s DirectX End-User Runtimes (June 2010)</a>.</p>
+</blockquote>
+<p>win8、win10出现这个问题的解决办法：</p>
+<ol>
+<li>首先安装<a target="_blank" rel="noopener" href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" title="Awesomium 1.6.6">Awesomium 1.6.6 SDK</a>，</li>
+<li>如果还是没有解决，再安装<a target="_blank" rel="noopener" href="http://www.microsoft.com/en-us/download/details.aspx?id=8109" title="Microsoft&#39;s DirectX End-User Runtimes">Microsoft’s DirectX End-User Runtimes (June 2010)</a>。</li>
+</ol>
+<p>我第一步安装完问题就已经解决了。又可以愉快地使用了！</p>
+<h2 id="markdown标题语法"><a href="#markdown标题语法" class="headerlink" title="markdown标题语法"></a>markdown标题语法</h2><p>这个问题都不好意思放上来，不过既然犯了这个错误，而且还花了点时间解决，还是要放上来警示一下自己…</p>
+<p>若干个#加文字可以显示为不同级别的标题，刚开始用这个语法，上传了好多次，在网页上看到的仍然是#+文字，而没有显示出标题。</p>
+<p>后来终于找到问题，#和文字之间需要有一个空格！其实markdown语法里还有很多必须加空格的，比如冒号:后面（这个错误最开始我也犯过），不过因为在MarkdownPad2的渲染窗口里，就算#后面不加空格也可以显示出来，所以开始一直没有注意到。</p>
+<h2 id="本地图片插入问题"><a href="#本地图片插入问题" class="headerlink" title="本地图片插入问题"></a>本地图片插入问题</h2><p>想插入一张本地图片，按照找到的格式<code>![文字](图片名.jpg)</code>写好，并且把图片放在同一个文件夹目录下，发现在网页上图片无法显示。<br>又是一番查找，发现了一篇简书上的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c2ba9533088a" title="简书博客">博客</a>，提到这个问题。<br>解决办法总结如下：</p>
+<ol>
+<li>首先确认主页配置文件<code>_config.yml</code>里的<code>post_asset_folder</code>设置为true</li>
+<li>然后安装一个插件“hexo-asset-image”，具体方法是，在hexo目录下执行<code>npm install hexo-asset-image --save</code></li>
+<li>在/source/_post文件夹内新建一个与xx.md同名的文件，将图片放在这个文件夹中。（以后新生成文章时，只要运行<code>hexo n xx</code>就可以自动生成这个同名文件夹）</li>
+<li>想要引用这张图片时，在xx.md中按照<code>![文字](xx/图片名.jpg)</code>格式引用即可。</li>
+</ol>
+<p>放张图片庆祝一下！<br><img src="/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/2.jpg" alt="欧耶"></p>
+<h2 id="多行代码的换行问题"><a href="#多行代码的换行问题" class="headerlink" title="多行代码的换行问题"></a>多行代码的换行问题</h2><p>这个属于MarkdownPad2的基本设置了。开始写多行代码时，一对```之间的多行代码不能换行，总是连在一起。</p>
+<p>这个解决办法很简单，在MarkdownPad2的菜单栏里的Tools栏里，打开Options。<br><img src="/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/3.png" alt="设置"></p>
+<p>将Markdown Processor的选项改为GitHub Flavored Markdown(Offline)就可以了。<br><img src="/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/4.png" alt="设置"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/" rel="prev" title="matlab四维图绘制">
+      <i class="fa fa-chevron-left"></i> matlab四维图绘制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/08/20180908%E9%9C%B2%E4%BB%8E%E4%BB%8A%E6%97%A5%E7%99%BD/" rel="next" title="露从今日白">
+      露从今日白 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MarkdownPad2%E6%B8%B2%E6%9F%93%E7%BB%84%E4%BB%B6%E5%87%BA%E9%94%99"><span class="nav-number">1.</span> <span class="nav-text">MarkdownPad2渲染组件出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">markdown标题语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">本地图片插入问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">多行代码的换行问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
