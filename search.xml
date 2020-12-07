@@ -67,20 +67,6 @@
       </tags>
   </entry>
   <entry>
-    <title>露从今日白</title>
-    <url>/2018/09/08/20180908%E9%9C%B2%E4%BB%8E%E4%BB%8A%E6%97%A5%E7%99%BD/</url>
-    <content><![CDATA[<p>今天是二十四节气中的白露。“水土湿气凝而为露，秋属金，金色白，白者露之色，而气始寒也”，白露过后，水汽在夜间便会遇冷凝结，在地面或叶子上形成细小的水珠。古人以四时配五行，秋属金，金色白，故以白形容秋露。</p>
-<p>白露物候有三。一候，鸿雁来，白露时节鸿雁开始列队集体南迁。<br>二候，玄鸟归，玄鸟即燕子，秋风萧瑟，燕子南飞避寒。<br>三候，群鸟养羞，百鸟开始储存干果粮食以备过冬。</p>
-<p>一场秋雨一场寒，眨眼间翠绿的梧桐树叶竟已隐隐现出枯黄，秋天已经到了。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文章发布问题记录</title>
     <url>/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p>昨天第一次发布稍复杂一点的文章，刚开始接触markdown语法，很多用法只好边查边用，中间遇到了很多问题（虽然都是菜鸟级别），在此记录以备查询。</p>
@@ -126,32 +112,17 @@
       </tags>
   </entry>
   <entry>
-    <title>秋分</title>
-    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
-    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
-<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
-<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
+    <title>露从今日白</title>
+    <url>/2018/09/08/20180908%E9%9C%B2%E4%BB%8E%E4%BB%8A%E6%97%A5%E7%99%BD/</url>
+    <content><![CDATA[<p>今天是二十四节气中的白露。“水土湿气凝而为露，秋属金，金色白，白者露之色，而气始寒也”，白露过后，水汽在夜间便会遇冷凝结，在地面或叶子上形成细小的水珠。古人以四时配五行，秋属金，金色白，故以白形容秋露。</p>
+<p>白露物候有三。一候，鸿雁来，白露时节鸿雁开始列队集体南迁。<br>二候，玄鸟归，玄鸟即燕子，秋风萧瑟，燕子南飞避寒。<br>三候，群鸟养羞，百鸟开始储存干果粮食以备过冬。</p>
+<p>一场秋雨一场寒，眨眼间翠绿的梧桐树叶竟已隐隐现出枯黄，秋天已经到了。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
       </categories>
       <tags>
         <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>matlab中的取整函数</title>
-    <url>/2018/10/08/20181008matlab%E4%B8%AD%E7%9A%84%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h3 id="向零取整"><a href="#向零取整" class="headerlink" title="向零取整"></a>向零取整</h3><p><strong>fix</strong>: Round toward zero<br>例：<code>fix(2.1)</code> 结果为 2</p>
-<h3 id="向下取整"><a href="#向下取整" class="headerlink" title="向下取整"></a>向下取整</h3><p><strong>floor</strong>: Round toward negative infinity<br>例：<code>floor(2.1)</code> 结果为 2<br>例：<code>floor(-2.1)</code> 结果为-3</p>
-<h3 id="向上取整"><a href="#向上取整" class="headerlink" title="向上取整"></a>向上取整</h3><p><strong>ceil</strong>: Round toward positive infinity<br>例：<code>ceil(2.1)</code> 结果为 3</p>
-<h3 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h3><p><strong>round</strong>: Round to nearest decimal or integer<br>例：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">X = [<span class="number">2.11</span> <span class="number">3.5</span>; <span class="number">-3.5</span> <span class="number">0.78</span>];</span><br><span class="line">Y = round(X)</span><br></pre></td></tr></table></figure><br>结果为<br>Y = 2×2<br>2     4<br>-4     1</p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -181,6 +152,53 @@
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>秋分</title>
+    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
+    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
+<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
+<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>时逢秋暮露成霜</title>
+    <url>/2018/10/23/20181023%E6%97%B6%E9%80%A2%E7%A7%8B%E6%9A%AE%E9%9C%B2%E6%88%90%E9%9C%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>时逢秋暮露成霜，几份凝结几份阳。<br>荷败千池萧瑟岸，棉白万顷采收忙。<br>——左河水</p>
+</blockquote>
+<p>今天是秋季里最后一个节气，霜降。《二十四节气解》中说：“气肃而霜降，阴始凝也。”真正要到了漫山遍野，如火似锦的登高赏叶时节了。</p>
+<p>霜降三候：<br>豺乃祭兽。“豺乃祭兽”一词最早出现在《逸周书》中：“霜降之日，豺乃祭兽”。在此节气，豺狼开始捕获猎物，并将先猎之物祭兽，以兽而祭天报本，后食用。就如同人类在粮食丰收时，用谷物祭天，祈祷来年的风调雨顺。</p>
+<p>草木黄落。大地上的树叶枯黄飞落，天气逐渐变得寒冷。而人的情感随着天气的变化，也陷入低谷之中，出现悲秋的情绪。</p>
+<p>蛰虫咸俯。大自然在经过了春天的草长莺飞、夏天的烈日炎炎、秋天的金桂飘香，进入了寂静的休眠状态，为经历漫长的冬天而作准备。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>matlab中的取整函数</title>
+    <url>/2018/10/08/20181008matlab%E4%B8%AD%E7%9A%84%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h3 id="向零取整"><a href="#向零取整" class="headerlink" title="向零取整"></a>向零取整</h3><p><strong>fix</strong>: Round toward zero<br>例：<code>fix(2.1)</code> 结果为 2</p>
+<h3 id="向下取整"><a href="#向下取整" class="headerlink" title="向下取整"></a>向下取整</h3><p><strong>floor</strong>: Round toward negative infinity<br>例：<code>floor(2.1)</code> 结果为 2<br>例：<code>floor(-2.1)</code> 结果为-3</p>
+<h3 id="向上取整"><a href="#向上取整" class="headerlink" title="向上取整"></a>向上取整</h3><p><strong>ceil</strong>: Round toward positive infinity<br>例：<code>ceil(2.1)</code> 结果为 3</p>
+<h3 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h3><p><strong>round</strong>: Round to nearest decimal or integer<br>例：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">X = [<span class="number">2.11</span> <span class="number">3.5</span>; <span class="number">-3.5</span> <span class="number">0.78</span>];</span><br><span class="line">Y = round(X)</span><br></pre></td></tr></table></figure><br>结果为<br>Y = 2×2<br>2     4<br>-4     1</p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -232,24 +250,6 @@
       </categories>
       <tags>
         <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时逢秋暮露成霜</title>
-    <url>/2018/10/23/20181023%E6%97%B6%E9%80%A2%E7%A7%8B%E6%9A%AE%E9%9C%B2%E6%88%90%E9%9C%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>时逢秋暮露成霜，几份凝结几份阳。<br>荷败千池萧瑟岸，棉白万顷采收忙。<br>——左河水</p>
-</blockquote>
-<p>今天是秋季里最后一个节气，霜降。《二十四节气解》中说：“气肃而霜降，阴始凝也。”真正要到了漫山遍野，如火似锦的登高赏叶时节了。</p>
-<p>霜降三候：<br>豺乃祭兽。“豺乃祭兽”一词最早出现在《逸周书》中：“霜降之日，豺乃祭兽”。在此节气，豺狼开始捕获猎物，并将先猎之物祭兽，以兽而祭天报本，后食用。就如同人类在粮食丰收时，用谷物祭天，祈祷来年的风调雨顺。</p>
-<p>草木黄落。大地上的树叶枯黄飞落，天气逐渐变得寒冷。而人的情感随着天气的变化，也陷入低谷之中，出现悲秋的情绪。</p>
-<p>蛰虫咸俯。大自然在经过了春天的草长莺飞、夏天的烈日炎炎、秋天的金桂飘香，进入了寂静的休眠状态，为经历漫长的冬天而作准备。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -356,22 +356,6 @@
       </tags>
   </entry>
   <entry>
-    <title>清寒小雪前</title>
-    <url>/2018/11/22/20181122%E6%B8%85%E5%AF%92%E5%B0%8F%E9%9B%AA%E5%89%8D/</url>
-    <content><![CDATA[<blockquote>
-<p>久雨重阳後，清寒小雪前。<br>拾薪椎髻仆，卖菜掘头船。<br>薄米全家粥，空床故物毡。<br>身犹付一歃，名字更须传?<br>         ——陆游《初寒》</p>
-</blockquote>
-<p>今日小雪。《月令七十二候集解》曰：“十月中，雨下而为寒气所薄，故凝而为雪。小者未盛之辞。”前几天得知家里已经迎来了第一场雪，突然觉得冬天真的到了，而南京似乎还更接近深秋的景象。</p>
-<p>小雪三候：“一候虹藏不见；二候天气上升地气下降；三候闭塞而成冬。”由于天空中的阳气上升，地中的阴气下降，导致天地不通，阴阳不交，所以万物失去生机，天地闭塞而转入严寒的冬天。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>明末悲歌《铁冠图》</title>
     <url>/2018/11/26/20181126%E6%98%8E%E6%9C%AB%E6%82%B2%E6%AD%8C%E3%80%8A%E9%93%81%E5%86%A0%E5%9B%BE%E3%80%8B/</url>
     <content><![CDATA[<p>上一周大概是我的“戏曲黄金周”，原本就买了几场戏的票，又通过京昆艺术节的活动得到了一张早就想看却一直没机会的《铁冠图》的票，然后作为交换写了一篇剧评。这里就偷懒一下，直接放原文在此吧。</p>
@@ -389,42 +373,17 @@
       </tags>
   </entry>
   <entry>
-    <title>matlab绘制水滴形曲线并计算曲率</title>
-    <url>/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在matlab中，利用贝塞尔曲线绘制闭合的水滴形曲线，并计算曲线上各点的曲率。</p>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h3><p>在之前的博客中已经介绍过贝塞尔曲线的基本形式（详见<a href="https://ayunnn.github.io/2018/10/25/20181025%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%AE%80%E4%BB%8B/" title="贝塞尔曲线简介">贝塞尔曲线简介</a>）。由于水滴形曲线是一条闭合曲线，需要首尾两个控制点重合，另外中间至少还需要两个位置不同的控制点，则一共需要四个控制点，因此选择三阶贝塞尔曲线来实现。<br><a id="more"></a></p>
-<h3 id="曲率定义"><a href="#曲率定义" class="headerlink" title="曲率定义"></a>曲率定义</h3><p>对于一条光滑曲线C，曲线C上从点M到M’的弧为Δs，切线的转角为Δα。<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p2.png" alt="曲率定义"></p>
-<p><strong>平均曲率</strong>： 定义<script type="math/tex">\bar{K} = \left |  \frac{\Delta\alpha}{\Delta s} {} \right |</script> 为弧段 <script type="math/tex">{M{M}'}</script> 的平均曲率。它反映了弧 <script type="math/tex">{M{M}'}</script> 的平均弯曲程度。</p>
-<p><strong>曲率</strong>：称 <script type="math/tex">K=\lim_{\Delta s\rightarrow 0}\left | \frac{\Delta \alpha }{\Delta s} \right |</script> 为曲线C在点M处的曲率。</p>
-<p>在 <script type="math/tex">\lim_{\Delta s\rightarrow 0} \frac{\Delta \alpha }{\Delta s} = \frac{d\alpha }{ds}</script> 存在的条件下，<script type="math/tex">K = \left | \frac{d\alpha }{ds} \right |</script>。此式即为曲率的计算公式。</p>
-<p>设曲线的直角坐标方程是<script type="math/tex">y=f(x)</script>，且<script type="math/tex">f(x)</script> 具有二阶导数。因为<script type="math/tex">tan \alpha = {y}'</script>，所以 <script type="math/tex">sec^{2}\alpha \frac{d\alpha }{dx} = {y}''</script>，又知 <script type="math/tex">ds=\sqrt{1+{y}'^{2}}dx</script>（弧微分公式），从而有</p>
-<script type="math/tex; mode=display">K = \frac{\left |{y}''  \right |}{(1+{y}'^{2})^{3/2}}</script><blockquote><p>补充：<br>弧微分公式推导<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p3.png" alt="弧微分公式推导"></p>
-<footer><strong>刘景麟，黄振友编 《微积分 上》 国防工业出版社 2006</strong></footer></blockquote>
-<p>对于参数方程，可以采用同样的推导方法求出曲率计算公式。若参数方程形式为<script type="math/tex">\left\{\begin{matrix}
-x=\phi (t)\\ y=\omega (t)
-\end{matrix}\right.</script>，则曲率的计算公式为<script type="math/tex">K = \frac{\left | {\phi}' (t){\omega}'' (t)-{\omega}' (t){\phi}'' (t) \right |}{\left [ {\phi}'^{2} (t) + {\omega}'^{2} (t) \right ]^{3/2}}</script>。</p>
-<h2 id="matlab绘制曲线"><a href="#matlab绘制曲线" class="headerlink" title="matlab绘制曲线"></a>matlab绘制曲线</h2><p>首先定义四个控制点的坐标，然后根据三阶贝塞尔曲线方程计算对应于参数t的x, y值。这里设置步长为0.01。</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% 控制点坐标</span><br><span class="line">P0 = [<span class="number">0</span>;<span class="number">0</span>];</span><br><span class="line">P1 = [<span class="number">-1</span>;<span class="number">1.4</span>];</span><br><span class="line">P2 = [<span class="number">1</span>;<span class="number">1.4</span>];</span><br><span class="line">P3 = [<span class="number">0</span>;<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">% 计算x, y</span><br><span class="line">t = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">x = P0(<span class="number">1</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P1(<span class="number">1</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P2(<span class="number">1</span>).*t.^<span class="number">2.</span>*(<span class="number">1</span>-t) + P3(<span class="number">1</span>).*t.^<span class="number">3</span>;</span><br><span class="line">y = P0(<span class="number">2</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P1(<span class="number">2</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P2(<span class="number">2</span>).*t.^<span class="number">2.</span>*(<span class="number">1</span>-t) + P3(<span class="number">2</span>).*t.^<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">% 绘图</span><br><span class="line">figure(<span class="number">1</span>)</span><br><span class="line">plot(x, y)</span><br><span class="line">axis equal</span><br></pre></td></tr></table></figure>
-<p>绘制的结果为<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p4.png" alt="水滴形曲线"></p>
-<h2 id="matlab计算曲率"><a href="#matlab计算曲率" class="headerlink" title="matlab计算曲率"></a>matlab计算曲率</h2><p>根据曲率计算公式，首先需要计算x, y对t的一阶和二阶导数，可以用定义符号变量的方法计算。</p>
-<p>首先定义t为符号变量，计算x, y的符号表达式。</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">syms</span> t;</span><br><span class="line"><span class="attribute">phi</span> = P<span class="number">0</span>(<span class="number">1</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P<span class="number">1</span>(<span class="number">1</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P<span class="number">2</span>(<span class="number">1</span>).*t.^<span class="number">2</span>.*(<span class="number">1</span>-t) + P<span class="number">3</span>(<span class="number">1</span>).*t.^<span class="number">3</span>;</span><br><span class="line"><span class="attribute">omega</span> = P<span class="number">0</span>(<span class="number">2</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P<span class="number">1</span>(<span class="number">2</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P<span class="number">2</span>(<span class="number">2</span>).*t.^<span class="number">2</span>.*(<span class="number">1</span>-t) + P<span class="number">3</span>(<span class="number">2</span>).*t.^<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-<p>此时可以看到t, phi, omega都是sym类型的变量。<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p5.png" alt="符号变量"></p>
-<p>然后求phi和omega的一阶、二阶导数。</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">phi1</span> = diff(phi)<span class="comment">;</span></span><br><span class="line"><span class="attr">omega1</span> = diff(omega)<span class="comment">;</span></span><br><span class="line"><span class="attr">phi2</span> = diff(phi1)<span class="comment">;</span></span><br><span class="line"><span class="attr">omega2</span> = diff(omega1)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>最后根据公式计算曲率K，并将符号表达式转换为数值。其中subs是符号替换函数，可以将符号表达式中的某些符号变量替换为指定的新变量。调用方式为：<code>subs(s, old, new)</code>，将所有的old换成new，并计算s，返回s。需要注意的是subs返回的仍然是符号表达式，需要用double函数再转化为数值类型。</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">k</span> = (abs(phi<span class="number">1</span>.*omega<span class="number">2</span> - omega<span class="number">1</span>.*phi<span class="number">2</span>) / (phi<span class="number">1</span>.^<span class="number">2</span> + omega<span class="number">1</span>.^<span class="number">2</span>).^(<span class="number">1</span>.<span class="number">5</span>));</span><br><span class="line"><span class="attribute">k1</span> = double(subs(k,t, <span class="number">0</span>:<span class="number">0</span>.<span class="number">01</span>:<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
-<p>k1中保存的变量就是对应于t=0到1共101个点的曲率值。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果想要画一个以水滴形顶点为圆心，分别旋转120°、240°，形成三个水滴组成的旋转对称图案，可以将x, y转化成极坐标，并绘制极坐标图。cart2pol函数可以将笛卡尔坐标转换为极坐标。</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[TH,R] = <span class="built_in">cart2pol</span>(x, y);</span><br><span class="line">polar(TH,R,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">TH2 = TH+<span class="number">120</span>/<span class="number">180</span>*<span class="built_in">pi</span>;</span><br><span class="line">polar(TH2,R,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">TH2 = TH+<span class="number">240</span>/<span class="number">180</span>*<span class="built_in">pi</span>;</span><br><span class="line">polar(TH2,R,<span class="string">&#x27;r&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>最终结果如图：<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p6.png" alt="三个水滴"></p>
+    <title>冬至一阳生</title>
+    <url>/2018/12/22/20181222%E5%86%AC%E8%87%B3%E4%B8%80%E9%98%B3%E7%94%9F/</url>
+    <content><![CDATA[<p>在关注二十四节气之前，我记得最清楚的节气大概就是冬至了。尤其是在一中食堂的每一年冬至，所有窗口从早到晚都在卖热气腾腾的饺子。在古代冬至曾经也是一个非常重要的节气，甚至节日。相传冬至是二十四节气中最早制定的一个，为二十四节气之首。《汉书》中说，“冬至阳气起，君道长，故贺。”人们认为冬至过后，白昼一天比一天长，阳气回升，是节气循环的开始，也是一个吉日，应当庆贺。汉朝以冬至为“冬节”，官府举行祝贺仪式，称为“贺冬”。唐宋时期，冬至是祭天祭祖的日子，皇帝要到郊外举行祭天大典，百姓要在这一天向父母尊长祭拜。</p>
+<p>冬至分为三候：初候，蚯蚓结；二候，麋角解；三候，水泉动。冬至时节，阳气虽已生长，但阴气仍然十分强盛，土中的蚯蚓仍然蜷缩着身体；麋与鹿同科，却阴阳不同，古人认为麋的角朝后生，所以为阴，而冬至一阳生，麋感阴气渐退而解角；由于阳气初生，所以山中的泉水可以畅快的流动。</p>
+<p>刚刚结束了北京之行，这一天恰巧是冬至，又是考研。冬日的北京胡同里透过清冷的空气，满眼都是红墙青瓦，孤零零的树枝蜿蜒着伸向天空。第二次去北京，突然又有了一点新的想法。一直都觉得北京人，尤其是北京的小孩子，相比其他地方的人，言谈举止间总是洋溢着乐观自信，听他们讲话似乎自己的情绪都被调动起来了。我大概猜想，其中一个原因可能跟北京话的语调有关，北京话中有很多上扬的声调，抑扬顿挫，听起来非常情绪高昂。另外，这次有机会在北京市区坐车走路，看看周围的建筑，还有另外一个很深的感触。比如在路上，我先后看到了新华社大楼、中央音乐学院、北京电影学院等等曾经只在电视上听到过的地名，突然自己身处在这一幢幢大楼之间，发现那些看起来遥不可及与我毫不相干的地方，其实就在我身边，而且它们也就是在这钢筋水泥的大楼里，由无数个和我一样的人相互联系组成的。这种“置身其中”的感觉让我突然明白自己与这个国家是紧密联系在一起的，我就是这千千万万构建成国家大厦的人中的一份子，让人油然而生一种使命感。我想这可能是另一个重要的原因吧。</p>
 ]]></content>
       <categories>
-        <category>learning</category>
+        <category>solar terms</category>
       </categories>
       <tags>
-        <tag>matlab</tag>
-        <tag>Bezier</tag>
+        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -445,11 +404,13 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>冬至一阳生</title>
-    <url>/2018/12/22/20181222%E5%86%AC%E8%87%B3%E4%B8%80%E9%98%B3%E7%94%9F/</url>
-    <content><![CDATA[<p>在关注二十四节气之前，我记得最清楚的节气大概就是冬至了。尤其是在一中食堂的每一年冬至，所有窗口从早到晚都在卖热气腾腾的饺子。在古代冬至曾经也是一个非常重要的节气，甚至节日。相传冬至是二十四节气中最早制定的一个，为二十四节气之首。《汉书》中说，“冬至阳气起，君道长，故贺。”人们认为冬至过后，白昼一天比一天长，阳气回升，是节气循环的开始，也是一个吉日，应当庆贺。汉朝以冬至为“冬节”，官府举行祝贺仪式，称为“贺冬”。唐宋时期，冬至是祭天祭祖的日子，皇帝要到郊外举行祭天大典，百姓要在这一天向父母尊长祭拜。</p>
-<p>冬至分为三候：初候，蚯蚓结；二候，麋角解；三候，水泉动。冬至时节，阳气虽已生长，但阴气仍然十分强盛，土中的蚯蚓仍然蜷缩着身体；麋与鹿同科，却阴阳不同，古人认为麋的角朝后生，所以为阴，而冬至一阳生，麋感阴气渐退而解角；由于阳气初生，所以山中的泉水可以畅快的流动。</p>
-<p>刚刚结束了北京之行，这一天恰巧是冬至，又是考研。冬日的北京胡同里透过清冷的空气，满眼都是红墙青瓦，孤零零的树枝蜿蜒着伸向天空。第二次去北京，突然又有了一点新的想法。一直都觉得北京人，尤其是北京的小孩子，相比其他地方的人，言谈举止间总是洋溢着乐观自信，听他们讲话似乎自己的情绪都被调动起来了。我大概猜想，其中一个原因可能跟北京话的语调有关，北京话中有很多上扬的声调，抑扬顿挫，听起来非常情绪高昂。另外，这次有机会在北京市区坐车走路，看看周围的建筑，还有另外一个很深的感触。比如在路上，我先后看到了新华社大楼、中央音乐学院、北京电影学院等等曾经只在电视上听到过的地名，突然自己身处在这一幢幢大楼之间，发现那些看起来遥不可及与我毫不相干的地方，其实就在我身边，而且它们也就是在这钢筋水泥的大楼里，由无数个和我一样的人相互联系组成的。这种“置身其中”的感觉让我突然明白自己与这个国家是紧密联系在一起的，我就是这千千万万构建成国家大厦的人中的一份子，让人油然而生一种使命感。我想这可能是另一个重要的原因吧。</p>
+    <title>清寒小雪前</title>
+    <url>/2018/11/22/20181122%E6%B8%85%E5%AF%92%E5%B0%8F%E9%9B%AA%E5%89%8D/</url>
+    <content><![CDATA[<blockquote>
+<p>久雨重阳後，清寒小雪前。<br>拾薪椎髻仆，卖菜掘头船。<br>薄米全家粥，空床故物毡。<br>身犹付一歃，名字更须传?<br>         ——陆游《初寒》</p>
+</blockquote>
+<p>今日小雪。《月令七十二候集解》曰：“十月中，雨下而为寒气所薄，故凝而为雪。小者未盛之辞。”前几天得知家里已经迎来了第一场雪，突然觉得冬天真的到了，而南京似乎还更接近深秋的景象。</p>
+<p>小雪三候：“一候虹藏不见；二候天气上升地气下降；三候闭塞而成冬。”由于天空中的阳气上升，地中的阴气下降，导致天地不通，阴阳不交，所以万物失去生机，天地闭塞而转入严寒的冬天。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -556,6 +517,45 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>matlab绘制水滴形曲线并计算曲率</title>
+    <url>/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在matlab中，利用贝塞尔曲线绘制闭合的水滴形曲线，并计算曲线上各点的曲率。</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h3><p>在之前的博客中已经介绍过贝塞尔曲线的基本形式（详见<a href="https://ayunnn.github.io/2018/10/25/20181025%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%AE%80%E4%BB%8B/" title="贝塞尔曲线简介">贝塞尔曲线简介</a>）。由于水滴形曲线是一条闭合曲线，需要首尾两个控制点重合，另外中间至少还需要两个位置不同的控制点，则一共需要四个控制点，因此选择三阶贝塞尔曲线来实现。<br><a id="more"></a></p>
+<h3 id="曲率定义"><a href="#曲率定义" class="headerlink" title="曲率定义"></a>曲率定义</h3><p>对于一条光滑曲线C，曲线C上从点M到M’的弧为Δs，切线的转角为Δα。<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p2.png" alt="曲率定义"></p>
+<p><strong>平均曲率</strong>： 定义<script type="math/tex">\bar{K} = \left |  \frac{\Delta\alpha}{\Delta s} {} \right |</script> 为弧段 <script type="math/tex">{M{M}'}</script> 的平均曲率。它反映了弧 <script type="math/tex">{M{M}'}</script> 的平均弯曲程度。</p>
+<p><strong>曲率</strong>：称 <script type="math/tex">K=\lim_{\Delta s\rightarrow 0}\left | \frac{\Delta \alpha }{\Delta s} \right |</script> 为曲线C在点M处的曲率。</p>
+<p>在 <script type="math/tex">\lim_{\Delta s\rightarrow 0} \frac{\Delta \alpha }{\Delta s} = \frac{d\alpha }{ds}</script> 存在的条件下，<script type="math/tex">K = \left | \frac{d\alpha }{ds} \right |</script>。此式即为曲率的计算公式。</p>
+<p>设曲线的直角坐标方程是<script type="math/tex">y=f(x)</script>，且<script type="math/tex">f(x)</script> 具有二阶导数。因为<script type="math/tex">tan \alpha = {y}'</script>，所以 <script type="math/tex">sec^{2}\alpha \frac{d\alpha }{dx} = {y}''</script>，又知 <script type="math/tex">ds=\sqrt{1+{y}'^{2}}dx</script>（弧微分公式），从而有</p>
+<script type="math/tex; mode=display">K = \frac{\left |{y}''  \right |}{(1+{y}'^{2})^{3/2}}</script><blockquote><p>补充：<br>弧微分公式推导<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p3.png" alt="弧微分公式推导"></p>
+<footer><strong>刘景麟，黄振友编 《微积分 上》 国防工业出版社 2006</strong></footer></blockquote>
+<p>对于参数方程，可以采用同样的推导方法求出曲率计算公式。若参数方程形式为<script type="math/tex">\left\{\begin{matrix}
+x=\phi (t)\\ y=\omega (t)
+\end{matrix}\right.</script>，则曲率的计算公式为<script type="math/tex">K = \frac{\left | {\phi}' (t){\omega}'' (t)-{\omega}' (t){\phi}'' (t) \right |}{\left [ {\phi}'^{2} (t) + {\omega}'^{2} (t) \right ]^{3/2}}</script>。</p>
+<h2 id="matlab绘制曲线"><a href="#matlab绘制曲线" class="headerlink" title="matlab绘制曲线"></a>matlab绘制曲线</h2><p>首先定义四个控制点的坐标，然后根据三阶贝塞尔曲线方程计算对应于参数t的x, y值。这里设置步长为0.01。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% 控制点坐标</span><br><span class="line">P0 = [<span class="number">0</span>;<span class="number">0</span>];</span><br><span class="line">P1 = [<span class="number">-1</span>;<span class="number">1.4</span>];</span><br><span class="line">P2 = [<span class="number">1</span>;<span class="number">1.4</span>];</span><br><span class="line">P3 = [<span class="number">0</span>;<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">% 计算x, y</span><br><span class="line">t = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span>;</span><br><span class="line">x = P0(<span class="number">1</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P1(<span class="number">1</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P2(<span class="number">1</span>).*t.^<span class="number">2.</span>*(<span class="number">1</span>-t) + P3(<span class="number">1</span>).*t.^<span class="number">3</span>;</span><br><span class="line">y = P0(<span class="number">2</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P1(<span class="number">2</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P2(<span class="number">2</span>).*t.^<span class="number">2.</span>*(<span class="number">1</span>-t) + P3(<span class="number">2</span>).*t.^<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">% 绘图</span><br><span class="line">figure(<span class="number">1</span>)</span><br><span class="line">plot(x, y)</span><br><span class="line">axis equal</span><br></pre></td></tr></table></figure>
+<p>绘制的结果为<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p4.png" alt="水滴形曲线"></p>
+<h2 id="matlab计算曲率"><a href="#matlab计算曲率" class="headerlink" title="matlab计算曲率"></a>matlab计算曲率</h2><p>根据曲率计算公式，首先需要计算x, y对t的一阶和二阶导数，可以用定义符号变量的方法计算。</p>
+<p>首先定义t为符号变量，计算x, y的符号表达式。</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">syms</span> t;</span><br><span class="line"><span class="attribute">phi</span> = P<span class="number">0</span>(<span class="number">1</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P<span class="number">1</span>(<span class="number">1</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P<span class="number">2</span>(<span class="number">1</span>).*t.^<span class="number">2</span>.*(<span class="number">1</span>-t) + P<span class="number">3</span>(<span class="number">1</span>).*t.^<span class="number">3</span>;</span><br><span class="line"><span class="attribute">omega</span> = P<span class="number">0</span>(<span class="number">2</span>)*(<span class="number">1</span>-t).^<span class="number">3</span> + <span class="number">3</span>*P<span class="number">1</span>(<span class="number">2</span>).*t.*(<span class="number">1</span>-t).^<span class="number">2</span> + <span class="number">3</span>*P<span class="number">2</span>(<span class="number">2</span>).*t.^<span class="number">2</span>.*(<span class="number">1</span>-t) + P<span class="number">3</span>(<span class="number">2</span>).*t.^<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p>此时可以看到t, phi, omega都是sym类型的变量。<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p5.png" alt="符号变量"></p>
+<p>然后求phi和omega的一阶、二阶导数。</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">phi1</span> = diff(phi)<span class="comment">;</span></span><br><span class="line"><span class="attr">omega1</span> = diff(omega)<span class="comment">;</span></span><br><span class="line"><span class="attr">phi2</span> = diff(phi1)<span class="comment">;</span></span><br><span class="line"><span class="attr">omega2</span> = diff(omega1)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>最后根据公式计算曲率K，并将符号表达式转换为数值。其中subs是符号替换函数，可以将符号表达式中的某些符号变量替换为指定的新变量。调用方式为：<code>subs(s, old, new)</code>，将所有的old换成new，并计算s，返回s。需要注意的是subs返回的仍然是符号表达式，需要用double函数再转化为数值类型。</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">k</span> = (abs(phi<span class="number">1</span>.*omega<span class="number">2</span> - omega<span class="number">1</span>.*phi<span class="number">2</span>) / (phi<span class="number">1</span>.^<span class="number">2</span> + omega<span class="number">1</span>.^<span class="number">2</span>).^(<span class="number">1</span>.<span class="number">5</span>));</span><br><span class="line"><span class="attribute">k1</span> = double(subs(k,t, <span class="number">0</span>:<span class="number">0</span>.<span class="number">01</span>:<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+<p>k1中保存的变量就是对应于t=0到1共101个点的曲率值。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果想要画一个以水滴形顶点为圆心，分别旋转120°、240°，形成三个水滴组成的旋转对称图案，可以将x, y转化成极坐标，并绘制极坐标图。cart2pol函数可以将笛卡尔坐标转换为极坐标。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[TH,R] = <span class="built_in">cart2pol</span>(x, y);</span><br><span class="line">polar(TH,R,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">TH2 = TH+<span class="number">120</span>/<span class="number">180</span>*<span class="built_in">pi</span>;</span><br><span class="line">polar(TH2,R,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">TH2 = TH+<span class="number">240</span>/<span class="number">180</span>*<span class="built_in">pi</span>;</span><br><span class="line">polar(TH2,R,<span class="string">&#x27;r&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>最终结果如图：<br><img src="/2018/12/04/20181204matlab%E7%BB%98%E5%88%B6%E6%B0%B4%E6%BB%B4%E5%BD%A2%E6%9B%B2%E7%BA%BF%E5%B9%B6%E8%AE%A1%E7%AE%97%E6%9B%B2%E7%8E%87/p6.png" alt="三个水滴"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+        <tag>Bezier</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>格子Boltzmann方法（二）——一维扩散方程D1Q2模型</title>
     <url>/2019/01/16/20190116%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E4%B8%80%E7%BB%B4%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8BD1Q2%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="扩散方程简介"><a href="#扩散方程简介" class="headerlink" title="扩散方程简介"></a>扩散方程简介</h1><p>一维扩散方程可以表示为</p>
@@ -617,6 +617,26 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>立春&amp;雨水</title>
+    <url>/2019/02/19/20190219%E7%AB%8B%E6%98%A5_%E9%9B%A8%E6%B0%B4/</url>
+    <content><![CDATA[<blockquote>
+<p>春风放胆来梳柳，夜雨瞒人去润花<br>—— 郑板桥</p>
+</blockquote>
+<p>今年的立春正好是正月初一，同时雨水恰逢正月十五。到今天为止，这个年就算过完了，真像匆匆忙忙做的一场梦啊。</p>
+<p>渐渐地明白，成年人的生活比想象中更加苦涩，尤其在年关将至之时。不能回家的无奈，卧病在床的孤独，手头拮据的窘迫，光鲜亮丽表面下的忧愁和焦虑，真真切切地发生在我们身边。不禁感概自己是多么的幸福，依然可以感受爱和给予爱，拥有一个小小的温暖的港湾；依然有着健康的身体，可以读万卷书，行万里路。</p>
+<p>吃永远是过年最令人兴奋的话题。蒸枣馍，炸麻糖，守在灶台旁边吹气边吞下刚刚出锅的各种美食，才是真正的过年。虽然从上大学以来就没有在家过过元宵节，但每年正月十五的元宵和正月二十的卷卷从来不会落下，因为妈妈会把所有簇拥着等待被我吃的食物们准确无误地挑选出来，按照日期排好队送上餐桌。有一天吃饭时爸爸突然感慨，“人还是不挑食的好，等老了瘫痪在床，还不是别人喂什么就得吃什么！”大概这就是中国人对吃的执念吧。<br><a id="more"></a><br>立春，是干支历二十四节气中的第一个节气，又名岁首、立春节、正月节。干支纪年法，以立春为岁首，交节日为月首。古人对岁首很重视，立春要祭春神、祭太岁，敬天法祖，由此便产生了辞旧布新、迎春祈福等一系列祭祝祈年文化活动。《月令七十二候集解》：“立春，正月节；立，建始也；五行之气往者过来者续于此；而春木之气始至，故谓之立也；立夏、秋、冬同。”</p>
+<p>雨水，是二十四节气中的第二个节气。此时，气温回升、冰雪融化、降水增多，故取名为雨水。《月令七十二候集解》中说：“正月中，天一生水。春始属木，然生木者必水也，故立春后继之雨水。且东风既解冻，则散而为雨矣。”</p>
+<p>立春三候：<br>一候，东风解冻。东风送暖，大地开始解冻。<br>二候，蛰虫始振。蛰居的虫类慢慢在洞中苏醒。<br>三候，鱼陟负冰。河里的冰开始融化，鱼开始到水面上游动，此时水面上还有没完全溶解的碎冰片，如同被鱼负着一般浮在水面。</p>
+<p>雨水三候：<br>一候，獭祭鱼。鱼感水暖上游，水獭捕食，往往吃两口就扔于岸上，古人认为是陈列祭水。<br>二候，鸿雁来。雁为知时之鸟，热归塞北，寒去江南，它感知到春信，即刻北飞。<br>三候，草木萌动。雨媚风娇中，莺飞草长。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>格子Boltzmann方法（三）——二维对流扩散问题</title>
     <url>/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="对流扩散方程"><a href="#对流扩散方程" class="headerlink" title="对流扩散方程"></a>对流扩散方程</h1><p>了解了一维扩散方程的求解原理后，就可以逐渐将其推广至二维、三维以及流动问题。首先加入最简单的流动，本文所指的对流是流体粒子整体运动（平流），即所有粒子的宏观运动速度都相同。</p>
@@ -636,26 +656,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>matlab</tag>
         <tag>LBM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>立春&amp;雨水</title>
-    <url>/2019/02/19/20190219%E7%AB%8B%E6%98%A5_%E9%9B%A8%E6%B0%B4/</url>
-    <content><![CDATA[<blockquote>
-<p>春风放胆来梳柳，夜雨瞒人去润花<br>—— 郑板桥</p>
-</blockquote>
-<p>今年的立春正好是正月初一，同时雨水恰逢正月十五。到今天为止，这个年就算过完了，真像匆匆忙忙做的一场梦啊。</p>
-<p>渐渐地明白，成年人的生活比想象中更加苦涩，尤其在年关将至之时。不能回家的无奈，卧病在床的孤独，手头拮据的窘迫，光鲜亮丽表面下的忧愁和焦虑，真真切切地发生在我们身边。不禁感概自己是多么的幸福，依然可以感受爱和给予爱，拥有一个小小的温暖的港湾；依然有着健康的身体，可以读万卷书，行万里路。</p>
-<p>吃永远是过年最令人兴奋的话题。蒸枣馍，炸麻糖，守在灶台旁边吹气边吞下刚刚出锅的各种美食，才是真正的过年。虽然从上大学以来就没有在家过过元宵节，但每年正月十五的元宵和正月二十的卷卷从来不会落下，因为妈妈会把所有簇拥着等待被我吃的食物们准确无误地挑选出来，按照日期排好队送上餐桌。有一天吃饭时爸爸突然感慨，“人还是不挑食的好，等老了瘫痪在床，还不是别人喂什么就得吃什么！”大概这就是中国人对吃的执念吧。<br><a id="more"></a><br>立春，是干支历二十四节气中的第一个节气，又名岁首、立春节、正月节。干支纪年法，以立春为岁首，交节日为月首。古人对岁首很重视，立春要祭春神、祭太岁，敬天法祖，由此便产生了辞旧布新、迎春祈福等一系列祭祝祈年文化活动。《月令七十二候集解》：“立春，正月节；立，建始也；五行之气往者过来者续于此；而春木之气始至，故谓之立也；立夏、秋、冬同。”</p>
-<p>雨水，是二十四节气中的第二个节气。此时，气温回升、冰雪融化、降水增多，故取名为雨水。《月令七十二候集解》中说：“正月中，天一生水。春始属木，然生木者必水也，故立春后继之雨水。且东风既解冻，则散而为雨矣。”</p>
-<p>立春三候：<br>一候，东风解冻。东风送暖，大地开始解冻。<br>二候，蛰虫始振。蛰居的虫类慢慢在洞中苏醒。<br>三候，鱼陟负冰。河里的冰开始融化，鱼开始到水面上游动，此时水面上还有没完全溶解的碎冰片，如同被鱼负着一般浮在水面。</p>
-<p>雨水三候：<br>一候，獭祭鱼。鱼感水暖上游，水獭捕食，往往吃两口就扔于岸上，古人认为是陈列祭水。<br>二候，鸿雁来。雁为知时之鸟，热归塞北，寒去江南，它感知到春信，即刻北飞。<br>三候，草木萌动。雨媚风娇中，莺飞草长。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -984,23 +984,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>时雨及芒种</title>
-    <url>/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/</url>
-    <content><![CDATA[<blockquote>
-<p>时雨及芒种，四野皆插秧。家家麦饭美，处处菱歌长。<br>——陆游《时雨》</p>
-</blockquote>
-<p>芒种是夏季的第三个节气，表示仲夏时节的正式开始。《月令七十二侯集解》：“五月节，谓有芒之种谷可稼种矣。”此时中国长江中下游地区将进入多雨的黄梅时节。</p>
-<p>芒种一词，始于《周礼》：“泽草所生，种之芒种。”东汉郑玄释义曰：“泽草之所生，其地可种芒种，芒种，稻麦也。”林清玄曾写道：“稻子的背负是芒种，麦穗的传承是芒种，高粱的波浪是芒种，天人菊在野风中盛放是芒种……有时候感觉到那一丝丝落下的阳光，也是芒种。六月的明亮里，我们能感受到四处流动的光芒。”这是一个承上启下，充满希望的时节。田野间的辛劳，教室里的高考，各奔东西的朋友，连绵不断的阴雨，许多年后这一切又会成为充满夏天味道的记忆吧。</p>
-<p>芒种三候。一候螳螂生。“蝉响螳螂急，鱼深翡翠闲。”螳螂于深秋生子于林间，一壳百子，此时破壳而出。二候鹃始鸣。鹃即伯劳，“伯劳以五月鸣，其声鹃鹃然”，以声命名。《诗经》有“七月鸣鹃”，周七月即夏五月。三候螳反舌无声。“反舌”即百舌鸟，“螳螂、鹃皆阴类，感微阴生或鸣，反舌感阳而发，遇微阴无声也。”</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>东南大学百年校庆碑记</title>
     <url>/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/</url>
     <content><![CDATA[<p>&emsp;&emsp;吾校據古城金陵，東枕鍾山，西倚鼓樓，北臨後湖，乃昔日六朝皇宮內苑之所在，古松郁郁，萬木蔥翠，山擁水映，人傑地靈。曩者東吳景帝之立五經博士，劉宋雷次宗之奉诏興學，祖沖之任職華林學省與校試指南車，沈約、蕭衍之開格律詩詞先河，蕭梁昭明太子之編《文選》，明初國子監且修《永樂大典》，清開江甯府學及文昌書院，其地皆在於斯。煌煌千載，其文化積澱之深厚,教育曆史之悠久，鮮有能與之比肩者！</p>
@@ -1015,14 +998,14 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>宵漏自此长</title>
-    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
+    <title>时雨及芒种</title>
+    <url>/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/</url>
     <content><![CDATA[<blockquote>
-<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
+<p>时雨及芒种，四野皆插秧。家家麦饭美，处处菱歌长。<br>——陆游《时雨》</p>
 </blockquote>
-<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
-<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
-<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+<p>芒种是夏季的第三个节气，表示仲夏时节的正式开始。《月令七十二侯集解》：“五月节，谓有芒之种谷可稼种矣。”此时中国长江中下游地区将进入多雨的黄梅时节。</p>
+<p>芒种一词，始于《周礼》：“泽草所生，种之芒种。”东汉郑玄释义曰：“泽草之所生，其地可种芒种，芒种，稻麦也。”林清玄曾写道：“稻子的背负是芒种，麦穗的传承是芒种，高粱的波浪是芒种，天人菊在野风中盛放是芒种……有时候感觉到那一丝丝落下的阳光，也是芒种。六月的明亮里，我们能感受到四处流动的光芒。”这是一个承上启下，充满希望的时节。田野间的辛劳，教室里的高考，各奔东西的朋友，连绵不断的阴雨，许多年后这一切又会成为充满夏天味道的记忆吧。</p>
+<p>芒种三候。一候螳螂生。“蝉响螳螂急，鱼深翡翠闲。”螳螂于深秋生子于林间，一壳百子，此时破壳而出。二候鹃始鸣。鹃即伯劳，“伯劳以五月鸣，其声鹃鹃然”，以声命名。《诗经》有“七月鸣鹃”，周七月即夏五月。三候螳反舌无声。“反舌”即百舌鸟，“螳螂、鹃皆阴类，感微阴生或鸣，反舌感阳而发，遇微阴无声也。”</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -1059,6 +1042,23 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宵漏自此长</title>
+    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
+    <content><![CDATA[<blockquote>
+<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
+</blockquote>
+<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
+<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
+<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1191,61 +1191,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>Mimics三维CT重建</title>
-    <url>/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/</url>
-    <content><![CDATA[<p>CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。<br><a id="more"></a><br>下面以Mimics 21为例，总结最基础的利用多张dcm图片进行三维重建的步骤：<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png" alt="mimics 21"></p>
-<h3 id="导入文件"><a href="#导入文件" class="headerlink" title="导入文件"></a>导入文件</h3><p>打开Mimics软件，点击New Project并导入CT图像。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png" alt="new project"></p>
-<p>接下来确认信息，点open</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png" alt="import"></p>
-<p>转化完成后一般图像方向也会自动设置好，但有些文件需要手动设置方向，比如下图。一般要从六个方向对图像定位，即上下左右前后，Top、Bottom、Left、Right、Anterior、Posterior。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png" alt="orientation"></p>
-<p>直接点击“X”进行设置，设置完成后如下图。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png" alt="orientation"></p>
-<h3 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h3><p>确定图像方向后，Mimics会自动生成横断面、冠状位、矢状位和三维视图。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png" alt="imageshow"></p>
-<p>界面排版可以在菜单栏VIEW下面的的Layouts处修改。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png" alt="layouts"></p>
-<h3 id="阈值分割"><a href="#阈值分割" class="headerlink" title="阈值分割"></a>阈值分割</h3><p>阈值分割是通过选择一定的像素灰度值范围来对对象进行分割的方法。在CT图像中即为通过设置CT值来分割。</p>
-<p>点击菜单栏SEGMENT中的Threshold</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png" alt="threshold"></p>
-<p>在这里设置需要提取的CT值范围。软件中提供了预设的阈值范围，可以先根据感兴趣区域选择一个预设值，然后进行微调。<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png" alt="threshold set"></p>
-<p>设置完成后在Project Management中的Masks会出现刚刚提取的区域。</p>
-<h3 id="三维显示及导出"><a href="#三维显示及导出" class="headerlink" title="三维显示及导出"></a>三维显示及导出</h3><p>点击当前Mask，右键菜单栏选择Calculate Part，Calculate。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png" alt="calculate part"></p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png" alt="calculate"></p>
-<p>等待一段时间后，Objects栏会出现生成的物体。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png" alt="result"></p>
-<p>最后在Objects栏右键导出STL即可。</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png" alt="export stl"></p>
-<p>STL文件显示如下</p>
-<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png" alt="result"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>software</tag>
-        <tag>Mimics</tag>
-        <tag>ImageProcess</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二十四</title>
-    <url>/2019/10/08/20191008%E4%BA%8C%E5%8D%81%E5%9B%9B/</url>
-    <content><![CDATA[<p>二十三岁的一年依旧是在迷茫中四处冲撞和摸索，只是相比于之前，许多事情开始逐渐尘埃落定，慢慢清晰起来。眼看着年龄跳向了二十四，不得不感慨，逝者如斯夫。</p>
-<p>这一年最大的变化就是尝试着打破自己的舒适圈。在一个习惯的环境下待太久，思维和行动都会开始倦怠。我试着像刚刚进入大学那样，抛开所有成见，强迫自己从零开始勇敢尝试。虽然这个过程很难，回头想想也的确收获良多。 比如理想。我想这可能是上天送给我的二十四岁生日礼物。对于我来说，这种感觉就像紧闭多年的大门吱呀一声被推开，有一双厚实的手拉着我走出去，我模模糊糊地看到了阳光洒落大地，空气弥漫芬芳。从陌生拘谨，到心有灵犀，从能够细数每一次见面的点滴，到回忆满得要溢出记忆。甜蜜和苦涩交织的生活里，永远都不缺少希望。愿一切终归平静后，我们都会成为更好的自己。</p>
-<p>这一年做出的最重大的一个决定就是读博。各种纷繁复杂的念头开始于2019年初一个失眠的夜晚，不同的人不同的观点在我的脑子里嗡嗡作响了一个晚上。大多数时候人的焦虑都来自于对未知的恐惧，以及自身能力与预期目标的落差。本科四年我就像一块海绵拼命地吸取养分，内心相信未来充满无限可能。随后逐渐发现，脚下的路越来越窄，身边的人越走越高越飞越远，而我还在一大堆不确定面前徘徊。其实这也是审视自己的一个过程，我是谁，我想要什么，我将会去哪，我的优势和劣势是什么。能力所及的范围里，一定要竭尽全力，那些无能为力的事情，就尽量放宽心态吧。</p>
-<p>这一年经历了阻生磨牙矫正的诸多坎坷，最后终于还算顺利地进行了下去；体验了零德语基础独自一人游历德国，尽管在登上飞机前最后一刻突然莫名地慌张。有一天妈妈突然对我说，你这个报喜不报忧的主儿，一下子击碎了我假装强大的外壳。不管长多大，在父母面前你永远都是个透明的小孩子呀。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group1</title>
     <url>/2019/11/06/20191106%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup1/</url>
     <content><![CDATA[<p>开始加强英语，从学术英语的五百个动词学起，每组大约10个。Flag就不随便立了，希望尽可能坚持。</p>
@@ -1307,6 +1252,61 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>English</tag>
         <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mimics三维CT重建</title>
+    <url>/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/</url>
+    <content><![CDATA[<p>CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。<br><a id="more"></a><br>下面以Mimics 21为例，总结最基础的利用多张dcm图片进行三维重建的步骤：<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png" alt="mimics 21"></p>
+<h3 id="导入文件"><a href="#导入文件" class="headerlink" title="导入文件"></a>导入文件</h3><p>打开Mimics软件，点击New Project并导入CT图像。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p2.png" alt="new project"></p>
+<p>接下来确认信息，点open</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p3.png" alt="import"></p>
+<p>转化完成后一般图像方向也会自动设置好，但有些文件需要手动设置方向，比如下图。一般要从六个方向对图像定位，即上下左右前后，Top、Bottom、Left、Right、Anterior、Posterior。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p4.png" alt="orientation"></p>
+<p>直接点击“X”进行设置，设置完成后如下图。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p5.png" alt="orientation"></p>
+<h3 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h3><p>确定图像方向后，Mimics会自动生成横断面、冠状位、矢状位和三维视图。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p6.png" alt="imageshow"></p>
+<p>界面排版可以在菜单栏VIEW下面的的Layouts处修改。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p7.png" alt="layouts"></p>
+<h3 id="阈值分割"><a href="#阈值分割" class="headerlink" title="阈值分割"></a>阈值分割</h3><p>阈值分割是通过选择一定的像素灰度值范围来对对象进行分割的方法。在CT图像中即为通过设置CT值来分割。</p>
+<p>点击菜单栏SEGMENT中的Threshold</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p8.png" alt="threshold"></p>
+<p>在这里设置需要提取的CT值范围。软件中提供了预设的阈值范围，可以先根据感兴趣区域选择一个预设值，然后进行微调。<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p9-1.png" alt="threshold set"></p>
+<p>设置完成后在Project Management中的Masks会出现刚刚提取的区域。</p>
+<h3 id="三维显示及导出"><a href="#三维显示及导出" class="headerlink" title="三维显示及导出"></a>三维显示及导出</h3><p>点击当前Mask，右键菜单栏选择Calculate Part，Calculate。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p10.png" alt="calculate part"></p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p11.png" alt="calculate"></p>
+<p>等待一段时间后，Objects栏会出现生成的物体。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p12.png" alt="result"></p>
+<p>最后在Objects栏右键导出STL即可。</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p13.png" alt="export stl"></p>
+<p>STL文件显示如下</p>
+<p><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p14.png" alt="result"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>software</tag>
+        <tag>Mimics</tag>
+        <tag>ImageProcess</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二十四</title>
+    <url>/2019/10/08/20191008%E4%BA%8C%E5%8D%81%E5%9B%9B/</url>
+    <content><![CDATA[<p>二十三岁的一年依旧是在迷茫中四处冲撞和摸索，只是相比于之前，许多事情开始逐渐尘埃落定，慢慢清晰起来。眼看着年龄跳向了二十四，不得不感慨，逝者如斯夫。</p>
+<p>这一年最大的变化就是尝试着打破自己的舒适圈。在一个习惯的环境下待太久，思维和行动都会开始倦怠。我试着像刚刚进入大学那样，抛开所有成见，强迫自己从零开始勇敢尝试。虽然这个过程很难，回头想想也的确收获良多。 比如理想。我想这可能是上天送给我的二十四岁生日礼物。对于我来说，这种感觉就像紧闭多年的大门吱呀一声被推开，有一双厚实的手拉着我走出去，我模模糊糊地看到了阳光洒落大地，空气弥漫芬芳。从陌生拘谨，到心有灵犀，从能够细数每一次见面的点滴，到回忆满得要溢出记忆。甜蜜和苦涩交织的生活里，永远都不缺少希望。愿一切终归平静后，我们都会成为更好的自己。</p>
+<p>这一年做出的最重大的一个决定就是读博。各种纷繁复杂的念头开始于2019年初一个失眠的夜晚，不同的人不同的观点在我的脑子里嗡嗡作响了一个晚上。大多数时候人的焦虑都来自于对未知的恐惧，以及自身能力与预期目标的落差。本科四年我就像一块海绵拼命地吸取养分，内心相信未来充满无限可能。随后逐渐发现，脚下的路越来越窄，身边的人越走越高越飞越远，而我还在一大堆不确定面前徘徊。其实这也是审视自己的一个过程，我是谁，我想要什么，我将会去哪，我的优势和劣势是什么。能力所及的范围里，一定要竭尽全力，那些无能为力的事情，就尽量放宽心态吧。</p>
+<p>这一年经历了阻生磨牙矫正的诸多坎坷，最后终于还算顺利地进行了下去；体验了零德语基础独自一人游历德国，尽管在登上飞机前最后一刻突然莫名地慌张。有一天妈妈突然对我说，你这个报喜不报忧的主儿，一下子击碎了我假装强大的外壳。不管长多大，在父母面前你永远都是个透明的小孩子呀。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -1460,53 +1460,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group5</title>
-    <url>/2019/11/12/20191112%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup5/</url>
-    <content><![CDATA[<h2 id="Group5"><a href="#Group5" class="headerlink" title="Group5"></a>Group5</h2><ul>
-<li>clarify</li>
-<li>characterize</li>
-<li>circumvent<a id="more"></a></li>
-<li>cultivate</li>
-<li>alleviate</li>
-<li>allocate</li>
-<li>approximate</li>
-<li>alter</li>
-<li>achieve</li>
-<li>accrue</li>
-</ul>
-<p>例句：</p>
-<p>As a second example of how experiments <strong>clarify</strong> causation, consider the correlation between television viewing and children’s behavior. The more violent television children watch, the more aggressive they tend to be.</p>
-<p>Society in the Early Roman Empire was <strong>characterized</strong> by a system of social stratification(社会阶层化), inherited from the Republic, in which Roman citizens were divided into three basic classes: the senatorial, equestrian, and lower classes</p>
-<p>By the late Republic, however, although the rights of male guardians remained legally in effect, upper-class women found numerous ways to <strong>circumvent</strong> the power of their guardians.</p>
-<p>What feminism(女权主义) means to people differs across the world. In parts of the developing world, feminism means working to <strong>alleviate</strong> absolute poverty and to change traditional male attitudes, which favor large families and dislike contraception, while in the developed countries, feminism means continuing campaigns for equality in employment, adequate childcare provision and the ending of male violence towards women.</p>
-<p>Nozick argues that these conclusions hold even for those who want to abolish private property altogether. In ‘non-money communism(共产主义)’ people will still have to be <strong>allocated</strong> goods, and some will want to make trades.</p>
-<p>This is the pure model. No real economy perfectly incorporates all these features: generally, all are modified in some way. […] However, it is also clear that most countries now <strong>approximate</strong> to this model to a greater or lesser extent. Are they right to do so?</p>
-<p>The French Revolution dramatically <strong>altered</strong> the political structure of France; the Napoleonic conquests then spread many of the revolutionary principles to other parts of Europe.</p>
-<p>Renaissance portraits often took the form of life-sized sculptures in the round, some of which were brightly painted to <strong>achieve</strong> naturalistic effects.</p>
-<p>Following these remarks, I, Christine, spoke, “My lady, I realize that women have accomplished many good things and that even if evil women have done evil, it seems to me, nevertheless, that the benefits accrued and still <strong>accruing</strong> because of good women—particularly the wise and literary ones and those educated in the natural science whom I mentioned above—outweigh the evil.</p>
-<hr>
-<p>单词释义：</p>
-<p>clarify: to make clear or easier to understand; to clear of confusion or uncertainty<br>阐明，澄清，使清晰易懂</p>
-<p>characterize: to describe the qualities or peculiarities; to be a distinctive trait or mark of<br>描绘…的特征，具有…的特征</p>
-<p>circumvent: to avoid or get around by artful maneuvering<br>绕行，规避</p>
-<p>cultivate: to improve and prepare (land), as by plowing or fertilizing, for raising crops; to grow or tend; to acquire, develop, or refine, as by education<br>培养，陶冶，耕作</p>
-<p>alleviate: to make (pain, for example) less intense or more bearable; to lessen or reduce<br>减轻，缓和</p>
-<p>allocate: to set apart for a special purpose; to distribute according to a plan<br>分配，拨出，使作用于</p>
-<p>approximate: to come close to; be nearly the same as; to bring together, as cut edges of tissue<br>接近，近似</p>
-<p>alter: to change or make different; modify<br>改变，修改</p>
-<p>achieve: to gain with effort or despite difficulty; to succeed in accomplishing<br>取得，获得，实现</p>
-<p>accrue: to accumulate over time; to come to one as a gain, addition, or increment<br>获得，积累</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group6</title>
     <url>/2019/11/13/20191113%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup6/</url>
     <content><![CDATA[<h2 id="Group6"><a href="#Group6" class="headerlink" title="Group6"></a>Group6</h2><ul>
@@ -1545,6 +1498,53 @@ x=\phi (t)\\ y=\omega (t)
 <p>group: to place or arrange in a group; to belong to or form a group<br>聚合，把…分组</p>
 <hr>
 <h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>今天学到一种表达，用<strong>identify</strong>表示从实验结果中发现的某种现象，可以用在论文results部分。比如，在支架长入实验中，A比B呈现出更多的血管，可以说“more vessels were identified in A than B”。</p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group5</title>
+    <url>/2019/11/12/20191112%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup5/</url>
+    <content><![CDATA[<h2 id="Group5"><a href="#Group5" class="headerlink" title="Group5"></a>Group5</h2><ul>
+<li>clarify</li>
+<li>characterize</li>
+<li>circumvent<a id="more"></a></li>
+<li>cultivate</li>
+<li>alleviate</li>
+<li>allocate</li>
+<li>approximate</li>
+<li>alter</li>
+<li>achieve</li>
+<li>accrue</li>
+</ul>
+<p>例句：</p>
+<p>As a second example of how experiments <strong>clarify</strong> causation, consider the correlation between television viewing and children’s behavior. The more violent television children watch, the more aggressive they tend to be.</p>
+<p>Society in the Early Roman Empire was <strong>characterized</strong> by a system of social stratification(社会阶层化), inherited from the Republic, in which Roman citizens were divided into three basic classes: the senatorial, equestrian, and lower classes</p>
+<p>By the late Republic, however, although the rights of male guardians remained legally in effect, upper-class women found numerous ways to <strong>circumvent</strong> the power of their guardians.</p>
+<p>What feminism(女权主义) means to people differs across the world. In parts of the developing world, feminism means working to <strong>alleviate</strong> absolute poverty and to change traditional male attitudes, which favor large families and dislike contraception, while in the developed countries, feminism means continuing campaigns for equality in employment, adequate childcare provision and the ending of male violence towards women.</p>
+<p>Nozick argues that these conclusions hold even for those who want to abolish private property altogether. In ‘non-money communism(共产主义)’ people will still have to be <strong>allocated</strong> goods, and some will want to make trades.</p>
+<p>This is the pure model. No real economy perfectly incorporates all these features: generally, all are modified in some way. […] However, it is also clear that most countries now <strong>approximate</strong> to this model to a greater or lesser extent. Are they right to do so?</p>
+<p>The French Revolution dramatically <strong>altered</strong> the political structure of France; the Napoleonic conquests then spread many of the revolutionary principles to other parts of Europe.</p>
+<p>Renaissance portraits often took the form of life-sized sculptures in the round, some of which were brightly painted to <strong>achieve</strong> naturalistic effects.</p>
+<p>Following these remarks, I, Christine, spoke, “My lady, I realize that women have accomplished many good things and that even if evil women have done evil, it seems to me, nevertheless, that the benefits accrued and still <strong>accruing</strong> because of good women—particularly the wise and literary ones and those educated in the natural science whom I mentioned above—outweigh the evil.</p>
+<hr>
+<p>单词释义：</p>
+<p>clarify: to make clear or easier to understand; to clear of confusion or uncertainty<br>阐明，澄清，使清晰易懂</p>
+<p>characterize: to describe the qualities or peculiarities; to be a distinctive trait or mark of<br>描绘…的特征，具有…的特征</p>
+<p>circumvent: to avoid or get around by artful maneuvering<br>绕行，规避</p>
+<p>cultivate: to improve and prepare (land), as by plowing or fertilizing, for raising crops; to grow or tend; to acquire, develop, or refine, as by education<br>培养，陶冶，耕作</p>
+<p>alleviate: to make (pain, for example) less intense or more bearable; to lessen or reduce<br>减轻，缓和</p>
+<p>allocate: to set apart for a special purpose; to distribute according to a plan<br>分配，拨出，使作用于</p>
+<p>approximate: to come close to; be nearly the same as; to bring together, as cut edges of tissue<br>接近，近似</p>
+<p>alter: to change or make different; modify<br>改变，修改</p>
+<p>achieve: to gain with effort or despite difficulty; to succeed in accomplishing<br>取得，获得，实现</p>
+<p>accrue: to accumulate over time; to come to one as a gain, addition, or increment<br>获得，积累</p>
+<hr>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -1653,6 +1653,52 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>学术五百词Group9</title>
+    <url>/2019/11/19/20191119%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup9/</url>
+    <content><![CDATA[<h2 id="Group9"><a href="#Group9" class="headerlink" title="Group9"></a>Group9</h2><ul>
+<li>import</li>
+<li>impinge</li>
+<li>impart<a id="more"></a></li>
+<li>imbue</li>
+<li>establish</li>
+<li>express</li>
+<li>exacerbate</li>
+<li>impel</li>
+<li>imply</li>
+<li>tabulate</li>
+</ul>
+<p>例句：</p>
+<p>The Protestant(新教徒) threat <strong>impelled</strong> the Roman Catholic church to institute reforms.</p>
+<p>Most poor countries lack even a science adviser to their government. Moreover, these countries are too poor to <strong>import</strong> computers, mobile phones, fax machines, computerized factory machinery or other kinds of high technology.</p>
+<p>In the foreground is a dog lying down and next to it Nicolas Pertusato, a dwarf, who is stepping on it to show that it is a gentle animal in spite of its ferocious (凶猛的) appearance. These two figures are in shadow and <strong>impart</strong> great harmony to the composition. </p>
+<p>The views <strong>expressed</strong> by opinion leaders, filtered through personal relationships, influence the responses of other individuals towards political issues of the day. </p>
+<p>The creators of Mesopotamian civilization were the Sumerians (苏美尔人), a people whose origins remain unclear. By 3000 B.C., they had <strong>established</strong> a number of independent cities in southern Mesopotamia, including Eridu, Ur, Uruk, Umma, and Lagash. </p>
+<p>Venturi has <strong>imbued</strong> the overscale house with humor, irony, and allusions, transforming the traditional American home into a rich architectural statement. </p>
+<p>Hammurabi appears without the benefit or need of a divine intercessor, <strong>implying</strong> an especially close relationship with the sun-god.</p>
+<p>Stress hormones(应激激素) enhance protein production that contributes to inflammation, which helps fight infections. But inflammation also can <strong>exacerbate</strong> asthma, clogged arteries, and depression.</p>
+<p>Google Scholar no longer allows a division by field. But we were able to <strong>tabulate</strong> the number of articles that contained either the word “economics” or “finance”.</p>
+<p>More research has focused on how the demands of our home lives may <strong>impinge</strong> on our concentration, energy, or availability at work. </p>
+<hr>
+<p>单词释义：</p>
+<p>imbue: to relate(something, usually something bad) to a particular cause or source; to assign as a characteristic<br>灌输，使渗透</p>
+<p>impel: to urge to action through moral pressure<br>推动，驱使，激励  </p>
+<p>imply: to express or state indirectly; to make evident indirectly; to involve by logical necessity<br>意味，暗示，隐含</p>
+<p>import: to bring or carry in from an outside source, especially to bring in (goods or materials) from a foreign country for trade or sale.<br>进口，输入</p>
+<p>impinge: to encroach on or limit something, such as a right<br>对…有明显作用，妨碍，侵犯</p>
+<p>impart: to grant a share of; to make known<br>给予，传授，告知</p>
+<p>tabulate: to arrange in tabular form; to cut or form with a plane surface<br>制成表格，使成平面</p>
+<p>exacerbate: to increase the severity, violence, or bitterness of<br>使加剧，使恶化</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学术五百词Group10</title>
     <url>/2019/11/20/20191120%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup10/</url>
     <content><![CDATA[<h2 id="Group10"><a href="#Group10" class="headerlink" title="Group10"></a>Group10</h2><ul>
@@ -1690,6 +1736,54 @@ x=\phi (t)\\ y=\omega (t)
 <p>define: to state the precise meaning of (a word or sense of a word, for example); to describe the nature or basic qualities of; to specify distinctly<br>定义，使明确，规定</p>
 <p>redefine: to define (as a concept) again<br>重新定义</p>
 <p>deconstruct: to break down into component; to analyze (a literary text, for example) by deconstruction or in such a way as to expose its underlying assumptions or implicit ideological stance; to adapt (a genre, style, or form) in a way that isolates familiar elements from their usual context in order to imply an ironic comment on the unspoken values of the original<br>解构，拆解</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group11</title>
+    <url>/2019/11/21/20191121%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup11/</url>
+    <content><![CDATA[<h2 id="Group11"><a href="#Group11" class="headerlink" title="Group11"></a>Group11</h2><ul>
+<li>fabricate</li>
+<li>facilitate</li>
+<li>transmit<a id="more"></a></li>
+<li>theorize</li>
+<li>hypothesize</li>
+<li>further</li>
+<li>govern</li>
+<li>link</li>
+<li>transform</li>
+<li>transcend</li>
+</ul>
+<p>例句：</p>
+<p>Philip instituted military reforms that <strong>transformed</strong> Macedonia into a major military power. He created a new phalanx(方阵) of infantrymen(步兵) who were more lightly armed than Greek hoplites; each carried a smaller shield and a shorter sword.</p>
+<p>Marx <strong>theorized</strong> the inevitability(必然性) of a workers’ revolution which would overthrow the capitalist system and usher(迎来) in a new society in which there would be no classes - no large-scale divisions between rich and poor. He did not mean that all inequalities between individuals would disappear. </p>
+<p>Analogue TV converts sound and pictures into waves, which are <strong>transmitted</strong> through the air and picked up by the aerial(天线) on the roof of the house or on top of the television.</p>
+<p>The most recent trends in the art of the Information Age involve size and spectacle, that is, public performance or theatrical display. Such art, often technically complex, may be conceived by artists but <strong>fabricated</strong> by studio assistants or professional contractors(承包商).</p>
+<p>Hitler claimed to <strong>transcend</strong> all differences and promised to create a new Germany free of class differences and party infighting.</p>
+<p>A recent set of studies examining the tendency for humans to distance themselves from other animals offers a possible way to make creatureliness especially salient (突出的). Goldenberg et al. (2001) <strong>hypothesized</strong> that MS (mortality salience) would intensify disgust reactions because, as Rozin, Haidt, and McCauley (1993) have argued, such reactions assert that we are different from and superior to mere material creatures. </p>
+<p>Saint Stephen, king of Hungary(匈牙利) from 997 to 1038, <strong>facilitated</strong> the acceptance of Christianity by his people. </p>
+<p>The railroad contributed significantly to the maturing of the Industrial Revolution. The railroad’s demands for coal and iron <strong>furthered</strong> the growth of those industries. </p>
+<p>Senators filled the chief magistracies of the Roman government, held the most important military posts, and <strong>governed</strong> the provinces.</p>
+<p>The acceptance of Eastern Orthodoxy (东正教) by the southern Slavic peoples, the Serbs and Bulgarians, meant that their cultural life was also <strong>linked</strong> to the Byzantine state.</p>
+<hr>
+<p>单词释义：</p>
+<p>transmit: to cause to spread; to impart or convey to others by heredity; to impart or convey to others by inheritance<br>传输，传播</p>
+<p>transform: to change markedly the appearance or form of; to change the nature, function, or condition of<br>改变，转换</p>
+<p>transcend: to pass beyond the limits of (a category or conception, for instance); to be greater than, as in quality or intensity<br>胜过，超越</p>
+<p>theorize: to propose a theory about<br>建立理论，推理</p>
+<p>hypothesize: to assert as a hypothesis; to form a hypothesis<br>假设，假定</p>
+<p>fabricate: to make; to construct by combining or assembling diverse, typically standardized<br>制造，装配</p>
+<p>facilitate: to make easy or easier<br>促进，帮助，使更容易</p>
+<p>further: to help the progress of<br>促进，增进</p>
+<p>govern: to make and administer the public policy and affairs of (a state, for example); to keep under control; to exercise a deciding or determining influence on<br>管理，支配</p>
+<p>link: to connect, relate, or associate<br>连接，联合</p>
 <hr>
 ]]></content>
       <categories>
@@ -1797,146 +1891,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group14</title>
-    <url>/2019/11/26/20191126%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup14/</url>
-    <content><![CDATA[<h2 id="Group14"><a href="#Group14" class="headerlink" title="Group14"></a>Group14</h2><ul>
-<li>diverge</li>
-<li>dominate</li>
-<li>distribute<a id="more"></a></li>
-<li>disseminate</li>
-<li>distinguish</li>
-<li>disperse</li>
-<li>disallow</li>
-<li>displace</li>
-<li>disentangle</li>
-</ul>
-<p>例句：</p>
-<p>Stereotyped beliefs(刻板印象) and prejudiced attitudes exist not only because of social conditioning and because they enable people to <strong>displace</strong> hostilities(敌意), but also as byproducts of normal thinking processes.</p>
-<p>The aggressive energy need not explode directly against its source. Most people learn to inhibit direct retaliation(报复), especially when others might disapprove or punish; instead, we <strong>displace</strong>, or redirect, our hostilities to safer targets.</p>
-<p>A miniature(微型画) celebrating the birth of Akbar’s son, Nurud-din Salim Jahangir, shows courtiers(群臣) rejoicing(欣喜): dancers sway to the rhythms of a lively musical ensemble(音乐剧团) while bread and alms(施舍物) are <strong>distributed</strong> outside the palace gate.</p>
-<p>A group of animals at the top sit on a ground-line, but the painter <strong>dispersed</strong> most of the figures freely against the background. In the lower left corner, a figure raises a stick against three smaller figures, who may be prisoners.</p>
-<p>Fascist propaganda(法西斯主义的宣传) was <strong>disseminated</strong> through simple slogans, such as “Mussolini is always right”, plastered on walls all over Italy.</p>
-<p>If we think of the red beans as supporters of one presidential candidate and the white beans as supporters of the other candidate, we can understand why, since 1950, the Gallup polls taken just before U.S. national elections have <strong>diverged</strong> from election results by an average of less than 2 percent.</p>
-<p>Gradually, as law was written, debated, and altered, it became <strong>disentangled</strong> from religion.</p>
-<p>As one knight explained, “A knight cannot <strong>distinguish</strong> himself in war if he has not trained for it in tourneys”. </p>
-<p>The effort to recover, copy, and produce accurate editions of Classical writings <strong>dominated</strong> the early history of the Renaissance in Italy.</p>
-<p>As we have seen, the Court considered pertinent social science evidence when <strong>disallowing</strong> fivemember juries and ending school desegregation. </p>
-<hr>
-<p>单词释义：</p>
-<p>displace: to move, shift, or force from the usual place or position; to take the place of<br>取代，置换，转移</p>
-<p>disentangle: to extricate from entanglement or involvement; to clear up or resolve (a plot, for example)<br>解开，松开，解决</p>
-<p>distribute: to divide and dispense in portions; to deliver or pass out<br>分配，散布，分开</p>
-<p>disseminate: to spread abroad; to become diffused<br>宣传，传播，散布</p>
-<p>disallow: to refuse to allow; to reject as invalid, untrue, or improper<br>驳回，不接受</p>
-<p>distinguish: to perceive as being different or distinct; to be an identifying characteristic of<br>区别，辨别</p>
-<p>disperse: to drive off or scatter in different directions; to strew or distribute widely<br>分散，使散开</p>
-<p>diverge: to go or extend in different directions from a common point; to depart from an established pattern or norm<br>偏离，分叉</p>
-<p>dominate: to exert a supreme, guiding influence on or over; to be the most abundant in<br>控制，支配，占优势</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group9</title>
-    <url>/2019/11/19/20191119%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup9/</url>
-    <content><![CDATA[<h2 id="Group9"><a href="#Group9" class="headerlink" title="Group9"></a>Group9</h2><ul>
-<li>import</li>
-<li>impinge</li>
-<li>impart<a id="more"></a></li>
-<li>imbue</li>
-<li>establish</li>
-<li>express</li>
-<li>exacerbate</li>
-<li>impel</li>
-<li>imply</li>
-<li>tabulate</li>
-</ul>
-<p>例句：</p>
-<p>The Protestant(新教徒) threat <strong>impelled</strong> the Roman Catholic church to institute reforms.</p>
-<p>Most poor countries lack even a science adviser to their government. Moreover, these countries are too poor to <strong>import</strong> computers, mobile phones, fax machines, computerized factory machinery or other kinds of high technology.</p>
-<p>In the foreground is a dog lying down and next to it Nicolas Pertusato, a dwarf, who is stepping on it to show that it is a gentle animal in spite of its ferocious (凶猛的) appearance. These two figures are in shadow and <strong>impart</strong> great harmony to the composition. </p>
-<p>The views <strong>expressed</strong> by opinion leaders, filtered through personal relationships, influence the responses of other individuals towards political issues of the day. </p>
-<p>The creators of Mesopotamian civilization were the Sumerians (苏美尔人), a people whose origins remain unclear. By 3000 B.C., they had <strong>established</strong> a number of independent cities in southern Mesopotamia, including Eridu, Ur, Uruk, Umma, and Lagash. </p>
-<p>Venturi has <strong>imbued</strong> the overscale house with humor, irony, and allusions, transforming the traditional American home into a rich architectural statement. </p>
-<p>Hammurabi appears without the benefit or need of a divine intercessor, <strong>implying</strong> an especially close relationship with the sun-god.</p>
-<p>Stress hormones(应激激素) enhance protein production that contributes to inflammation, which helps fight infections. But inflammation also can <strong>exacerbate</strong> asthma, clogged arteries, and depression.</p>
-<p>Google Scholar no longer allows a division by field. But we were able to <strong>tabulate</strong> the number of articles that contained either the word “economics” or “finance”.</p>
-<p>More research has focused on how the demands of our home lives may <strong>impinge</strong> on our concentration, energy, or availability at work. </p>
-<hr>
-<p>单词释义：</p>
-<p>imbue: to relate(something, usually something bad) to a particular cause or source; to assign as a characteristic<br>灌输，使渗透</p>
-<p>impel: to urge to action through moral pressure<br>推动，驱使，激励  </p>
-<p>imply: to express or state indirectly; to make evident indirectly; to involve by logical necessity<br>意味，暗示，隐含</p>
-<p>import: to bring or carry in from an outside source, especially to bring in (goods or materials) from a foreign country for trade or sale.<br>进口，输入</p>
-<p>impinge: to encroach on or limit something, such as a right<br>对…有明显作用，妨碍，侵犯</p>
-<p>impart: to grant a share of; to make known<br>给予，传授，告知</p>
-<p>tabulate: to arrange in tabular form; to cut or form with a plane surface<br>制成表格，使成平面</p>
-<p>exacerbate: to increase the severity, violence, or bitterness of<br>使加剧，使恶化</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group11</title>
-    <url>/2019/11/21/20191121%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup11/</url>
-    <content><![CDATA[<h2 id="Group11"><a href="#Group11" class="headerlink" title="Group11"></a>Group11</h2><ul>
-<li>fabricate</li>
-<li>facilitate</li>
-<li>transmit<a id="more"></a></li>
-<li>theorize</li>
-<li>hypothesize</li>
-<li>further</li>
-<li>govern</li>
-<li>link</li>
-<li>transform</li>
-<li>transcend</li>
-</ul>
-<p>例句：</p>
-<p>Philip instituted military reforms that <strong>transformed</strong> Macedonia into a major military power. He created a new phalanx(方阵) of infantrymen(步兵) who were more lightly armed than Greek hoplites; each carried a smaller shield and a shorter sword.</p>
-<p>Marx <strong>theorized</strong> the inevitability(必然性) of a workers’ revolution which would overthrow the capitalist system and usher(迎来) in a new society in which there would be no classes - no large-scale divisions between rich and poor. He did not mean that all inequalities between individuals would disappear. </p>
-<p>Analogue TV converts sound and pictures into waves, which are <strong>transmitted</strong> through the air and picked up by the aerial(天线) on the roof of the house or on top of the television.</p>
-<p>The most recent trends in the art of the Information Age involve size and spectacle, that is, public performance or theatrical display. Such art, often technically complex, may be conceived by artists but <strong>fabricated</strong> by studio assistants or professional contractors(承包商).</p>
-<p>Hitler claimed to <strong>transcend</strong> all differences and promised to create a new Germany free of class differences and party infighting.</p>
-<p>A recent set of studies examining the tendency for humans to distance themselves from other animals offers a possible way to make creatureliness especially salient (突出的). Goldenberg et al. (2001) <strong>hypothesized</strong> that MS (mortality salience) would intensify disgust reactions because, as Rozin, Haidt, and McCauley (1993) have argued, such reactions assert that we are different from and superior to mere material creatures. </p>
-<p>Saint Stephen, king of Hungary(匈牙利) from 997 to 1038, <strong>facilitated</strong> the acceptance of Christianity by his people. </p>
-<p>The railroad contributed significantly to the maturing of the Industrial Revolution. The railroad’s demands for coal and iron <strong>furthered</strong> the growth of those industries. </p>
-<p>Senators filled the chief magistracies of the Roman government, held the most important military posts, and <strong>governed</strong> the provinces.</p>
-<p>The acceptance of Eastern Orthodoxy (东正教) by the southern Slavic peoples, the Serbs and Bulgarians, meant that their cultural life was also <strong>linked</strong> to the Byzantine state.</p>
-<hr>
-<p>单词释义：</p>
-<p>transmit: to cause to spread; to impart or convey to others by heredity; to impart or convey to others by inheritance<br>传输，传播</p>
-<p>transform: to change markedly the appearance or form of; to change the nature, function, or condition of<br>改变，转换</p>
-<p>transcend: to pass beyond the limits of (a category or conception, for instance); to be greater than, as in quality or intensity<br>胜过，超越</p>
-<p>theorize: to propose a theory about<br>建立理论，推理</p>
-<p>hypothesize: to assert as a hypothesis; to form a hypothesis<br>假设，假定</p>
-<p>fabricate: to make; to construct by combining or assembling diverse, typically standardized<br>制造，装配</p>
-<p>facilitate: to make easy or easier<br>促进，帮助，使更容易</p>
-<p>further: to help the progress of<br>促进，增进</p>
-<p>govern: to make and administer the public policy and affairs of (a state, for example); to keep under control; to exercise a deciding or determining influence on<br>管理，支配</p>
-<p>link: to connect, relate, or associate<br>连接，联合</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group15</title>
     <url>/2019/11/27/20191127%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup15/</url>
     <content><![CDATA[<h2 id="Group15"><a href="#Group15" class="headerlink" title="Group15"></a>Group15</h2><ul>
@@ -1973,6 +1927,52 @@ x=\phi (t)\\ y=\omega (t)
 <p>render: to give or make available; to cause to become; to represent in verbal form<br>提供；致使；表达</p>
 <p>couple: to link together<br>结合，连接</p>
 <p>determine: to establish or ascertain definitely, as after consideration, investigation, or calculation; to decide or settle (a dispute, for example) conclusively and authoritatively<br>决定，确定，判定</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group14</title>
+    <url>/2019/11/26/20191126%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup14/</url>
+    <content><![CDATA[<h2 id="Group14"><a href="#Group14" class="headerlink" title="Group14"></a>Group14</h2><ul>
+<li>diverge</li>
+<li>dominate</li>
+<li>distribute<a id="more"></a></li>
+<li>disseminate</li>
+<li>distinguish</li>
+<li>disperse</li>
+<li>disallow</li>
+<li>displace</li>
+<li>disentangle</li>
+</ul>
+<p>例句：</p>
+<p>Stereotyped beliefs(刻板印象) and prejudiced attitudes exist not only because of social conditioning and because they enable people to <strong>displace</strong> hostilities(敌意), but also as byproducts of normal thinking processes.</p>
+<p>The aggressive energy need not explode directly against its source. Most people learn to inhibit direct retaliation(报复), especially when others might disapprove or punish; instead, we <strong>displace</strong>, or redirect, our hostilities to safer targets.</p>
+<p>A miniature(微型画) celebrating the birth of Akbar’s son, Nurud-din Salim Jahangir, shows courtiers(群臣) rejoicing(欣喜): dancers sway to the rhythms of a lively musical ensemble(音乐剧团) while bread and alms(施舍物) are <strong>distributed</strong> outside the palace gate.</p>
+<p>A group of animals at the top sit on a ground-line, but the painter <strong>dispersed</strong> most of the figures freely against the background. In the lower left corner, a figure raises a stick against three smaller figures, who may be prisoners.</p>
+<p>Fascist propaganda(法西斯主义的宣传) was <strong>disseminated</strong> through simple slogans, such as “Mussolini is always right”, plastered on walls all over Italy.</p>
+<p>If we think of the red beans as supporters of one presidential candidate and the white beans as supporters of the other candidate, we can understand why, since 1950, the Gallup polls taken just before U.S. national elections have <strong>diverged</strong> from election results by an average of less than 2 percent.</p>
+<p>Gradually, as law was written, debated, and altered, it became <strong>disentangled</strong> from religion.</p>
+<p>As one knight explained, “A knight cannot <strong>distinguish</strong> himself in war if he has not trained for it in tourneys”. </p>
+<p>The effort to recover, copy, and produce accurate editions of Classical writings <strong>dominated</strong> the early history of the Renaissance in Italy.</p>
+<p>As we have seen, the Court considered pertinent social science evidence when <strong>disallowing</strong> fivemember juries and ending school desegregation. </p>
+<hr>
+<p>单词释义：</p>
+<p>displace: to move, shift, or force from the usual place or position; to take the place of<br>取代，置换，转移</p>
+<p>disentangle: to extricate from entanglement or involvement; to clear up or resolve (a plot, for example)<br>解开，松开，解决</p>
+<p>distribute: to divide and dispense in portions; to deliver or pass out<br>分配，散布，分开</p>
+<p>disseminate: to spread abroad; to become diffused<br>宣传，传播，散布</p>
+<p>disallow: to refuse to allow; to reject as invalid, untrue, or improper<br>驳回，不接受</p>
+<p>distinguish: to perceive as being different or distinct; to be an identifying characteristic of<br>区别，辨别</p>
+<p>disperse: to drive off or scatter in different directions; to strew or distribute widely<br>分散，使散开</p>
+<p>diverge: to go or extend in different directions from a common point; to depart from an established pattern or norm<br>偏离，分叉</p>
+<p>dominate: to exert a supreme, guiding influence on or over; to be the most abundant in<br>控制，支配，占优势</p>
 <hr>
 ]]></content>
       <categories>
@@ -2137,53 +2137,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group19</title>
-    <url>/2019/12/05/20191205%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup19/</url>
-    <content><![CDATA[<h2 id="Group19"><a href="#Group19" class="headerlink" title="Group19"></a>Group19</h2><ul>
-<li>mobilize</li>
-<li>organize</li>
-<li>recognize<a id="more"></a></li>
-<li>moderate</li>
-<li>restrict</li>
-<li>orient</li>
-<li>modernize</li>
-<li>minimize</li>
-<li>modify</li>
-<li>model</li>
-</ul>
-<p>例句：</p>
-<p>Despite a recent rush to <strong>modernize</strong> and become a world power, Russia in some respects remained trapped in the Middle Ages. </p>
-<p>Mining communities initially <strong>organized</strong> to protest against the policy, but, when this eventually failed, many individual miners retrained to find work in other industries. </p>
-<p>Insisting on military service from the allies in the Roman Confederation, Rome essentially <strong>mobilized</strong> the entire military manpower of all Italy for its wars. </p>
-<p>In Freud’s view, civilization is the product of the ego’s effort to <strong>modify</strong> the primal urges of the id.<br>（ego:自我  id:本我）</p>
-<p>The plebeians(平民) hoped that they could <strong>restrict</strong> the arbitrary power of the patrician(贵族的) magistrates(行政长官), who alone had access to the laws.</p>
-<p>Its four sides are almost precisely <strong>oriented</strong> to the four points of the compass. </p>
-<p>With this population size, humans have already overshot the Earth’s carrying capacity, so consumption must also <strong>moderate</strong>.</p>
-<p>One way people <strong>minimize</strong> dissonance, Festinger believed, is through selective exposure to agreeable information.</p>
-<p>Prehistoric artists also carved and <strong>modeled</strong> sculptures in a variety of materials.</p>
-<p>The Christians did not <strong>recognize</strong> other gods and therefore abstained from public festivals honoring these divinities(神).</p>
-<hr>
-<p>单词释义：</p>
-<p>moderate: to cause to be less extreme<br>节制，减轻，缓和<br>adj. 温和的</p>
-<p>modernize: to make modern in appearance, style, or character; to accept or adopt modern ways<br>现代化</p>
-<p>modify: to change in form or chatacter; to make less extreme, severe, or strong<br>修改</p>
-<p>model: to plan, construct, or fashion in imitation of a model; to form (clay, for example) into a shape<br>模拟，塑造，模仿</p>
-<p>mobilize: to assemble, prepare, or put into active service; to assemble, marshal, or coordinate for a purpose<br>动员，组织</p>
-<p>recognize: to know to be something that has been perceiced before; to know or identify from past experience or knowledge<br>认出，确认，承认</p>
-<p>orient: to align or position in a particular direction or in a particular relation to the points of the compass; to determine the bearings of (oneself); to provide with a primary purpose or focus of attention<br>朝向，确定方位</p>
-<hr>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>power名词的多个含义：</p>
-<p>权力，权势<br>能力，才能 have the power to solve the problems<br>政权，统治权 Labour came to the power<br>强国，大国 Iraq is a major power in …<br>动力，功率力 xx(car) has better power<br>能源，能量 Nuclear power is cleaner than coal<br>（数学）幂，乘方 A to the power of B A的B次方</p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group20</title>
     <url>/2019/12/06/20191206%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup20/</url>
     <content><![CDATA[<h2 id="Group20"><a href="#Group20" class="headerlink" title="Group20"></a>Group20</h2><ul>
@@ -2278,6 +2231,53 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>学术五百词Group19</title>
+    <url>/2019/12/05/20191205%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup19/</url>
+    <content><![CDATA[<h2 id="Group19"><a href="#Group19" class="headerlink" title="Group19"></a>Group19</h2><ul>
+<li>mobilize</li>
+<li>organize</li>
+<li>recognize<a id="more"></a></li>
+<li>moderate</li>
+<li>restrict</li>
+<li>orient</li>
+<li>modernize</li>
+<li>minimize</li>
+<li>modify</li>
+<li>model</li>
+</ul>
+<p>例句：</p>
+<p>Despite a recent rush to <strong>modernize</strong> and become a world power, Russia in some respects remained trapped in the Middle Ages. </p>
+<p>Mining communities initially <strong>organized</strong> to protest against the policy, but, when this eventually failed, many individual miners retrained to find work in other industries. </p>
+<p>Insisting on military service from the allies in the Roman Confederation, Rome essentially <strong>mobilized</strong> the entire military manpower of all Italy for its wars. </p>
+<p>In Freud’s view, civilization is the product of the ego’s effort to <strong>modify</strong> the primal urges of the id.<br>（ego:自我  id:本我）</p>
+<p>The plebeians(平民) hoped that they could <strong>restrict</strong> the arbitrary power of the patrician(贵族的) magistrates(行政长官), who alone had access to the laws.</p>
+<p>Its four sides are almost precisely <strong>oriented</strong> to the four points of the compass. </p>
+<p>With this population size, humans have already overshot the Earth’s carrying capacity, so consumption must also <strong>moderate</strong>.</p>
+<p>One way people <strong>minimize</strong> dissonance, Festinger believed, is through selective exposure to agreeable information.</p>
+<p>Prehistoric artists also carved and <strong>modeled</strong> sculptures in a variety of materials.</p>
+<p>The Christians did not <strong>recognize</strong> other gods and therefore abstained from public festivals honoring these divinities(神).</p>
+<hr>
+<p>单词释义：</p>
+<p>moderate: to cause to be less extreme<br>节制，减轻，缓和<br>adj. 温和的</p>
+<p>modernize: to make modern in appearance, style, or character; to accept or adopt modern ways<br>现代化</p>
+<p>modify: to change in form or chatacter; to make less extreme, severe, or strong<br>修改</p>
+<p>model: to plan, construct, or fashion in imitation of a model; to form (clay, for example) into a shape<br>模拟，塑造，模仿</p>
+<p>mobilize: to assemble, prepare, or put into active service; to assemble, marshal, or coordinate for a purpose<br>动员，组织</p>
+<p>recognize: to know to be something that has been perceiced before; to know or identify from past experience or knowledge<br>认出，确认，承认</p>
+<p>orient: to align or position in a particular direction or in a particular relation to the points of the compass; to determine the bearings of (oneself); to provide with a primary purpose or focus of attention<br>朝向，确定方位</p>
+<hr>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>power名词的多个含义：</p>
+<p>权力，权势<br>能力，才能 have the power to solve the problems<br>政权，统治权 Labour came to the power<br>强国，大国 Iraq is a major power in …<br>动力，功率力 xx(car) has better power<br>能源，能量 Nuclear power is cleaner than coal<br>（数学）幂，乘方 A to the power of B A的B次方</p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学术五百词Group22</title>
     <url>/2019/12/11/20191211%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup22/</url>
     <content><![CDATA[<h2 id="Group22"><a href="#Group22" class="headerlink" title="Group22"></a>Group22</h2><ul>
@@ -2315,6 +2315,50 @@ x=\phi (t)\\ y=\omega (t)
 <p>accord: to give or grant, especially as being due or appropriate<br>符合，一致</p>
 <p>attenuate: to reduce in force, value, amount, or degree<br>减弱，削弱</p>
 <p>attest: to bear witness<br>证明</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group24</title>
+    <url>/2019/12/16/20191216%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup24/</url>
+    <content><![CDATA[<h2 id="Group24"><a href="#Group24" class="headerlink" title="Group24"></a>Group24</h2><ul>
+<li>standardize</li>
+<li>synthesize</li>
+<li>stimulate<a id="more"></a></li>
+<li>strengthen</li>
+<li>structure</li>
+<li>situate</li>
+<li>suggest</li>
+<li>supplant</li>
+<li>suffice</li>
+</ul>
+<p>例句：</p>
+<p>Evidence indicates that artists and workshops <strong>standardized</strong> their production techniques, subcontracted specific elements of projects, and specialized in particular forms or subjects. </p>
+<p>Dürer’s painting technique owes much to the Flemish masters but making copies of Italian works taught him many of the lessons of the Italian Renaissance. He was able to <strong>synthesize</strong> these traditions in his paintings and prints. </p>
+<p>Napoleon believed in using the resources of government to <strong>stimulate</strong> the national economy and took many steps to expand industrial growth.</p>
+<p>To <strong>strengthen</strong> the sculptures’ message, the designer included narrative(叙事的) elements in the pediment as well. </p>
+<p>The most important was the centuriated assembly, essentially the Roman army functioning in its political role. Organized by classes based on wealth, it was <strong>structured</strong> in such a way that the wealthiest citizens always had a majority.</p>
+<p>Eighteen centuries before Copernicus, the Alexandrian astronomer Aristarchus (310–230 b.c.) said that the sun was the center of the universe, that the planets revolved around it, and that the stars were <strong>situated</strong> at great distances from the earth.</p>
+<p>Liberals believed that education was important to personal and social improvement and sought in Catholic countries to <strong>supplant</strong> Catholic education with moral and civic training based on secular(世俗的) values.</p>
+<p>So many bodies were brought to the churches every day that the consecrated(神圣的) ground did not <strong>suffice</strong> to hold them.</p>
+<p>Linguistic clues can <strong>suggest</strong> past contacts between cultures. </p>
+<hr>
+<p>单词释义：<br>standardize: to cause to conform to a standard<br>使标准化</p>
+<p>synthesize: to combine so as to form a new, complex product<br>合成，综合</p>
+<p>stimulate: to rouse to action or increased activity<br>刺激，鼓舞</p>
+<p>strengthen: to make strong or increase the strength of<br>加强</p>
+<p>structure: to give form or arrangement to<br>组织，构成</p>
+<p>situate: to place in a certain spot or position; to place in a given context<br>使位于</p>
+<p>suggest: to offer for consideration or action; to bring or call to mind by logic or association<br>提议，建议</p>
+<p>supplant: to take the place of or substitute for (another)<br>代替</p>
+<p>suffice: to meet present needs or requirements; to be equal to a specified task<br>使满足，足够</p>
 <hr>
 ]]></content>
       <categories>
@@ -2367,50 +2411,6 @@ x=\phi (t)\\ y=\omega (t)
 <h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>but</p>
 <p>今天才知道，but居然有多种词性。<br>adv. 表示仅仅，只有，相当于only。<br>I don’t think we’ll manage it. Still, we can but try.</p>
 <p>n. 借口，推辞<br>‘Let us have no buts,’ he said firmly. ‘You are coming.’<br>“别找借口了。”他坚定地说，“你得来。” </p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group24</title>
-    <url>/2019/12/16/20191216%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup24/</url>
-    <content><![CDATA[<h2 id="Group24"><a href="#Group24" class="headerlink" title="Group24"></a>Group24</h2><ul>
-<li>standardize</li>
-<li>synthesize</li>
-<li>stimulate<a id="more"></a></li>
-<li>strengthen</li>
-<li>structure</li>
-<li>situate</li>
-<li>suggest</li>
-<li>supplant</li>
-<li>suffice</li>
-</ul>
-<p>例句：</p>
-<p>Evidence indicates that artists and workshops <strong>standardized</strong> their production techniques, subcontracted specific elements of projects, and specialized in particular forms or subjects. </p>
-<p>Dürer’s painting technique owes much to the Flemish masters but making copies of Italian works taught him many of the lessons of the Italian Renaissance. He was able to <strong>synthesize</strong> these traditions in his paintings and prints. </p>
-<p>Napoleon believed in using the resources of government to <strong>stimulate</strong> the national economy and took many steps to expand industrial growth.</p>
-<p>To <strong>strengthen</strong> the sculptures’ message, the designer included narrative(叙事的) elements in the pediment as well. </p>
-<p>The most important was the centuriated assembly, essentially the Roman army functioning in its political role. Organized by classes based on wealth, it was <strong>structured</strong> in such a way that the wealthiest citizens always had a majority.</p>
-<p>Eighteen centuries before Copernicus, the Alexandrian astronomer Aristarchus (310–230 b.c.) said that the sun was the center of the universe, that the planets revolved around it, and that the stars were <strong>situated</strong> at great distances from the earth.</p>
-<p>Liberals believed that education was important to personal and social improvement and sought in Catholic countries to <strong>supplant</strong> Catholic education with moral and civic training based on secular(世俗的) values.</p>
-<p>So many bodies were brought to the churches every day that the consecrated(神圣的) ground did not <strong>suffice</strong> to hold them.</p>
-<p>Linguistic clues can <strong>suggest</strong> past contacts between cultures. </p>
-<hr>
-<p>单词释义：<br>standardize: to cause to conform to a standard<br>使标准化</p>
-<p>synthesize: to combine so as to form a new, complex product<br>合成，综合</p>
-<p>stimulate: to rouse to action or increased activity<br>刺激，鼓舞</p>
-<p>strengthen: to make strong or increase the strength of<br>加强</p>
-<p>structure: to give form or arrangement to<br>组织，构成</p>
-<p>situate: to place in a certain spot or position; to place in a given context<br>使位于</p>
-<p>suggest: to offer for consideration or action; to bring or call to mind by logic or association<br>提议，建议</p>
-<p>supplant: to take the place of or substitute for (another)<br>代替</p>
-<p>suffice: to meet present needs or requirements; to be equal to a specified task<br>使满足，足够</p>
-<hr>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -2681,54 +2681,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group31</title>
-    <url>/2020/01/08/20200108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup31/</url>
-    <content><![CDATA[<h2 id="Group31"><a href="#Group31" class="headerlink" title="Group31"></a>Group31</h2><ul>
-<li>suppress</li>
-<li>subordinate</li>
-<li>subdivide<a id="more"></a></li>
-<li>superimpose</li>
-<li>supersede</li>
-<li>survey</li>
-<li>sustain</li>
-<li>usurp</li>
-<li>subtract</li>
-<li>substantiate</li>
-</ul>
-<p>例句：</p>
-<p>The women were <strong>subordinated</strong> to men.</p>
-<p>If we define meaning as helping people in faraway places, we implicitly <strong>subtract</strong> meaning from the actual work we are doing.</p>
-<p>These numbers exist for any reason other than to <strong>substantiate</strong> a fragile argument.</p>
-<p>To reorganize local government, Catherine divided Russia into fifty provinces, each of which was in turn <strong>subdivided</strong> into districts ruled by officials chosen by the nobles. </p>
-<p>A photo of a cup of cappuccino had been <strong>superimposed</strong> on a picture of Venice.</p>
-<p>By the mid-fifteenth century, the French nobility(贵族) was badly depleted, and those knights who survived the war found themselves “outdated”. In France, feudal allegiances(封建效忠) were soon <strong>superseded</strong> by systems of national conscription(全国征兵). </p>
-<p>Some historians have argued that the desire to <strong>suppress</strong> internal disorder may have encouraged some leaders to take the plunge into war in 1914.</p>
-<p>Scholars did not begin to <strong>survey</strong> Buddhist(佛教的) music until the early twentieth century. </p>
-<p>As precipitation in a warming and wetter world falls more as rain and less as snow, the likely result will be rainy season floods and less dry season snow and ice melt to <strong>sustain</strong> rivers.</p>
-<p>Industrialism began to <strong>usurp</strong> the production and distribution functions of the family.</p>
-<hr>
-<p>单词释义：</p>
-<p>subordinate: to put in a lower or inferior rank or calss; to make subservient<br>从属，使服从</p>
-<p>subtract: to take away<br>减去，扣掉</p>
-<p>substantiate: to prove the truth of or support with proof or evidence<br>证实，使实体化</p>
-<p>subdivide: to form into subdivisions<br>细分</p>
-<p>superimpose: to lay or place (something) on or over something else<br>添加，叠加</p>
-<p>supersede: to take the place of<br>取代，代替</p>
-<p>suppress: to put an end to forcibly; to curtail or prohibit the activities of; to keep from being revealed<br>抑制，镇压</p>
-<p>survey: to look over the parts, features, or contents of; to determine the boundaries, area, or elevations by means of measuring angles and distances, using the techniques of geometry and trigonometry<br>调查，测量，勘探</p>
-<p>sustain: to keep in existence; to supply with necessities or nourishment<br>维持</p>
-<p>usurp: to seize and hold (the power or rights of another, for example) by force or without legal authority<br>篡夺</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group30</title>
     <url>/2020/01/07/20200107%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup30/</url>
     <content><![CDATA[<ul>
@@ -2767,6 +2719,54 @@ x=\phi (t)\\ y=\omega (t)
 <p>reveal: to make known (something concealed or unknown); to cause to be seen<br>揭露，显示</p>
 <p>review: to consider retrospectively<br>回顾，复习</p>
 <p>reorganize: to organize again or anew<br>整理</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group31</title>
+    <url>/2020/01/08/20200108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup31/</url>
+    <content><![CDATA[<h2 id="Group31"><a href="#Group31" class="headerlink" title="Group31"></a>Group31</h2><ul>
+<li>suppress</li>
+<li>subordinate</li>
+<li>subdivide<a id="more"></a></li>
+<li>superimpose</li>
+<li>supersede</li>
+<li>survey</li>
+<li>sustain</li>
+<li>usurp</li>
+<li>subtract</li>
+<li>substantiate</li>
+</ul>
+<p>例句：</p>
+<p>The women were <strong>subordinated</strong> to men.</p>
+<p>If we define meaning as helping people in faraway places, we implicitly <strong>subtract</strong> meaning from the actual work we are doing.</p>
+<p>These numbers exist for any reason other than to <strong>substantiate</strong> a fragile argument.</p>
+<p>To reorganize local government, Catherine divided Russia into fifty provinces, each of which was in turn <strong>subdivided</strong> into districts ruled by officials chosen by the nobles. </p>
+<p>A photo of a cup of cappuccino had been <strong>superimposed</strong> on a picture of Venice.</p>
+<p>By the mid-fifteenth century, the French nobility(贵族) was badly depleted, and those knights who survived the war found themselves “outdated”. In France, feudal allegiances(封建效忠) were soon <strong>superseded</strong> by systems of national conscription(全国征兵). </p>
+<p>Some historians have argued that the desire to <strong>suppress</strong> internal disorder may have encouraged some leaders to take the plunge into war in 1914.</p>
+<p>Scholars did not begin to <strong>survey</strong> Buddhist(佛教的) music until the early twentieth century. </p>
+<p>As precipitation in a warming and wetter world falls more as rain and less as snow, the likely result will be rainy season floods and less dry season snow and ice melt to <strong>sustain</strong> rivers.</p>
+<p>Industrialism began to <strong>usurp</strong> the production and distribution functions of the family.</p>
+<hr>
+<p>单词释义：</p>
+<p>subordinate: to put in a lower or inferior rank or calss; to make subservient<br>从属，使服从</p>
+<p>subtract: to take away<br>减去，扣掉</p>
+<p>substantiate: to prove the truth of or support with proof or evidence<br>证实，使实体化</p>
+<p>subdivide: to form into subdivisions<br>细分</p>
+<p>superimpose: to lay or place (something) on or over something else<br>添加，叠加</p>
+<p>supersede: to take the place of<br>取代，代替</p>
+<p>suppress: to put an end to forcibly; to curtail or prohibit the activities of; to keep from being revealed<br>抑制，镇压</p>
+<p>survey: to look over the parts, features, or contents of; to determine the boundaries, area, or elevations by means of measuring angles and distances, using the techniques of geometry and trigonometry<br>调查，测量，勘探</p>
+<p>sustain: to keep in existence; to supply with necessities or nourishment<br>维持</p>
+<p>usurp: to seize and hold (the power or rights of another, for example) by force or without legal authority<br>篡夺</p>
 <hr>
 ]]></content>
       <categories>
@@ -3656,65 +3656,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group47</title>
-    <url>/2020/05/02/20200502%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup47/</url>
-    <content><![CDATA[<h2 id="Group-47"><a href="#Group-47" class="headerlink" title="Group 47"></a>Group 47</h2><ul>
-<li>confer</li>
-<li>hamper</li>
-<li>shape<a id="more"></a></li>
-<li>center</li>
-<li>state</li>
-<li>stem</li>
-<li>deem</li>
-<li>safeguard</li>
-<li>stagnate</li>
-<li>buffer</li>
-</ul>
-<hr>
-<p>例句：</p>
-<p>Looking back at the artists of the fifteenth century, the artist and art historian Giorgio Vasari wrote in 1550, “Truly great was the advancement <strong>conferred</strong> on the arts of architecture, painting, and sculpture by those excellent masters.”  </p>
-<p>Industry, especially state-owned heavy industry, fared less well and continued to <strong>stagnate</strong>. </p>
-<p>Historically, farm policy has been <strong>centered</strong> on price and based on the parity concept, which suggests that the relationship between prices received and paid by farmers should be constant over time. </p>
-<p>When facing threats, self-esteem <strong>buffers</strong> anxiety.</p>
-<p>British development was <strong>hampered</strong> by frequent labor strikes, many of them caused by conflicts between rival labor unions.</p>
-<p>As the world adjusted to the transformation from Cold War to post-Cold War sensibilities, other changes <strong>shaped</strong> the Western outlook. </p>
-<p>More and more European governments began to sponsor projects to <strong>safeguard</strong> the environment and clean up the worst sources of pollution. </p>
-<p>In 1628, it (Parliament) refused to grant Charles I tax revenues unless he agreed to the Petition of Right, which <strong>stated</strong> that the king could not collect taxes without Parliament’s consent or imprison people without a specific charge. </p>
-<p>The superimposed classical orders, the pedimented window frames, and the arcade(拱廊) on the ground floor <strong>stem</strong> from Italy.</p>
-<p>Through strict control of political, economic, and cultural life, and by means of coercive(强制的) measures such as censorship and terrorism, Soviet communists persecuted those whose activities they <strong>deemed</strong> threatening to the state. </p>
-<hr>
-<p>单词释义：</p>
-<p>center: to have a central theme or concern</p>
-<p>居中，集中</p>
-<p>buffer: to act as a buffer (something that lessens or absorbs the shock of an impact) for or between</p>
-<p>缓冲</p>
-<p>confer: to bestow (an honor, for example)</p>
-<p>协商，授予</p>
-<p>hamper: to prevent the free movement, action, or progress of</p>
-<p>妨碍，束缚</p>
-<p>shape: to influence in a formative way; to direct the course of</p>
-<p>形成</p>
-<p>safeguard: to ensure the safety or integrity of</p>
-<p>保护，保卫</p>
-<p>stagnate: to be or become stagnant</p>
-<p>停滞，淤塞</p>
-<p>state: to set forth in words</p>
-<p>规定，声明</p>
-<p>stem: to make headway against; to have or take origin or descent</p>
-<p>阻止；起源于某事物</p>
-<p>deem: to regard as; to suppose or believe; to have an opinion</p>
-<p>认为，视作</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group46</title>
     <url>/2020/04/27/20200427%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup46/</url>
     <content><![CDATA[<h2 id="Group-46"><a href="#Group-46" class="headerlink" title="Group 46"></a>Group 46</h2><ul>
@@ -3763,6 +3704,65 @@ x=\phi (t)\\ y=\omega (t)
 <p>巩固，支持</p>
 <p>underscore: to put emphasis on</p>
 <p>强调</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group47</title>
+    <url>/2020/05/02/20200502%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup47/</url>
+    <content><![CDATA[<h2 id="Group-47"><a href="#Group-47" class="headerlink" title="Group 47"></a>Group 47</h2><ul>
+<li>confer</li>
+<li>hamper</li>
+<li>shape<a id="more"></a></li>
+<li>center</li>
+<li>state</li>
+<li>stem</li>
+<li>deem</li>
+<li>safeguard</li>
+<li>stagnate</li>
+<li>buffer</li>
+</ul>
+<hr>
+<p>例句：</p>
+<p>Looking back at the artists of the fifteenth century, the artist and art historian Giorgio Vasari wrote in 1550, “Truly great was the advancement <strong>conferred</strong> on the arts of architecture, painting, and sculpture by those excellent masters.”  </p>
+<p>Industry, especially state-owned heavy industry, fared less well and continued to <strong>stagnate</strong>. </p>
+<p>Historically, farm policy has been <strong>centered</strong> on price and based on the parity concept, which suggests that the relationship between prices received and paid by farmers should be constant over time. </p>
+<p>When facing threats, self-esteem <strong>buffers</strong> anxiety.</p>
+<p>British development was <strong>hampered</strong> by frequent labor strikes, many of them caused by conflicts between rival labor unions.</p>
+<p>As the world adjusted to the transformation from Cold War to post-Cold War sensibilities, other changes <strong>shaped</strong> the Western outlook. </p>
+<p>More and more European governments began to sponsor projects to <strong>safeguard</strong> the environment and clean up the worst sources of pollution. </p>
+<p>In 1628, it (Parliament) refused to grant Charles I tax revenues unless he agreed to the Petition of Right, which <strong>stated</strong> that the king could not collect taxes without Parliament’s consent or imprison people without a specific charge. </p>
+<p>The superimposed classical orders, the pedimented window frames, and the arcade(拱廊) on the ground floor <strong>stem</strong> from Italy.</p>
+<p>Through strict control of political, economic, and cultural life, and by means of coercive(强制的) measures such as censorship and terrorism, Soviet communists persecuted those whose activities they <strong>deemed</strong> threatening to the state. </p>
+<hr>
+<p>单词释义：</p>
+<p>center: to have a central theme or concern</p>
+<p>居中，集中</p>
+<p>buffer: to act as a buffer (something that lessens or absorbs the shock of an impact) for or between</p>
+<p>缓冲</p>
+<p>confer: to bestow (an honor, for example)</p>
+<p>协商，授予</p>
+<p>hamper: to prevent the free movement, action, or progress of</p>
+<p>妨碍，束缚</p>
+<p>shape: to influence in a formative way; to direct the course of</p>
+<p>形成</p>
+<p>safeguard: to ensure the safety or integrity of</p>
+<p>保护，保卫</p>
+<p>stagnate: to be or become stagnant</p>
+<p>停滞，淤塞</p>
+<p>state: to set forth in words</p>
+<p>规定，声明</p>
+<p>stem: to make headway against; to have or take origin or descent</p>
+<p>阻止；起源于某事物</p>
+<p>deem: to regard as; to suppose or believe; to have an opinion</p>
+<p>认为，视作</p>
 <hr>
 ]]></content>
       <categories>
