@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ayunnn.gitee.io/2020/12/27/20201227%E8%A1%A8%E9%9D%A2%E5%BC%A0%E5%8A%9B%E4%B8%8E%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/</loc>
+    
+    <lastmod>2020-12-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ayunnn.gitee.io/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/</loc>
     
     <lastmod>2020-11-13</lastmod>
@@ -851,7 +858,7 @@
 
   <url>
     <loc>http://ayunnn.gitee.io/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -859,161 +866,168 @@
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/journal/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/matlab/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/hexo/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/solar-terms/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/Cpp/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/Bezier/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/%E8%A7%82%E5%90%8E%E6%84%9F/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/LBM/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/resume/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/English/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/github/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/SEU/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/ImageJ/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/software/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/words/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/Mimics/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/ImageProcess/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/computer/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/others/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/simulation/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/review/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/tags/bone-regeneration-model/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://ayunnn.gitee.io/tags/%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/</loc>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1022,35 +1036,35 @@
   
   <url>
     <loc>http://ayunnn.gitee.io/categories/journal/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/categories/learning/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/categories/others/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/categories/solar-terms/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ayunnn.gitee.io/categories/literature/</loc>
-    <lastmod>2020-12-07</lastmod>
+    <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
