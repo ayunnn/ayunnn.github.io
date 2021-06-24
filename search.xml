@@ -30,43 +30,6 @@
       </tags>
   </entry>
   <entry>
-    <title>matlab四维图绘制</title>
-    <url>/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。</p>
-<p>如何绘制四维图，表示这个立方体？</p>
-<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>利用matlab函数slice，通过体数据显示正交切平面。<br><a id="more"></a></p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">slice</span><span class="params">(V,sx,sy,sz)</span></span></span><br><span class="line"><span class="function"><span class="title">slice</span><span class="params">(X,Y,Z,V,sx,sy,sz)</span></span></span><br><span class="line">h = slice(...)</span><br></pre></td></tr></table></figure>
-<p><code>slice(V,sx,sy,sz)</code> 沿三维体 V 中的 x、y、z 方向在 sx、sy 和 sz 向量中的点处绘制切片。V 是一个 m×n×p 的三维体数组，包含在 X = 1:n、Y = 1:m、Z = 1:p 处的数据值。向量 sx、sy 和 sz 中的每个元素在 x、y 或 z 轴方向定义一个切平面。<br><code>slice(X,Y,Z,V,sx,sy,sz)</code>  绘制三维体 V 的切片。X、Y 和 Z 是指定 V 的坐标的三维数组。X、Y 和 Z 必须是单调正交分布的（比如由 meshgrid 函数生成的）。每个点处的颜色由三维体 V 中的三维插值确定。<br><code>h = slice(...)</code> 将句柄向量返回至曲面图形对象。</p>
-<h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = xsize/<span class="number">2</span>; </span><br><span class="line">yslice = [ysize/<span class="number">2</span>, ysize]; </span><br><span class="line">zslice = zsize/<span class="number">2</span>;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
-<p>效果如图</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
-<h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
-<h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
-<h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
-<h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
-<h3 id="色标"><a href="#色标" class="headerlink" title="色标"></a>色标</h3><p><code>colorbar</code><br>在图像一侧显示色标</p>
-<h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
-<p>az为方位角，el为仰角，均以度为单位。</p>
-<p>增加改进后，现在似乎好看了一点点</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
-<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
-<p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
-<p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
-<p>最后，只显示其中圆柱体的完整的代码如下：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">v(v == <span class="number">1</span>) = NaN;</span><br><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">h=slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line"><span class="keyword">set</span>(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">colorbar</span><br><span class="line">alpha(<span class="number">0.9</span>)</span><br><span class="line">caxis([<span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure></p>
-<p>效果如图：<br><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文章发布问题记录</title>
     <url>/2018/09/04/20180904%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p>昨天第一次发布稍复杂一点的文章，刚开始接触markdown语法，很多用法只好边查边用，中间遇到了很多问题（虽然都是菜鸟级别），在此记录以备查询。</p>
@@ -112,6 +75,43 @@
       </tags>
   </entry>
   <entry>
+    <title>matlab四维图绘制</title>
+    <url>/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。</p>
+<p>如何绘制四维图，表示这个立方体？</p>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>利用matlab函数slice，通过体数据显示正交切平面。<br><a id="more"></a></p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">slice</span><span class="params">(V,sx,sy,sz)</span></span></span><br><span class="line"><span class="function"><span class="title">slice</span><span class="params">(X,Y,Z,V,sx,sy,sz)</span></span></span><br><span class="line">h = slice(...)</span><br></pre></td></tr></table></figure>
+<p><code>slice(V,sx,sy,sz)</code> 沿三维体 V 中的 x、y、z 方向在 sx、sy 和 sz 向量中的点处绘制切片。V 是一个 m×n×p 的三维体数组，包含在 X = 1:n、Y = 1:m、Z = 1:p 处的数据值。向量 sx、sy 和 sz 中的每个元素在 x、y 或 z 轴方向定义一个切平面。<br><code>slice(X,Y,Z,V,sx,sy,sz)</code>  绘制三维体 V 的切片。X、Y 和 Z 是指定 V 的坐标的三维数组。X、Y 和 Z 必须是单调正交分布的（比如由 meshgrid 函数生成的）。每个点处的颜色由三维体 V 中的三维插值确定。<br><code>h = slice(...)</code> 将句柄向量返回至曲面图形对象。</p>
+<h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = xsize/<span class="number">2</span>; </span><br><span class="line">yslice = [ysize/<span class="number">2</span>, ysize]; </span><br><span class="line">zslice = zsize/<span class="number">2</span>;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p>效果如图</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
+<h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
+<h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
+<h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
+<h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
+<h3 id="色标"><a href="#色标" class="headerlink" title="色标"></a>色标</h3><p><code>colorbar</code><br>在图像一侧显示色标</p>
+<h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
+<p>az为方位角，el为仰角，均以度为单位。</p>
+<p>增加改进后，现在似乎好看了一点点</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
+<p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
+<p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
+<p>最后，只显示其中圆柱体的完整的代码如下：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">v(v == <span class="number">1</span>) = NaN;</span><br><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">h=slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line"><span class="keyword">set</span>(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">colorbar</span><br><span class="line">alpha(<span class="number">0.9</span>)</span><br><span class="line">caxis([<span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure></p>
+<p>效果如图：<br><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>露从今日白</title>
     <url>/2018/09/08/20180908%E9%9C%B2%E4%BB%8E%E4%BB%8A%E6%97%A5%E7%99%BD/</url>
     <content><![CDATA[<p>今天是二十四节气中的白露。“水土湿气凝而为露，秋属金，金色白，白者露之色，而气始寒也”，白露过后，水汽在夜间便会遇冷凝结，在地面或叶子上形成细小的水珠。古人以四时配五行，秋属金，金色白，故以白形容秋露。</p>
@@ -142,6 +142,20 @@
       </tags>
   </entry>
   <entry>
+    <title>秋分</title>
+    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
+    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
+<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
+<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>matlab中的取整函数</title>
     <url>/2018/10/08/20181008matlab%E4%B8%AD%E7%9A%84%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h3 id="向零取整"><a href="#向零取整" class="headerlink" title="向零取整"></a>向零取整</h3><p><strong>fix</strong>: Round toward zero<br>例：<code>fix(2.1)</code> 结果为 2</p>
@@ -157,20 +171,6 @@
       </tags>
   </entry>
   <entry>
-    <title>秋分</title>
-    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
-    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
-<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
-<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>九月·寒露</title>
     <url>/2018/10/08/20181008%E4%B9%9D%E6%9C%88%C2%B7%E5%AF%92%E9%9C%B2/</url>
     <content><![CDATA[<p>今天是二十四节气中的寒露。明天就要进入农历的九月了，这是一年当中我最喜欢的时节，夏日的酷暑完全褪去，每天感受着阵阵微风中凉意渐浓，看着树叶逐渐泛出金黄一片片凋落。秋收冬藏，在热烈而张扬的春夏过后，人们可以心怀感激收获丰收的喜悦，可以静下心来重新关注这片金色的大地，将一切喧嚣和浮躁沉淀进厚重的泥土里。</p>
@@ -181,24 +181,6 @@
       </categories>
       <tags>
         <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>重阳</title>
-    <url>/2018/10/17/20181017%E9%87%8D%E9%98%B3/</url>
-    <content><![CDATA[<p>2018年10月17日重阳节。开始我24岁前的最后一年。</p>
-<p>在我的印象里一直觉得24岁是一个神秘、遥远而不可跨越的年龄。24这个数字在中国传统文化中常常出现，比如二十四节气，二十四孝，二十四史（嗯…似乎还有二十四式简化太极拳和二十四字社会主义核心价值观）。按照天干地支纪年方法，每12年地支便会完成一个轮回，而人们也往往十分重视这道坎儿，因此有了本命年的说法。如今站在这门槛前，仿佛即将步入一个神圣的大门，不敢轻易踏下这一步。<br><a id="more"></a><br>未来前路漫漫，回首白驹过隙。怀揣着对前方未知的忐忑心情，一眨眼竟已走到了这里。二十年那么长，有太多的人走进走出我的世界，像无数把刻刀，将愚钝如顽石的我雕刻成如今的模样。二十年又如此短，我依然还是一个未谙世事满身棱角的后生，在不断地犯错、反省和改正中慢慢成长。</p>
-<p>90后，独生子女，生活在小城市，我的童年标签大概和很多同龄人一样。在网络并不发达的年代，小城市的相对封闭和安稳带给我的是静谧美好、与世无争的童年，我甚至到初一的某一天放学路上才突然领悟，自己正身处一个多么广阔而复杂的大千世界，那种像滔天巨浪从头顶袭来的感觉，使我如梦初醒。也是从那时起，我开始对阅读充满兴趣，通过各种书籍逐渐在脑海里勾画出世界的模样。真正让我想要亲自走出去看一看的，是高二时一次去市里参加英语竞赛。竞赛前一天晚上我坐火车到市里，当我坐在公交车上，看到夜幕笼罩下的大街上依然人流涌动，店铺灯火通明，各种电子屏霓虹灯在两侧高楼上闪烁，我竟莫名地有些感动，也终于明白亲身体验和道听途说完全是不同的感受。</p>
-<p>高考是我这一段人生中的一个重要转折点。能够到南京，五个平行志愿所在城市中唯一一个南方城市，完全是机缘巧合。在来到这里之前，我一直希望自己能上北京或者西安的学校，对离家较远的南京并没有抱很大希望。上大学后，我终于真正地踏入了井底之外的世界，在这短短的几年里解锁了无数人生第一次，也逐渐爱上了这座原本看起来遥不可及的城市。我喜欢这座城市厚重的历史感，喜欢城市里随处可见的参天大树，喜欢隐藏在大街小巷一砖一瓦里南京独有的浪漫。</p>
-<p>五年多来，最难忘的恐怕就是往返家和学校的旅途。漫长的将近一天一夜的车程，是一段抛开所有身外事物，躺下来静静思考的最佳时光。五年里这趟列车从临客，到升级为K，再到暂时取消，始终不变的旧式车厢，操着乡音的临铺、列车员和推销员，仿佛成了我与家之间难以缩短的距离，却也同时是我和家最触手可及的连系。与父辈们不同，我们这一代大多是没有根的，原本只是想出去看看外面的世界，不曾想一旦背井离乡，就很难再回去了。</p>
-<p>作为一个既不聪明，运气又差的人，我能做的始终只有脚踏实地，尽量努力用心做好每一件事。事实证明，有时候这种最笨的办法确实能弥补许多先天的不足，常常会在不经意间给予我继续坚持的力量。我相信过去如此，未来亦将如此。</p>
-<p>岁岁重阳，今又重阳。心怀感恩，继续前行。❤</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -232,6 +214,24 @@
       </categories>
       <tags>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重阳</title>
+    <url>/2018/10/17/20181017%E9%87%8D%E9%98%B3/</url>
+    <content><![CDATA[<p>2018年10月17日重阳节。开始我24岁前的最后一年。</p>
+<p>在我的印象里一直觉得24岁是一个神秘、遥远而不可跨越的年龄。24这个数字在中国传统文化中常常出现，比如二十四节气，二十四孝，二十四史（嗯…似乎还有二十四式简化太极拳和二十四字社会主义核心价值观）。按照天干地支纪年方法，每12年地支便会完成一个轮回，而人们也往往十分重视这道坎儿，因此有了本命年的说法。如今站在这门槛前，仿佛即将步入一个神圣的大门，不敢轻易踏下这一步。<br><a id="more"></a><br>未来前路漫漫，回首白驹过隙。怀揣着对前方未知的忐忑心情，一眨眼竟已走到了这里。二十年那么长，有太多的人走进走出我的世界，像无数把刻刀，将愚钝如顽石的我雕刻成如今的模样。二十年又如此短，我依然还是一个未谙世事满身棱角的后生，在不断地犯错、反省和改正中慢慢成长。</p>
+<p>90后，独生子女，生活在小城市，我的童年标签大概和很多同龄人一样。在网络并不发达的年代，小城市的相对封闭和安稳带给我的是静谧美好、与世无争的童年，我甚至到初一的某一天放学路上才突然领悟，自己正身处一个多么广阔而复杂的大千世界，那种像滔天巨浪从头顶袭来的感觉，使我如梦初醒。也是从那时起，我开始对阅读充满兴趣，通过各种书籍逐渐在脑海里勾画出世界的模样。真正让我想要亲自走出去看一看的，是高二时一次去市里参加英语竞赛。竞赛前一天晚上我坐火车到市里，当我坐在公交车上，看到夜幕笼罩下的大街上依然人流涌动，店铺灯火通明，各种电子屏霓虹灯在两侧高楼上闪烁，我竟莫名地有些感动，也终于明白亲身体验和道听途说完全是不同的感受。</p>
+<p>高考是我这一段人生中的一个重要转折点。能够到南京，五个平行志愿所在城市中唯一一个南方城市，完全是机缘巧合。在来到这里之前，我一直希望自己能上北京或者西安的学校，对离家较远的南京并没有抱很大希望。上大学后，我终于真正地踏入了井底之外的世界，在这短短的几年里解锁了无数人生第一次，也逐渐爱上了这座原本看起来遥不可及的城市。我喜欢这座城市厚重的历史感，喜欢城市里随处可见的参天大树，喜欢隐藏在大街小巷一砖一瓦里南京独有的浪漫。</p>
+<p>五年多来，最难忘的恐怕就是往返家和学校的旅途。漫长的将近一天一夜的车程，是一段抛开所有身外事物，躺下来静静思考的最佳时光。五年里这趟列车从临客，到升级为K，再到暂时取消，始终不变的旧式车厢，操着乡音的临铺、列车员和推销员，仿佛成了我与家之间难以缩短的距离，却也同时是我和家最触手可及的连系。与父辈们不同，我们这一代大多是没有根的，原本只是想出去看看外面的世界，不曾想一旦背井离乡，就很难再回去了。</p>
+<p>作为一个既不聪明，运气又差的人，我能做的始终只有脚踏实地，尽量努力用心做好每一件事。事实证明，有时候这种最笨的办法确实能弥补许多先天的不足，常常会在不经意间给予我继续坚持的力量。我相信过去如此，未来亦将如此。</p>
+<p>岁岁重阳，今又重阳。心怀感恩，继续前行。❤</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -334,6 +334,25 @@
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观《帝女花》</title>
+    <url>/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/</url>
+    <content><![CDATA[<p>刚刚过去的双十一，可能会成为我许多年后也难以忘怀的一个日子。（当然不是因为剁了手:) ）在江边的江苏大剧院戏剧厅，听到于魁智和李胜素两位大师的现场演出《帝女花》，以及最后的返场《坐宫》，内心汹涌澎拜激动无以言表，只能在谢幕时跟着上千名素不相识的观众一起欢呼鼓掌，分享我们的喜悦。<br><a id="more"></a><br><img src="/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/d1.jpg" alt="帝女花"></p>
+<p>《帝女花》这部戏对我来说可能有着不太一样的意义。大二的戏曲选修课，第一节课算是入门，为了让我们认识戏曲、对戏曲感兴趣，赵老师在课上放了一段张国荣和汪明荃演唱的粤剧《帝女花·香夭》。尽管我之前就很喜欢张国荣，也看过他的《霸王别姬》中伶人的扮相，但如此深情投入真正唱着戏曲的张国荣还是给了我极大的震撼，仿佛向我打开了新世界的大门。看到他眉眼中流露的真情，听到粤剧婉转凄美的腔调，我突然发现原来戏曲也可以如此动人，从此一发不可收拾。如今这部经典的粤剧由国家京剧院改编为同名京剧，必须要到现场支持!</p>
+<blockquote><p>剧情简介：<br>明末崇祯皇帝之女长平公主，奉帝命选婿，与都尉周世显含樟树下定情。闯王李自成破城，大明覆灭，崇祯手刃长平，世显施救未果。长平未至气绝，被大臣周钟、周宝伦父子救返藏于家中。清军灭闯军，于皇城立国。长平闻知周钟父子欲降清，得周钟之女周瑞兰相助，避居庵中。世显至此，巧遇化作女尼的长平，几番试探诉情，长平与之相认。周钟父子寻迹而来，威迫利诱其一同返宫。世显诈降，支开旁人后向长平谏言，夫妻决定为使清帝善葬崇祯、释放太子，佯装返宫。金殿之上，二人与清帝周旋智斗，默契配合，终偿所愿。长平、世显于宫中樟树下交拜，随即双双饮砒霜殉国。</p>
+</blockquote>
+<p>整场下来，印象最深的一个是庵遇，世显和长平公主门里门外相认不相认内心斗争的一段。两人隔着一扇“假想的门”，这一侧苦苦劝说，那一侧不愿面对，最终还是因为自己所担负的责任而毅然决然地走出来。作为前朝的公主，眼看着父皇丢了江山，杀母弑女，横尸煤山，而年幼的弟弟身陷囹圄性命不保，只剩下她独自一人，这需要多么强大的内心和勇气去面对啊。另一个片段是最后的香夭，两人约好在含樟树下饮砒霜酒自尽，长平公主偷偷望着世显，看到他面带愁容双眼含泪，内心愧疚连累了他，而世显也是深爱着长平，唱到只可惜要身着凤冠霞帔入土，实在是让人难过。</p>
+<p>其实除了两位大师，其他演员的演出也都相当精彩，比如崇祯、周钟，毕竟是国家京剧院一团，各方面水准都相当高。不过我觉得京剧改编的剧本稍有些单薄，虽然故事比较完整清晰，但要两个多小时讲完，中间很多地方都删减和省略了，可能没有那么饱满。</p>
+<p><em>图片来自荔枝网<a href="http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1">http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1</a></em></p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
+        <tag>观后感</tag>
       </tags>
   </entry>
   <entry>
@@ -461,25 +480,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>观《帝女花》</title>
-    <url>/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/</url>
-    <content><![CDATA[<p>刚刚过去的双十一，可能会成为我许多年后也难以忘怀的一个日子。（当然不是因为剁了手:) ）在江边的江苏大剧院戏剧厅，听到于魁智和李胜素两位大师的现场演出《帝女花》，以及最后的返场《坐宫》，内心汹涌澎拜激动无以言表，只能在谢幕时跟着上千名素不相识的观众一起欢呼鼓掌，分享我们的喜悦。<br><a id="more"></a><br><img src="/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/d1.jpg" alt="帝女花"></p>
-<p>《帝女花》这部戏对我来说可能有着不太一样的意义。大二的戏曲选修课，第一节课算是入门，为了让我们认识戏曲、对戏曲感兴趣，赵老师在课上放了一段张国荣和汪明荃演唱的粤剧《帝女花·香夭》。尽管我之前就很喜欢张国荣，也看过他的《霸王别姬》中伶人的扮相，但如此深情投入真正唱着戏曲的张国荣还是给了我极大的震撼，仿佛向我打开了新世界的大门。看到他眉眼中流露的真情，听到粤剧婉转凄美的腔调，我突然发现原来戏曲也可以如此动人，从此一发不可收拾。如今这部经典的粤剧由国家京剧院改编为同名京剧，必须要到现场支持!</p>
-<blockquote><p>剧情简介：<br>明末崇祯皇帝之女长平公主，奉帝命选婿，与都尉周世显含樟树下定情。闯王李自成破城，大明覆灭，崇祯手刃长平，世显施救未果。长平未至气绝，被大臣周钟、周宝伦父子救返藏于家中。清军灭闯军，于皇城立国。长平闻知周钟父子欲降清，得周钟之女周瑞兰相助，避居庵中。世显至此，巧遇化作女尼的长平，几番试探诉情，长平与之相认。周钟父子寻迹而来，威迫利诱其一同返宫。世显诈降，支开旁人后向长平谏言，夫妻决定为使清帝善葬崇祯、释放太子，佯装返宫。金殿之上，二人与清帝周旋智斗，默契配合，终偿所愿。长平、世显于宫中樟树下交拜，随即双双饮砒霜殉国。</p>
-</blockquote>
-<p>整场下来，印象最深的一个是庵遇，世显和长平公主门里门外相认不相认内心斗争的一段。两人隔着一扇“假想的门”，这一侧苦苦劝说，那一侧不愿面对，最终还是因为自己所担负的责任而毅然决然地走出来。作为前朝的公主，眼看着父皇丢了江山，杀母弑女，横尸煤山，而年幼的弟弟身陷囹圄性命不保，只剩下她独自一人，这需要多么强大的内心和勇气去面对啊。另一个片段是最后的香夭，两人约好在含樟树下饮砒霜酒自尽，长平公主偷偷望着世显，看到他面带愁容双眼含泪，内心愧疚连累了他，而世显也是深爱着长平，唱到只可惜要身着凤冠霞帔入土，实在是让人难过。</p>
-<p>其实除了两位大师，其他演员的演出也都相当精彩，比如崇祯、周钟，毕竟是国家京剧院一团，各方面水准都相当高。不过我觉得京剧改编的剧本稍有些单薄，虽然故事比较完整清晰，但要两个多小时讲完，中间很多地方都删减和省略了，可能没有那么饱满。</p>
-<p><em>图片来自荔枝网<a href="http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1">http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1</a></em></p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
-        <tag>观后感</tag>
       </tags>
   </entry>
   <entry>
@@ -637,59 +637,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>格子Boltzmann方法（三）——二维对流扩散问题</title>
-    <url>/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="对流扩散方程"><a href="#对流扩散方程" class="headerlink" title="对流扩散方程"></a>对流扩散方程</h1><p>了解了一维扩散方程的求解原理后，就可以逐渐将其推广至二维、三维以及流动问题。首先加入最简单的流动，本文所指的对流是流体粒子整体运动（平流），即所有粒子的宏观运动速度都相同。</p>
-<p>在笛卡尔坐标系中，一维对流扩散方程可以表示为</p>
-<script type="math/tex; mode=display">\frac{\partial \phi }{\partial t}+u\frac{\partial \phi }{\partial x}=\alpha \frac{\partial^2 \phi }{\partial x^2}</script><p>这个方程描述的是对流和扩散同时发生的过程，比如在恒定速度的水流中滴一滴墨水，墨水浓度随时间变化的情况。<br><a id="more"></a></p>
-<h1 id="格子Boltzmann法求解"><a href="#格子Boltzmann法求解" class="headerlink" title="格子Boltzmann法求解"></a>格子Boltzmann法求解</h1><p>对流扩散方程的格子玻尔兹曼方程和扩散方程的相同，即</p>
-<script type="math/tex; mode=display">f_{k}(x+\Delta x,t+\Delta t) = f_{k}(x,t)[1-\omega ] + \omega f_{k}^{eq}(x,t)</script><p>唯一的不同是在平衡分布函数上增加了表示对流效应的外力项</p>
-<script type="math/tex; mode=display">f_{k}^{eq}(x,t)=w_k\phi(x,t) \left [ 1+\frac{c_k \cdot \vec{u}}{c_s^2} \right ]</script><p>其中，$ \vec{u} $为对流速度矢量，对于二维问题，$ \vec{u}=ui+vj $，i和j分别为x方向和y方向上的单位矢量，$ c_k $为沿着流动方向的单位矢量，$ c_k = \frac{\Delta x}{\Delta t}i+\frac{\Delta y}{\Delta t}j $。对于D2Q9模型，当$c_k=1$时，声速$c_s$为$ \frac{1}{\sqrt{3}} $。</p>
-<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>100*100平板上，仅有底部温度保持为1，其他三边均为0。速度分别为u=0.1和v=0.4，介质的热扩散系数为1，模拟时间步长为400。</p>
-<p>matlab代码实现如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% D2Q9tem</span><br><span class="line">clear all</span><br><span class="line">n = <span class="number">100</span>;                % 计算区域长度</span><br><span class="line">m = <span class="number">100</span>;                % 计算区域宽度</span><br><span class="line">f = zeros(<span class="number">9</span>, n, m);     % 分布函数初始化</span><br><span class="line">feq = zeros(<span class="number">1</span>, <span class="number">9</span>);      % 平衡分布函数</span><br><span class="line">rho = zeros(n, m);      % 密度</span><br><span class="line"></span><br><span class="line">u = <span class="number">0.1</span>;                % 向上速度分量</span><br><span class="line">v = <span class="number">0.4</span>;                % 向右速度分量</span><br><span class="line">dt = <span class="number">1</span>;                 % 时间步长</span><br><span class="line">dx = <span class="number">1</span>;                 % 空间步长</span><br><span class="line">dy = dx;</span><br><span class="line"></span><br><span class="line">alpha = <span class="number">1</span>;              % 扩散系数</span><br><span class="line">ck = dx/dt;             % 格子运动速度</span><br><span class="line">csq = ck*ck;</span><br><span class="line"></span><br><span class="line">omega = <span class="number">1.0</span>/(<span class="number">3.</span>*alpha/(csq*dt)+<span class="number">0.5</span>);        % 松弛频率</span><br><span class="line">mstep = <span class="number">400</span>;                                % 迭代次数</span><br><span class="line"></span><br><span class="line">w = [<span class="number">4</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>];</span><br><span class="line">density = <span class="number">0</span>;                                % 初始值</span><br><span class="line">tw = <span class="number">1</span>;                 % 上边界温度</span><br><span class="line"></span><br><span class="line">cu = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">1</span>];        % 速度方向x</span><br><span class="line">cv = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>];        % 速度方向y</span><br><span class="line"></span><br><span class="line">% 初始化分布函数</span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            f(k,i,j) = w(k) * density;</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> % 上边界保持恒温</span><br><span class="line">                f(k, i, j) = w(k) * tw;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% 主循环</span><br><span class="line"><span class="keyword">for</span> kk = <span class="number">1</span>:mstep</span><br><span class="line">    </span><br><span class="line">    % 计算rho</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                sum = sum + f(k, i, j);</span><br><span class="line">            end</span><br><span class="line">            rho(i,j) = sum;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % collision</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                feq(k) = w(k)*rho(i,j)*(<span class="number">1</span>+<span class="number">3</span>*(cu(k)*u + cv(k)*v) / ck);</span><br><span class="line">                f(k, i, j) = omega * feq(k) + (<span class="number">1</span> - omega)*f(k,i,j);</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % streaming</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">3</span>, i, j) = f(<span class="number">3</span>, i, j<span class="number">-1</span>);</span><br><span class="line">            f(<span class="number">7</span>, i, j) = f(<span class="number">7</span>, i+<span class="number">1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">2</span>, i, j) = f(<span class="number">2</span>, i<span class="number">-1</span>, j);</span><br><span class="line">            f(<span class="number">6</span>, i, j) = f(<span class="number">6</span>, i<span class="number">-1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end  </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">5</span>, i, j) = f(<span class="number">5</span>, i, j+<span class="number">1</span>);</span><br><span class="line">            f(<span class="number">9</span>, i, j) = f(<span class="number">9</span>, i<span class="number">-1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">4</span>, i, j) = f(<span class="number">4</span>, i+<span class="number">1</span>, j);</span><br><span class="line">            f(<span class="number">8</span>, i, j) = f(<span class="number">8</span>, i+<span class="number">1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    </span><br><span class="line">    % boundary</span><br><span class="line">    % bottom</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">2</span>, <span class="number">1</span>, j) = w(<span class="number">2</span>)*tw + w(<span class="number">4</span>)*tw - f(<span class="number">4</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">6</span>, <span class="number">1</span>, j) = w(<span class="number">6</span>)*tw + w(<span class="number">8</span>)*tw - f(<span class="number">8</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">9</span>, <span class="number">1</span>, j) = w(<span class="number">9</span>)*tw + w(<span class="number">7</span>)*tw - f(<span class="number">7</span>, <span class="number">1</span>, j);</span><br><span class="line">    end</span><br><span class="line">    % top</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">7</span>, n, j) = - f(<span class="number">9</span>, n, j);</span><br><span class="line">        f(<span class="number">4</span>, n, j) = - f(<span class="number">2</span>, n, j);</span><br><span class="line">        f(<span class="number">8</span>, n, j) = - f(<span class="number">6</span>, n, j);</span><br><span class="line">        f(<span class="number">3</span>, n, j) = - f(<span class="number">5</span>, n, j);</span><br><span class="line">        f(<span class="number">1</span>, n, j) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % right</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">9</span>, i, m) = - f(<span class="number">7</span>, i, m);</span><br><span class="line">        f(<span class="number">8</span>, i, m) = - f(<span class="number">6</span>, i, m);</span><br><span class="line">        f(<span class="number">5</span>, i, m) = - f(<span class="number">3</span>, i, m);</span><br><span class="line">        f(<span class="number">2</span>, i, m) = - f(<span class="number">4</span>, i, m);</span><br><span class="line">        f(<span class="number">1</span>, i, m) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % left</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">3</span>, i, <span class="number">1</span>) = - f(<span class="number">5</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">7</span>, i, <span class="number">1</span>) = - f(<span class="number">9</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">6</span>, i, <span class="number">1</span>) = - f(<span class="number">8</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">2</span>, i, <span class="number">1</span>) = - f(<span class="number">4</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">1</span>, i, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            sum = sum+f(k,i,j);</span><br><span class="line">        end</span><br><span class="line">        rho(i,j) = sum;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/p1.png" alt="结果图"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
-        <tag>LBM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector内存释放</title>
-    <url>/2019/02/28/20190228vector%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE/</url>
-    <content><![CDATA[<h1 id="vector内存分配特点"><a href="#vector内存分配特点" class="headerlink" title="vector内存分配特点"></a>vector内存分配特点</h1><p>vector有一个特点：内存空间只会增长，不会减小。为了支持快速的随机访问，vector容器的元素以连续方式存放，每添加一个元素时，都需要保证连续存放的特性，若空间不足则需要重新分配空间、拷贝元素。因此在创建vector时，对其分配的内存空间比当前需要的要多一些，也就是说预留一些额外的存储空间用于存放新添加的元素。</p>
-<p>vector有两个函数，一个是<code>capacity()</code>，返回对象缓冲区（vector维护的内存空间）实际申请的空间大小，另一个<code>size()</code>，返回当前对象缓冲区存储数据的个数。也就是说，前者是占用空间的大小，后者是其中存放数据的多少，并且capacity永远大于等于size。当两者相等时，vector就会重新分配内存，扩大capacity。<br><a id="more"></a></p>
-<h1 id="为什么要释放内存"><a href="#为什么要释放内存" class="headerlink" title="为什么要释放内存"></a>为什么要释放内存</h1><p>实际上vector不需要手动释放，当超出范围或者程序结束时会自动回收，对于数据量较小的变量来说，不需要考虑内存释放的问题。但对于数据量很大，占用内存空间较多的变量，有时候需要考虑内存占用的问题。由于上面所说的性质，当某个变量已经不需要或者被clear的时候，capacity的值并没有变，所占的空间也没有变，这时就需要其他函数解决。</p>
-<p>下面介绍两种方法。</p>
-<h1 id="内存释放示例"><a href="#内存释放示例" class="headerlink" title="内存释放示例"></a>内存释放示例</h1><h2 id="swap-函数"><a href="#swap-函数" class="headerlink" title="swap()函数"></a>swap()函数</h2><p>在《Effective STL》给出的解决方案是：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;type&gt; v;</span><br><span class="line"><span class="comment">//.... 这里添加许多元素给v</span></span><br><span class="line"><span class="comment">//.... 这里删除v中的许多元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt;type&gt;(v).swap(v);</span><br><span class="line"><span class="comment">//此时v的容量已经尽可能的符合其当前包含的元素数量</span></span><br></pre></td></tr></table></figure></p>
-<p>即先创建一个尽可能小的符合所需数据的临时拷贝，再将该拷贝与原先的vector进行交换，交换后临时变量会被销毁，内存释放。此时v就是临时拷贝，而交换后的临时拷贝是v的数据，只不过已经被销毁。下面是测试代码。</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; v(<span class="number">1000000</span>,<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">	v.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，无变化。&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;swap函数前vector容量：%d\n&quot;</span>, v.capacity());</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;(v).swap(v);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;swap函数后vector容量：%d\n&quot;</span>, v.capacity());</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，减小。&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="shrink-to-fit-函数"><a href="#shrink-to-fit-函数" class="headerlink" title="shrink_to_fit()函数"></a>shrink_to_fit()函数</h2><p>c++11中给出了一个新的解决方案。这个函数是专门为减小容器的容量设计的，在cplusplus中有如下定义：</p>
-<blockquote>
-<p>Requests the container to reduce its capacity to fit its size.<br>The request is non-binding, and the container implementation is free to optimize otherwise and leave the vector with a capacity greater than its size.</p>
-</blockquote>
-<p>shrink_to_fit()会在几种典型情况下放弃重分配，如元素类型不支持无异常移动、使用拷贝完成内存重分配期间某个元素构造抛出异常、重分配新位置需要的内存失败、capacity()和size()相等。此时函数回滚容器到调用前状态，错误不返回。</p>
-<p>示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">myvector</span> <span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;1. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  myvector.resize(<span class="number">10</span>);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;2. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  myvector.shrink_to_fit();</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;3. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果为：</p>
-<ol>
-<li>capacity of myvector: 100</li>
-<li>capacity of myvector: 100</li>
-<li>capacity of myvector: 10</li>
-</ol>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一雷惊蛰始</title>
     <url>/2019/03/06/20190306%E4%B8%80%E9%9B%B7%E6%83%8A%E8%9B%B0%E5%A7%8B/</url>
     <content><![CDATA[<blockquote>
@@ -744,6 +691,55 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>vector内存释放</title>
+    <url>/2019/02/28/20190228vector%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE/</url>
+    <content><![CDATA[<h1 id="vector内存分配特点"><a href="#vector内存分配特点" class="headerlink" title="vector内存分配特点"></a>vector内存分配特点</h1><p>vector有一个特点：内存空间只会增长，不会减小。为了支持快速的随机访问，vector容器的元素以连续方式存放，每添加一个元素时，都需要保证连续存放的特性，若空间不足则需要重新分配空间、拷贝元素。因此在创建vector时，对其分配的内存空间比当前需要的要多一些，也就是说预留一些额外的存储空间用于存放新添加的元素。</p>
+<p>vector有两个函数，一个是<code>capacity()</code>，返回对象缓冲区（vector维护的内存空间）实际申请的空间大小，另一个<code>size()</code>，返回当前对象缓冲区存储数据的个数。也就是说，前者是占用空间的大小，后者是其中存放数据的多少，并且capacity永远大于等于size。当两者相等时，vector就会重新分配内存，扩大capacity。<br><a id="more"></a></p>
+<h1 id="为什么要释放内存"><a href="#为什么要释放内存" class="headerlink" title="为什么要释放内存"></a>为什么要释放内存</h1><p>实际上vector不需要手动释放，当超出范围或者程序结束时会自动回收，对于数据量较小的变量来说，不需要考虑内存释放的问题。但对于数据量很大，占用内存空间较多的变量，有时候需要考虑内存占用的问题。由于上面所说的性质，当某个变量已经不需要或者被clear的时候，capacity的值并没有变，所占的空间也没有变，这时就需要其他函数解决。</p>
+<p>下面介绍两种方法。</p>
+<h1 id="内存释放示例"><a href="#内存释放示例" class="headerlink" title="内存释放示例"></a>内存释放示例</h1><h2 id="swap-函数"><a href="#swap-函数" class="headerlink" title="swap()函数"></a>swap()函数</h2><p>在《Effective STL》给出的解决方案是：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;type&gt; v;</span><br><span class="line"><span class="comment">//.... 这里添加许多元素给v</span></span><br><span class="line"><span class="comment">//.... 这里删除v中的许多元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt;type&gt;(v).swap(v);</span><br><span class="line"><span class="comment">//此时v的容量已经尽可能的符合其当前包含的元素数量</span></span><br></pre></td></tr></table></figure></p>
+<p>即先创建一个尽可能小的符合所需数据的临时拷贝，再将该拷贝与原先的vector进行交换，交换后临时变量会被销毁，内存释放。此时v就是临时拷贝，而交换后的临时拷贝是v的数据，只不过已经被销毁。下面是测试代码。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; v(<span class="number">1000000</span>,<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">	v.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，无变化。&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;swap函数前vector容量：%d\n&quot;</span>, v.capacity());</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;(v).swap(v);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;swap函数后vector容量：%d\n&quot;</span>, v.capacity());</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;查看内存使用情况，减小。&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="shrink-to-fit-函数"><a href="#shrink-to-fit-函数" class="headerlink" title="shrink_to_fit()函数"></a>shrink_to_fit()函数</h2><p>c++11中给出了一个新的解决方案。这个函数是专门为减小容器的容量设计的，在cplusplus中有如下定义：</p>
+<blockquote>
+<p>Requests the container to reduce its capacity to fit its size.<br>The request is non-binding, and the container implementation is free to optimize otherwise and leave the vector with a capacity greater than its size.</p>
+</blockquote>
+<p>shrink_to_fit()会在几种典型情况下放弃重分配，如元素类型不支持无异常移动、使用拷贝完成内存重分配期间某个元素构造抛出异常、重分配新位置需要的内存失败、capacity()和size()相等。此时函数回滚容器到调用前状态，错误不返回。</p>
+<p>示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">myvector</span> <span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;1. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  myvector.resize(<span class="number">10</span>);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;2. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  myvector.shrink_to_fit();</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;3. capacity of myvector: &quot;</span> &lt;&lt; myvector.capacity() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<ol>
+<li>capacity of myvector: 100</li>
+<li>capacity of myvector: 100</li>
+<li>capacity of myvector: 10</li>
+</ol>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>清明</title>
+    <url>/2019/04/05/20190405%E6%B8%85%E6%98%8E/</url>
+    <content><![CDATA[<blockquote>
+<p>春城无处不飞花，寒食东风御柳斜。<br>——《寒食》韩翃</p>
+</blockquote>
+<p>《岁时百问》：“万物生长此时，皆清洁而明净，故谓之清明。”</p>
+<p>清明节期在仲春与暮春之交，兼具自然与人文两大内涵，既是自然节气，也是传统节日。清明正值万物生长，春和景明之时，是踏青郊游的快乐节日，因此也被称为踏青节。但同时，自古以来清明也是传统的扫墓祭祀节日。明《帝京景物略》载：三月清明日，男女扫墓，担提尊榼，轿马后挂楮锭，粲粲然满道也。拜者、酹者、哭者、为墓除草添土者，焚楮锭次，以纸钱置坟头。</p>
+<p>我从未在清明时扫墓祭奠过，因此并没有亲身体会。提到清明扫墓，我的脑海里总是会想起蔡崇达在《皮囊》中的一段话，当他回故乡祭祖时，那种感受就像自己是大树一圈圈年轮中的一环，“拥挤得那么心安”。这可能就是扫墓祭祖，缅怀先人给予我们的力量吧，它告诉我们从哪里来到哪里去，给我们归属感和认同感，让我们能更加珍惜当下，不负春光。</p>
+<p>“一候桐始华；二候田鼠化为鴽；三候虹始见”。在这个时节先是白桐花开放，喜阴的田鼠不见了，全回到了地下的洞中，雨后的天空可以见到彩虹了。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>春分</title>
     <url>/2019/03/21/20190321%E6%98%A5%E5%88%86/</url>
     <content><![CDATA[<blockquote>
@@ -758,6 +754,24 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>早难道好处相逢无一言</title>
+    <url>/2019/04/19/20190419%E6%97%A9%E9%9A%BE%E9%81%93%E5%A5%BD%E5%A4%84%E7%9B%B8%E9%80%A2%E6%97%A0%E4%B8%80%E8%A8%80/</url>
+    <content><![CDATA[<blockquote>
+<p>是哪处曾相见，相看俨然，早难道好处相逢无一言</p>
+</blockquote>
+<p>第一次听这句唱词时，我并没有感受到巨大的触动，只是觉得遣词造句给人一种如沐春风般的舒服。如今再回想起这句话，这段故事，心里又多了几分感动和震撼。</p>
+<p>人最美好的年华其实不过短短数年。正处在恰好年纪的杜丽娘，每天只能独处深闺，顾影自怜，犹如春意盎然的良辰美景，无人赏识。尽可能地想像古代的文化背景，大抵能体会到这种被压抑被忽视的少女遇到心上人时喷涌而出的炽热感情，真是为情所困、因爱而死、死而复生的至高境界。昆曲的表演是含蓄内敛的，唱到这句词时，生和旦内心恐怕早已按捺不住的喜悦和爱慕，却只是通过水袖翻飞缠绵来表现，连四目相对和指尖的触碰都令二人惊慌失措，含羞转身躲避，只会在背对着对方时流露出窃喜和娇羞。</p>
+<p>“相见、相看、相逢”，所有这一切都是两个人相互之间生发的情感，是眉眼躲闪、手指翻飞的心动。该用怎样的语言来形容这种“好”呢？恐怕真的是“无一言”了啊！</p>
+<p>大概爱就像藤蔓，野蛮生长紧紧缠绕，让人无法挣脱却又感到踏实而喜悦。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -817,42 +831,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>清明</title>
-    <url>/2019/04/05/20190405%E6%B8%85%E6%98%8E/</url>
-    <content><![CDATA[<blockquote>
-<p>春城无处不飞花，寒食东风御柳斜。<br>——《寒食》韩翃</p>
-</blockquote>
-<p>《岁时百问》：“万物生长此时，皆清洁而明净，故谓之清明。”</p>
-<p>清明节期在仲春与暮春之交，兼具自然与人文两大内涵，既是自然节气，也是传统节日。清明正值万物生长，春和景明之时，是踏青郊游的快乐节日，因此也被称为踏青节。但同时，自古以来清明也是传统的扫墓祭祀节日。明《帝京景物略》载：三月清明日，男女扫墓，担提尊榼，轿马后挂楮锭，粲粲然满道也。拜者、酹者、哭者、为墓除草添土者，焚楮锭次，以纸钱置坟头。</p>
-<p>我从未在清明时扫墓祭奠过，因此并没有亲身体会。提到清明扫墓，我的脑海里总是会想起蔡崇达在《皮囊》中的一段话，当他回故乡祭祖时，那种感受就像自己是大树一圈圈年轮中的一环，“拥挤得那么心安”。这可能就是扫墓祭祖，缅怀先人给予我们的力量吧，它告诉我们从哪里来到哪里去，给我们归属感和认同感，让我们能更加珍惜当下，不负春光。</p>
-<p>“一候桐始华；二候田鼠化为鴽；三候虹始见”。在这个时节先是白桐花开放，喜阴的田鼠不见了，全回到了地下的洞中，雨后的天空可以见到彩虹了。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>早难道好处相逢无一言</title>
-    <url>/2019/04/19/20190419%E6%97%A9%E9%9A%BE%E9%81%93%E5%A5%BD%E5%A4%84%E7%9B%B8%E9%80%A2%E6%97%A0%E4%B8%80%E8%A8%80/</url>
-    <content><![CDATA[<blockquote>
-<p>是哪处曾相见，相看俨然，早难道好处相逢无一言</p>
-</blockquote>
-<p>第一次听这句唱词时，我并没有感受到巨大的触动，只是觉得遣词造句给人一种如沐春风般的舒服。如今再回想起这句话，这段故事，心里又多了几分感动和震撼。</p>
-<p>人最美好的年华其实不过短短数年。正处在恰好年纪的杜丽娘，每天只能独处深闺，顾影自怜，犹如春意盎然的良辰美景，无人赏识。尽可能地想像古代的文化背景，大抵能体会到这种被压抑被忽视的少女遇到心上人时喷涌而出的炽热感情，真是为情所困、因爱而死、死而复生的至高境界。昆曲的表演是含蓄内敛的，唱到这句词时，生和旦内心恐怕早已按捺不住的喜悦和爱慕，却只是通过水袖翻飞缠绵来表现，连四目相对和指尖的触碰都令二人惊慌失措，含羞转身躲避，只会在背对着对方时流露出窃喜和娇羞。</p>
-<p>“相见、相看、相逢”，所有这一切都是两个人相互之间生发的情感，是眉眼躲闪、手指翻飞的心动。该用怎样的语言来形容这种“好”呢？恐怕真的是“无一言”了啊！</p>
-<p>大概爱就像藤蔓，野蛮生长紧紧缠绕，让人无法挣脱却又感到踏实而喜悦。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>雨生百谷</title>
     <url>/2019/04/21/20190421%E9%9B%A8%E7%94%9F%E7%99%BE%E8%B0%B7/</url>
     <content><![CDATA[<p>谷雨是春季最后一个节气。谷雨的到来意味着寒潮天气基本结束，气温回升加快，雨量增多，是万物生长的大好时节。《月令七十二候集解》中说，“三月中，自雨水后，土膏脉动，今又雨其谷于水也……盖谷以此时播种，自下而上也”，谷得雨而生，由此得名。有传说谷雨源于仓颉造字，据《淮南子》记载：仓颉造字，是一件惊天动地的大事，黄帝于春末夏初发布诏令，宣布仓颉造字成功，并号召天下臣民共习之。由于仓颉造字功德感天，玉皇大帝便赐给人间一场谷子雨，以慰劳圣功，这就是现在的“谷雨”节气。</p>
@@ -864,6 +842,28 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>格子Boltzmann方法（三）——二维对流扩散问题</title>
+    <url>/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="对流扩散方程"><a href="#对流扩散方程" class="headerlink" title="对流扩散方程"></a>对流扩散方程</h1><p>了解了一维扩散方程的求解原理后，就可以逐渐将其推广至二维、三维以及流动问题。首先加入最简单的流动，本文所指的对流是流体粒子整体运动（平流），即所有粒子的宏观运动速度都相同。</p>
+<p>在笛卡尔坐标系中，一维对流扩散方程可以表示为</p>
+<script type="math/tex; mode=display">\frac{\partial \phi }{\partial t}+u\frac{\partial \phi }{\partial x}=\alpha \frac{\partial^2 \phi }{\partial x^2}</script><p>这个方程描述的是对流和扩散同时发生的过程，比如在恒定速度的水流中滴一滴墨水，墨水浓度随时间变化的情况。<br><a id="more"></a></p>
+<h1 id="格子Boltzmann法求解"><a href="#格子Boltzmann法求解" class="headerlink" title="格子Boltzmann法求解"></a>格子Boltzmann法求解</h1><p>对流扩散方程的格子玻尔兹曼方程和扩散方程的相同，即</p>
+<script type="math/tex; mode=display">f_{k}(x+\Delta x,t+\Delta t) = f_{k}(x,t)[1-\omega ] + \omega f_{k}^{eq}(x,t)</script><p>唯一的不同是在平衡分布函数上增加了表示对流效应的外力项</p>
+<script type="math/tex; mode=display">f_{k}^{eq}(x,t)=w_k\phi(x,t) \left [ 1+\frac{c_k \cdot \vec{u}}{c_s^2} \right ]</script><p>其中，$ \vec{u} $为对流速度矢量，对于二维问题，$ \vec{u}=ui+vj $，i和j分别为x方向和y方向上的单位矢量，$ c_k $为沿着流动方向的单位矢量，$ c_k = \frac{\Delta x}{\Delta t}i+\frac{\Delta y}{\Delta t}j $。对于D2Q9模型，当$c_k=1$时，声速$c_s$为$ \frac{1}{\sqrt{3}} $。</p>
+<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>100*100平板上，仅有底部温度保持为1，其他三边均为0。速度分别为u=0.1和v=0.4，介质的热扩散系数为1，模拟时间步长为400。</p>
+<p>matlab代码实现如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% D2Q9tem</span><br><span class="line">clear all</span><br><span class="line">n = <span class="number">100</span>;                % 计算区域长度</span><br><span class="line">m = <span class="number">100</span>;                % 计算区域宽度</span><br><span class="line">f = zeros(<span class="number">9</span>, n, m);     % 分布函数初始化</span><br><span class="line">feq = zeros(<span class="number">1</span>, <span class="number">9</span>);      % 平衡分布函数</span><br><span class="line">rho = zeros(n, m);      % 密度</span><br><span class="line"></span><br><span class="line">u = <span class="number">0.1</span>;                % 向上速度分量</span><br><span class="line">v = <span class="number">0.4</span>;                % 向右速度分量</span><br><span class="line">dt = <span class="number">1</span>;                 % 时间步长</span><br><span class="line">dx = <span class="number">1</span>;                 % 空间步长</span><br><span class="line">dy = dx;</span><br><span class="line"></span><br><span class="line">alpha = <span class="number">1</span>;              % 扩散系数</span><br><span class="line">ck = dx/dt;             % 格子运动速度</span><br><span class="line">csq = ck*ck;</span><br><span class="line"></span><br><span class="line">omega = <span class="number">1.0</span>/(<span class="number">3.</span>*alpha/(csq*dt)+<span class="number">0.5</span>);        % 松弛频率</span><br><span class="line">mstep = <span class="number">400</span>;                                % 迭代次数</span><br><span class="line"></span><br><span class="line">w = [<span class="number">4</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>];</span><br><span class="line">density = <span class="number">0</span>;                                % 初始值</span><br><span class="line">tw = <span class="number">1</span>;                 % 上边界温度</span><br><span class="line"></span><br><span class="line">cu = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">1</span>];        % 速度方向x</span><br><span class="line">cv = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>];        % 速度方向y</span><br><span class="line"></span><br><span class="line">% 初始化分布函数</span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            f(k,i,j) = w(k) * density;</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> % 上边界保持恒温</span><br><span class="line">                f(k, i, j) = w(k) * tw;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% 主循环</span><br><span class="line"><span class="keyword">for</span> kk = <span class="number">1</span>:mstep</span><br><span class="line">    </span><br><span class="line">    % 计算rho</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                sum = sum + f(k, i, j);</span><br><span class="line">            end</span><br><span class="line">            rho(i,j) = sum;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % collision</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                feq(k) = w(k)*rho(i,j)*(<span class="number">1</span>+<span class="number">3</span>*(cu(k)*u + cv(k)*v) / ck);</span><br><span class="line">                f(k, i, j) = omega * feq(k) + (<span class="number">1</span> - omega)*f(k,i,j);</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % streaming</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">3</span>, i, j) = f(<span class="number">3</span>, i, j<span class="number">-1</span>);</span><br><span class="line">            f(<span class="number">7</span>, i, j) = f(<span class="number">7</span>, i+<span class="number">1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">2</span>, i, j) = f(<span class="number">2</span>, i<span class="number">-1</span>, j);</span><br><span class="line">            f(<span class="number">6</span>, i, j) = f(<span class="number">6</span>, i<span class="number">-1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end  </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">5</span>, i, j) = f(<span class="number">5</span>, i, j+<span class="number">1</span>);</span><br><span class="line">            f(<span class="number">9</span>, i, j) = f(<span class="number">9</span>, i<span class="number">-1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">4</span>, i, j) = f(<span class="number">4</span>, i+<span class="number">1</span>, j);</span><br><span class="line">            f(<span class="number">8</span>, i, j) = f(<span class="number">8</span>, i+<span class="number">1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    </span><br><span class="line">    % boundary</span><br><span class="line">    % bottom</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">2</span>, <span class="number">1</span>, j) = w(<span class="number">2</span>)*tw + w(<span class="number">4</span>)*tw - f(<span class="number">4</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">6</span>, <span class="number">1</span>, j) = w(<span class="number">6</span>)*tw + w(<span class="number">8</span>)*tw - f(<span class="number">8</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">9</span>, <span class="number">1</span>, j) = w(<span class="number">9</span>)*tw + w(<span class="number">7</span>)*tw - f(<span class="number">7</span>, <span class="number">1</span>, j);</span><br><span class="line">    end</span><br><span class="line">    % top</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">7</span>, n, j) = - f(<span class="number">9</span>, n, j);</span><br><span class="line">        f(<span class="number">4</span>, n, j) = - f(<span class="number">2</span>, n, j);</span><br><span class="line">        f(<span class="number">8</span>, n, j) = - f(<span class="number">6</span>, n, j);</span><br><span class="line">        f(<span class="number">3</span>, n, j) = - f(<span class="number">5</span>, n, j);</span><br><span class="line">        f(<span class="number">1</span>, n, j) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % right</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">9</span>, i, m) = - f(<span class="number">7</span>, i, m);</span><br><span class="line">        f(<span class="number">8</span>, i, m) = - f(<span class="number">6</span>, i, m);</span><br><span class="line">        f(<span class="number">5</span>, i, m) = - f(<span class="number">3</span>, i, m);</span><br><span class="line">        f(<span class="number">2</span>, i, m) = - f(<span class="number">4</span>, i, m);</span><br><span class="line">        f(<span class="number">1</span>, i, m) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % left</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">3</span>, i, <span class="number">1</span>) = - f(<span class="number">5</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">7</span>, i, <span class="number">1</span>) = - f(<span class="number">9</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">6</span>, i, <span class="number">1</span>) = - f(<span class="number">8</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">2</span>, i, <span class="number">1</span>) = - f(<span class="number">4</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">1</span>, i, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            sum = sum+f(k,i,j);</span><br><span class="line">        end</span><br><span class="line">        rho(i,j) = sum;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/p1.png" alt="结果图"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+        <tag>LBM</tag>
       </tags>
   </entry>
   <entry>
@@ -948,23 +948,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>小得盈满</title>
-    <url>/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/</url>
-    <content><![CDATA[<blockquote>
-<p>夜莺啼绿柳，皓月醒长空。<br>最爱垄头麦，迎风笑落红。<br>——《小满》 宋·欧阳修</p>
-</blockquote>
-<p>《月令七十二候集解》：”四月中，小满者，物致于此小得盈满。”这时候，中国北方冬小麦类的夏熟作物进入了灌浆期，子粒开始鼓涨饱满，到了下一个节气芒种就已经熟透，可以收割了；而南方的水稻田里，早稻的追肥，中稻插秧都仰颈企盼着雨水的润泽。”大落大满、小落小满”，江南称下雨为”落雨”，小满时节，落雨虽未及大落，但水稻田已将近盈满。小满的”满”字既意指北方麦粒的饱满，又关乎南方雨水的丰盈。万物生气盎然，又从容不迫。 </p>
-<p>小满分为三候:“一候苦菜秀, 二候靡草死, 三候麦秋至。”小满节气后, 苦菜已经枝叶繁茂;之后, 喜阴的一些枝条细软的草类在强烈的阳光下开始枯死;在小满的最后一个时段, 麦子开始成熟。</p>
-<p>最近的天空总是美得像一幅画，而生活虽然有一些小小的不如意，却也经常充满惊喜和感动。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决github无法访问或排版图片出错等问题</title>
     <url>/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>因为某些原因在国内github经常出现无法访问、访问速度慢或者页面加载异常的问题，下面记录一种简单直接的办法（适用Windows系统），修改host文件解决这些问题。</p>
@@ -981,6 +964,23 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小得盈满</title>
+    <url>/2019/05/21/20190521%E5%B0%8F%E5%BE%97%E7%9B%88%E6%BB%A1/</url>
+    <content><![CDATA[<blockquote>
+<p>夜莺啼绿柳，皓月醒长空。<br>最爱垄头麦，迎风笑落红。<br>——《小满》 宋·欧阳修</p>
+</blockquote>
+<p>《月令七十二候集解》：”四月中，小满者，物致于此小得盈满。”这时候，中国北方冬小麦类的夏熟作物进入了灌浆期，子粒开始鼓涨饱满，到了下一个节气芒种就已经熟透，可以收割了；而南方的水稻田里，早稻的追肥，中稻插秧都仰颈企盼着雨水的润泽。”大落大满、小落小满”，江南称下雨为”落雨”，小满时节，落雨虽未及大落，但水稻田已将近盈满。小满的”满”字既意指北方麦粒的饱满，又关乎南方雨水的丰盈。万物生气盎然，又从容不迫。 </p>
+<p>小满分为三候:“一候苦菜秀, 二候靡草死, 三候麦秋至。”小满节气后, 苦菜已经枝叶繁茂;之后, 喜阴的一些枝条细软的草类在强烈的阳光下开始枯死;在小满的最后一个时段, 麦子开始成熟。</p>
+<p>最近的天空总是美得像一幅画，而生活虽然有一些小小的不如意，却也经常充满惊喜和感动。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1045,6 +1045,23 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>宵漏自此长</title>
+    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
+    <content><![CDATA[<blockquote>
+<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
+</blockquote>
+<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
+<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
+<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LBM中的无量纲化和离散化</title>
     <url>/2019/06/26/20190626LBM%E4%B8%AD%E7%9A%84%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8C%96%E5%92%8C%E7%A6%BB%E6%95%A3%E5%8C%96/</url>
     <content><![CDATA[<p>国内文章很少有关于格子玻尔兹曼法中单位选择和换算的解释，最近读到一篇palabos上关于单位选择的文章，大致翻译和总结如下。</p>
@@ -1099,20 +1116,35 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>宵漏自此长</title>
-    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
-    <content><![CDATA[<blockquote>
-<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
-</blockquote>
-<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
-<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
-<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+    <title>小暑</title>
+    <url>/2019/07/07/20190707%E5%B0%8F%E6%9A%91/</url>
+    <content><![CDATA[<p>小暑是夏天的第五个节气，表示季夏时节的正式开始。《月令七十二候集解》：“六月节……暑，热也，就热之中分为大小，月初为小，月中为大，今则热气犹小也。”暑，表示炎热的意思，意指天气开始炎热，但还没到最热。</p>
+<p>小暑三候：温风至；蟋蟀居壁；鹰始挚。温风至，温风是热风，东汉王粲的《大暑赋》中有”熹润土之溽暑，扇温风而至兴”之句，熹是炙、烤；蟋蟀居壁，后五日蟋蟀生而还在穴中面壁，不能出穴飞，农历七月后才出穴，活跃草丛间求偶，到八月天凉会聚到院中，令小院鸣声鼎沸，天越凉离人越近；鹰始挚，再五日，鹰已经先感知到肃杀之气将至，开始练习搏击长空了。<br><a id="more"></a><br><blockquote><p>《本早纲目》中记载，因性寒、解暑，西瓜在古时被叫做”寒瓜”。而后来如何被转叫做了西瓜，有两种说法，一是说由于水多肉稀，于是大家便都叫稀瓜，传来传去又变成了西瓜。这个理由倒是印着了它英语名字—watermelon水瓜的逻辑。另一种推断则为更大多数人认同，明代徐光启《农政全书》中讲，”西瓜，种出西域，故之名”。至于如何传入中土，相传五代时期一个叫胡峤的人，虏居契丹七年，这期间不仅著成了《陷虏记》数卷，还生平第一次品尝到了西瓜，似乎也过得不无开心。”西瓜”二字便是出现在这《陷虏记》之中，是可考文献中的首次现身。其中描述道，”遂入平川，多草木，始食西瓜。云契丹破回纥得此种，以牛粪覆棚而种，大如中国冬瓜而味甘。”后来听说胡峤又将西瓜带回国种植，大家才从此能够吃上了这大如冬瓜的西瓜。</p>
+<p>西瓜被批量生产的序幕，大约便就这样掀开了。至于何时变得平常人家皆可买得到买得起，可以从南宋范成大的诗中一窥端倪，他在《西瓜园》中作到，”碧蔓凌霜卧软沙，年来处处食西瓜”，一副标准田园诗人闲散欢愉的模样。假设他还具有一般居士的特性—穷，我们便可猜测西瓜在南宋时期已落户寻常人家，从此身份也就不再金贵。</p>
+<p>要知道，1976年广西贵县西汉墓椁室淤泥中和1980年江苏扬州西郊邗江县汉墓随葬漆笥中都发现了陪葬的西瓜籽，那时西瓜稀有到其未成年的孩子也被视为珍宝，和满室金砖玉帛躺在一起，陪着夏日里曾经燥热不堪的帝王们一同去往极乐世界。在那些君主们在天界耕着地撒着带过去的西瓜籽，眼巴巴的盼着瓜熟落地的时候，肯定想不到在人间界连马都能啃上西瓜了。</p>
+<p>好东西变得多了，其实是恩惠，人们却并不会因此感恩戴德，反而不自觉的看轻它。文天祥写过一首《西瓜吟》，我们倒是应该将它背下来，吃瓜前双手合十，先默念上一遍：”拔出金佩刀，斫破碧玉瓶。千点红樱桃，一团黄水晶。下咽顿有烟火气，入齿便作冰雪声。长安清富说邵平，争如汉朝作公卿？”</p>
+<footer><strong>摘自：杨一《西瓜》 三联生活周刊</strong></footer></blockquote></p>
+<p>一百天❤</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最后一天</title>
+    <url>/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
+    <content><![CDATA[<p>今天是6月的最后一天，2019年上半年的最后一天，也是我在四牌楼图书馆工作的最后一天。转眼在图书馆已经工作三年了，从中文书库，到报纸期刊、外文阅览室，在这里逐渐认识和熟悉了一楼到六楼的每一间阅览室和每一排书架，他们就像一群不会说话的朋友，永远都是这样不动声色地观望和倾听着一切，让人心安。</p>
+<p>每一个朋友都有自己的脾气和特点。中文书库有高大的书架和低矮的屋顶，当站在架子之间时，让人有一种书籍从四面八方涌来的压迫感。在许多周日的早晨，外文阅览室里，阳光把斑驳的树影投射在米色的窗帘上，一眼望去偌大的房间里只有整整齐齐的桌椅和书架。三年的时间见证了太多的改变，报刊装订登记的表格写了几大页，新书扫描的本子写满了整整一本，中文书库经历了几次倒架、重排，外文阅览室大的搬迁、统计和排序，还有许多地方都已经与之前大不相同，我们都一样，在一点点地变得更好。</p>
+<p>非常幸运地在这里认识了许多美好的人，一起欢乐工作的小伙伴，对我很好的谭老师、王老师和小陈老师，也许将来我们很难再遇见，默默祝福你们，未来可期。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -1156,24 +1188,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>ImageJ</tag>
         <tag>software</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小暑</title>
-    <url>/2019/07/07/20190707%E5%B0%8F%E6%9A%91/</url>
-    <content><![CDATA[<p>小暑是夏天的第五个节气，表示季夏时节的正式开始。《月令七十二候集解》：“六月节……暑，热也，就热之中分为大小，月初为小，月中为大，今则热气犹小也。”暑，表示炎热的意思，意指天气开始炎热，但还没到最热。</p>
-<p>小暑三候：温风至；蟋蟀居壁；鹰始挚。温风至，温风是热风，东汉王粲的《大暑赋》中有”熹润土之溽暑，扇温风而至兴”之句，熹是炙、烤；蟋蟀居壁，后五日蟋蟀生而还在穴中面壁，不能出穴飞，农历七月后才出穴，活跃草丛间求偶，到八月天凉会聚到院中，令小院鸣声鼎沸，天越凉离人越近；鹰始挚，再五日，鹰已经先感知到肃杀之气将至，开始练习搏击长空了。<br><a id="more"></a><br><blockquote><p>《本早纲目》中记载，因性寒、解暑，西瓜在古时被叫做”寒瓜”。而后来如何被转叫做了西瓜，有两种说法，一是说由于水多肉稀，于是大家便都叫稀瓜，传来传去又变成了西瓜。这个理由倒是印着了它英语名字—watermelon水瓜的逻辑。另一种推断则为更大多数人认同，明代徐光启《农政全书》中讲，”西瓜，种出西域，故之名”。至于如何传入中土，相传五代时期一个叫胡峤的人，虏居契丹七年，这期间不仅著成了《陷虏记》数卷，还生平第一次品尝到了西瓜，似乎也过得不无开心。”西瓜”二字便是出现在这《陷虏记》之中，是可考文献中的首次现身。其中描述道，”遂入平川，多草木，始食西瓜。云契丹破回纥得此种，以牛粪覆棚而种，大如中国冬瓜而味甘。”后来听说胡峤又将西瓜带回国种植，大家才从此能够吃上了这大如冬瓜的西瓜。</p>
-<p>西瓜被批量生产的序幕，大约便就这样掀开了。至于何时变得平常人家皆可买得到买得起，可以从南宋范成大的诗中一窥端倪，他在《西瓜园》中作到，”碧蔓凌霜卧软沙，年来处处食西瓜”，一副标准田园诗人闲散欢愉的模样。假设他还具有一般居士的特性—穷，我们便可猜测西瓜在南宋时期已落户寻常人家，从此身份也就不再金贵。</p>
-<p>要知道，1976年广西贵县西汉墓椁室淤泥中和1980年江苏扬州西郊邗江县汉墓随葬漆笥中都发现了陪葬的西瓜籽，那时西瓜稀有到其未成年的孩子也被视为珍宝，和满室金砖玉帛躺在一起，陪着夏日里曾经燥热不堪的帝王们一同去往极乐世界。在那些君主们在天界耕着地撒着带过去的西瓜籽，眼巴巴的盼着瓜熟落地的时候，肯定想不到在人间界连马都能啃上西瓜了。</p>
-<p>好东西变得多了，其实是恩惠，人们却并不会因此感恩戴德，反而不自觉的看轻它。文天祥写过一首《西瓜吟》，我们倒是应该将它背下来，吃瓜前双手合十，先默念上一遍：”拔出金佩刀，斫破碧玉瓶。千点红樱桃，一团黄水晶。下咽顿有烟火气，入齿便作冰雪声。长安清富说邵平，争如汉朝作公卿？”</p>
-<footer><strong>摘自：杨一《西瓜》 三联生活周刊</strong></footer></blockquote></p>
-<p>一百天❤</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1336,6 +1350,71 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>学术五百词Group3</title>
+    <url>/2019/11/08/20191108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup3/</url>
+    <content><![CDATA[<h2 id="Group3"><a href="#Group3" class="headerlink" title="Group3"></a>Group3</h2><ul>
+<li>isolate</li>
+<li>resolve</li>
+<li>socialize<a id="more"></a></li>
+<li>dissociate</li>
+<li>address</li>
+<li>abstract</li>
+<li>assign</li>
+<li>aggregate</li>
+<li>associate</li>
+<li>activate</li>
+</ul>
+<p>例句：<br>In order to <strong>address</strong> these new issues, sociologists have been forced to re-evaluate the utility of the classical perspectives and, where these are found wanting, to develop novel theories of their own.</p>
+<p>If we are to reach a hypothetical agreement we must <strong>abstract</strong> from real life.</p>
+<p>They <strong>assign</strong> causes for lightning, winds, eclipses, and other 80 inexplicable(无法说明的) things, never hesitating a whit, as if they were privy to the secrets of nature, artificer of things, or as if they visited us fresh from the council of the gods.</p>
+<p>If we have a list of relevant capabilities, we would still be left wondering whether the capabilities should be <strong>aggregated</strong> and, if so, what their relative weights and the formula to aggregate them will or should be. </p>
+<p>Actual cases vary in so many ways—in the type of crime, in the status, age, gender, and race of the defendant—that it’s difficult to <strong>isolate</strong> the factors that influence jurors(陪审员).</p>
+<p>The spirits of the deceased, as well as local divinities were called on in rituals designed to seek protection, <strong>resolve</strong> conflicts, or fulfill the special needs of the community.</p>
+<p>David Smith was friendly with the Abstract Expressionist painters, and even after moving to a farm in Bolton’s Landing in upstate New York in 1940, he periodically came to the city for long periods and <strong>socialized</strong> with them in Greenwich Village.</p>
+<p>Likewise, rich Brits <strong>dissociated</strong> themselves from a dissimilar group when they stopped wearing Burberry caps after they caught on among soccer hooligans. </p>
+<p>Although Western civilization did not yet exist, its origins can be traced back to the ancient Near East, where people in Southwest Asia and in Egypt, in northeastern Africa, developed organized societies, invented writing, and created the ideas and institutions that we <strong>associate</strong> with civilization.</p>
+<p>When Chinese participants were asked to think about their mothers, a brain region associated with the self became <strong>activated</strong>—an area that lit up for Western participants only when they thought about themselves.</p>
+<hr>
+<p>单词释义：</p>
+<p>address: to direct the efforts or attention of (oneself); to begin to deal with<br>设法解决，处理；致函；演说</p>
+<p>abstract:to consider as separate from particular examples or objects<br>把…抽象出，提取</p>
+<p>assign: to select for a duty or office; to set apart for a particular purpose or place in a particular category; to match or pair with<br>分配，分派，布置</p>
+<p>aggregate: to amount to; total<br>总计，合计</p>
+<p>isolate: to cause to become socially or politically unengaged or ostracized; to cause to be alone or apart, as in being inaccessible or unable to move about<br>隔离，孤立，脱离</p>
+<p>resolve: to find a solution to; solve; to bring to a usually successful conclusion<br>解决（问题或困难），决心，作出决议<br>dissolve:溶解，解除，终止</p>
+<p>socialize: to take part in social activities<br>交往，交际，使适应社会<br>~ with sb</p>
+<p>dissociate: to remove from association; separate; to cease associating<br>否认同…有关系，声明无关；把…分开<br>dissociate oneself from 与……划清界限</p>
+<p>associate: to connect in the mind or imagination; to correlate or connect logically or causally<br>联想，联系，交往</p>
+<p>activate: to set in motion; make active or more active; to organize or create<br>使运作，使起作用，激活</p>
+<hr>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>今天写到“细胞受到细胞因子诱导”，想写诱导这个词，脑子里出现两个相似的单词：</p>
+<p>induct &amp; induce</p>
+<p>简单来说，induct指正式就职，吸收为成员或者征召入伍等，通常后面会跟介词into。比如：<em>In December he was inducted into the army</em>.而induce指诱导，引起(此时后面跟介词to)，也特指引产。比如：<em>The doctor induced labor</em>.</p>
+<blockquote>
+<p>induct</p>
+<ul>
+<li>to formally or ceremoniously install in an office, position, et cetera.</li>
+<li>to introduce into (particularly if certain knowledge or experience is required, such as ritual adulthood or cults).</li>
+<li>to draft into military service.</li>
+<li>to bring in as a member.</li>
+</ul>
+<p>induce</p>
+<ul>
+<li>to lead by persuasion or influence; incite.</li>
+<li>to cause, bring about, lead to.</li>
+</ul>
+</blockquote>
+<p>两者的名词形式分别是induction和inducement。<br>所以此处应该使用induce。</p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学术五百词Group4</title>
     <url>/2019/11/11/20191111%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup4/</url>
     <content><![CDATA[<h2 id="Group4"><a href="#Group4" class="headerlink" title="Group4"></a>Group4</h2><ul>
@@ -1378,20 +1457,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>English</tag>
         <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最后一天</title>
-    <url>/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
-    <content><![CDATA[<p>今天是6月的最后一天，2019年上半年的最后一天，也是我在四牌楼图书馆工作的最后一天。转眼在图书馆已经工作三年了，从中文书库，到报纸期刊、外文阅览室，在这里逐渐认识和熟悉了一楼到六楼的每一间阅览室和每一排书架，他们就像一群不会说话的朋友，永远都是这样不动声色地观望和倾听着一切，让人心安。</p>
-<p>每一个朋友都有自己的脾气和特点。中文书库有高大的书架和低矮的屋顶，当站在架子之间时，让人有一种书籍从四面八方涌来的压迫感。在许多周日的早晨，外文阅览室里，阳光把斑驳的树影投射在米色的窗帘上，一眼望去偌大的房间里只有整整齐齐的桌椅和书架。三年的时间见证了太多的改变，报刊装订登记的表格写了几大页，新书扫描的本子写满了整整一本，中文书库经历了几次倒架、重排，外文阅览室大的搬迁、统计和排序，还有许多地方都已经与之前大不相同，我们都一样，在一点点地变得更好。</p>
-<p>非常幸运地在这里认识了许多美好的人，一起欢乐工作的小伙伴，对我很好的谭老师、王老师和小陈老师，也许将来我们很难再遇见，默默祝福你们，未来可期。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -1480,71 +1545,6 @@ x=\phi (t)\\ y=\omega (t)
 <p>group: to place or arrange in a group; to belong to or form a group<br>聚合，把…分组</p>
 <hr>
 <h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>今天学到一种表达，用<strong>identify</strong>表示从实验结果中发现的某种现象，可以用在论文results部分。比如，在支架长入实验中，A比B呈现出更多的血管，可以说“more vessels were identified in A than B”。</p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group3</title>
-    <url>/2019/11/08/20191108%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup3/</url>
-    <content><![CDATA[<h2 id="Group3"><a href="#Group3" class="headerlink" title="Group3"></a>Group3</h2><ul>
-<li>isolate</li>
-<li>resolve</li>
-<li>socialize<a id="more"></a></li>
-<li>dissociate</li>
-<li>address</li>
-<li>abstract</li>
-<li>assign</li>
-<li>aggregate</li>
-<li>associate</li>
-<li>activate</li>
-</ul>
-<p>例句：<br>In order to <strong>address</strong> these new issues, sociologists have been forced to re-evaluate the utility of the classical perspectives and, where these are found wanting, to develop novel theories of their own.</p>
-<p>If we are to reach a hypothetical agreement we must <strong>abstract</strong> from real life.</p>
-<p>They <strong>assign</strong> causes for lightning, winds, eclipses, and other 80 inexplicable(无法说明的) things, never hesitating a whit, as if they were privy to the secrets of nature, artificer of things, or as if they visited us fresh from the council of the gods.</p>
-<p>If we have a list of relevant capabilities, we would still be left wondering whether the capabilities should be <strong>aggregated</strong> and, if so, what their relative weights and the formula to aggregate them will or should be. </p>
-<p>Actual cases vary in so many ways—in the type of crime, in the status, age, gender, and race of the defendant—that it’s difficult to <strong>isolate</strong> the factors that influence jurors(陪审员).</p>
-<p>The spirits of the deceased, as well as local divinities were called on in rituals designed to seek protection, <strong>resolve</strong> conflicts, or fulfill the special needs of the community.</p>
-<p>David Smith was friendly with the Abstract Expressionist painters, and even after moving to a farm in Bolton’s Landing in upstate New York in 1940, he periodically came to the city for long periods and <strong>socialized</strong> with them in Greenwich Village.</p>
-<p>Likewise, rich Brits <strong>dissociated</strong> themselves from a dissimilar group when they stopped wearing Burberry caps after they caught on among soccer hooligans. </p>
-<p>Although Western civilization did not yet exist, its origins can be traced back to the ancient Near East, where people in Southwest Asia and in Egypt, in northeastern Africa, developed organized societies, invented writing, and created the ideas and institutions that we <strong>associate</strong> with civilization.</p>
-<p>When Chinese participants were asked to think about their mothers, a brain region associated with the self became <strong>activated</strong>—an area that lit up for Western participants only when they thought about themselves.</p>
-<hr>
-<p>单词释义：</p>
-<p>address: to direct the efforts or attention of (oneself); to begin to deal with<br>设法解决，处理；致函；演说</p>
-<p>abstract:to consider as separate from particular examples or objects<br>把…抽象出，提取</p>
-<p>assign: to select for a duty or office; to set apart for a particular purpose or place in a particular category; to match or pair with<br>分配，分派，布置</p>
-<p>aggregate: to amount to; total<br>总计，合计</p>
-<p>isolate: to cause to become socially or politically unengaged or ostracized; to cause to be alone or apart, as in being inaccessible or unable to move about<br>隔离，孤立，脱离</p>
-<p>resolve: to find a solution to; solve; to bring to a usually successful conclusion<br>解决（问题或困难），决心，作出决议<br>dissolve:溶解，解除，终止</p>
-<p>socialize: to take part in social activities<br>交往，交际，使适应社会<br>~ with sb</p>
-<p>dissociate: to remove from association; separate; to cease associating<br>否认同…有关系，声明无关；把…分开<br>dissociate oneself from 与……划清界限</p>
-<p>associate: to connect in the mind or imagination; to correlate or connect logically or causally<br>联想，联系，交往</p>
-<p>activate: to set in motion; make active or more active; to organize or create<br>使运作，使起作用，激活</p>
-<hr>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>今天写到“细胞受到细胞因子诱导”，想写诱导这个词，脑子里出现两个相似的单词：</p>
-<p>induct &amp; induce</p>
-<p>简单来说，induct指正式就职，吸收为成员或者征召入伍等，通常后面会跟介词into。比如：<em>In December he was inducted into the army</em>.而induce指诱导，引起(此时后面跟介词to)，也特指引产。比如：<em>The doctor induced labor</em>.</p>
-<blockquote>
-<p>induct</p>
-<ul>
-<li>to formally or ceremoniously install in an office, position, et cetera.</li>
-<li>to introduce into (particularly if certain knowledge or experience is required, such as ritual adulthood or cults).</li>
-<li>to draft into military service.</li>
-<li>to bring in as a member.</li>
-</ul>
-<p>induce</p>
-<ul>
-<li>to lead by persuasion or influence; incite.</li>
-<li>to cause, bring about, lead to.</li>
-</ul>
-</blockquote>
-<p>两者的名词形式分别是induction和inducement。<br>所以此处应该使用induce。</p>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -2421,6 +2421,53 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>学术五百词Group25</title>
+    <url>/2019/12/17/20191217%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup25/</url>
+    <content><![CDATA[<h2 id="Group25"><a href="#Group25" class="headerlink" title="Group25"></a>Group25</h2><ul>
+<li>integrate</li>
+<li>induce</li>
+<li>invoke<a id="more"></a></li>
+<li>infer</li>
+<li>influence</li>
+<li>inhabit</li>
+<li>inculcate</li>
+<li>instigate</li>
+<li>irritate</li>
+<li>illustrate</li>
+</ul>
+<p>例句：</p>
+<p>The most important development in seventeenth-century European music was the birth of opera as a genre. Borrowing themes from Classical mythology and history, Monteverdi <strong>integrated</strong> text and music to create the new art of music-drama. </p>
+<p>In addition, the high levels of stress <strong>induced</strong> by poverty and unemployment may lead to more violence within families.</p>
+<p>One of the main tasks of sociological research - in combination with theoretical thinking - is to identify causes and effects. Causation cannot be directly <strong>inferred</strong> from correlation.</p>
+<p>Sacred(神圣的) modes of language often employ archaic words and forms in an attempt to <strong>invoke</strong> the purity or “truth” of a religious or a cultural “golden age”.</p>
+<p>The prime exemplar of the transcendentalists(先验论者) was Ralph Waldo Emerson (1803–1882), whose essays powerfully <strong>influenced</strong> nineteenth-century American thought.</p>
+<p>The Greeks also <strong>inhabited</strong> a number of islands to the west, south, and particularly the east of the Greek mainland.</p>
+<p>Most of the elementary schools also <strong>inculcated</strong> the middle-class virtues(美德), such as hard work, thrift(节俭), sobriety(节制), cleanliness, and respect for the family. For most students, elementary education led to apprenticeship and a job.</p>
+<p>Charles <strong>instigated</strong> a programme of reforms. </p>
+<p>In fact, this may <strong>irritate</strong> some people who are against the reform.</p>
+<p>Philosophers even referred to works of art to <strong>illustrate</strong> their theories.</p>
+<hr>
+<p>单词释义：</p>
+<p>integrate: to make into a whole by bringing all parts together; to join with something else<br>使完整</p>
+<p>induce: to bring about or stimulate the occurrence of<br>诱导，引起</p>
+<p>invoke: to appeal to or cite in support or justification<br>调用，祈求，引起</p>
+<p>infer: to conclude from evidence or by reasoning<br>推断，推论</p>
+<p>inhabit: to live or reside in<br>栖息，居住</p>
+<p>inculcate: to teach(others) by frequent instruction or repetition<br>教育，反复灌输</p>
+<p>instigate: to initiate or bring about, often by inciting; to urge on<br>唆使，煽动</p>
+<p>irritate: to cause (someone) to feel impatient or angry<br>刺激，引起恼怒</p>
+<p>illustrate: to clarify or explain, as by the use of examples or comparisons<br>举例，图解</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学术五百词Group26</title>
     <url>/2019/12/23/20191223%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup26/</url>
     <content><![CDATA[<h2 id="Group26"><a href="#Group26" class="headerlink" title="Group26"></a>Group26</h2><ul>
@@ -2511,43 +2558,46 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group25</title>
-    <url>/2019/12/17/20191217%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup25/</url>
-    <content><![CDATA[<h2 id="Group25"><a href="#Group25" class="headerlink" title="Group25"></a>Group25</h2><ul>
-<li>integrate</li>
-<li>induce</li>
-<li>invoke<a id="more"></a></li>
-<li>infer</li>
-<li>influence</li>
-<li>inhabit</li>
-<li>inculcate</li>
-<li>instigate</li>
-<li>irritate</li>
-<li>illustrate</li>
+    <title>学术五百词Group28</title>
+    <url>/2019/12/25/20191225%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup28/</url>
+    <content><![CDATA[<h2 id="Group28"><a href="#Group28" class="headerlink" title="Group28"></a>Group28</h2><ul>
+<li>distort</li>
+<li>display</li>
+<li>discriminate<a id="more"></a></li>
+<li>discern</li>
+<li>disregard</li>
+<li>predispose</li>
+<li>predominate</li>
+<li>presuppose</li>
+<li>propose</li>
+<li>comprehend</li>
 </ul>
 <p>例句：</p>
-<p>The most important development in seventeenth-century European music was the birth of opera as a genre. Borrowing themes from Classical mythology and history, Monteverdi <strong>integrated</strong> text and music to create the new art of music-drama. </p>
-<p>In addition, the high levels of stress <strong>induced</strong> by poverty and unemployment may lead to more violence within families.</p>
-<p>One of the main tasks of sociological research - in combination with theoretical thinking - is to identify causes and effects. Causation cannot be directly <strong>inferred</strong> from correlation.</p>
-<p>Sacred(神圣的) modes of language often employ archaic words and forms in an attempt to <strong>invoke</strong> the purity or “truth” of a religious or a cultural “golden age”.</p>
-<p>The prime exemplar of the transcendentalists(先验论者) was Ralph Waldo Emerson (1803–1882), whose essays powerfully <strong>influenced</strong> nineteenth-century American thought.</p>
-<p>The Greeks also <strong>inhabited</strong> a number of islands to the west, south, and particularly the east of the Greek mainland.</p>
-<p>Most of the elementary schools also <strong>inculcated</strong> the middle-class virtues(美德), such as hard work, thrift(节俭), sobriety(节制), cleanliness, and respect for the family. For most students, elementary education led to apprenticeship and a job.</p>
-<p>Charles <strong>instigated</strong> a programme of reforms. </p>
-<p>In fact, this may <strong>irritate</strong> some people who are against the reform.</p>
-<p>Philosophers even referred to works of art to <strong>illustrate</strong> their theories.</p>
+<p>An unjust law is a code that is out of harmony with the moral law. Any law that degrades human personality is unjust. All segregation(种族隔离) statutes(法令) are unjust because segregation <strong>distorts</strong> the soul and damages the personality.</p>
+<p>Crucial to the growth of trade were international fairs, where merchants and craftspeople set up stalls(货摊) and booths(亭子) to <strong>display</strong> their wares. </p>
+<p>Furthermore, while it is illegal to <strong>discriminate</strong> in employment practices, the state hardly has the resources to supervise every employment panel(工作小组). </p>
+<p>In the course of the fourteenth century, two general tendencies can be <strong>discerned</strong> in Italy: the replacement of republican governments by tyrants(暴君) and the expansion of the larger city-states at the expense of the less powerful ones. </p>
+<p>The emperor, <strong>disregarding</strong> all considerations of expense, raised craftsmen from the whole world.</p>
+<p>It almost seems as though the British were <strong>predisposed</strong> to embracing Neoclassicism, not only because the birth of Enlightenment occurred in Britain but also because the nation already had an intense involvement with antiquity(古代) in literature, which dated to the opening decades of the eighteenth century.</p>
+<p>The employment of large numbers of women in factories did not produce a significant transformation in female working patterns, as was once assumed. Studies of urban households in France and Britain, for example, have revealed that throughout the nineteenth century, traditional types of female labor still <strong>predominated</strong> in the women’s work world. In 1851, fully 40 percent of the working women in Britain were employed as domestic servants. </p>
+<p>For the rich would seek a set of laws which particularly benefited them, and would have the money and influence to arrange things in their own favor. So, as we noted, Rousseau assumes that genuine democracy <strong>presupposes</strong> a classless society.</p>
+<p>He <strong>proposed</strong> a simple and moderate solution for the problem of the landless peasants: he would revive an old law barring any Roman from using more than 312 acres of the state-owned land obtained in the process of uniting Italy. </p>
+<p>In 1941, Copland advised American composers to find alternatives to the harsh and demanding serialism of their European colleagues: “The new musical audiences will have to have music they can <strong>comprehend</strong>,” he insisted. “It must therefore be simple and direct… Above all, it must be fresh in feeling.”</p>
 <hr>
-<p>单词释义：</p>
-<p>integrate: to make into a whole by bringing all parts together; to join with something else<br>使完整</p>
-<p>induce: to bring about or stimulate the occurrence of<br>诱导，引起</p>
-<p>invoke: to appeal to or cite in support or justification<br>调用，祈求，引起</p>
-<p>infer: to conclude from evidence or by reasoning<br>推断，推论</p>
-<p>inhabit: to live or reside in<br>栖息，居住</p>
-<p>inculcate: to teach(others) by frequent instruction or repetition<br>教育，反复灌输</p>
-<p>instigate: to initiate or bring about, often by inciting; to urge on<br>唆使，煽动</p>
-<p>irritate: to cause (someone) to feel impatient or angry<br>刺激，引起恼怒</p>
-<p>illustrate: to clarify or explain, as by the use of examples or comparisons<br>举例，图解</p>
+<p>单词释义：<br>distort: to twist out of a proper or natural relation of parts<br>扭曲</p>
+<p>display: to present to view; to be or give evidence of<br>显示，炫耀</p>
+<p>discriminate: to make a clear distinction<br>区别，辨别</p>
+<p>discern: to recognize or understand as being distinct or different<br>觉察，识别</p>
+<p>disregard: to pay no attention or heed to<br>忽视，无视</p>
+<p>predispose: to make (someone) inclined to something in advance; to make susceptible or liable<br>使倾向于</p>
+<p>predominate: to dominate or prevail over<br>支配，主宰</p>
+<p>presuppose: to believe or suppose in advance; to require or involve necessarily as an antecedent condition<br>假定，预料</p>
+<p>propose: to put forward for consideration, discussion, or adoption<br>建议，打算，求婚</p>
+<p>comprehend: to take in the meaning, nature, or importance of<br>理解，包含</p>
 <hr>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>technique 和 technology</p>
+<p>technique多指某一领域（如艺术、体育等）的专门技术或技巧。<br>eg. She has fully mastered the technique.</p>
+<p>technology含义比 technique 广泛，尤指生产工艺以及科学或工业技术。<br>eg. The new technology was applied to farming.</p>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -2596,56 +2646,6 @@ x=\phi (t)\\ y=\omega (t)
 <p>entail: to have, impose, or require as a necessary accompaniment or consequence<br>牵涉，需要</p>
 <p>tailor: to make, alter, or adapt for a particular end or purpose<br>定做，调整，迎合</p>
 <hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group28</title>
-    <url>/2019/12/25/20191225%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup28/</url>
-    <content><![CDATA[<h2 id="Group28"><a href="#Group28" class="headerlink" title="Group28"></a>Group28</h2><ul>
-<li>distort</li>
-<li>display</li>
-<li>discriminate<a id="more"></a></li>
-<li>discern</li>
-<li>disregard</li>
-<li>predispose</li>
-<li>predominate</li>
-<li>presuppose</li>
-<li>propose</li>
-<li>comprehend</li>
-</ul>
-<p>例句：</p>
-<p>An unjust law is a code that is out of harmony with the moral law. Any law that degrades human personality is unjust. All segregation(种族隔离) statutes(法令) are unjust because segregation <strong>distorts</strong> the soul and damages the personality.</p>
-<p>Crucial to the growth of trade were international fairs, where merchants and craftspeople set up stalls(货摊) and booths(亭子) to <strong>display</strong> their wares. </p>
-<p>Furthermore, while it is illegal to <strong>discriminate</strong> in employment practices, the state hardly has the resources to supervise every employment panel(工作小组). </p>
-<p>In the course of the fourteenth century, two general tendencies can be <strong>discerned</strong> in Italy: the replacement of republican governments by tyrants(暴君) and the expansion of the larger city-states at the expense of the less powerful ones. </p>
-<p>The emperor, <strong>disregarding</strong> all considerations of expense, raised craftsmen from the whole world.</p>
-<p>It almost seems as though the British were <strong>predisposed</strong> to embracing Neoclassicism, not only because the birth of Enlightenment occurred in Britain but also because the nation already had an intense involvement with antiquity(古代) in literature, which dated to the opening decades of the eighteenth century.</p>
-<p>The employment of large numbers of women in factories did not produce a significant transformation in female working patterns, as was once assumed. Studies of urban households in France and Britain, for example, have revealed that throughout the nineteenth century, traditional types of female labor still <strong>predominated</strong> in the women’s work world. In 1851, fully 40 percent of the working women in Britain were employed as domestic servants. </p>
-<p>For the rich would seek a set of laws which particularly benefited them, and would have the money and influence to arrange things in their own favor. So, as we noted, Rousseau assumes that genuine democracy <strong>presupposes</strong> a classless society.</p>
-<p>He <strong>proposed</strong> a simple and moderate solution for the problem of the landless peasants: he would revive an old law barring any Roman from using more than 312 acres of the state-owned land obtained in the process of uniting Italy. </p>
-<p>In 1941, Copland advised American composers to find alternatives to the harsh and demanding serialism of their European colleagues: “The new musical audiences will have to have music they can <strong>comprehend</strong>,” he insisted. “It must therefore be simple and direct… Above all, it must be fresh in feeling.”</p>
-<hr>
-<p>单词释义：<br>distort: to twist out of a proper or natural relation of parts<br>扭曲</p>
-<p>display: to present to view; to be or give evidence of<br>显示，炫耀</p>
-<p>discriminate: to make a clear distinction<br>区别，辨别</p>
-<p>discern: to recognize or understand as being distinct or different<br>觉察，识别</p>
-<p>disregard: to pay no attention or heed to<br>忽视，无视</p>
-<p>predispose: to make (someone) inclined to something in advance; to make susceptible or liable<br>使倾向于</p>
-<p>predominate: to dominate or prevail over<br>支配，主宰</p>
-<p>presuppose: to believe or suppose in advance; to require or involve necessarily as an antecedent condition<br>假定，预料</p>
-<p>propose: to put forward for consideration, discussion, or adoption<br>建议，打算，求婚</p>
-<p>comprehend: to take in the meaning, nature, or importance of<br>理解，包含</p>
-<hr>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>technique 和 technology</p>
-<p>technique多指某一领域（如艺术、体育等）的专门技术或技巧。<br>eg. She has fully mastered the technique.</p>
-<p>technology含义比 technique 广泛，尤指生产工艺以及科学或工业技术。<br>eg. The new technology was applied to farming.</p>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -2824,6 +2824,75 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>学术五百词Group32</title>
+    <url>/2020/03/30/20200330%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup32/</url>
+    <content><![CDATA[<h2 id="Group32"><a href="#Group32" class="headerlink" title="Group32"></a>Group32</h2><ul>
+<li><p>interpret</p>
+</li>
+<li><p>intertwine</p>
+</li>
+<li><p>design<a id="more"></a></p>
+</li>
+<li><p>remedy</p>
+</li>
+<li><p>network</p>
+</li>
+<li><p>deplete</p>
+</li>
+<li><p>denigrate</p>
+</li>
+<li><p>detect</p>
+</li>
+<li><p>interact</p>
+</li>
+<li><p>reside</p>
+</li>
+</ul>
+<p>例句：</p>
+<p>For nearly all of human history, most people have <strong>interacted</strong> exclusively(唯一地，仅仅) with others who are close at hand. </p>
+<p>close at hand: 在附近，在旁边</p>
+<p>There are several basic theoretical dilemmas — matters of continuing or recurring controversy or dispute — which these clashes of viewpoint bring to our attention, some of which concern very general matters to do with how we should <strong>interpret</strong> human activities and social institutions. </p>
+<p>The British mathematician Alan Turing <strong>designed</strong> a primitive computer to assist British intelligence in breaking the secret codes of German ciphering machines. </p>
+<p>Spiritual and secular (世俗的) affairs were closely <strong>intertwined</strong> in the sixteenth century. </p>
+<p>In business, it is important to <strong>network</strong> with as many people as possible on a face to face basis. </p>
+<p>Both campaigns <strong>depleted</strong> German manpower, while the Americans were arriving in great numbers to strengthen Allied lines and uplift morale(士气). </p>
+<p>Prisoner-of-war camp guards would sometimes display good manners to captives in their first days on the job, but not for long. Soldiers ordered to kill may initially react with revulsion(厌恶) to the point of sickness over their act. But not for long (Waller, 2002). Before long, they will <strong>denigrate</strong> their enemies with nicknames. People tend to dehumanize(失去人性) their enemies and humanize their pets.</p>
+<p>Can you <strong>detect</strong> a bias in this document? </p>
+<p>Unlike Britain, the United States was a large country. The lack of a good system of internal transportation seemed to limit American economic development by making the transport of goods prohibitively expensive. This was gradually <strong>remedied</strong>, however. Thousands of miles of roads and canals were built linking east and west.</p>
+<p>The state accepts the responsibility of protecting everyone who <strong>resides</strong> within its borders from illegitimate(非法的) violence.</p>
+<hr>
+<p>单词释义：</p>
+<p>interact: to act on each other</p>
+<p>互相作用</p>
+<p>interpret: to explain the meaning of; to understand the significance of</p>
+<p>解释，说明</p>
+<p>intertwine: to join or become joined by twining together</p>
+<p>缠绕，纠缠</p>
+<p>network: to interconnect as components in a group or system; to interact or engage in informal communication with others for mutual assistance or support</p>
+<p>将…连成网络</p>
+<p>deplete: to consume or reduce to a very low amount; to remove the contents or important elements of</p>
+<p>耗尽，用尽</p>
+<p>denigrate: to attack the character or reputation of; to disparage</p>
+<p>诋毁，玷污</p>
+<p>detect: to discover or ascertain the existence, presence, or fact of; to discern (something hidden or subtle)</p>
+<p>察觉，发现</p>
+<p>design: to formulate a plan for; to have as a goal or purpose; to create or contrive for a particular purpose or effect</p>
+<p>设计，构思</p>
+<p>remedy: to counteract or rectify (a problem, mistake, or undesirable situation)</p>
+<p>补救，改进</p>
+<p>reside: to live in a place permanently or for an extended period; to be inherently present</p>
+<p>住，居住</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学术五百词Group33</title>
     <url>/2020/03/31/20200331%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup33/</url>
     <content><![CDATA[<h2 id="Group33"><a href="#Group33" class="headerlink" title="Group33"></a>Group33</h2><ul>
@@ -2946,75 +3015,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group32</title>
-    <url>/2020/03/30/20200330%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup32/</url>
-    <content><![CDATA[<h2 id="Group32"><a href="#Group32" class="headerlink" title="Group32"></a>Group32</h2><ul>
-<li><p>interpret</p>
-</li>
-<li><p>intertwine</p>
-</li>
-<li><p>design<a id="more"></a></p>
-</li>
-<li><p>remedy</p>
-</li>
-<li><p>network</p>
-</li>
-<li><p>deplete</p>
-</li>
-<li><p>denigrate</p>
-</li>
-<li><p>detect</p>
-</li>
-<li><p>interact</p>
-</li>
-<li><p>reside</p>
-</li>
-</ul>
-<p>例句：</p>
-<p>For nearly all of human history, most people have <strong>interacted</strong> exclusively(唯一地，仅仅) with others who are close at hand. </p>
-<p>close at hand: 在附近，在旁边</p>
-<p>There are several basic theoretical dilemmas — matters of continuing or recurring controversy or dispute — which these clashes of viewpoint bring to our attention, some of which concern very general matters to do with how we should <strong>interpret</strong> human activities and social institutions. </p>
-<p>The British mathematician Alan Turing <strong>designed</strong> a primitive computer to assist British intelligence in breaking the secret codes of German ciphering machines. </p>
-<p>Spiritual and secular (世俗的) affairs were closely <strong>intertwined</strong> in the sixteenth century. </p>
-<p>In business, it is important to <strong>network</strong> with as many people as possible on a face to face basis. </p>
-<p>Both campaigns <strong>depleted</strong> German manpower, while the Americans were arriving in great numbers to strengthen Allied lines and uplift morale(士气). </p>
-<p>Prisoner-of-war camp guards would sometimes display good manners to captives in their first days on the job, but not for long. Soldiers ordered to kill may initially react with revulsion(厌恶) to the point of sickness over their act. But not for long (Waller, 2002). Before long, they will <strong>denigrate</strong> their enemies with nicknames. People tend to dehumanize(失去人性) their enemies and humanize their pets.</p>
-<p>Can you <strong>detect</strong> a bias in this document? </p>
-<p>Unlike Britain, the United States was a large country. The lack of a good system of internal transportation seemed to limit American economic development by making the transport of goods prohibitively expensive. This was gradually <strong>remedied</strong>, however. Thousands of miles of roads and canals were built linking east and west.</p>
-<p>The state accepts the responsibility of protecting everyone who <strong>resides</strong> within its borders from illegitimate(非法的) violence.</p>
-<hr>
-<p>单词释义：</p>
-<p>interact: to act on each other</p>
-<p>互相作用</p>
-<p>interpret: to explain the meaning of; to understand the significance of</p>
-<p>解释，说明</p>
-<p>intertwine: to join or become joined by twining together</p>
-<p>缠绕，纠缠</p>
-<p>network: to interconnect as components in a group or system; to interact or engage in informal communication with others for mutual assistance or support</p>
-<p>将…连成网络</p>
-<p>deplete: to consume or reduce to a very low amount; to remove the contents or important elements of</p>
-<p>耗尽，用尽</p>
-<p>denigrate: to attack the character or reputation of; to disparage</p>
-<p>诋毁，玷污</p>
-<p>detect: to discover or ascertain the existence, presence, or fact of; to discern (something hidden or subtle)</p>
-<p>察觉，发现</p>
-<p>design: to formulate a plan for; to have as a goal or purpose; to create or contrive for a particular purpose or effect</p>
-<p>设计，构思</p>
-<p>remedy: to counteract or rectify (a problem, mistake, or undesirable situation)</p>
-<p>补救，改进</p>
-<p>reside: to live in a place permanently or for an extended period; to be inherently present</p>
-<p>住，居住</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group34</title>
     <url>/2020/04/01/20200401%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup34/</url>
     <content><![CDATA[<h2 id="Group34"><a href="#Group34" class="headerlink" title="Group34"></a>Group34</h2><ul>
@@ -3057,6 +3057,63 @@ x=\phi (t)\\ y=\omega (t)
 <p>调节，配合</p>
 <p>coexist: to exist together, at the same time, or in the same place; to live in peace with another or others despite differences, especially as a matter of policy</p>
 <p>共存，和平共处</p>
+<hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group37</title>
+    <url>/2020/04/07/20200407%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup37/</url>
+    <content><![CDATA[<h2 id="Group37"><a href="#Group37" class="headerlink" title="Group37"></a>Group37</h2><ul>
+<li>form</li>
+<li>persist</li>
+<li>fragment<a id="more"></a></li>
+<li>formulate</li>
+<li>fulfill</li>
+<li>foster</li>
+<li>posit</li>
+<li>perform</li>
+<li>fluctuate</li>
+<li>function</li>
+</ul>
+<hr>
+<p>例句：</p>
+<p>The gender difference <strong>fluctuates</strong> with the context. When there is provocation(挑衅), the gender gap shrinks. </p>
+<p>Nevertheless, tensions between the throne(王权) and Parliament(议会) <strong>persisted</strong>, and in 1629 Charles I dissolved Parliament, which would not meet again.</p>
+<p>In preparation for the attack, some of the Greek states <strong>formed</strong> a defensive league under Spartan leadership, while the Athenians pursued a new military policy by developing a navy.</p>
+<p>To understand his reasoning(推理) we must take a brief look at how the free market can be expected to <strong>function</strong>.</p>
+<p>The Play of Adam—a twelfth-century medieval drama of a type that was traditionally <strong>performed</strong> in churches—probably served as the source for the choice and arrangement of figures at Notre-Dame-la-Grande.</p>
+<p>Existentialism, a humanistic philosophy <strong>formulated</strong> by Jean-Paul Sartre, emphasized the role of individual choice in a world that lacked moral absolutes(道德准则).  </p>
+<p>The rival(敌对的) religious beliefs that <strong>fragmented</strong> Western Europe quickly accelerated into armed combat(武装冲突). </p>
+<p>Managers might <strong>foster</strong> more realistic judgments by insisting that all proposals and recommendations include reasons why they might not work. </p>
+<p>He believed that color, like music, could <strong>fulfill</strong> a spiritual goal of appealing directly to the human senses. </p>
+<p>Claiming to use reason as his sole guide to truth, Descartes <strong>posited</strong> a sharp distinction between mind and matter. </p>
+<hr>
+<p>单词释义：</p>
+<p>fluctuate: to vary irregularly, especially in amount</p>
+<p>波动</p>
+<p>function: to have or perform a function</p>
+<p>运行，活动</p>
+<p>foster: to arrange oneself in; to organize or arrange; to come to have</p>
+<p>培育，养育</p>
+<p>formulate: to devise or invent; to express in systematic</p>
+<p>规划</p>
+<p>fulfill: to bring into actuality; to do, perform, or obey (a task or order, for example); to meet (a requirement or condition)</p>
+<p>履行，实现</p>
+<p>perform: to begin and carry through to completion; to take action in accordance with the requirements of; to enact (a feat or role) before an audience</p>
+<p>执行，完成</p>
+<p>posit: to assume or put forward, as for consideration or the basis of argument; to place firmly in position</p>
+<p>假设，设想</p>
+<p>persist: to continue in existence</p>
+<p>坚持，持续</p>
+<p>fragment: to become broken into fragments</p>
+<p>使成碎片</p>
 <hr>
 ]]></content>
       <categories>
@@ -3118,63 +3175,6 @@ x=\phi (t)\\ y=\omega (t)
 <p>许可，允许</p>
 <hr>
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>power plant: 发电厂</p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学术五百词Group37</title>
-    <url>/2020/04/07/20200407%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup37/</url>
-    <content><![CDATA[<h2 id="Group37"><a href="#Group37" class="headerlink" title="Group37"></a>Group37</h2><ul>
-<li>form</li>
-<li>persist</li>
-<li>fragment<a id="more"></a></li>
-<li>formulate</li>
-<li>fulfill</li>
-<li>foster</li>
-<li>posit</li>
-<li>perform</li>
-<li>fluctuate</li>
-<li>function</li>
-</ul>
-<hr>
-<p>例句：</p>
-<p>The gender difference <strong>fluctuates</strong> with the context. When there is provocation(挑衅), the gender gap shrinks. </p>
-<p>Nevertheless, tensions between the throne(王权) and Parliament(议会) <strong>persisted</strong>, and in 1629 Charles I dissolved Parliament, which would not meet again.</p>
-<p>In preparation for the attack, some of the Greek states <strong>formed</strong> a defensive league under Spartan leadership, while the Athenians pursued a new military policy by developing a navy.</p>
-<p>To understand his reasoning(推理) we must take a brief look at how the free market can be expected to <strong>function</strong>.</p>
-<p>The Play of Adam—a twelfth-century medieval drama of a type that was traditionally <strong>performed</strong> in churches—probably served as the source for the choice and arrangement of figures at Notre-Dame-la-Grande.</p>
-<p>Existentialism, a humanistic philosophy <strong>formulated</strong> by Jean-Paul Sartre, emphasized the role of individual choice in a world that lacked moral absolutes(道德准则).  </p>
-<p>The rival(敌对的) religious beliefs that <strong>fragmented</strong> Western Europe quickly accelerated into armed combat(武装冲突). </p>
-<p>Managers might <strong>foster</strong> more realistic judgments by insisting that all proposals and recommendations include reasons why they might not work. </p>
-<p>He believed that color, like music, could <strong>fulfill</strong> a spiritual goal of appealing directly to the human senses. </p>
-<p>Claiming to use reason as his sole guide to truth, Descartes <strong>posited</strong> a sharp distinction between mind and matter. </p>
-<hr>
-<p>单词释义：</p>
-<p>fluctuate: to vary irregularly, especially in amount</p>
-<p>波动</p>
-<p>function: to have or perform a function</p>
-<p>运行，活动</p>
-<p>foster: to arrange oneself in; to organize or arrange; to come to have</p>
-<p>培育，养育</p>
-<p>formulate: to devise or invent; to express in systematic</p>
-<p>规划</p>
-<p>fulfill: to bring into actuality; to do, perform, or obey (a task or order, for example); to meet (a requirement or condition)</p>
-<p>履行，实现</p>
-<p>perform: to begin and carry through to completion; to take action in accordance with the requirements of; to enact (a feat or role) before an audience</p>
-<p>执行，完成</p>
-<p>posit: to assume or put forward, as for consideration or the basis of argument; to place firmly in position</p>
-<p>假设，设想</p>
-<p>persist: to continue in existence</p>
-<p>坚持，持续</p>
-<p>fragment: to become broken into fragments</p>
-<p>使成碎片</p>
-<hr>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -3477,67 +3477,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group44</title>
-    <url>/2020/04/17/20200417%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup44/</url>
-    <content><![CDATA[<h2 id="Group-44"><a href="#Group-44" class="headerlink" title="Group 44"></a>Group 44</h2><ul>
-<li>proscribe</li>
-<li>promote</li>
-<li>ground<a id="more"></a></li>
-<li>pervade</li>
-<li>degrade</li>
-<li>propound</li>
-<li>publish</li>
-<li>partition</li>
-<li>paraphrase</li>
-<li>precipitate</li>
-</ul>
-<hr>
-<p>例句：</p>
-<p>In the course of the seventeenth century, traders, missionaries, medical practitioners, and explorers began to <strong>publish</strong> an increasing number of travel books that gave accounts of many different cultures.</p>
-<p>When resources are not <strong>partitioned</strong>, people often consume more than they realize.</p>
-<p> In Groundwork 2 Kant tries to draw out the presuppositions of the common idea of duty, and the mains steps can be <strong>paraphrased</strong> as follows.</p>
-<p>The war was <strong>precipitated</strong> by Paris, a prince of Troy, whose kidnapping(绑架) of Helen, wife of the king of the Greek state of Sparta, outraged(使愤怒) all the Greeks. </p>
-<p>In any liberal democracy, everyone alike is safeguarded by the laws that <strong>proscribe</strong> serious wrongdoing. </p>
-<p>His [Constantine’s] choice to accept and <strong>promote</strong> Christianity was a turning point in history, as it resulted in the union of Christianity with the legacy of the Roman Empire.</p>
-<p>Their inclusion probably denotes the importance of dynasty, as well as referring to moral legislation Augustus enacted to curb adultery and <strong>promote</strong> childbirth among the elite. </p>
-<p>The UN Convention on the Rights of Persons with Disabilities (2006) aims to <strong>promote</strong> equal rights for disabled people globally. </p>
-<p>In the wake of the Roosevelt revolution, nearly every public policy was <strong>propounded</strong> as a right, attempting to confer constitutional status on programs like Social Security, Medicare, welfare, and food stamps. </p>
-<p>It is at this point that we see Mill at perhaps his most optimistic, and we see the point of his appeal to ‘utility in the largest sense, <strong>grounded</strong> on the permanent interests of a man as a progressive being’. </p>
-<p>While the mood of despair <strong>pervaded</strong> much of the postwar era, a second, more positive spirit fueled movements to achieve liberation and equality in many parts of the world. </p>
-<p>The point is not that we are powerless to resist imposed roles. In Zimbardo’s prison simulation, in Abu Ghraib Prison (where guards <strong>degraded</strong> Iraq war prisoners), and in other atrocity producing situations, some people become sadistic and others do not. </p>
-<hr>
-<p>单词释义：</p>
-<p>publish: to prepare and issue (a book, music, or other material) for public distribution, especially for sale; to issue a publication</p>
-<p>出版，发行</p>
-<p>partition: to divide into parts, pieces, or sections; to divide or separate by means of a partition; to divide (a country) into separate, autonomous nations</p>
-<p>分割，区分</p>
-<p>paraphrase: to restate using different words, especially to clarify</p>
-<p>释义</p>
-<p>precipitate: to cause to happen, especially suddenly or prematurely</p>
-<p>使（坏事）等突然发生</p>
-<p>proscribe: to prohibit</p>
-<p>禁止</p>
-<p>promote: to contribute to the progress or growth of; to urge the adoption of;to attempt to sell or popularize by advertising or publicity</p>
-<p>促进，推销</p>
-<p>propound: to put forward for consideration</p>
-<p>提出，提议</p>
-<p>ground: to provide a basis for (a theory, for example); to supply with basic information</p>
-<p>研磨，压迫</p>
-<p>pervade: to be present throughout </p>
-<p>遍及，弥漫</p>
-<p>degrade: to lower in quality or value; make inferior or less valuable; to lower in dignity</p>
-<p>降级，降低</p>
-<hr>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学术五百词Group43</title>
     <url>/2020/04/15/20200415%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup43/</url>
     <content><![CDATA[<h2 id="Group-43"><a href="#Group-43" class="headerlink" title="Group 43"></a>Group 43</h2><ul>
@@ -3597,54 +3536,56 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group46</title>
-    <url>/2020/04/27/20200427%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup46/</url>
-    <content><![CDATA[<h2 id="Group-46"><a href="#Group-46" class="headerlink" title="Group 46"></a>Group 46</h2><ul>
-<li>bridge</li>
-<li>opine</li>
-<li>outline<a id="more"></a></li>
-<li>incur</li>
-<li>recur</li>
-<li>refine</li>
-<li>hinder</li>
-<li>differ</li>
-<li>underpin</li>
-<li>underscore</li>
+    <title>学术五百词Group44</title>
+    <url>/2020/04/17/20200417%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup44/</url>
+    <content><![CDATA[<h2 id="Group-44"><a href="#Group-44" class="headerlink" title="Group 44"></a>Group 44</h2><ul>
+<li>proscribe</li>
+<li>promote</li>
+<li>ground<a id="more"></a></li>
+<li>pervade</li>
+<li>degrade</li>
+<li>propound</li>
+<li>publish</li>
+<li>partition</li>
+<li>paraphrase</li>
+<li>precipitate</li>
 </ul>
 <hr>
 <p>例句：</p>
-<p>The severity of this problem is diminishing, although it has not vanished, thanks<br>to an increasing pace of truly international conferences, and an organization, the Society for East Asian Archaeology, which is dedicated to <strong>bridging</strong> the multiple gaps across national boundaries. </p>
-<p>But this position is also too strong. There seems to be no reason why legal philosophers should not <strong>opine</strong> on the meaning of “law,” as well as the metaphysics of law.</p>
-<p>In the Imagist(意象派的) Manifesto (1913) and in various interviews, Pound <strong>outlined</strong> the cardinal(基本的) points of the Imagist doctrine: poets should use “absolutely no word that does not contribute to the presentation”; they should employ free verse rhythms “in sequence of the musical phrase.”</p>
-<p>The consumer would then need to <strong>incur</strong> the cost of withdrawal or, if this cost is too high, keep the undesired good or service. </p>
-<p>Thucydides also provided remarkable insight into the human condition. He believed that political situations <strong>recur</strong> in similar fashion and that the study of history is therefore of great value in understanding the present.</p>
-<p>A woman may make a man’s home delightful and may thus increase his motives for virtuous exertion. She may <strong>refine</strong> and tranquilize his mind, —-may turn away his anger or allay his grief. </p>
-<p>The Nazis hoped to drive women out of heavy industry or other jobs that might <strong>hinder</strong> women from bearing healthy children, as well as certain professions, including university teaching, law, and medicine, which were considered inappropriate for women, especially married women. </p>
-<p>What were the chief features of the polis, or city-state, and how did the major city-states of Athens and Sparta <strong>differ</strong>? </p>
-<p>What are the conditions or processes that encourage them to see authority as rightful, and therefore <strong>underpin</strong> the stability of a regime? This reflects a shift from philosophy to sociology, but it also highlights the contested nature of the concept of legitimacy. </p>
-<p>Comparison of the two manuscripts <strong>underscores</strong> how Western Europe had been transformed from an oral to a written culture, in part a result of Charlemagne’s ambitions and policies.</p>
+<p>In the course of the seventeenth century, traders, missionaries, medical practitioners, and explorers began to <strong>publish</strong> an increasing number of travel books that gave accounts of many different cultures.</p>
+<p>When resources are not <strong>partitioned</strong>, people often consume more than they realize.</p>
+<p> In Groundwork 2 Kant tries to draw out the presuppositions of the common idea of duty, and the mains steps can be <strong>paraphrased</strong> as follows.</p>
+<p>The war was <strong>precipitated</strong> by Paris, a prince of Troy, whose kidnapping(绑架) of Helen, wife of the king of the Greek state of Sparta, outraged(使愤怒) all the Greeks. </p>
+<p>In any liberal democracy, everyone alike is safeguarded by the laws that <strong>proscribe</strong> serious wrongdoing. </p>
+<p>His [Constantine’s] choice to accept and <strong>promote</strong> Christianity was a turning point in history, as it resulted in the union of Christianity with the legacy of the Roman Empire.</p>
+<p>Their inclusion probably denotes the importance of dynasty, as well as referring to moral legislation Augustus enacted to curb adultery and <strong>promote</strong> childbirth among the elite. </p>
+<p>The UN Convention on the Rights of Persons with Disabilities (2006) aims to <strong>promote</strong> equal rights for disabled people globally. </p>
+<p>In the wake of the Roosevelt revolution, nearly every public policy was <strong>propounded</strong> as a right, attempting to confer constitutional status on programs like Social Security, Medicare, welfare, and food stamps. </p>
+<p>It is at this point that we see Mill at perhaps his most optimistic, and we see the point of his appeal to ‘utility in the largest sense, <strong>grounded</strong> on the permanent interests of a man as a progressive being’. </p>
+<p>While the mood of despair <strong>pervaded</strong> much of the postwar era, a second, more positive spirit fueled movements to achieve liberation and equality in many parts of the world. </p>
+<p>The point is not that we are powerless to resist imposed roles. In Zimbardo’s prison simulation, in Abu Ghraib Prison (where guards <strong>degraded</strong> Iraq war prisoners), and in other atrocity producing situations, some people become sadistic and others do not. </p>
 <hr>
 <p>单词释义：</p>
-<p>bridge: to cross by or as if by a bridge</p>
-<p>架桥，渡过</p>
-<p>opine: to state as an opinion; to express an opinion</p>
-<p>以为，说明</p>
-<p>outline: to give the main features or various aspects of</p>
-<p>概述，略述</p>
-<p>incur: to acquire or come into (something usually undesirable); to become liable or subject to as a result of one’s actions</p>
-<p>招致，遭受</p>
-<p>recur: to happen or occur again or repeatedly; to return in thought or discourse</p>
-<p>复发，重现</p>
-<p>refine: to free from coarse, unsuitable, or immoral characteristics; to reduce to a pure state</p>
-<p>精炼，提纯</p>
-<p>hinder: to obstruct or delay the progress of</p>
-<p>阻碍，打扰</p>
-<p>differ: to be dissimilar or unlike in nature, quality, amount, or form</p>
-<p>相异，不同</p>
-<p>underpin: to give support or substance to</p>
-<p>巩固，支持</p>
-<p>underscore: to put emphasis on</p>
-<p>强调</p>
+<p>publish: to prepare and issue (a book, music, or other material) for public distribution, especially for sale; to issue a publication</p>
+<p>出版，发行</p>
+<p>partition: to divide into parts, pieces, or sections; to divide or separate by means of a partition; to divide (a country) into separate, autonomous nations</p>
+<p>分割，区分</p>
+<p>paraphrase: to restate using different words, especially to clarify</p>
+<p>释义</p>
+<p>precipitate: to cause to happen, especially suddenly or prematurely</p>
+<p>使（坏事）等突然发生</p>
+<p>proscribe: to prohibit</p>
+<p>禁止</p>
+<p>promote: to contribute to the progress or growth of; to urge the adoption of;to attempt to sell or popularize by advertising or publicity</p>
+<p>促进，推销</p>
+<p>propound: to put forward for consideration</p>
+<p>提出，提议</p>
+<p>ground: to provide a basis for (a theory, for example); to supply with basic information</p>
+<p>研磨，压迫</p>
+<p>pervade: to be present throughout </p>
+<p>遍及，弥漫</p>
+<p>degrade: to lower in quality or value; make inferior or less valuable; to lower in dignity</p>
+<p>降级，降低</p>
 <hr>
 ]]></content>
       <categories>
@@ -3715,56 +3656,55 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>学术五百词Group48</title>
-    <url>/2020/05/13/20200513%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup48/</url>
-    <content><![CDATA[<h2 id="Group-48"><a href="#Group-48" class="headerlink" title="Group 48"></a>Group 48</h2><ul>
-<li>refrain</li>
-<li>replicate</li>
-<li>strive<a id="more"></a></li>
-<li>stress</li>
-<li>perceive</li>
-<li>archive</li>
-<li>reference</li>
-<li>buttress</li>
-<li>conceive</li>
-<li>derive</li>
+    <title>学术五百词Group46</title>
+    <url>/2020/04/27/20200427%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup46/</url>
+    <content><![CDATA[<h2 id="Group-46"><a href="#Group-46" class="headerlink" title="Group 46"></a>Group 46</h2><ul>
+<li>bridge</li>
+<li>opine</li>
+<li>outline<a id="more"></a></li>
+<li>incur</li>
+<li>recur</li>
+<li>refine</li>
+<li>hinder</li>
+<li>differ</li>
+<li>underpin</li>
+<li>underscore</li>
 </ul>
 <hr>
 <p>例句：</p>
-<p>The architect created an artificial slope out of concrete, rising on radially disposed barrel vaults(拱顶), which <strong>buttressed</strong> one another for a strong structure.</p>
-<p>In the commemorative marble sculpture, Forever Free (1867), a young slave who has broken his chains raises his arm in victory, while his female companion kneels in grateful prayer. The artist who <strong>conceived</strong> this remarkable work of art, Edmonia Lewis (1845–ca. 1885) was the daughter of an African-American father and a Chippawa mother. </p>
-<p>The English word music <strong>derives</strong> from muse, the Greek word describing any of the nine mythological daughters of Zeus and the goddess of memory. </p>
-<p>Although social behavior is guided to some extent by forces such as roles, norms and shared expectations, individuals <strong>perceive</strong> reality differently according to their backgrounds, interests and motivations. </p>
-<p>The text <strong>strive</strong> to interpret and synthesize in order to provide students with a<br>frame of reference with which to comprehend the principal events and eras in Western history.</p>
-<p>Durkheim <strong>stressed</strong> the importance of abandoning prejudices and ideology. </p>
-<p>When shown an underwater scene, Americans focus on the biggest fish. Asians are more likely to <strong>reference</strong> the background, such as the plants, bubbles, and rocks. </p>
-<p>So it is wise to <strong>refrain</strong> from planting false, unreachable expectations in people’s minds. </p>
-<p>In a fourth study at Dartmouth University, Shelton and Richeson <strong>replicated</strong> this study with different instructions but similar results. </p>
-<p>Scores of variables constitute the output of a climate model simulation, as familiar as temperature and precipitation or as esoteric as the mass of water that evaporates over an ice sheet, or metrics of ocean overturning. Many of the variables are <strong>archived</strong> as daily or monthly means, some are six-hourly, some are yearly averages.</p>
+<p>The severity of this problem is diminishing, although it has not vanished, thanks<br>to an increasing pace of truly international conferences, and an organization, the Society for East Asian Archaeology, which is dedicated to <strong>bridging</strong> the multiple gaps across national boundaries. </p>
+<p>But this position is also too strong. There seems to be no reason why legal philosophers should not <strong>opine</strong> on the meaning of “law,” as well as the metaphysics of law.</p>
+<p>In the Imagist(意象派的) Manifesto (1913) and in various interviews, Pound <strong>outlined</strong> the cardinal(基本的) points of the Imagist doctrine: poets should use “absolutely no word that does not contribute to the presentation”; they should employ free verse rhythms “in sequence of the musical phrase.”</p>
+<p>The consumer would then need to <strong>incur</strong> the cost of withdrawal or, if this cost is too high, keep the undesired good or service. </p>
+<p>Thucydides also provided remarkable insight into the human condition. He believed that political situations <strong>recur</strong> in similar fashion and that the study of history is therefore of great value in understanding the present.</p>
+<p>A woman may make a man’s home delightful and may thus increase his motives for virtuous exertion. She may <strong>refine</strong> and tranquilize his mind, —-may turn away his anger or allay his grief. </p>
+<p>The Nazis hoped to drive women out of heavy industry or other jobs that might <strong>hinder</strong> women from bearing healthy children, as well as certain professions, including university teaching, law, and medicine, which were considered inappropriate for women, especially married women. </p>
+<p>What were the chief features of the polis, or city-state, and how did the major city-states of Athens and Sparta <strong>differ</strong>? </p>
+<p>What are the conditions or processes that encourage them to see authority as rightful, and therefore <strong>underpin</strong> the stability of a regime? This reflects a shift from philosophy to sociology, but it also highlights the contested nature of the concept of legitimacy. </p>
+<p>Comparison of the two manuscripts <strong>underscores</strong> how Western Europe had been transformed from an oral to a written culture, in part a result of Charlemagne’s ambitions and policies.</p>
 <hr>
 <p>单词释义：</p>
-<p>conceive: to apprehend mentally; to form or develop in the mind; to form or hold an idea</p>
-<p>设想，构想</p>
-<p>derive: to obtain or receive from a source</p>
-<p>起源，源自</p>
-<p>perceive: to become aware of (something) directly through any of the senses, especially sight or hearing; to achieve understanding of</p>
-<p>察觉，感觉</p>
-<p>archive: to place or store in an archive</p>
-<p>把…存档</p>
-<p>strive: to exert much effort or energy</p>
-<p>努力，奋斗</p>
-<p>stress: to place emphasis on</p>
-<p>强调，使紧张</p>
-<p>buttress: to sustain, prop, or bolster; to support or reinforce with a buttress(a structure, usually brick or stone, built against a wall for support or reinforcement)</p>
-<p>支持，支撑</p>
-<p>reference: to cite as a reference</p>
-<p>参考，引用</p>
-<p>refrain: to hold oneself back</p>
-<p>克制，抑制</p>
-<p>replicate: to duplicate, copy, reproduce, or repeat; to repeat (a scientific experiment) to confirm findings or ensure accuracy</p>
-<p>复制，重复</p>
+<p>bridge: to cross by or as if by a bridge</p>
+<p>架桥，渡过</p>
+<p>opine: to state as an opinion; to express an opinion</p>
+<p>以为，说明</p>
+<p>outline: to give the main features or various aspects of</p>
+<p>概述，略述</p>
+<p>incur: to acquire or come into (something usually undesirable); to become liable or subject to as a result of one’s actions</p>
+<p>招致，遭受</p>
+<p>recur: to happen or occur again or repeatedly; to return in thought or discourse</p>
+<p>复发，重现</p>
+<p>refine: to free from coarse, unsuitable, or immoral characteristics; to reduce to a pure state</p>
+<p>精炼，提纯</p>
+<p>hinder: to obstruct or delay the progress of</p>
+<p>阻碍，打扰</p>
+<p>differ: to be dissimilar or unlike in nature, quality, amount, or form</p>
+<p>相异，不同</p>
+<p>underpin: to give support or substance to</p>
+<p>巩固，支持</p>
+<p>underscore: to put emphasis on</p>
+<p>强调</p>
 <hr>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>raise one’s arm in victory</p>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -3824,6 +3764,94 @@ x=\phi (t)\\ y=\omega (t)
 <p>deem: to regard as; to suppose or believe; to have an opinion</p>
 <p>认为，视作</p>
 <hr>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>words</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《人生第一次》观后感</title>
+    <url>/2020/05/05/20200505%E3%80%8A%E4%BA%BA%E7%94%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E3%80%8B%E8%A7%82%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<p>《人生第一次》是央视拍摄的一部纪录片，展现了一个人一生中不同的阶段：出生、成长、上学、当兵、上班、买房、婚姻、退休、养老到最后的告别。现实的题材，看似平静客观的叙述，平凡真实却蕴含着雷霆万钧的力量。人生那么长，可不论身处哪个阶段，人们总是要不可避免地面对“第一次”，就像《阿甘正传》里说到的，人生就像一盒巧克力，你永远不会知道下一颗是什么味道。终其一生迎接未知的挑战，这就是人生的乐趣吧。</p>
+<p>每一集都有不一样的感动，感想颇多，就捡几个主要的写下来吧。第三集长大，小标题叫做“我在爸妈看不见的地方偷偷长大”，第一眼看到这个标题我就有种被一锤击中的感觉。后来在片中得知，这句话出自一个12岁的小男孩的诗。</p>
+<blockquote>
+<p>种子，</p>
+<p>被埋住大雪下，</p>
+<p>安静发芽。</p>
+<p>老枯树，</p>
+<p>在夜里，</p>
+<p>长出一根新枝丫。</p>
+<p>而我，</p>
+<p>在爸爸妈妈看不到的地方，</p>
+<p>偷偷长大。</p>
+</blockquote>
+<p><a id="more"></a>这个山区里的孩子，叫小锁。在我身边有一些留守儿童，他们比其他人更加敏感，心思细腻，他们的成长就像是夜里长大的枝丫，没有温暖的阳光，也更容易误入歧途。而诗歌就像是一个打开和表达他们内心的窗口，让他们与这个世界和解，巧妙地将他们的感受、想象和体会表达出来。就像校长说的，学诗的孩子不会砸玻璃，其实就是诗歌缓解了这些孩子的孤独，化解了因为家庭教育缺失而导致的戾气，教会他们更自信地面对世界。</p>
+<p>上班这一集，感触最深的是两个地方。一个是刘增雄带着去上海务工人员上火车前的叮嘱，过马路要走红绿灯，火车上的厕所注意门栓，这些在我们看来理所当然的事，对于他们来说都是那么陌生。要迈出这样的第一步，面临的困难不知道还有多少。可是只有走出自己的舒适圈，亲眼见识世界的广袤，才能更清醒地认识到自己的位置。第二个是王银花在上海外滩，给她的孩子看“一艘漂亮的大船”，那一刻她的内心是怎样的呢，可能所有经历过的坎坷，受到的委屈，在这一刻都值了。出发前纠结于陪伴孩子还是出去闯荡，突破了重重阻力来到上海，却发现养老院的工作对她来说很难。但我想她一定不会后悔这次勇敢的尝试。</p>
+<p>前面这些感动其实都是笑着的感动，而最后的退休、养老和告别却越来越沉重。中国人向来避讳谈死，只会有人教我们如何好好活着，没有人告诉我们怎样面对衰老和死亡。垂暮之年大部分人，都是和老伴互相扶持相濡以沫。这个阶段要做的，可能更多是断舍离，放下那些不重要的身外之物，更多地关注自己内心。希望有朝一日，我也能做到从容洒脱，“没有神的光环，你我生而平凡”。</p>
+<p>最后一点，片尾曲《推开世界的门》写的很妙啊，在每一集里都完美地与画面内容相契合。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术五百词Group48</title>
+    <url>/2020/05/13/20200513%E5%AD%A6%E6%9C%AF%E4%BA%94%E7%99%BE%E8%AF%8DGroup48/</url>
+    <content><![CDATA[<h2 id="Group-48"><a href="#Group-48" class="headerlink" title="Group 48"></a>Group 48</h2><ul>
+<li>refrain</li>
+<li>replicate</li>
+<li>strive<a id="more"></a></li>
+<li>stress</li>
+<li>perceive</li>
+<li>archive</li>
+<li>reference</li>
+<li>buttress</li>
+<li>conceive</li>
+<li>derive</li>
+</ul>
+<hr>
+<p>例句：</p>
+<p>The architect created an artificial slope out of concrete, rising on radially disposed barrel vaults(拱顶), which <strong>buttressed</strong> one another for a strong structure.</p>
+<p>In the commemorative marble sculpture, Forever Free (1867), a young slave who has broken his chains raises his arm in victory, while his female companion kneels in grateful prayer. The artist who <strong>conceived</strong> this remarkable work of art, Edmonia Lewis (1845–ca. 1885) was the daughter of an African-American father and a Chippawa mother. </p>
+<p>The English word music <strong>derives</strong> from muse, the Greek word describing any of the nine mythological daughters of Zeus and the goddess of memory. </p>
+<p>Although social behavior is guided to some extent by forces such as roles, norms and shared expectations, individuals <strong>perceive</strong> reality differently according to their backgrounds, interests and motivations. </p>
+<p>The text <strong>strive</strong> to interpret and synthesize in order to provide students with a<br>frame of reference with which to comprehend the principal events and eras in Western history.</p>
+<p>Durkheim <strong>stressed</strong> the importance of abandoning prejudices and ideology. </p>
+<p>When shown an underwater scene, Americans focus on the biggest fish. Asians are more likely to <strong>reference</strong> the background, such as the plants, bubbles, and rocks. </p>
+<p>So it is wise to <strong>refrain</strong> from planting false, unreachable expectations in people’s minds. </p>
+<p>In a fourth study at Dartmouth University, Shelton and Richeson <strong>replicated</strong> this study with different instructions but similar results. </p>
+<p>Scores of variables constitute the output of a climate model simulation, as familiar as temperature and precipitation or as esoteric as the mass of water that evaporates over an ice sheet, or metrics of ocean overturning. Many of the variables are <strong>archived</strong> as daily or monthly means, some are six-hourly, some are yearly averages.</p>
+<hr>
+<p>单词释义：</p>
+<p>conceive: to apprehend mentally; to form or develop in the mind; to form or hold an idea</p>
+<p>设想，构想</p>
+<p>derive: to obtain or receive from a source</p>
+<p>起源，源自</p>
+<p>perceive: to become aware of (something) directly through any of the senses, especially sight or hearing; to achieve understanding of</p>
+<p>察觉，感觉</p>
+<p>archive: to place or store in an archive</p>
+<p>把…存档</p>
+<p>strive: to exert much effort or energy</p>
+<p>努力，奋斗</p>
+<p>stress: to place emphasis on</p>
+<p>强调，使紧张</p>
+<p>buttress: to sustain, prop, or bolster; to support or reinforce with a buttress(a structure, usually brick or stone, built against a wall for support or reinforcement)</p>
+<p>支持，支撑</p>
+<p>reference: to cite as a reference</p>
+<p>参考，引用</p>
+<p>refrain: to hold oneself back</p>
+<p>克制，抑制</p>
+<p>replicate: to duplicate, copy, reproduce, or repeat; to repeat (a scientific experiment) to confirm findings or ensure accuracy</p>
+<p>复制，重复</p>
+<hr>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>raise one’s arm in victory</p>
 ]]></content>
       <categories>
         <category>learning</category>
@@ -3975,34 +4003,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>English</tag>
         <tag>words</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《人生第一次》观后感</title>
-    <url>/2020/05/05/20200505%E3%80%8A%E4%BA%BA%E7%94%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E3%80%8B%E8%A7%82%E5%90%8E%E6%84%9F/</url>
-    <content><![CDATA[<p>《人生第一次》是央视拍摄的一部纪录片，展现了一个人一生中不同的阶段：出生、成长、上学、当兵、上班、买房、婚姻、退休、养老到最后的告别。现实的题材，看似平静客观的叙述，平凡真实却蕴含着雷霆万钧的力量。人生那么长，可不论身处哪个阶段，人们总是要不可避免地面对“第一次”，就像《阿甘正传》里说到的，人生就像一盒巧克力，你永远不会知道下一颗是什么味道。终其一生迎接未知的挑战，这就是人生的乐趣吧。</p>
-<p>每一集都有不一样的感动，感想颇多，就捡几个主要的写下来吧。第三集长大，小标题叫做“我在爸妈看不见的地方偷偷长大”，第一眼看到这个标题我就有种被一锤击中的感觉。后来在片中得知，这句话出自一个12岁的小男孩的诗。</p>
-<blockquote>
-<p>种子，</p>
-<p>被埋住大雪下，</p>
-<p>安静发芽。</p>
-<p>老枯树，</p>
-<p>在夜里，</p>
-<p>长出一根新枝丫。</p>
-<p>而我，</p>
-<p>在爸爸妈妈看不到的地方，</p>
-<p>偷偷长大。</p>
-</blockquote>
-<p><a id="more"></a>这个山区里的孩子，叫小锁。在我身边有一些留守儿童，他们比其他人更加敏感，心思细腻，他们的成长就像是夜里长大的枝丫，没有温暖的阳光，也更容易误入歧途。而诗歌就像是一个打开和表达他们内心的窗口，让他们与这个世界和解，巧妙地将他们的感受、想象和体会表达出来。就像校长说的，学诗的孩子不会砸玻璃，其实就是诗歌缓解了这些孩子的孤独，化解了因为家庭教育缺失而导致的戾气，教会他们更自信地面对世界。</p>
-<p>上班这一集，感触最深的是两个地方。一个是刘增雄带着去上海务工人员上火车前的叮嘱，过马路要走红绿灯，火车上的厕所注意门栓，这些在我们看来理所当然的事，对于他们来说都是那么陌生。要迈出这样的第一步，面临的困难不知道还有多少。可是只有走出自己的舒适圈，亲眼见识世界的广袤，才能更清醒地认识到自己的位置。第二个是王银花在上海外滩，给她的孩子看“一艘漂亮的大船”，那一刻她的内心是怎样的呢，可能所有经历过的坎坷，受到的委屈，在这一刻都值了。出发前纠结于陪伴孩子还是出去闯荡，突破了重重阻力来到上海，却发现养老院的工作对她来说很难。但我想她一定不会后悔这次勇敢的尝试。</p>
-<p>前面这些感动其实都是笑着的感动，而最后的退休、养老和告别却越来越沉重。中国人向来避讳谈死，只会有人教我们如何好好活着，没有人告诉我们怎样面对衰老和死亡。垂暮之年大部分人，都是和老伴互相扶持相濡以沫。这个阶段要做的，可能更多是断舍离，放下那些不重要的身外之物，更多地关注自己内心。希望有朝一日，我也能做到从容洒脱，“没有神的光环，你我生而平凡”。</p>
-<p>最后一点，片尾曲《推开世界的门》写的很妙啊，在每一集里都完美地与画面内容相契合。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -4329,6 +4329,25 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>博士生小张的第一年</title>
+    <url>/2021/04/22/20210422%E5%8D%9A%E5%A3%AB%E7%94%9F%E5%B0%8F%E5%BC%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B9%B4/</url>
+    <content><![CDATA[<p>很久没有更新博客了。每天忙忙碌碌也不知道在忙些啥。从博士入学到现在，算起来有一整年了。其实选择读博这条路的时候，心里就大概知道即将要面对前所未有的挑战，提前做好了心理准备，但真正经历时还是感慨颇多。</p>
+<p>在国内，正在读博的人通常就会被称为博士。而国外称已经拿到博士学位的人为doctor，比如Dr. XX，正在读但还没拿到学位的只能是candidate。在没拿到学位时，更准确的说法其实是博士生。相对来说博士入学门槛较低，真正能经过这几年的训练，达到博士应有的科研水平、思维能力和心理素质的，才配得上这个博士头衔。就像翟天临，被曝光之后数年依然时不时被网友拉出来“鞭尸”，正是因为他戳中了无数科研人的痛点，让曾经折磨和压抑着他们的一切变得不值一提。</p>
+<p>本来按照计划20年2月开学到校后我就要博士入学了，没想到突如其来的疫情打乱了所有的计划。4月份疫情有所缓解时，学校开始筹划毕业生第一批返校。虽然我也是毕业年级，学院考虑到我已经转博，不需要回校写论文答辩，因此通知我第二批返校（五月之后）。在等待期间，学院决定在线上完成新学期报到注册。当我坐在家里，在电脑屏幕的线上会议里看到“开学典礼”四个大字，以及旁边整齐排列的一个个头像和昵称时，感觉像做梦一样。<br>5月，返校时间再次推迟待定。最后直到8月才返回了学校。此时我的舍友们已经走上了天南海北的工作岗位，理想去上海工作，实验室的小伙伴也答辩结束，开始了各自新的人生旅程。疫情期间的严格管控让原本热闹的校园变得异常冷清，留在原地的我其实什么都没变，但周围的一切仿佛完全变了。这期间还有一个小插曲，到校第二天就被宿管阿姨要求搬宿舍，腾出空房间给新生，之后又要给我们宿舍安排至满员（一般博士生宿舍是两到三人），一番与学校后勤机构的交涉后，终于还是我们妥协了。住在四人间没有独立卫浴的宿舍里，每天独自去食堂吃饭，这种物是人非一度让人觉得空落落的。</p>
+<p>很快，这种情绪就被改文章带来的冲击打击得烟消云散。在文章已经快要成稿时突然发现假设中的一个理论错误。辛辛苦苦建起了一座大楼，突然发现地基是歪的。当时的感觉像是心里的一块巨石，悄无声息地裂开，然后碎了一地。接下来就是两个多月的埋头苦干重新实验。重新计算的结果达到了一个多T，记录实验参数的表格密密麻麻写了几百行。期间无数次觉得自己一无是处，不适合走科研这条路。冷静下来想想，对于科研人来说，延迟满足可能是一个必备的技能。一篇文章或是一个项目的完成往往需要一年甚至数年时间。实验失败文章被拒进度缓慢， 许多事情都很容易让人陷入自我否定的消极情绪。但是没有人会在乎你在黑暗中默默前行时究竟经历了什么。最重要的还是着眼于当下，只要始终在朝着自己的目标前进，偶尔停下来歇歇脚也没有关系。永远要相信，总有一天，付出的每一分辛苦都会变成切实的回报。</p>
+<p>在论文写完准备投稿时有幸遇到了W老师，给我们提出了许多宝贵的意见和建议，甚至抽出时间从头到尾仔细地帮我们改正了所有的表达和语法错误。对于我这样初入科研届的菜鸟，能有这样一位良师耐心地指导，真是我的福气。在微信里，W老师单独给我发消息，说，小张，投稿之前觉得英语没把握的地方再发给我看看。我一时激动得手足无措，连忙道谢，苍白的文字难以表达我的感激之情。</p>
+<p>21年春节前，疫情又有小规模爆发的趋势，学校突然决定提前放假，又遇上一批进口试剂盒疑似携带病毒的事情，放假前拿到实验数据的计划眼看要泡汤。几经波折终于找到了做实验的人和地方，然而最终却因为经验不足加上急于求成，损坏了所有的结果。为了赶时间，做实验的那天从早上到下午将近四点滴水未进，没想到却得到当头一棒。后悔懊恼疑惑焦虑，因为我的失误毁掉了太多人共同努力的心血。这次经历给了我非常深刻的教训，以至于之后的每次实验都会慎之又慎。令我没有想到的是，这次事件给我最大安慰的是导师，当我怀着要被批评的心情跟他讲这件事时，他却说没关系，尽力争取过就行了，安心回家过年吧。</p>
+<p>打不倒你的都会使你更强大。这种密集而高强度的训练就像在我的身上装上一片片铠甲，尽管过程有些漫长难熬，但很长一段时间后再低头看，这铠甲已经逐渐变得坚实而有力。而我慢慢也有了掌控方向的力量感，像去年经常开车的时候，突然有一天找到了与车一体的感觉。在这个正当年的年纪去读博或许是一个正确的选择，没有太多杂事和杂念干扰，只需要拼命汲取养分让自己成长。</p>
+<p>断断续续写了一个月才写完这篇文字，在这个过程中也反思和收获了不少。谨以此文记录初出茅庐小张的第一年，愿未来可期。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>表面张力与极小曲面</title>
     <url>/2020/12/27/20201227%E8%A1%A8%E9%9D%A2%E5%BC%A0%E5%8A%9B%E4%B8%8E%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/</url>
     <content><![CDATA[<blockquote>
@@ -4361,20 +4380,52 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>告别2020</title>
-    <url>/2020/12/30/20201230%E5%91%8A%E5%88%AB2020/</url>
-    <content><![CDATA[<p>2020年，就这样跌跌撞撞地走到了最后。不知道是我终于长大到了“接受这个世界毒打”的年纪，还是恰巧见证了历史洪流里的一次漩涡。这一年像一部魔幻现实主义小说，处处充满着不真实。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>有时候走在回宿舍的路上，经过文昌小区大门时，会有一种恍惚的感觉，仿佛误入了另一个世界。铁锅与灶台碰撞发出乒乒乓乓的声音，锅里的食物欢快地滋滋啦啦，小饭店老板吆喝着“帅哥/美女吃点啥”。大门口北边有个不起眼的角落，有些破落，靠墙横着一根绳，天气好的时候会晾一排小孩子的衣服，小小的上衣裤子在细细的绳子上晃来晃去。入冬后挂了一排腊肠，每一节都饱满圆润，整整齐齐等着被风干。西装革履和光鲜亮丽只能是生活的点缀，锅碗瓢盆柴米油盐才是生活的本色，朴实却拥有一种让人感到踏实的力量。<br>因为疫情，前半年几乎都是在家度过的。熟悉的家给人的感受是任何人任何事都无法替代的，因为在这里每一个角落都沉淀了十几年的光阴。看到客厅墙上一列横线，就能想起每年在这里记录身高的场景；书桌上深深浅浅的划痕，是小学的我做手工留下的，慢慢长大才知道用刀时要在桌上垫块东西才不会损伤桌面；书房角落里的一块墙上被贴了各种各样的小贴纸，以及从画册上剪下来的卡通人物，也算是那个年代的一点点“艺术启蒙”。为了改善这个20多年的老房子灰头土脸的面貌，3月份在家时集中两天时间把所有墙面都重刷了一遍，收拾东西时把小时候玩的大部分玩具都扔掉了（其实大部分都是各种破烂，装在一个透明塑料袋里）。看着这些东西在眼前消失，终归是有些不舍，但时间永远不会停下脚步，该学会告别就要果断地告别，美好的东西就让它留在回忆里，新的生活依然值得期待。</p>
-<h3 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h3><p>人的潜力是无穷的。在压力之下，我才发现一天里同时处理的事情竟然可以这么多，连续不断工作极限竟然可以这么高。坚持不下去的时候会变成一只不想给自己加油打气的小强，不知道努力的意义在哪里。但当有一点点收获或者肯定时，又会觉得付出的一切还是值得的。今年这种起起伏伏的体会似乎格外多。做科研要坐得住冷板凳，但现实环境逼得大家都不得不追求些东西。怎样找到科研和生活的平衡，以及有意义和获得现实收益之间的平衡，可能是我接下来需要学会的事。<br>这一年最多的负面情绪是压抑和混乱。对于我个人而言，还有焦虑。我始终认为这种焦虑来自自身能力与期望的不匹配。人生就像登山，随着自己位置越来越高，看到的风景也越来越美，但路也愈加坎坷陡峭，身边同行的人也更加强大和优秀。这样的环境会在无形中催促着自己，不要停下来，要继续努力。就像《乘风破浪的姐姐》里，郑希怡说过，姐姐们不是想赢，而是不想输。金字塔尖的位置只有一个，大部分人无意争取，只是不想做塔底罢了。</p>
-<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>今年一大收获是，更清晰地认识到了自己的不足。比如害怕改变和不稳定，因此在大决策面前有点畏手畏脚。还有看问题站的角度不够高，往往只能看到局部而不能从全局考虑。最后是心态不够稳，遇事容易慌张。希望明年的自己可以有更坚定更强大的内心，提高“钝感力”，更勇敢和坦然。<br>当然，也不能忽视这一年自己的成长。过去的很多年，我都很少关注自己内心的声音。按部就班地生活学习，许多事情都是被周围的环境推着走，几乎从来不会思考我自己到底想要什么，不会向别人输出我真正的感受。这一年我一直在有意识地锻炼自己，主动表达，主动选择。虽然事实证明我还没有完全改变，但我能意识到这件事并且为之努力，相信未来会越来越好。</p>
-<h3 id="感恩"><a href="#感恩" class="headerlink" title="感恩"></a>感恩</h3><p>每次回顾和总结时，总会有一些人和事只要一想起来心里就觉得很温暖。这温暖来自家人，伴侣，老师，朋友，甚至陌生人，猫猫狗狗，树叶云彩。那些生活中的小细节就像夜空中的星星，微弱渺小，却让整个昏暗的天空亮了起来。感恩有你。</p>
-<p>虽然世事无常，各种意料之外的事层出不穷，但天大的事也抵不过人的强大。当冲出重围后，再回头看来时的路，心里会多一分平静和从容。再次踏上征程，面前的一切也不过如此。再见2020，新的一年，更强大的我来了。</p>
+    <title>Literature Notes - Bone tissue regeneration The role of finely tuned pore architecture of bioactive scaffolds before clinical translation</title>
+    <url>/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</url>
+    <content><![CDATA[<p>R. Wu, Y. Li, M. Shen, X. Yang, L. Zhang, X. Ke, G. Yang, C. Gao, Z. Gou, S. Xu, Bone tissue regeneration: The role of finely tuned pore architecture of bioactive scaffolds before clinical translation, Bioactive Materials. 6 (2021) 1242–1254. <a href="https://doi.org/10.1016/j.bioactmat.2020.11.003">https://doi.org/10.1016/j.bioactmat.2020.11.003</a>.</p>
+<blockquote>
+<p>Spatial dimension of pores and interconnection in macroporous scaffolds is of particular importance in facilitating endogenous cell migration and bone tissue ingrowth. However, it is still a challenge to widely tune structure parameters of scaffolds by conventional methods because of inevitable pore geometrical deformation and poor pore interconnectivity. Here, the long-term in vivo biological performances of nonstoichiometric bioceramic scaffolds with different pore dimensions were assessed in critical-size femoral bone defect model. The 6% Mg-substituted wollastonite (CSi-Mg6) powders were prepared via wet-chemical precipitation and the scaffolds elaborately printed by ceramic stereolithography, displaying designed constant pore strut and tailorable pore height (200, 320, 450, 600 μm), were investigated thoroughly in the bone regeneration process. Together with detailed structural stability and mechanical properties were collaboratively outlined. Both μCT and histological analyses indicated that bone tissue ingrowth was retarded in 200 μm scaffolds in the whole stage (2–16 weeks) but the 320 μm scaffolds showed appreciable bone tissue in the center of porous constructs at 6–10 weeks and matured bone tissue were uniformly invaded in the whole pore networks at 16 weeks. Interestingly, the neo-tissue ingrowth was facilitated in the 450 μm and 600 μm scaffolds after 2 weeks and higher extent of bone regeneration and remodeling at the later stage. These new findings provide critical information on how engineered porous architecture impact bone regeneration in vivo. Simultaneously, this study shows important implications for optimizing the porous scaffolds design by advanced additive manufacture technique to match the clinical translation with high performance.</p>
+</blockquote>
+<a id="more"></a>
+<p>大孔支架中孔隙的空间维度和互连性在促进内源性细胞迁移和骨组织生长方面具有特别重要的意义。本文在临界尺寸的股骨缺损模型中，评估了不同孔径的非定向生物陶瓷支架的长期体内生物学性能。通过湿化学沉淀法制备了6%的Mg-取代硅灰石(CSi-Mg6)粉体，并通过陶瓷立体光刻技术打印了支架，孔径符合设计尺寸(200、320、450、600 μm)。μCT和组织学分析均表明，200μm支架在整个阶段(2-16周)骨组织生长迟缓，但320μm支架在6-10周时多孔结构中心有可观的骨组织，16周时成熟的骨组织均匀侵入整个孔网。450μm和600μm支架在2周后促进了新组织的生长，后期的骨再生和重塑程度更高。这些新发现为工程多孔结构如何影响体内骨再生提供了关键信息。同时，该研究显示了通过先进的增材制造技术优化多孔支架设计，以匹配临床转化的高性能的重要意义。</p>
+<ul>
+<li>设计了宽度不同高度相同的互连孔支架</li>
+<li>大多数现有研究都是针对体内早期骨再生阶段，而本文研究了整个骨修复阶段</li>
+</ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>支架是骨组织工程研究的核心(centerpiece)，其设计和性能至关重要。支架的化学成分和孔结构在治疗承重骨缺损中尤为重要（be of particular/paramount importance）。支架的孔隙率、孔径和孔的互连性会影响营养物质的运输，影响组织再生。<br>一些研究表明，孔径和互连性可能决定血管生成和促进骨生长。但是大多数研究都是在体内的<strong>早期阶段</strong>进行的，缺少孔径在<strong>整个骨修复阶段</strong>的研究。另外，传统制造技术表现出难以定制复杂支架形状和内部孔结构、互连性差等缺点。<br>近年来，计算机辅助设计（computer-aided design, CAD）和增材制造（additive manufacture, AM）技术已经显著增强了制造多孔支架的能力。可以使用陶瓷立体光刻技术（ceramic stereolithography）实现具有精确定制孔径的多孔支架。<br>为了理解孔尺寸对骨组织生长的影响，必须保持生物活性支架的多孔结构能维持稳定，避免快速的生物降解。烧结的掺杂镁的硅酸钙（Mg-doped calcium silicate, CSi-Mg）最近得到证实可以缓慢降解。<br>本文假设长期的体内植入研究有助于正确地得到孔结构对骨组织生长的影响。基于该假设，从μCT重建和临界骨缺损模型分析了方形孔支架。根据得到的数据，本文提出了两个设计支架和评估骨生长的参数。</p>
+<p>最后一段结构可借鉴：<br><strong>To clarify the above concerns, it is reasonable to postulate that</strong> a long-term implantation study in vivo may be helpful for capturing the whole bone repair stages and correctly conclude the pore architectures do influence the progress of bone tissue growth. <strong>Based on this hypothesis</strong>, the porous scaffolds with cubic pores <strong>were analyzed both from </strong>their pore architectures based on 3D μCT reconstruction <strong>and from</strong> criticalsized bone defect model studies. <strong>On the basis of the data obtained, we proposed </strong>two new indices for the design of pore parameters of 3D printing bioceramic scaffolds and assessment of bone tissue growth in the entire scaffolds.</p>
+<p><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig1.png" alt="Fig1 支架制备"></p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><h2 id="1-支架表征："><a href="#1-支架表征：" class="headerlink" title="1.支架表征："></a>1.支架表征：</h2><p>SEM显示了尺寸和形态。为了评估结构稳定性，测量了支架的应力应变曲线和峰值强度。不同参数支架的应力-应变曲线在压缩载荷下呈现出相似的响应。测量了支架在浸泡在Tris缓冲液中的质量下降程度。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig2.png" alt="Fig2 支架表征"></p>
+<h2 id="2-体内骨再生评估"><a href="#2-体内骨再生评估" class="headerlink" title="2.体内骨再生评估"></a>2.体内骨再生评估</h2><h3 id="2-1宏观评估"><a href="#2-1宏观评估" class="headerlink" title="2.1宏观评估"></a>2.1宏观评估</h3><p>轻度炎症反应主要发生在最初的两周内。4周后，愈伤组织的形成部分覆盖了植入物表面的某些部分，而10周后，组织良好的愈伤组织完全覆盖了植入物的整个表面。<br>放射学检查显示支架在术后2–16周表现出不同的生物降解进程。在4周和6周的早期阶段，用H450和H600处理的缺损修复效果最好，最坏的情况是用H200填充的骨缺损。10周后，H200支架很容易与宿主骨组织分开。这是因为H200植入物的孔隙率最低，并且降解较慢。相比之下，H600生物陶瓷支架在术后4-16周内显示出非常快的体内生物降解。而且，在16周后通过X射线检查，几乎没有发现H320和H450两组之间的材料残留差异。这表明侧壁方向上的大孔径可能有助于CSi-Mg6的新骨组织向内生长和生物降解。</p>
+<h3 id="2-2-体内μCT检查"><a href="#2-2-体内μCT检查" class="headerlink" title="2.2 体内μCT检查"></a>2.2 体内μCT检查</h3><p>图4（A，B）显示了术后2周和4周的股骨骨缺损的2D / 3DμCT图像。从纵断面和横断面看，在早期所有植入物都保持结构完整（支架显示为蓝色）。2D μCT显示，新的骨组织在2周后开始渗入H600支架的外周孔隙。</p>
+<p>通道孔中的分布从外围到中心逐渐变化，这取决于孔径和与原生骨/支架界面的距离。H200和H320组在4周后显示出非常有限的新骨组织，而某些骨组织可以生长到H450和H600支架的第二通道孔中。</p>
+<p>随着修复时间延长至6周，H450和H600组中有大量新骨组织侵入大孔结构（图4C），甚至导致10周后完全桥接骨缺损（图4D）。对于H200和H320组，在6周后一些新骨组织开始填充支架，并且此时H320组的成骨更多。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig4.png" alt="Fig4 μCT"></p>
+<p>在植入后期，通过μCT评价骨组织平行于支架纵轴的空间分布，将支架划分为三个主要区域（Ø 5.5、3.5、1.5 mm）。H200组的骨形成在不同区域显得不太均匀，在中心区（Ø 1.5 mm；图5A）没有或几乎没有观察到。然而，对于用H320支架填充的缺损，新的骨组织延伸到植入物的中心区域，贯穿整个多孔支架（图5B）。值得注意的是，与H320组相比，H450和H600组在中心大孔中的骨组织成熟度较低（图5C和D）。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig5.png" alt="Fig5 μCT"></p>
+<blockquote>
+<p>BV/TV (bone volume versus the total volume of defect)<br>Tb·N (Trabecular Numbers) </p>
+</blockquote>
+<p>另一方面，定量的BV/TV和Tb-N值与上述观察结果一致（图6），分别反应了骨缺损中新骨组织的数量和骨小梁密度。H450组和H600组在2-10周的BV/TV数据要高得多，这意味着骨组织的持续生长，导致Tb-N数据增加，从而达到高效的骨修复（图6B）。但有趣的是，H600组的BV/TV数据从10周到16周呈明显下降趋势。相比之下，H200组的BV/TV和Tb-N数据增长极为缓慢，表明新的骨组织难以通过支架的小侧壁孔形成。而H320组在6-16周内测得BV/TV和Tb-N值稳步上升，16周时甚至优于H450和H600组。</p>
+<p><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig6.png" alt="Fig6 统计结果柱状图"></p>
+<h3 id="2-3-体内组织学评估"><a href="#2-3-体内组织学评估" class="headerlink" title="2.3 体内组织学评估"></a>2.3 体内组织学评估</h3><p>组织学染色分析旨在考察大孔支架与小孔支架相比是否具有优越性。将PMMA包埋骨标本横向切开后，在光学显微镜下很容易观察到支架在圆形骨缺损周围的横截面，McNeal染色图像显示出更清晰的多孔网络和组织/支架界面。在不同的侧壁孔径下，支架的新骨生长程度不同（图7）。H200支架不能为新骨组织的生长提供多孔基质，4周时支架内主要是非钙化组织（图7A）。对于H320支架，成骨细胞迁移到周围的孔隙中，但在早期只观察到非常有限的骨样组织形成（图7B）。然而，组织学分析(图7C和D)连同μCT切片(图4B)揭示了原生骨和多孔生物材料之间的连接。值得注意的是，新骨组织从支架外围渗透到H450和H600支架中，显示出预期的新骨组织和生物陶瓷支架之间的附着和整合。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig7.png" alt="Fig7 组织学染色"></p>
+<p>6-16周后，McNeal染色分别证实了组织-材料界面的矿化、新骨生长以及组织学演变（图8A）。观察到H450组从支架外围到中心区保持了稳定的成骨反应，最终在16周时，在整个支架结构中获得了与H600组近似的可观的成熟骨组织。然而，H200和H320组的骨形成速度较慢，这可能是由于支架中相互连接的小孔的限制，尤其是前者在10周后新矿化组织较少。另一方面，由于H450和H600组中陶瓷支柱的明显生物降解和手术部位的完全骨结合，骨缺损边缘不易识别。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig8.png" alt="Fig8 组织学染色"></p>
+<p>同时，BS/TS(%)的定量形态分析也证实，H450组和H600组在早期与H200组和H320组相比具有明显的成骨能力，而后期在16周时，新骨形成出现退化(图9)。在整个植入过程中，H450组的BS/TS值最高。同时，H320组的骨再生能力稳步上升，但后期不如H600组。<br><img src="/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/fig9.png" alt="Fig9 新骨形成"></p>
+<h3 id="2-4-体内相转化化学成分评价"><a href="#2-4-体内相转化化学成分评价" class="headerlink" title="2.4 体内相转化化学成分评价"></a>2.4 体内相转化化学成分评价</h3><p>采用SEM/EDS分析，分别检测6周和16周后钙硅酸盐支架向磷灰石类骨矿物的转化过程和元素分布。</p>
+<h1 id="discussion"><a href="#discussion" class="headerlink" title="discussion"></a>discussion</h1><p>-与孔径相比，支架孔隙率对加速或延迟体内早期骨再生效率影响较小</p>
+<blockquote>
+<p>In comparison with the pore size, the scaffold porosity is less critical for accelerating or delaying the early-time osteoregenerative efficiency in vivo. [*]</p>
+</blockquote>
+<p><em>P. Kasten, I. Beyen, P. Niemeyer, R. Luginbuhl, M. Bohner, W. Richter<br>Porosity and pore size of beta-tricalcium phosphate scaffold can influence protein production and osteogenic differentiation of human mesenchymal stem cells: an in vitro and in vivo study<br>Acta Biomater., 4 (6) (2008), pp. 1904-1915</em></p>
+<p>-生物相容性和孔结构共同组成了生物材料的传导性</p>
+<blockquote>
+<p>It has long been believed that surface biocompatibility and pore structures constitute to the osteoconduction of biomaterials.</p>
+</blockquote>
+<p>总之，本文通过陶瓷立体光刻技术开发了具有精确孔结构的生物活性陶瓷支架，并系统地评估了体外孔结构参数和生物降解行为以及体内骨再生效果。Dilute Mg substitution in wollastonite有助于显着提高机械性能，有利于结构稳定性；同时，由于孔隙高度和骨传导性能的显着差异，四种类型的支架在成骨效率方面的最精细差异出现在早期和晚期。目前的实验结果首次提供证据表明，生物陶瓷支架中精确调节的孔结构具有略微不同的生物降解率，在增强骨修复方面表现出极其有趣的生物学特性。因此，这种操纵生物材料（微）结构的通用 CAD 模型优化过程提供了一种生产具有合理设计的生物活性支架的方法，以实现有前景的临床转化。</p>
 ]]></content>
       <categories>
-        <category>journal</category>
+        <category>literature</category>
       </categories>
       <tags>
-        <tag>journal</tag>
+        <tag>research; bone regeneration</tag>
       </tags>
   </entry>
   <entry>
@@ -4416,6 +4467,23 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>告别2020</title>
+    <url>/2020/12/30/20201230%E5%91%8A%E5%88%AB2020/</url>
+    <content><![CDATA[<p>2020年，就这样跌跌撞撞地走到了最后。不知道是我终于长大到了“接受这个世界毒打”的年纪，还是恰巧见证了历史洪流里的一次漩涡。这一年像一部魔幻现实主义小说，处处充满着不真实。</p>
+<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>有时候走在回宿舍的路上，经过文昌小区大门时，会有一种恍惚的感觉，仿佛误入了另一个世界。铁锅与灶台碰撞发出乒乒乓乓的声音，锅里的食物欢快地滋滋啦啦，小饭店老板吆喝着“帅哥/美女吃点啥”。大门口北边有个不起眼的角落，有些破落，靠墙横着一根绳，天气好的时候会晾一排小孩子的衣服，小小的上衣裤子在细细的绳子上晃来晃去。入冬后挂了一排腊肠，每一节都饱满圆润，整整齐齐等着被风干。西装革履和光鲜亮丽只能是生活的点缀，锅碗瓢盆柴米油盐才是生活的本色，朴实却拥有一种让人感到踏实的力量。<br>因为疫情，前半年几乎都是在家度过的。熟悉的家给人的感受是任何人任何事都无法替代的，因为在这里每一个角落都沉淀了十几年的光阴。看到客厅墙上一列横线，就能想起每年在这里记录身高的场景；书桌上深深浅浅的划痕，是小学的我做手工留下的，慢慢长大才知道用刀时要在桌上垫块东西才不会损伤桌面；书房角落里的一块墙上被贴了各种各样的小贴纸，以及从画册上剪下来的卡通人物，也算是那个年代的一点点“艺术启蒙”。为了改善这个20多年的老房子灰头土脸的面貌，3月份在家时集中两天时间把所有墙面都重刷了一遍，收拾东西时把小时候玩的大部分玩具都扔掉了（其实大部分都是各种破烂，装在一个透明塑料袋里）。看着这些东西在眼前消失，终归是有些不舍，但时间永远不会停下脚步，该学会告别就要果断地告别，美好的东西就让它留在回忆里，新的生活依然值得期待。</p>
+<h3 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h3><p>人的潜力是无穷的。在压力之下，我才发现一天里同时处理的事情竟然可以这么多，连续不断工作极限竟然可以这么高。坚持不下去的时候会变成一只不想给自己加油打气的小强，不知道努力的意义在哪里。但当有一点点收获或者肯定时，又会觉得付出的一切还是值得的。今年这种起起伏伏的体会似乎格外多。做科研要坐得住冷板凳，但现实环境逼得大家都不得不追求些东西。怎样找到科研和生活的平衡，以及有意义和获得现实收益之间的平衡，可能是我接下来需要学会的事。<br>这一年最多的负面情绪是压抑和混乱。对于我个人而言，还有焦虑。我始终认为这种焦虑来自自身能力与期望的不匹配。人生就像登山，随着自己位置越来越高，看到的风景也越来越美，但路也愈加坎坷陡峭，身边同行的人也更加强大和优秀。这样的环境会在无形中催促着自己，不要停下来，要继续努力。就像《乘风破浪的姐姐》里，郑希怡说过，姐姐们不是想赢，而是不想输。金字塔尖的位置只有一个，大部分人无意争取，只是不想做塔底罢了。</p>
+<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>今年一大收获是，更清晰地认识到了自己的不足。比如害怕改变和不稳定，因此在大决策面前有点畏手畏脚。还有看问题站的角度不够高，往往只能看到局部而不能从全局考虑。最后是心态不够稳，遇事容易慌张。希望明年的自己可以有更坚定更强大的内心，提高“钝感力”，更勇敢和坦然。<br>当然，也不能忽视这一年自己的成长。过去的很多年，我都很少关注自己内心的声音。按部就班地生活学习，许多事情都是被周围的环境推着走，几乎从来不会思考我自己到底想要什么，不会向别人输出我真正的感受。这一年我一直在有意识地锻炼自己，主动表达，主动选择。虽然事实证明我还没有完全改变，但我能意识到这件事并且为之努力，相信未来会越来越好。</p>
+<h3 id="感恩"><a href="#感恩" class="headerlink" title="感恩"></a>感恩</h3><p>每次回顾和总结时，总会有一些人和事只要一想起来心里就觉得很温暖。这温暖来自家人，伴侣，老师，朋友，甚至陌生人，猫猫狗狗，树叶云彩。那些生活中的小细节就像夜空中的星星，微弱渺小，却让整个昏暗的天空亮了起来。感恩有你。</p>
+<p>虽然世事无常，各种意料之外的事层出不穷，但天大的事也抵不过人的强大。当冲出重围后，再回头看来时的路，心里会多一分平静和从容。再次踏上征程，面前的一切也不过如此。再见2020，新的一年，更强大的我来了。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -4509,25 +4577,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>others</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博士生小张的第一年</title>
-    <url>/2021/04/22/20210422%E5%8D%9A%E5%A3%AB%E7%94%9F%E5%B0%8F%E5%BC%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B9%B4/</url>
-    <content><![CDATA[<p>很久没有更新博客了。每天忙忙碌碌也不知道在忙些啥。从博士入学到现在，算起来有一整年了。其实选择读博这条路的时候，心里就大概知道即将要面对前所未有的挑战，提前做好了心理准备，但真正经历时还是感慨颇多。</p>
-<p>在国内，正在读博的人通常就会被称为博士。而国外称已经拿到博士学位的人为doctor，比如Dr. XX，正在读但还没拿到学位的只能是candidate。在没拿到学位时，更准确的说法其实是博士生。相对来说博士入学门槛较低，真正能经过这几年的训练，达到博士应有的科研水平、思维能力和心理素质的，才配得上这个博士头衔。就像翟天临，被曝光之后数年依然时不时被网友拉出来“鞭尸”，正是因为他戳中了无数科研人的痛点，让曾经折磨和压抑着他们的一切变得不值一提。</p>
-<p>本来按照计划20年2月开学到校后我就要博士入学了，没想到突如其来的疫情打乱了所有的计划。4月份疫情有所缓解时，学校开始筹划毕业生第一批返校。虽然我也是毕业年级，学院考虑到我已经转博，不需要回校写论文答辩，因此通知我第二批返校（五月之后）。在等待期间，学院决定在线上完成新学期报到注册。当我坐在家里，在电脑屏幕的线上会议里看到“开学典礼”四个大字，以及旁边整齐排列的一个个头像和昵称时，感觉像做梦一样。<br>5月，返校时间再次推迟待定。最后直到8月才返回了学校。此时我的舍友们已经走上了天南海北的工作岗位，理想去上海工作，实验室的小伙伴也答辩结束，开始了各自新的人生旅程。疫情期间的严格管控让原本热闹的校园变得异常冷清，留在原地的我其实什么都没变，但周围的一切仿佛完全变了。这期间还有一个小插曲，到校第二天就被宿管阿姨要求搬宿舍，腾出空房间给新生，之后又要给我们宿舍安排至满员（一般博士生宿舍是两到三人），一番与学校后勤机构的交涉后，终于还是我们妥协了。住在四人间没有独立卫浴的宿舍里，每天独自去食堂吃饭，这种物是人非一度让人觉得空落落的。</p>
-<p>很快，这种情绪就被改文章带来的冲击打击得烟消云散。在文章已经快要成稿时突然发现假设中的一个理论错误。辛辛苦苦建起了一座大楼，突然发现地基是歪的。当时的感觉像是心里的一块巨石，悄无声息地裂开，然后碎了一地。接下来就是两个多月的埋头苦干重新实验。重新计算的结果达到了一个多T，记录实验参数的表格密密麻麻写了几百行。期间无数次觉得自己一无是处，不适合走科研这条路。冷静下来想想，对于科研人来说，延迟满足可能是一个必备的技能。一篇文章或是一个项目的完成往往需要一年甚至数年时间。实验失败文章被拒进度缓慢， 许多事情都很容易让人陷入自我否定的消极情绪。但是没有人会在乎你在黑暗中默默前行时究竟经历了什么。最重要的还是着眼于当下，只要始终在朝着自己的目标前进，偶尔停下来歇歇脚也没有关系。永远要相信，总有一天，付出的每一分辛苦都会变成切实的回报。</p>
-<p>在论文写完准备投稿时有幸遇到了W老师，给我们提出了许多宝贵的意见和建议，甚至抽出时间从头到尾仔细地帮我们改正了所有的表达和语法错误。对于我这样初入科研届的菜鸟，能有这样一位良师耐心地指导，真是我的福气。在微信里，W老师单独给我发消息，说，小张，投稿之前觉得英语没把握的地方再发给我看看。我一时激动得手足无措，连忙道谢，苍白的文字难以表达我的感激之情。</p>
-<p>21年春节前，疫情又有小规模爆发的趋势，学校突然决定提前放假，又遇上一批进口试剂盒疑似携带病毒的事情，放假前拿到实验数据的计划眼看要泡汤。几经波折终于找到了做实验的人和地方，然而最终却因为经验不足加上急于求成，损坏了所有的结果。为了赶时间，做实验的那天从早上到下午将近四点滴水未进，没想到却得到当头一棒。后悔懊恼疑惑焦虑，因为我的失误毁掉了太多人共同努力的心血。这次经历给了我非常深刻的教训，以至于之后的每次实验都会慎之又慎。令我没有想到的是，这次事件给我最大安慰的是导师，当我怀着要被批评的心情跟他讲这件事时，他却说没关系，尽力争取过就行了，安心回家过年吧。</p>
-<p>打不倒你的都会使你更强大。这种密集而高强度的训练就像在我的身上装上一片片铠甲，尽管过程有些漫长难熬，但很长一段时间后再低头看，这铠甲已经逐渐变得坚实而有力。而我慢慢也有了掌控方向的力量感，像去年经常开车的时候，突然有一天找到了与车一体的感觉。在这个正当年的年纪去读博或许是一个正确的选择，没有太多杂事和杂念干扰，只需要拼命汲取养分让自己成长。</p>
-<p>断断续续写了一个月才写完这篇文字，在这个过程中也反思和收获了不少。谨以此文记录初出茅庐小张的第一年，愿未来可期。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
       </tags>
   </entry>
 </search>
