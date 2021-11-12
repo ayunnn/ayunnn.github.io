@@ -4580,4 +4580,18 @@ x=\phi (t)\\ y=\omega (t)
         <tag>others</tag>
       </tags>
   </entry>
+  <entry>
+    <title>server2019服务器远程连接桌面每次都出现新桌面新会话解决办法</title>
+    <url>/2021/11/12/2019%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%87%BA%E7%8E%B0%E6%96%B0%E6%A1%8C%E9%9D%A2%E6%96%B0%E4%BC%9A%E8%AF%9D/</url>
+    <content><![CDATA[<p><strong>问题</strong>：同样的用户每次远程连接桌面都出现新的桌面，类似于重启后的界面。登录多次后用户中显示多个同名用户。</p>
+<p><strong>应急</strong>：在任务管理器-用户里，右键点用户名，可以对不需要的用户进行注销，也可以跳转重新连接需要的会话。</p>
+<p><strong>解决</strong>：从运行中输入Gpedit.msc 打开组策略管理器。在计算机配置-管理模板-Windows组件-远程桌面服务-远程桌面会话主机-连接，将远程桌面服务用户限制到单独的远程桌面服务会话启用。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>computer</tag>
+      </tags>
+  </entry>
 </search>
