@@ -253,38 +253,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在hexo博客中渲染mathjax数学公式</title>
-    <url>/2018/11/06/20181106%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<p>有时候我们需要在文档中写数学公式，常用的markdown编辑器大多都集成了Mathjax，可以用Latex格式书写数学公式。而基于Hexo的博客中很多主题也集成了对mathjax的支持。但是实际上默认情况下并不能直接编辑和显示数学公式。下面以我所使用的Hexo 6.0为例，详细记录数学公式不能显示的解决办法。</p>
-<a id="more"></a>
-<h3 id="修改next主题配置文件"><a href="#修改next主题配置文件" class="headerlink" title="修改next主题配置文件"></a>修改next主题配置文件</h3><p>在next的主题配置文件<code>themes\next\_config.yml</code>中搜索<code>mathjax</code>，找到以下这段设置。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Math Equations Render Support</span></span><br><span class="line">math:</span><br><span class="line">enable: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # Default(<span class="literal">true</span>) will load mathjax/katex<span class="built_in"> script </span>on demand</span><br><span class="line">  # That is it only render those<span class="built_in"> page </span>who has <span class="string">&#x27;mathjax: true&#x27;</span> <span class="keyword">in</span> Front Matter.</span><br><span class="line">  # <span class="keyword">If</span> you <span class="builtin-name">set</span> it <span class="keyword">to</span> <span class="literal">false</span>, it will load mathjax/katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  engine: mathjax</span><br><span class="line">  #engine: katex</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>设置enable为true，并确认engine为mathjax。</p>
-<h3 id="更换hexo的渲染引擎"><a href="#更换hexo的渲染引擎" class="headerlink" title="更换hexo的渲染引擎"></a>更换hexo的渲染引擎</h3><p>按照网上的教程，hexo 默认的渲染引擎是 marked，但是 marked 不支持 mathjax。另外 marked 引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线_代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签而出错。<br>因此需要更换渲染引擎，将 marked 卸载，然后安装 kramed。执行以下两条命令：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">uninstall</span> hexo-renderer-marked <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-renderer-kramed <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-<p>而我刚做到这一步就出错 &gt;_&lt; 报错信息第一行是一个warning: </p>
-<p>npm WARN checkPermissions Missing write access to …</p>
-<p>后面还有一串ERR。</p>
-<p>一番查找后发现，可能是因为在安装时没有使用管理员权限，导致node_modules文件夹没有安装完全，再安装时无法覆盖写入。</p>
-<p>解决办法很简单，删除node_modules文件夹，然后以管理员身份运行cmd，执行<code>npm install</code>即可。</p>
-<h3 id="解决语义冲突"><a href="#解决语义冲突" class="headerlink" title="解决语义冲突"></a>解决语义冲突</h3><p>更换引擎后行间公式可以正确渲染，但是行内公式还是会有问题。解决办法是，到hexo目录下，找到node_modules\kramed\lib\rules\inline.js，修改第11行的escape，取消对\,{,}的转义。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">//escape: /^\\([<span class="string">\\`*&#123;&#125;\[\</span>](<span class="link"></span>)#$+\-.!<span class="emphasis">_&gt;])/,</span></span><br><span class="line"><span class="emphasis">escape: /^\\([<span class="string">`*\[\</span>](<span class="link"></span>)#$+\-.!_</span>&gt;])/,</span><br></pre></td></tr></table></figure>
-<p>另外还有第20行em的修改</p>
-<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">//em: /^<span class="symbol">\b</span>_((?:__|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)_<span class="symbol">\b</span>|^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br><span class="line">em: /^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br></pre></td></tr></table></figure>
-<p>现在可以<code>hexo clean</code>, <code>hexo g</code>查看效果了！</p>
-<h3 id="文章头设置开关"><a href="#文章头设置开关" class="headerlink" title="文章头设置开关"></a>文章头设置开关</h3><p>最后，在每次写新的文章时，需要在Front-matter里设置是否启用mathjax.</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">关于</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-07-25 09:25:03</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-<p>另外在这里提一下，每次new的文章头格式可以自己设置，比如如果希望默认mathjax是true，可以在hexo目录下的scaffolds\post.md中设置默认格式，在<code>title:</code>、<code>date:</code>等后面添加 <code>mathjax: true</code> 即可。</p>
-<p>Done~</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>贝塞尔曲线简介</title>
     <url>/2018/10/25/20181025%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<p>贝塞尔曲线（Bézier curve）属于经常听说但又不知道到底是什么的一类词。偶然需要用到，就简单地了解并在这里记录一下。</p>
@@ -320,22 +288,35 @@
       </tags>
   </entry>
   <entry>
-    <title>观《帝女花》</title>
-    <url>/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/</url>
-    <content><![CDATA[<p>刚刚过去的双十一，可能会成为我许多年后也难以忘怀的一个日子。（当然不是因为剁了手:) ）在江边的江苏大剧院戏剧厅，听到于魁智和李胜素两位大师的现场演出《帝女花》，以及最后的返场《坐宫》，内心汹涌澎拜激动无以言表，只能在谢幕时跟着上千名素不相识的观众一起欢呼鼓掌，分享我们的喜悦。<br><a id="more"></a><br><img src="/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/d1.jpg" alt="帝女花"></p>
-<p>《帝女花》这部戏对我来说可能有着不太一样的意义。大二的戏曲选修课，第一节课算是入门，为了让我们认识戏曲、对戏曲感兴趣，赵老师在课上放了一段张国荣和汪明荃演唱的粤剧《帝女花·香夭》。尽管我之前就很喜欢张国荣，也看过他的《霸王别姬》中伶人的扮相，但如此深情投入真正唱着戏曲的张国荣还是给了我极大的震撼，仿佛向我打开了新世界的大门。看到他眉眼中流露的真情，听到粤剧婉转凄美的腔调，我突然发现原来戏曲也可以如此动人，从此一发不可收拾。如今这部经典的粤剧由国家京剧院改编为同名京剧，必须要到现场支持!</p>
-<blockquote><p>剧情简介：<br>明末崇祯皇帝之女长平公主，奉帝命选婿，与都尉周世显含樟树下定情。闯王李自成破城，大明覆灭，崇祯手刃长平，世显施救未果。长平未至气绝，被大臣周钟、周宝伦父子救返藏于家中。清军灭闯军，于皇城立国。长平闻知周钟父子欲降清，得周钟之女周瑞兰相助，避居庵中。世显至此，巧遇化作女尼的长平，几番试探诉情，长平与之相认。周钟父子寻迹而来，威迫利诱其一同返宫。世显诈降，支开旁人后向长平谏言，夫妻决定为使清帝善葬崇祯、释放太子，佯装返宫。金殿之上，二人与清帝周旋智斗，默契配合，终偿所愿。长平、世显于宫中樟树下交拜，随即双双饮砒霜殉国。</p>
-</blockquote>
-<p>整场下来，印象最深的一个是庵遇，世显和长平公主门里门外相认不相认内心斗争的一段。两人隔着一扇“假想的门”，这一侧苦苦劝说，那一侧不愿面对，最终还是因为自己所担负的责任而毅然决然地走出来。作为前朝的公主，眼看着父皇丢了江山，杀母弑女，横尸煤山，而年幼的弟弟身陷囹圄性命不保，只剩下她独自一人，这需要多么强大的内心和勇气去面对啊。另一个片段是最后的香夭，两人约好在含樟树下饮砒霜酒自尽，长平公主偷偷望着世显，看到他面带愁容双眼含泪，内心愧疚连累了他，而世显也是深爱着长平，唱到只可惜要身着凤冠霞帔入土，实在是让人难过。</p>
-<p>其实除了两位大师，其他演员的演出也都相当精彩，比如崇祯、周钟，毕竟是国家京剧院一团，各方面水准都相当高。不过我觉得京剧改编的剧本稍有些单薄，虽然故事比较完整清晰，但要两个多小时讲完，中间很多地方都删减和省略了，可能没有那么饱满。</p>
-<p><em>图片来自荔枝网<a href="http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1">http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1</a></em></p>
+    <title>在hexo博客中渲染mathjax数学公式</title>
+    <url>/2018/11/06/20181106%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<p>有时候我们需要在文档中写数学公式，常用的markdown编辑器大多都集成了Mathjax，可以用Latex格式书写数学公式。而基于Hexo的博客中很多主题也集成了对mathjax的支持。但是实际上默认情况下并不能直接编辑和显示数学公式。下面以我所使用的Hexo 6.0为例，详细记录数学公式不能显示的解决办法。</p>
+<a id="more"></a>
+<h3 id="修改next主题配置文件"><a href="#修改next主题配置文件" class="headerlink" title="修改next主题配置文件"></a>修改next主题配置文件</h3><p>在next的主题配置文件<code>themes\next\_config.yml</code>中搜索<code>mathjax</code>，找到以下这段设置。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Math Equations Render Support</span></span><br><span class="line">math:</span><br><span class="line">enable: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # Default(<span class="literal">true</span>) will load mathjax/katex<span class="built_in"> script </span>on demand</span><br><span class="line">  # That is it only render those<span class="built_in"> page </span>who has <span class="string">&#x27;mathjax: true&#x27;</span> <span class="keyword">in</span> Front Matter.</span><br><span class="line">  # <span class="keyword">If</span> you <span class="builtin-name">set</span> it <span class="keyword">to</span> <span class="literal">false</span>, it will load mathjax/katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  engine: mathjax</span><br><span class="line">  #engine: katex</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>设置enable为true，并确认engine为mathjax。</p>
+<h3 id="更换hexo的渲染引擎"><a href="#更换hexo的渲染引擎" class="headerlink" title="更换hexo的渲染引擎"></a>更换hexo的渲染引擎</h3><p>按照网上的教程，hexo 默认的渲染引擎是 marked，但是 marked 不支持 mathjax。另外 marked 引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线_代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签而出错。<br>因此需要更换渲染引擎，将 marked 卸载，然后安装 kramed。执行以下两条命令：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">uninstall</span> hexo-renderer-marked <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-renderer-kramed <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>而我刚做到这一步就出错 &gt;_&lt; 报错信息第一行是一个warning: </p>
+<p>npm WARN checkPermissions Missing write access to …</p>
+<p>后面还有一串ERR。</p>
+<p>一番查找后发现，可能是因为在安装时没有使用管理员权限，导致node_modules文件夹没有安装完全，再安装时无法覆盖写入。</p>
+<p>解决办法很简单，删除node_modules文件夹，然后以管理员身份运行cmd，执行<code>npm install</code>即可。</p>
+<h3 id="解决语义冲突"><a href="#解决语义冲突" class="headerlink" title="解决语义冲突"></a>解决语义冲突</h3><p>更换引擎后行间公式可以正确渲染，但是行内公式还是会有问题。解决办法是，到hexo目录下，找到node_modules\kramed\lib\rules\inline.js，修改第11行的escape，取消对\,{,}的转义。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">//escape: /^\\([<span class="string">\\`*&#123;&#125;\[\</span>](<span class="link"></span>)#$+\-.!<span class="emphasis">_&gt;])/,</span></span><br><span class="line"><span class="emphasis">escape: /^\\([<span class="string">`*\[\</span>](<span class="link"></span>)#$+\-.!_</span>&gt;])/,</span><br></pre></td></tr></table></figure>
+<p>另外还有第20行em的修改</p>
+<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">//em: /^<span class="symbol">\b</span>_((?:__|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)_<span class="symbol">\b</span>|^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br><span class="line">em: /^<span class="symbol">\*</span>((?:<span class="symbol">\*</span><span class="symbol">\*</span>|[<span class="symbol">\s</span><span class="symbol">\S</span>])+?)<span class="symbol">\*</span>(?!<span class="symbol">\*</span>)/,</span><br></pre></td></tr></table></figure>
+<p>现在可以<code>hexo clean</code>, <code>hexo g</code>查看效果了！</p>
+<h3 id="文章头设置开关"><a href="#文章头设置开关" class="headerlink" title="文章头设置开关"></a>文章头设置开关</h3><p>最后，在每次写新的文章时，需要在Front-matter里设置是否启用mathjax.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">关于</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-07-25 09:25:03</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>另外在这里提一下，每次new的文章头格式可以自己设置，比如如果希望默认mathjax是true，可以在hexo目录下的scaffolds\post.md中设置默认格式，在<code>title:</code>、<code>date:</code>等后面添加 <code>mathjax: true</code> 即可。</p>
+<p>Done~</p>
 ]]></content>
       <categories>
-        <category>journal</category>
+        <category>others</category>
       </categories>
       <tags>
-        <tag>journal</tag>
-        <tag>观后感</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -369,6 +350,25 @@
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观《帝女花》</title>
+    <url>/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/</url>
+    <content><![CDATA[<p>刚刚过去的双十一，可能会成为我许多年后也难以忘怀的一个日子。（当然不是因为剁了手:) ）在江边的江苏大剧院戏剧厅，听到于魁智和李胜素两位大师的现场演出《帝女花》，以及最后的返场《坐宫》，内心汹涌澎拜激动无以言表，只能在谢幕时跟着上千名素不相识的观众一起欢呼鼓掌，分享我们的喜悦。<br><a id="more"></a><br><img src="/2018/11/12/20181112%E8%A7%82%E3%80%8A%E5%B8%9D%E5%A5%B3%E8%8A%B1%E3%80%8B/d1.jpg" alt="帝女花"></p>
+<p>《帝女花》这部戏对我来说可能有着不太一样的意义。大二的戏曲选修课，第一节课算是入门，为了让我们认识戏曲、对戏曲感兴趣，赵老师在课上放了一段张国荣和汪明荃演唱的粤剧《帝女花·香夭》。尽管我之前就很喜欢张国荣，也看过他的《霸王别姬》中伶人的扮相，但如此深情投入真正唱着戏曲的张国荣还是给了我极大的震撼，仿佛向我打开了新世界的大门。看到他眉眼中流露的真情，听到粤剧婉转凄美的腔调，我突然发现原来戏曲也可以如此动人，从此一发不可收拾。如今这部经典的粤剧由国家京剧院改编为同名京剧，必须要到现场支持!</p>
+<blockquote><p>剧情简介：<br>明末崇祯皇帝之女长平公主，奉帝命选婿，与都尉周世显含樟树下定情。闯王李自成破城，大明覆灭，崇祯手刃长平，世显施救未果。长平未至气绝，被大臣周钟、周宝伦父子救返藏于家中。清军灭闯军，于皇城立国。长平闻知周钟父子欲降清，得周钟之女周瑞兰相助，避居庵中。世显至此，巧遇化作女尼的长平，几番试探诉情，长平与之相认。周钟父子寻迹而来，威迫利诱其一同返宫。世显诈降，支开旁人后向长平谏言，夫妻决定为使清帝善葬崇祯、释放太子，佯装返宫。金殿之上，二人与清帝周旋智斗，默契配合，终偿所愿。长平、世显于宫中樟树下交拜，随即双双饮砒霜殉国。</p>
+</blockquote>
+<p>整场下来，印象最深的一个是庵遇，世显和长平公主门里门外相认不相认内心斗争的一段。两人隔着一扇“假想的门”，这一侧苦苦劝说，那一侧不愿面对，最终还是因为自己所担负的责任而毅然决然地走出来。作为前朝的公主，眼看着父皇丢了江山，杀母弑女，横尸煤山，而年幼的弟弟身陷囹圄性命不保，只剩下她独自一人，这需要多么强大的内心和勇气去面对啊。另一个片段是最后的香夭，两人约好在含樟树下饮砒霜酒自尽，长平公主偷偷望着世显，看到他面带愁容双眼含泪，内心愧疚连累了他，而世显也是深爱着长平，唱到只可惜要身着凤冠霞帔入土，实在是让人难过。</p>
+<p>其实除了两位大师，其他演员的演出也都相当精彩，比如崇祯、周钟，毕竟是国家京剧院一团，各方面水准都相当高。不过我觉得京剧改编的剧本稍有些单薄，虽然故事比较完整清晰，但要两个多小时讲完，中间很多地方都删减和省略了，可能没有那么饱满。</p>
+<p><em>图片来自荔枝网<a href="http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1">http://news.jstv.com/a/20181111/1541979810692.shtml?jsbcApp=1</a></em></p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
+        <tag>观后感</tag>
       </tags>
   </entry>
   <entry>
@@ -428,30 +428,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>2019元旦杂记</title>
-    <url>/2019/01/04/201901042019%E5%85%83%E6%97%A6%E6%9D%82%E8%AE%B0/</url>
-    <content><![CDATA[<p>大概有好几年没有感受过如此来势汹汹的流感了，一切就像多米诺骨牌，风平浪静中偶然倒下第一块，便一发不可收拾地引起了所有骨牌的轰然倒塌。原本期待已久的聚会和元旦假期，就在这昏昏沉沉中溜走了。</p>
-<p>过去的2018发生了很多，无论是就我本身，还是对于整个中国甚至世界。从我自身来说，当下我所做的每一个决定，在许多年后回头看来，也许就会变成转变人生道路方向的重要路口。既然未来无法预知，现在能做的只有尽可能看得更清更远，勇敢地做出选择并坚持下去，不后悔。身处这个瞬息万变的时代，每个人都不得不被推着往前走，这个世界，没有谁是永远的上帝吧。<br><a id="more"></a><br>躺在床上发烧睡不着的时候，脑子里就像过电影一样回放起这些年的点点滴滴。我感觉自己就是一条灰色的河流，无数的片段幻化成飘渺的白烟，一缕缕汇入水中，依稀还可以透过烟雾看到熟悉的面庞。胡思乱想间，仿佛又看到那个刚进入大学的我，在东大度过第一个元旦时，写下一篇未曾公开的文字。我有点庆幸自己记下这细细碎碎的话语，毕竟那个眼里透着好奇闪着光的小朋友，再也不会回来了。</p>
-<blockquote><p>&#8195;&#8195;2013年是我生命中值得铭记的一年。这一年，我经历了高三的书山题海，高考考场的拼杀。这一年，我告别了十八年朝夕相处的父母，离开家乡，踏入完全陌生的城市。</p>
-<p>&#8195;&#8195;记忆中高三的冬天，是冷得彻骨的微微发亮的清晨，是月色朦胧中被人群裹挟走回宿舍的夜晚。早晨食堂的炸饼夹鸡蛋和香肠似乎还存留着一丝温暖，面包坊香甜的味道永远那么诱人。</p>
-<p>&#8195;&#8195;时间飞速流逝，转眼到了夏天，我依然每天行色匆匆快步走过宿舍食堂教室之间的路，每天埋头于高高的书堆中奋笔疾书。那时的我每天下午下课后仍在教室学习，等食堂买饭的人少些，再一路狂奔直达食堂，迅速解决晚饭赶回教室。回来的路上洒满了落日的余晖，夕阳下的树林成了黑色的剪影，边缘泛着橘红色的光晕，令人陶醉。它提醒着我，这个世界其实如此美好。</p>
-<p>&#8195;&#8195;5月，高考备战进入了最后的阶段，各种各样的口号标语不知不觉间全都冒了出来。那一天中午，268第一次集体喊口号，听到最后三句“我要上大学！我要上大学！我要上大学！”，我的眼泪差点掉下来。</p>
-<p>&#8195;&#8195;离校前的最后一天，似乎并没有太多的伤感，大家笑着闹着拍照留念，用相机记录下亲爱的老师同学，记录下母校的一草一木，见证我们一起哭过笑过奋斗过的时光。下午同学们陆续离开，剩下我和我们空荡荡的教室。我最后一次坐在自己的座位上，那是一个靠近窗户阳光明媚的地方，抬起头便能看到班主任写的奋斗口号。教室后面的倒计时定格在那一天，四周黑板上抄写的各科题目依然拥挤在一个个小方框里，昔日里成堆的书和那些苦读的身影此时此刻都变成了满地狼藉。我们也许再也见不到老班出其不意潜入教室的身影，听不到老冯含糊不清令人昏昏欲睡的讲解，还有语文老师千篇一律雷打不动的“好，同学们——”……我们就这么，散了吗？</p>
-<p>&#8195;&#8195;高考那两天，学校里的气氛变得严肃而谨慎，仿佛一场隆重的典礼，一场曲终人散的毕业典礼。高考结束后的一段时间里，我的人生仿佛乘上了过山车，起伏转折，最终驶向了一个还算圆满也有些让人无奈的结局。想想当年我信誓旦旦下决心考到北京不去南方，而如今却来到了南京，走进了一所我从未关注过的学校，我该是伤感，还是欣喜？</p>
-<p>&#8195;&#8195;在将近一天一夜的车程后，我终于踏上了南京这片土地。一下车湿热的空气扑面而来，送上了一份不那么友好的见面礼。好在学校接站的服务把我们直接从火车站接到宿舍楼下，让我倍感温暖。印象最深的，便是东大同学和我说的第一句话:“你是哪个民族的？”</p>
-<p>&#8195;&#8195;很快我迎来了人生中第一次军训以及第一个教官——呆萌的涛哥。军训21天，我们朝夕相处，同受日晒雨淋。涛哥心思细腻而善良，对我们这帮丫头十分无语却又始终对我们极好。在军训接近尾声时，我们还认识了“小土豆”，情绪急剧变化骂过我们残酷要求我们加练的，好教官。我依然记得他那个唱着《再见》挥手转身的背影，那个毫不犹豫倒在泥坑里的侧摔，那个穿常服的最后的演示。涛哥，小土豆，还有我们最帅以及有文采的营长，你们在哪？最近好吗？</p>
-<p>&#8195;&#8195;东大的生活忙碌而充实。我庆幸自己遇到了331可爱的小伙伴们，大海，静逸以及吃货暄暄，也很开心能加入学生会，与生活实践部的部长、助理及各位干事一同努力工作。半年来我的能力得到了很大提高，也更加敢于冒险和尝试，真心感谢身边的每一个人，感谢他们给予我的帮助，感谢他们对我每一次犯错的宽容。</p>
-<p>&#8195;&#8195;我已逐渐开始喜欢上这种不一样的生活，随时可能获得惊喜、全新的体验和感悟，在这个丰富多彩的大舞台上，每个人都能找到自己擅长的角色，成为自己的主角。</p>
-<p>&#8195;&#8195;这一年，仿佛好长好长，那么多人那么多事交织在一起。这一年，充满了奋斗与收获，离别与相遇，回忆与憧憬，充满了温暖和感动。这一年，我十八岁。</p>
-<footer><strong>《这一年，我十八岁》 2014-01-04</strong></footer></blockquote>]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大雪江南未见曾</title>
     <url>/2018/12/07/20181207%E5%A4%A7%E9%9B%AA%E6%B1%9F%E5%8D%97%E6%9C%AA%E8%A7%81%E6%9B%BE/</url>
     <content><![CDATA[<blockquote>
@@ -480,6 +456,30 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2019元旦杂记</title>
+    <url>/2019/01/04/201901042019%E5%85%83%E6%97%A6%E6%9D%82%E8%AE%B0/</url>
+    <content><![CDATA[<p>大概有好几年没有感受过如此来势汹汹的流感了，一切就像多米诺骨牌，风平浪静中偶然倒下第一块，便一发不可收拾地引起了所有骨牌的轰然倒塌。原本期待已久的聚会和元旦假期，就在这昏昏沉沉中溜走了。</p>
+<p>过去的2018发生了很多，无论是就我本身，还是对于整个中国甚至世界。从我自身来说，当下我所做的每一个决定，在许多年后回头看来，也许就会变成转变人生道路方向的重要路口。既然未来无法预知，现在能做的只有尽可能看得更清更远，勇敢地做出选择并坚持下去，不后悔。身处这个瞬息万变的时代，每个人都不得不被推着往前走，这个世界，没有谁是永远的上帝吧。<br><a id="more"></a><br>躺在床上发烧睡不着的时候，脑子里就像过电影一样回放起这些年的点点滴滴。我感觉自己就是一条灰色的河流，无数的片段幻化成飘渺的白烟，一缕缕汇入水中，依稀还可以透过烟雾看到熟悉的面庞。胡思乱想间，仿佛又看到那个刚进入大学的我，在东大度过第一个元旦时，写下一篇未曾公开的文字。我有点庆幸自己记下这细细碎碎的话语，毕竟那个眼里透着好奇闪着光的小朋友，再也不会回来了。</p>
+<blockquote><p>&#8195;&#8195;2013年是我生命中值得铭记的一年。这一年，我经历了高三的书山题海，高考考场的拼杀。这一年，我告别了十八年朝夕相处的父母，离开家乡，踏入完全陌生的城市。</p>
+<p>&#8195;&#8195;记忆中高三的冬天，是冷得彻骨的微微发亮的清晨，是月色朦胧中被人群裹挟走回宿舍的夜晚。早晨食堂的炸饼夹鸡蛋和香肠似乎还存留着一丝温暖，面包坊香甜的味道永远那么诱人。</p>
+<p>&#8195;&#8195;时间飞速流逝，转眼到了夏天，我依然每天行色匆匆快步走过宿舍食堂教室之间的路，每天埋头于高高的书堆中奋笔疾书。那时的我每天下午下课后仍在教室学习，等食堂买饭的人少些，再一路狂奔直达食堂，迅速解决晚饭赶回教室。回来的路上洒满了落日的余晖，夕阳下的树林成了黑色的剪影，边缘泛着橘红色的光晕，令人陶醉。它提醒着我，这个世界其实如此美好。</p>
+<p>&#8195;&#8195;5月，高考备战进入了最后的阶段，各种各样的口号标语不知不觉间全都冒了出来。那一天中午，268第一次集体喊口号，听到最后三句“我要上大学！我要上大学！我要上大学！”，我的眼泪差点掉下来。</p>
+<p>&#8195;&#8195;离校前的最后一天，似乎并没有太多的伤感，大家笑着闹着拍照留念，用相机记录下亲爱的老师同学，记录下母校的一草一木，见证我们一起哭过笑过奋斗过的时光。下午同学们陆续离开，剩下我和我们空荡荡的教室。我最后一次坐在自己的座位上，那是一个靠近窗户阳光明媚的地方，抬起头便能看到班主任写的奋斗口号。教室后面的倒计时定格在那一天，四周黑板上抄写的各科题目依然拥挤在一个个小方框里，昔日里成堆的书和那些苦读的身影此时此刻都变成了满地狼藉。我们也许再也见不到老班出其不意潜入教室的身影，听不到老冯含糊不清令人昏昏欲睡的讲解，还有语文老师千篇一律雷打不动的“好，同学们——”……我们就这么，散了吗？</p>
+<p>&#8195;&#8195;高考那两天，学校里的气氛变得严肃而谨慎，仿佛一场隆重的典礼，一场曲终人散的毕业典礼。高考结束后的一段时间里，我的人生仿佛乘上了过山车，起伏转折，最终驶向了一个还算圆满也有些让人无奈的结局。想想当年我信誓旦旦下决心考到北京不去南方，而如今却来到了南京，走进了一所我从未关注过的学校，我该是伤感，还是欣喜？</p>
+<p>&#8195;&#8195;在将近一天一夜的车程后，我终于踏上了南京这片土地。一下车湿热的空气扑面而来，送上了一份不那么友好的见面礼。好在学校接站的服务把我们直接从火车站接到宿舍楼下，让我倍感温暖。印象最深的，便是东大同学和我说的第一句话:“你是哪个民族的？”</p>
+<p>&#8195;&#8195;很快我迎来了人生中第一次军训以及第一个教官——呆萌的涛哥。军训21天，我们朝夕相处，同受日晒雨淋。涛哥心思细腻而善良，对我们这帮丫头十分无语却又始终对我们极好。在军训接近尾声时，我们还认识了“小土豆”，情绪急剧变化骂过我们残酷要求我们加练的，好教官。我依然记得他那个唱着《再见》挥手转身的背影，那个毫不犹豫倒在泥坑里的侧摔，那个穿常服的最后的演示。涛哥，小土豆，还有我们最帅以及有文采的营长，你们在哪？最近好吗？</p>
+<p>&#8195;&#8195;东大的生活忙碌而充实。我庆幸自己遇到了331可爱的小伙伴们，大海，静逸以及吃货暄暄，也很开心能加入学生会，与生活实践部的部长、助理及各位干事一同努力工作。半年来我的能力得到了很大提高，也更加敢于冒险和尝试，真心感谢身边的每一个人，感谢他们给予我的帮助，感谢他们对我每一次犯错的宽容。</p>
+<p>&#8195;&#8195;我已逐渐开始喜欢上这种不一样的生活，随时可能获得惊喜、全新的体验和感悟，在这个丰富多彩的大舞台上，每个人都能找到自己擅长的角色，成为自己的主角。</p>
+<p>&#8195;&#8195;这一年，仿佛好长好长，那么多人那么多事交织在一起。这一年，充满了奋斗与收获，离别与相遇，回忆与憧憬，充满了温暖和感动。这一年，我十八岁。</p>
+<footer><strong>《这一年，我十八岁》 2014-01-04</strong></footer></blockquote>]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -637,28 +637,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>格子Boltzmann方法（三）——二维对流扩散问题</title>
-    <url>/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="对流扩散方程"><a href="#对流扩散方程" class="headerlink" title="对流扩散方程"></a>对流扩散方程</h1><p>了解了一维扩散方程的求解原理后，就可以逐渐将其推广至二维、三维以及流动问题。首先加入最简单的流动，本文所指的对流是流体粒子整体运动（平流），即所有粒子的宏观运动速度都相同。</p>
-<p>在笛卡尔坐标系中，一维对流扩散方程可以表示为</p>
-<script type="math/tex; mode=display">\frac{\partial \phi }{\partial t}+u\frac{\partial \phi }{\partial x}=\alpha \frac{\partial^2 \phi }{\partial x^2}</script><p>这个方程描述的是对流和扩散同时发生的过程，比如在恒定速度的水流中滴一滴墨水，墨水浓度随时间变化的情况。<br><a id="more"></a></p>
-<h1 id="格子Boltzmann法求解"><a href="#格子Boltzmann法求解" class="headerlink" title="格子Boltzmann法求解"></a>格子Boltzmann法求解</h1><p>对流扩散方程的格子玻尔兹曼方程和扩散方程的相同，即</p>
-<script type="math/tex; mode=display">f_{k}(x+\Delta x,t+\Delta t) = f_{k}(x,t)[1-\omega ] + \omega f_{k}^{eq}(x,t)</script><p>唯一的不同是在平衡分布函数上增加了表示对流效应的外力项</p>
-<script type="math/tex; mode=display">f_{k}^{eq}(x,t)=w_k\phi(x,t) \left [ 1+\frac{c_k \cdot \vec{u}}{c_s^2} \right ]</script><p>其中，$ \vec{u} $为对流速度矢量，对于二维问题，$ \vec{u}=ui+vj $，i和j分别为x方向和y方向上的单位矢量，$ c_k $为沿着流动方向的单位矢量，$ c_k = \frac{\Delta x}{\Delta t}i+\frac{\Delta y}{\Delta t}j $。对于D2Q9模型，当$c_k=1$时，声速$c_s$为$ \frac{1}{\sqrt{3}} $。</p>
-<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>100*100平板上，仅有底部温度保持为1，其他三边均为0。速度分别为u=0.1和v=0.4，介质的热扩散系数为1，模拟时间步长为400。</p>
-<p>matlab代码实现如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% D2Q9tem</span><br><span class="line">clear all</span><br><span class="line">n = <span class="number">100</span>;                % 计算区域长度</span><br><span class="line">m = <span class="number">100</span>;                % 计算区域宽度</span><br><span class="line">f = zeros(<span class="number">9</span>, n, m);     % 分布函数初始化</span><br><span class="line">feq = zeros(<span class="number">1</span>, <span class="number">9</span>);      % 平衡分布函数</span><br><span class="line">rho = zeros(n, m);      % 密度</span><br><span class="line"></span><br><span class="line">u = <span class="number">0.1</span>;                % 向上速度分量</span><br><span class="line">v = <span class="number">0.4</span>;                % 向右速度分量</span><br><span class="line">dt = <span class="number">1</span>;                 % 时间步长</span><br><span class="line">dx = <span class="number">1</span>;                 % 空间步长</span><br><span class="line">dy = dx;</span><br><span class="line"></span><br><span class="line">alpha = <span class="number">1</span>;              % 扩散系数</span><br><span class="line">ck = dx/dt;             % 格子运动速度</span><br><span class="line">csq = ck*ck;</span><br><span class="line"></span><br><span class="line">omega = <span class="number">1.0</span>/(<span class="number">3.</span>*alpha/(csq*dt)+<span class="number">0.5</span>);        % 松弛频率</span><br><span class="line">mstep = <span class="number">400</span>;                                % 迭代次数</span><br><span class="line"></span><br><span class="line">w = [<span class="number">4</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>];</span><br><span class="line">density = <span class="number">0</span>;                                % 初始值</span><br><span class="line">tw = <span class="number">1</span>;                 % 上边界温度</span><br><span class="line"></span><br><span class="line">cu = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">1</span>];        % 速度方向x</span><br><span class="line">cv = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>];        % 速度方向y</span><br><span class="line"></span><br><span class="line">% 初始化分布函数</span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            f(k,i,j) = w(k) * density;</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> % 上边界保持恒温</span><br><span class="line">                f(k, i, j) = w(k) * tw;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% 主循环</span><br><span class="line"><span class="keyword">for</span> kk = <span class="number">1</span>:mstep</span><br><span class="line">    </span><br><span class="line">    % 计算rho</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                sum = sum + f(k, i, j);</span><br><span class="line">            end</span><br><span class="line">            rho(i,j) = sum;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % collision</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                feq(k) = w(k)*rho(i,j)*(<span class="number">1</span>+<span class="number">3</span>*(cu(k)*u + cv(k)*v) / ck);</span><br><span class="line">                f(k, i, j) = omega * feq(k) + (<span class="number">1</span> - omega)*f(k,i,j);</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % streaming</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">3</span>, i, j) = f(<span class="number">3</span>, i, j<span class="number">-1</span>);</span><br><span class="line">            f(<span class="number">7</span>, i, j) = f(<span class="number">7</span>, i+<span class="number">1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">2</span>, i, j) = f(<span class="number">2</span>, i<span class="number">-1</span>, j);</span><br><span class="line">            f(<span class="number">6</span>, i, j) = f(<span class="number">6</span>, i<span class="number">-1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end  </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">5</span>, i, j) = f(<span class="number">5</span>, i, j+<span class="number">1</span>);</span><br><span class="line">            f(<span class="number">9</span>, i, j) = f(<span class="number">9</span>, i<span class="number">-1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">4</span>, i, j) = f(<span class="number">4</span>, i+<span class="number">1</span>, j);</span><br><span class="line">            f(<span class="number">8</span>, i, j) = f(<span class="number">8</span>, i+<span class="number">1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    </span><br><span class="line">    % boundary</span><br><span class="line">    % bottom</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">2</span>, <span class="number">1</span>, j) = w(<span class="number">2</span>)*tw + w(<span class="number">4</span>)*tw - f(<span class="number">4</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">6</span>, <span class="number">1</span>, j) = w(<span class="number">6</span>)*tw + w(<span class="number">8</span>)*tw - f(<span class="number">8</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">9</span>, <span class="number">1</span>, j) = w(<span class="number">9</span>)*tw + w(<span class="number">7</span>)*tw - f(<span class="number">7</span>, <span class="number">1</span>, j);</span><br><span class="line">    end</span><br><span class="line">    % top</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">7</span>, n, j) = - f(<span class="number">9</span>, n, j);</span><br><span class="line">        f(<span class="number">4</span>, n, j) = - f(<span class="number">2</span>, n, j);</span><br><span class="line">        f(<span class="number">8</span>, n, j) = - f(<span class="number">6</span>, n, j);</span><br><span class="line">        f(<span class="number">3</span>, n, j) = - f(<span class="number">5</span>, n, j);</span><br><span class="line">        f(<span class="number">1</span>, n, j) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % right</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">9</span>, i, m) = - f(<span class="number">7</span>, i, m);</span><br><span class="line">        f(<span class="number">8</span>, i, m) = - f(<span class="number">6</span>, i, m);</span><br><span class="line">        f(<span class="number">5</span>, i, m) = - f(<span class="number">3</span>, i, m);</span><br><span class="line">        f(<span class="number">2</span>, i, m) = - f(<span class="number">4</span>, i, m);</span><br><span class="line">        f(<span class="number">1</span>, i, m) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % left</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">3</span>, i, <span class="number">1</span>) = - f(<span class="number">5</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">7</span>, i, <span class="number">1</span>) = - f(<span class="number">9</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">6</span>, i, <span class="number">1</span>) = - f(<span class="number">8</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">2</span>, i, <span class="number">1</span>) = - f(<span class="number">4</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">1</span>, i, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            sum = sum+f(k,i,j);</span><br><span class="line">        end</span><br><span class="line">        rho(i,j) = sum;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/p1.png" alt="结果图"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
-        <tag>LBM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vector内存释放</title>
     <url>/2019/02/28/20190228vector%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE/</url>
     <content><![CDATA[<h1 id="vector内存分配特点"><a href="#vector内存分配特点" class="headerlink" title="vector内存分配特点"></a>vector内存分配特点</h1><p>vector有一个特点：内存空间只会增长，不会减小。为了支持快速的随机访问，vector容器的元素以连续方式存放，每添加一个元素时，都需要保证连续存放的特性，若空间不足则需要重新分配空间、拷贝元素。因此在创建vector时，对其分配的内存空间比当前需要的要多一些，也就是说预留一些额外的存储空间用于存放新添加的元素。</p>
@@ -690,6 +668,28 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>格子Boltzmann方法（三）——二维对流扩散问题</title>
+    <url>/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="对流扩散方程"><a href="#对流扩散方程" class="headerlink" title="对流扩散方程"></a>对流扩散方程</h1><p>了解了一维扩散方程的求解原理后，就可以逐渐将其推广至二维、三维以及流动问题。首先加入最简单的流动，本文所指的对流是流体粒子整体运动（平流），即所有粒子的宏观运动速度都相同。</p>
+<p>在笛卡尔坐标系中，一维对流扩散方程可以表示为</p>
+<script type="math/tex; mode=display">\frac{\partial \phi }{\partial t}+u\frac{\partial \phi }{\partial x}=\alpha \frac{\partial^2 \phi }{\partial x^2}</script><p>这个方程描述的是对流和扩散同时发生的过程，比如在恒定速度的水流中滴一滴墨水，墨水浓度随时间变化的情况。<br><a id="more"></a></p>
+<h1 id="格子Boltzmann法求解"><a href="#格子Boltzmann法求解" class="headerlink" title="格子Boltzmann法求解"></a>格子Boltzmann法求解</h1><p>对流扩散方程的格子玻尔兹曼方程和扩散方程的相同，即</p>
+<script type="math/tex; mode=display">f_{k}(x+\Delta x,t+\Delta t) = f_{k}(x,t)[1-\omega ] + \omega f_{k}^{eq}(x,t)</script><p>唯一的不同是在平衡分布函数上增加了表示对流效应的外力项</p>
+<script type="math/tex; mode=display">f_{k}^{eq}(x,t)=w_k\phi(x,t) \left [ 1+\frac{c_k \cdot \vec{u}}{c_s^2} \right ]</script><p>其中，$ \vec{u} $为对流速度矢量，对于二维问题，$ \vec{u}=ui+vj $，i和j分别为x方向和y方向上的单位矢量，$ c_k $为沿着流动方向的单位矢量，$ c_k = \frac{\Delta x}{\Delta t}i+\frac{\Delta y}{\Delta t}j $。对于D2Q9模型，当$c_k=1$时，声速$c_s$为$ \frac{1}{\sqrt{3}} $。</p>
+<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>100*100平板上，仅有底部温度保持为1，其他三边均为0。速度分别为u=0.1和v=0.4，介质的热扩散系数为1，模拟时间步长为400。</p>
+<p>matlab代码实现如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">% D2Q9tem</span><br><span class="line">clear all</span><br><span class="line">n = <span class="number">100</span>;                % 计算区域长度</span><br><span class="line">m = <span class="number">100</span>;                % 计算区域宽度</span><br><span class="line">f = zeros(<span class="number">9</span>, n, m);     % 分布函数初始化</span><br><span class="line">feq = zeros(<span class="number">1</span>, <span class="number">9</span>);      % 平衡分布函数</span><br><span class="line">rho = zeros(n, m);      % 密度</span><br><span class="line"></span><br><span class="line">u = <span class="number">0.1</span>;                % 向上速度分量</span><br><span class="line">v = <span class="number">0.4</span>;                % 向右速度分量</span><br><span class="line">dt = <span class="number">1</span>;                 % 时间步长</span><br><span class="line">dx = <span class="number">1</span>;                 % 空间步长</span><br><span class="line">dy = dx;</span><br><span class="line"></span><br><span class="line">alpha = <span class="number">1</span>;              % 扩散系数</span><br><span class="line">ck = dx/dt;             % 格子运动速度</span><br><span class="line">csq = ck*ck;</span><br><span class="line"></span><br><span class="line">omega = <span class="number">1.0</span>/(<span class="number">3.</span>*alpha/(csq*dt)+<span class="number">0.5</span>);        % 松弛频率</span><br><span class="line">mstep = <span class="number">400</span>;                                % 迭代次数</span><br><span class="line"></span><br><span class="line">w = [<span class="number">4</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">9.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>, <span class="number">1</span>/<span class="number">36.0</span>];</span><br><span class="line">density = <span class="number">0</span>;                                % 初始值</span><br><span class="line">tw = <span class="number">1</span>;                 % 上边界温度</span><br><span class="line"></span><br><span class="line">cu = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">1</span>];        % 速度方向x</span><br><span class="line">cv = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>];        % 速度方向y</span><br><span class="line"></span><br><span class="line">% 初始化分布函数</span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            f(k,i,j) = w(k) * density;</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> % 上边界保持恒温</span><br><span class="line">                f(k, i, j) = w(k) * tw;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% 主循环</span><br><span class="line"><span class="keyword">for</span> kk = <span class="number">1</span>:mstep</span><br><span class="line">    </span><br><span class="line">    % 计算rho</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                sum = sum + f(k, i, j);</span><br><span class="line">            end</span><br><span class="line">            rho(i,j) = sum;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % collision</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">            <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">                feq(k) = w(k)*rho(i,j)*(<span class="number">1</span>+<span class="number">3</span>*(cu(k)*u + cv(k)*v) / ck);</span><br><span class="line">                f(k, i, j) = omega * feq(k) + (<span class="number">1</span> - omega)*f(k,i,j);</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % streaming</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">3</span>, i, j) = f(<span class="number">3</span>, i, j<span class="number">-1</span>);</span><br><span class="line">            f(<span class="number">7</span>, i, j) = f(<span class="number">7</span>, i+<span class="number">1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    <span class="keyword">for</span> j = m:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">2</span>, i, j) = f(<span class="number">2</span>, i<span class="number">-1</span>, j);</span><br><span class="line">            f(<span class="number">6</span>, i, j) = f(<span class="number">6</span>, i<span class="number">-1</span>, j<span class="number">-1</span>);</span><br><span class="line">        end</span><br><span class="line">    end  </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">            f(<span class="number">5</span>, i, j) = f(<span class="number">5</span>, i, j+<span class="number">1</span>);</span><br><span class="line">            f(<span class="number">9</span>, i, j) = f(<span class="number">9</span>, i<span class="number">-1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">            f(<span class="number">4</span>, i, j) = f(<span class="number">4</span>, i+<span class="number">1</span>, j);</span><br><span class="line">            f(<span class="number">8</span>, i, j) = f(<span class="number">8</span>, i+<span class="number">1</span>, j+<span class="number">1</span>);</span><br><span class="line">        end</span><br><span class="line">    end </span><br><span class="line">    </span><br><span class="line">    % boundary</span><br><span class="line">    % bottom</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">2</span>, <span class="number">1</span>, j) = w(<span class="number">2</span>)*tw + w(<span class="number">4</span>)*tw - f(<span class="number">4</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">6</span>, <span class="number">1</span>, j) = w(<span class="number">6</span>)*tw + w(<span class="number">8</span>)*tw - f(<span class="number">8</span>, <span class="number">1</span>, j);</span><br><span class="line">        f(<span class="number">9</span>, <span class="number">1</span>, j) = w(<span class="number">9</span>)*tw + w(<span class="number">7</span>)*tw - f(<span class="number">7</span>, <span class="number">1</span>, j);</span><br><span class="line">    end</span><br><span class="line">    % top</span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">        f(<span class="number">7</span>, n, j) = - f(<span class="number">9</span>, n, j);</span><br><span class="line">        f(<span class="number">4</span>, n, j) = - f(<span class="number">2</span>, n, j);</span><br><span class="line">        f(<span class="number">8</span>, n, j) = - f(<span class="number">6</span>, n, j);</span><br><span class="line">        f(<span class="number">3</span>, n, j) = - f(<span class="number">5</span>, n, j);</span><br><span class="line">        f(<span class="number">1</span>, n, j) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % right</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">9</span>, i, m) = - f(<span class="number">7</span>, i, m);</span><br><span class="line">        f(<span class="number">8</span>, i, m) = - f(<span class="number">6</span>, i, m);</span><br><span class="line">        f(<span class="number">5</span>, i, m) = - f(<span class="number">3</span>, i, m);</span><br><span class="line">        f(<span class="number">2</span>, i, m) = - f(<span class="number">4</span>, i, m);</span><br><span class="line">        f(<span class="number">1</span>, i, m) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">    % left</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        f(<span class="number">3</span>, i, <span class="number">1</span>) = - f(<span class="number">5</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">7</span>, i, <span class="number">1</span>) = - f(<span class="number">9</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">6</span>, i, <span class="number">1</span>) = - f(<span class="number">8</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">2</span>, i, <span class="number">1</span>) = - f(<span class="number">4</span>, i, <span class="number">1</span>);</span><br><span class="line">        f(<span class="number">1</span>, i, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>:n</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">9</span></span><br><span class="line">            sum = sum+f(k,i,j);</span><br><span class="line">        end</span><br><span class="line">        rho(i,j) = sum;</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/20190227%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E4%BA%8C%E7%BB%B4%E5%AF%B9%E6%B5%81%E6%89%A9%E6%95%A3%E9%97%AE%E9%A2%98/p1.png" alt="结果图"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+        <tag>LBM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一雷惊蛰始</title>
     <url>/2019/03/06/20190306%E4%B8%80%E9%9B%B7%E6%83%8A%E8%9B%B0%E5%A7%8B/</url>
     <content><![CDATA[<blockquote>
@@ -703,6 +703,20 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>胡思乱想</title>
+    <url>/2019/03/14/20190314%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</url>
+    <content><![CDATA[<p>刚刚完成了准备要投的会议论文初稿，虽然写的很粗糙而且也并不是什么厉害的会议，但毕竟是第一次自己写一篇投稿的英文论文，内心还是有些兴奋。</p>
+<p>最近我和身边的许多人一样，都处在纷繁复杂决定人生转折的巨大洪流中，毕业和工作的压力第一次清晰地涌现出来。可能每个人都需要经过这样一个阶段吧，迷茫，怀疑，悲观，种种负面的情绪从天而降，此时要么用足够强大的内心越挫越勇，要么就只能被压倒。前几天看到的一个问答，特别触动我。一个女生问，小时候我是那种别人家的孩子，上大学后却觉得自己一直走下坡路，为什么会这样。其中一个回答大意是，以前你只是荒原里的一条溪流，后来才逐渐见到了大江大河，汇入大海。所以，不必妄自菲薄。<br><a id="more"></a><br>前段时间一直在读水浒。有一天脑子里突然想到宋江，作为一个名震四海朋友遍天下的大英雄大孝子，外人看来高高在上，竟也会在浔阳楼上郁郁寡欢，借酒消愁，甚至痛哭流涕，更何况我们这样的小人物。</p>
+<p>其实在我看来，每个人的成长大都发生在无数次人生低谷处。说得好听点，叫“听过很多道理，却还是过不好这一生”，直白点说，就是听到的道理永远是别人的，只有自己跌过跟头才能长记性。所以当身处那些艰难时刻时，不如放平心态，它们只是在让你更加强大。人就是在这样的认识自己与认识世界的过程中慢慢长大啊。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -727,20 +741,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>胡思乱想</title>
-    <url>/2019/03/14/20190314%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</url>
-    <content><![CDATA[<p>刚刚完成了准备要投的会议论文初稿，虽然写的很粗糙而且也并不是什么厉害的会议，但毕竟是第一次自己写一篇投稿的英文论文，内心还是有些兴奋。</p>
-<p>最近我和身边的许多人一样，都处在纷繁复杂决定人生转折的巨大洪流中，毕业和工作的压力第一次清晰地涌现出来。可能每个人都需要经过这样一个阶段吧，迷茫，怀疑，悲观，种种负面的情绪从天而降，此时要么用足够强大的内心越挫越勇，要么就只能被压倒。前几天看到的一个问答，特别触动我。一个女生问，小时候我是那种别人家的孩子，上大学后却觉得自己一直走下坡路，为什么会这样。其中一个回答大意是，以前你只是荒原里的一条溪流，后来才逐渐见到了大江大河，汇入大海。所以，不必妄自菲薄。<br><a id="more"></a><br>前段时间一直在读水浒。有一天脑子里突然想到宋江，作为一个名震四海朋友遍天下的大英雄大孝子，外人看来高高在上，竟也会在浔阳楼上郁郁寡欢，借酒消愁，甚至痛哭流涕，更何况我们这样的小人物。</p>
-<p>其实在我看来，每个人的成长大都发生在无数次人生低谷处。说得好听点，叫“听过很多道理，却还是过不好这一生”，直白点说，就是听到的道理永远是别人的，只有自己跌过跟头才能长记性。所以当身处那些艰难时刻时，不如放平心态，它们只是在让你更加强大。人就是在这样的认识自己与认识世界的过程中慢慢长大啊。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -770,20 +770,6 @@ x=\phi (t)\\ y=\omega (t)
 <p>清明节期在仲春与暮春之交，兼具自然与人文两大内涵，既是自然节气，也是传统节日。清明正值万物生长，春和景明之时，是踏青郊游的快乐节日，因此也被称为踏青节。但同时，自古以来清明也是传统的扫墓祭祀节日。明《帝京景物略》载：三月清明日，男女扫墓，担提尊榼，轿马后挂楮锭，粲粲然满道也。拜者、酹者、哭者、为墓除草添土者，焚楮锭次，以纸钱置坟头。</p>
 <p>我从未在清明时扫墓祭奠过，因此并没有亲身体会。提到清明扫墓，我的脑海里总是会想起蔡崇达在《皮囊》中的一段话，当他回故乡祭祖时，那种感受就像自己是大树一圈圈年轮中的一环，“拥挤得那么心安”。这可能就是扫墓祭祖，缅怀先人给予我们的力量吧，它告诉我们从哪里来到哪里去，给我们归属感和认同感，让我们能更加珍惜当下，不负春光。</p>
 <p>“一候桐始华；二候田鼠化为鴽；三候虹始见”。在这个时节先是白桐花开放，喜阴的田鼠不见了，全回到了地下的洞中，雨后的天空可以见到彩虹了。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>雨生百谷</title>
-    <url>/2019/04/21/20190421%E9%9B%A8%E7%94%9F%E7%99%BE%E8%B0%B7/</url>
-    <content><![CDATA[<p>谷雨是春季最后一个节气。谷雨的到来意味着寒潮天气基本结束，气温回升加快，雨量增多，是万物生长的大好时节。《月令七十二候集解》中说，“三月中，自雨水后，土膏脉动，今又雨其谷于水也……盖谷以此时播种，自下而上也”，谷得雨而生，由此得名。有传说谷雨源于仓颉造字，据《淮南子》记载：仓颉造字，是一件惊天动地的大事，黄帝于春末夏初发布诏令，宣布仓颉造字成功，并号召天下臣民共习之。由于仓颉造字功德感天，玉皇大帝便赐给人间一场谷子雨，以慰劳圣功，这就是现在的“谷雨”节气。</p>
-<p>谷雨三候：一候萍始生；二候鸣鸠拂其羽；三候戴胜降于桑。谷雨后雨量增多，浮萍开始生长，接着布谷鸟声声鸣叫，在田野里提醒人们要开始播种，进而桑树上开始见到戴胜鸟，是蚕宝宝将要生长的信号。</p>
-<p>在气温适宜浮云蔽日的天气里登上紫金山，站在山顶放眼望去一片翠绿，令人心旷神怡。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -867,14 +853,11 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>立夏</title>
-    <url>/2019/05/06/20190506%E7%AB%8B%E5%A4%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>莫趁垂杨飞絮，且随红药翻阶。<br>《朝中措》宋·管鉴</p>
-</blockquote>
-<p>《月令七十二候集解》：“立夏，四月节。夏，假也。物至此时皆假大也。 ”在天文学上，立夏表示即将告别春天，是夏天的开始。实际上在我国的大部分地区从平均温度来看并没有真正地进入夏天，而是属于仲春和暮春季节。</p>
-<p>这段时间的天气总是稍稍热起来一点就被阵阵凉风压住势头，阳光、微风、绿叶，一切都刚刚好。走在校园的林荫路上，不自觉地会回想起那句“暮春者,春服既成,冠者五六人,童子六七人,浴乎沂,风乎舞雩,咏而归”。高中第一次读到这句话时就忍不住跟着读起来，尤其喜欢最后三句“浴乎沂,风乎舞雩,咏而归”，就像哼唱着一首轻快的歌，心情都愉快起来。</p>
-<p>立夏三候：蝼蝈鸣，蚯蚓出，王瓜生。《礼记·月令》篇，解释立夏曰：“蝼蝈鸣，蚯蚓出，王瓜生，苦菜秀。”说明在这时节，蝼蝈开始聒噪着夏日的来临，蚯蚓也忙着帮农民们翻松泥土，乡间田埂的野菜也都彼此争相出土日日攀长。</p>
+    <title>雨生百谷</title>
+    <url>/2019/04/21/20190421%E9%9B%A8%E7%94%9F%E7%99%BE%E8%B0%B7/</url>
+    <content><![CDATA[<p>谷雨是春季最后一个节气。谷雨的到来意味着寒潮天气基本结束，气温回升加快，雨量增多，是万物生长的大好时节。《月令七十二候集解》中说，“三月中，自雨水后，土膏脉动，今又雨其谷于水也……盖谷以此时播种，自下而上也”，谷得雨而生，由此得名。有传说谷雨源于仓颉造字，据《淮南子》记载：仓颉造字，是一件惊天动地的大事，黄帝于春末夏初发布诏令，宣布仓颉造字成功，并号召天下臣民共习之。由于仓颉造字功德感天，玉皇大帝便赐给人间一场谷子雨，以慰劳圣功，这就是现在的“谷雨”节气。</p>
+<p>谷雨三候：一候萍始生；二候鸣鸠拂其羽；三候戴胜降于桑。谷雨后雨量增多，浮萍开始生长，接着布谷鸟声声鸣叫，在田野里提醒人们要开始播种，进而桑树上开始见到戴胜鸟，是蚕宝宝将要生长的信号。</p>
+<p>在气温适宜浮云蔽日的天气里登上紫金山，站在山顶放眼望去一片翠绿，令人心旷神怡。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -948,6 +931,23 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>立夏</title>
+    <url>/2019/05/06/20190506%E7%AB%8B%E5%A4%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>莫趁垂杨飞絮，且随红药翻阶。<br>《朝中措》宋·管鉴</p>
+</blockquote>
+<p>《月令七十二候集解》：“立夏，四月节。夏，假也。物至此时皆假大也。 ”在天文学上，立夏表示即将告别春天，是夏天的开始。实际上在我国的大部分地区从平均温度来看并没有真正地进入夏天，而是属于仲春和暮春季节。</p>
+<p>这段时间的天气总是稍稍热起来一点就被阵阵凉风压住势头，阳光、微风、绿叶，一切都刚刚好。走在校园的林荫路上，不自觉地会回想起那句“暮春者,春服既成,冠者五六人,童子六七人,浴乎沂,风乎舞雩,咏而归”。高中第一次读到这句话时就忍不住跟着读起来，尤其喜欢最后三句“浴乎沂,风乎舞雩,咏而归”，就像哼唱着一首轻快的歌，心情都愉快起来。</p>
+<p>立夏三候：蝼蝈鸣，蚯蚓出，王瓜生。《礼记·月令》篇，解释立夏曰：“蝼蝈鸣，蚯蚓出，王瓜生，苦菜秀。”说明在这时节，蝼蝈开始聒噪着夏日的来临，蚯蚓也忙着帮农民们翻松泥土，乡间田埂的野菜也都彼此争相出土日日攀长。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决github无法访问或排版图片出错等问题</title>
     <url>/2019/05/17/20190517%E8%A7%A3%E5%86%B3github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%88%96%E6%8E%92%E7%89%88%E5%9B%BE%E7%89%87%E5%87%BA%E9%94%99%E7%AD%89%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>因为某些原因在国内github经常出现无法访问、访问速度慢或者页面加载异常的问题，下面记录一种简单直接的办法（适用Windows系统），修改host文件解决这些问题。</p>
@@ -964,23 +964,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时雨及芒种</title>
-    <url>/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/</url>
-    <content><![CDATA[<blockquote>
-<p>时雨及芒种，四野皆插秧。家家麦饭美，处处菱歌长。<br>——陆游《时雨》</p>
-</blockquote>
-<p>芒种是夏季的第三个节气，表示仲夏时节的正式开始。《月令七十二侯集解》：“五月节，谓有芒之种谷可稼种矣。”此时中国长江中下游地区将进入多雨的黄梅时节。</p>
-<p>芒种一词，始于《周礼》：“泽草所生，种之芒种。”东汉郑玄释义曰：“泽草之所生，其地可种芒种，芒种，稻麦也。”林清玄曾写道：“稻子的背负是芒种，麦穗的传承是芒种，高粱的波浪是芒种，天人菊在野风中盛放是芒种……有时候感觉到那一丝丝落下的阳光，也是芒种。六月的明亮里，我们能感受到四处流动的光芒。”这是一个承上启下，充满希望的时节。田野间的辛劳，教室里的高考，各奔东西的朋友，连绵不断的阴雨，许多年后这一切又会成为充满夏天味道的记忆吧。</p>
-<p>芒种三候。一候螳螂生。“蝉响螳螂急，鱼深翡翠闲。”螳螂于深秋生子于林间，一壳百子，此时破壳而出。二候鹃始鸣。鹃即伯劳，“伯劳以五月鸣，其声鹃鹃然”，以声命名。《诗经》有“七月鸣鹃”，周七月即夏五月。三候螳反舌无声。“反舌”即百舌鸟，“螳螂、鹃皆阴类，感微阴生或鸣，反舌感阳而发，遇微阴无声也。”</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1015,6 +998,23 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>时雨及芒种</title>
+    <url>/2019/06/06/20190606%E6%97%B6%E9%9B%A8%E5%8F%8A%E8%8A%92%E7%A7%8D/</url>
+    <content><![CDATA[<blockquote>
+<p>时雨及芒种，四野皆插秧。家家麦饭美，处处菱歌长。<br>——陆游《时雨》</p>
+</blockquote>
+<p>芒种是夏季的第三个节气，表示仲夏时节的正式开始。《月令七十二侯集解》：“五月节，谓有芒之种谷可稼种矣。”此时中国长江中下游地区将进入多雨的黄梅时节。</p>
+<p>芒种一词，始于《周礼》：“泽草所生，种之芒种。”东汉郑玄释义曰：“泽草之所生，其地可种芒种，芒种，稻麦也。”林清玄曾写道：“稻子的背负是芒种，麦穗的传承是芒种，高粱的波浪是芒种，天人菊在野风中盛放是芒种……有时候感觉到那一丝丝落下的阳光，也是芒种。六月的明亮里，我们能感受到四处流动的光芒。”这是一个承上启下，充满希望的时节。田野间的辛劳，教室里的高考，各奔东西的朋友，连绵不断的阴雨，许多年后这一切又会成为充满夏天味道的记忆吧。</p>
+<p>芒种三候。一候螳螂生。“蝉响螳螂急，鱼深翡翠闲。”螳螂于深秋生子于林间，一壳百子，此时破壳而出。二候鹃始鸣。鹃即伯劳，“伯劳以五月鸣，其声鹃鹃然”，以声命名。《诗经》有“七月鸣鹃”，周七月即夏五月。三候螳反舌无声。“反舌”即百舌鸟，“螳螂、鹃皆阴类，感微阴生或鸣，反舌感阳而发，遇微阴无声也。”</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的static</title>
     <url>/2019/06/14/20190614C-%E4%B8%AD%E7%9A%84static/</url>
     <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>static是C++中关于存储类型的说明符，用static说明的变量称为静态变量。它被用来控制变量的存储方式和可见性。</p>
@@ -1042,23 +1042,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>宵漏自此长</title>
-    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
-    <content><![CDATA[<blockquote>
-<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
-</blockquote>
-<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
-<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
-<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1116,6 +1099,23 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>宵漏自此长</title>
+    <url>/2019/06/21/20190621%E5%AE%B5%E6%BC%8F%E8%87%AA%E6%AD%A4%E9%95%BF/</url>
+    <content><![CDATA[<blockquote>
+<p>昼晷已云极，宵漏自此长<br>——韦应物《夏至避暑北池》</p>
+</blockquote>
+<p>夏至，太阳直射北回归线，北半球的白昼达到一年中的最长，且越往北昼越长。夏至是最早被确定的一个节气。《月令七十二候集解》：“五月中……夏，假也，至，极也，万物于此皆假大而至极也。”在传统的阴阳理论中，夏至是阳气生发至极点，开始收藏的节气。与冬至相对应（夏至一阴生，冬至一阳生），阳气虽盛已经失势，出现阴长阳消之象。</p>
+<p>夏至三候：一候鹿角解，鹿角属阳开始脱落。二候蝉始鸣，雄性的夏蝉鼓翼而鸣。三候半夏生，喜阴的药草在湿地中出生。</p>
+<p>南京进入了梅雨季，湿漉漉的天气给原本就紧张忙碌的生活又添加了一丝压抑。最近特别喜欢听一首歌《父亲的草原母亲的河》，第一次听到它的时候就十分震撼，既有一种面对无限天地直抒胸臆的畅快感觉，又不失浓重的情感。后来知道这首歌词作者是席慕容，更添加一份亲切和喜爱。印象里另一首和它类似的歌，是去年听到阿云嘎演唱的《生命的故乡》，同样是大气磅礴的声音和旋律。这就是草原歌曲的魅力所在吧（突然觉得自己可能老了）。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最后一天</title>
     <url>/2019/06/30/20190630%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<p>今天是6月的最后一天，2019年上半年的最后一天，也是我在四牌楼图书馆工作的最后一天。转眼在图书馆已经工作三年了，从中文书库，到报纸期刊、外文阅览室，在这里逐渐认识和熟悉了一楼到六楼的每一间阅览室和每一排书架，他们就像一群不会说话的朋友，永远都是这样不动声色地观望和倾听着一切，让人心安。</p>
@@ -1166,31 +1166,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>ImageJ/Fiji批量处理</title>
-    <url>/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。</p>
-<p>ImageJ官网上关于宏编程的介绍： <a href="https://imagej.net/Introduction_into_Macro_Programming">https://imagej.net/Introduction_into_Macro_Programming</a><br>关于批处理的介绍： <a href="https://imagej.net/Batch_Processing">https://imagej.net/Batch_Processing</a><br><a id="more"></a></p>
-<h2 id="获取宏代码"><a href="#获取宏代码" class="headerlink" title="获取宏代码"></a>获取宏代码</h2><p>第一步是获取所需操作对应的宏指令。我们不必关心具体的语法，只需要用Macro Recorder把一步步操作记录下来，自动生成对应的语句。</p>
-<p>打开菜单栏中Plugins-&gt;Macros-&gt;Recorder，保持窗口开着，接下来所有动作都会自动记录。例如下图显示的是打开图片，转化为8-bit格式，二值化。</p>
-<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png" alt="Recorder"></p>
-<p>当然关于宏编程也有官方的指导手册：<a href="https://imagej.net/docs/macro_reference_guide.pdf" title="Macro Language">ImageJ Macro Language Programmer’s Reference Guide</a></p>
-<p>【图片读写路径需要注意，可能在windows系统中需要用双斜线//。】</p>
-<h2 id="用脚本文件批量处理"><a href="#用脚本文件批量处理" class="headerlink" title="用脚本文件批量处理"></a>用脚本文件批量处理</h2><p>第二步是生成脚本文件。点击”Create”按钮弹出新的编辑器页面，适当修改记录器记录的语句。或者从菜单栏里Plugins-New-Macro创建新的脚本。编写完成后可以点击Run运行。</p>
-<p>软件本身还提供了一些模版，比如批量处理一个文件夹下的所有文件，在编辑器页面点Templates-&gt;ImageJ 1.x-&gt;Batch-&gt;Process Folder(IJ1 Macro)。在函数相应位置添加若干语句即可。</p>
-<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png" alt="Process Folder"></p>
-<h2 id="关于Fiji"><a href="#关于Fiji" class="headerlink" title="关于Fiji"></a>关于Fiji</h2><p>就像Fiji软件标题所说的，Fiji Is Just ImageJ，整个软件界面、使用方法基本和ImageJ完全相同。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png" alt="Fiji"></p>
-<p>Fiji可以从<a href="http://fiji.sc/" title="Fiji官网">Fiji官网</a>上下载，将压缩包解压即可直接使用，不需要安装。</p>
-<p>当我在官网上看到contributors时，不由得吃了一惊。一周前在MPI-CBG的时候，曾经请教过Florian Jug关于使用Fiji进行图像处理的问题，他很耐心地一步步教给我，还讲了很多使用技巧。当时还以为他只是非常熟悉这个软件，没想到竟然是负责这个软件开发维护的团队领导者。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png" alt="contributors"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>ImageJ</tag>
-        <tag>software</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mimics三维CT重建</title>
     <url>/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/</url>
     <content><![CDATA[<p>CT扫描得到的图像是多张dicom格式文件。如果只需要显示图像序列，可以用ImageJ软件导入图像序列查看。Mimics软件（全称Materialise’s Interactive Medical Image Control System）是一个CT、MRI、超声等医学图像的显示和分割工具，可以将断层扫描的结果转换成机械领域软件可以处理的格式，如STL等。<br><a id="more"></a><br>下面以Mimics 21为例，总结最基础的利用多张dcm图片进行三维重建的步骤：<br><img src="/2019/09/23/20190923Mimics%E4%B8%89%E7%BB%B4CT%E9%87%8D%E5%BB%BA/p1.png" alt="mimics 21"></p>
@@ -1225,9 +1200,34 @@ x=\phi (t)\\ y=\omega (t)
         <category>learning</category>
       </categories>
       <tags>
-        <tag>software</tag>
         <tag>Mimics</tag>
         <tag>ImageProcess</tag>
+        <tag>software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ImageJ/Fiji批量处理</title>
+    <url>/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。</p>
+<p>ImageJ官网上关于宏编程的介绍： <a href="https://imagej.net/Introduction_into_Macro_Programming">https://imagej.net/Introduction_into_Macro_Programming</a><br>关于批处理的介绍： <a href="https://imagej.net/Batch_Processing">https://imagej.net/Batch_Processing</a><br><a id="more"></a></p>
+<h2 id="获取宏代码"><a href="#获取宏代码" class="headerlink" title="获取宏代码"></a>获取宏代码</h2><p>第一步是获取所需操作对应的宏指令。我们不必关心具体的语法，只需要用Macro Recorder把一步步操作记录下来，自动生成对应的语句。</p>
+<p>打开菜单栏中Plugins-&gt;Macros-&gt;Recorder，保持窗口开着，接下来所有动作都会自动记录。例如下图显示的是打开图片，转化为8-bit格式，二值化。</p>
+<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/recorder.png" alt="Recorder"></p>
+<p>当然关于宏编程也有官方的指导手册：<a href="https://imagej.net/docs/macro_reference_guide.pdf" title="Macro Language">ImageJ Macro Language Programmer’s Reference Guide</a></p>
+<p>【图片读写路径需要注意，可能在windows系统中需要用双斜线//。】</p>
+<h2 id="用脚本文件批量处理"><a href="#用脚本文件批量处理" class="headerlink" title="用脚本文件批量处理"></a>用脚本文件批量处理</h2><p>第二步是生成脚本文件。点击”Create”按钮弹出新的编辑器页面，适当修改记录器记录的语句。或者从菜单栏里Plugins-New-Macro创建新的脚本。编写完成后可以点击Run运行。</p>
+<p>软件本身还提供了一些模版，比如批量处理一个文件夹下的所有文件，在编辑器页面点Templates-&gt;ImageJ 1.x-&gt;Batch-&gt;Process Folder(IJ1 Macro)。在函数相应位置添加若干语句即可。</p>
+<p><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/process.png" alt="Process Folder"></p>
+<h2 id="关于Fiji"><a href="#关于Fiji" class="headerlink" title="关于Fiji"></a>关于Fiji</h2><p>就像Fiji软件标题所说的，Fiji Is Just ImageJ，整个软件界面、使用方法基本和ImageJ完全相同。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/Fiji.png" alt="Fiji"></p>
+<p>Fiji可以从<a href="http://fiji.sc/" title="Fiji官网">Fiji官网</a>上下载，将压缩包解压即可直接使用，不需要安装。</p>
+<p>当我在官网上看到contributors时，不由得吃了一惊。一周前在MPI-CBG的时候，曾经请教过Florian Jug关于使用Fiji进行图像处理的问题，他很耐心地一步步教给我，还讲了很多使用技巧。当时还以为他只是非常熟悉这个软件，没想到竟然是负责这个软件开发维护的团队领导者。<br><img src="/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/contri.png" alt="contributors"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>software</tag>
+        <tag>ImageJ</tag>
       </tags>
   </entry>
   <entry>
@@ -1243,24 +1243,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hp电脑关机自动重启解决方法</title>
-    <url>/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>实验室的惠普台式机，突然每次关机后都会自动重启，大概在关机后的几秒到5分钟内自动开机。在网上查到一些解决方法。</p>
-<p>一、右键此电脑，选择“属性”，弹出“系统属性”窗口，点选“高级”选项卡，点击“启动和故障恢复”栏目中的“设置”按钮，弹出“启动和故障恢复”窗口。在“系统失败”栏目中将“自动重新启动”选项前的对勾去掉，点“确定”按钮。<br><a id="more"></a><br><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/01.png" alt="关闭自动重启"></p>
-<p>二、打开控制面板-硬件和声音-电源选项，点击左侧“选择电源按钮的功能”，点击更改当前不可用的设置<br><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/02.png" alt="第一步"></p>
-<p>将启用快速启动关闭</p>
-<p><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/03.png" alt="第二步"></p>
-<p>三、打开设备管理器，找到了网络适配器下的子条目，右键属性-高级，有一个关机 自动唤醒的选项，改为关闭。</p>
-<p>对于我来说，第一项做完后不起作用，第二项电源选项修改后就不再自动重启了。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>computer</tag>
       </tags>
   </entry>
   <entry>
@@ -1289,16 +1271,21 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>一周年</title>
-    <url>/2020/03/29/20200329%E4%B8%80%E5%91%A8%E5%B9%B4/</url>
-    <content><![CDATA[<p>爱情不是终日彼此对视，而是共同瞭望远方、相伴而行。❤</p>
-<p><img src="/2020/03/29/20200329%E4%B8%80%E5%91%A8%E5%B9%B4/Prince.png" alt="The Little Prince"></p>
+    <title>hp电脑关机自动重启解决方法</title>
+    <url>/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>实验室的惠普台式机，突然每次关机后都会自动重启，大概在关机后的几秒到5分钟内自动开机。在网上查到一些解决方法。</p>
+<p>一、右键此电脑，选择“属性”，弹出“系统属性”窗口，点选“高级”选项卡，点击“启动和故障恢复”栏目中的“设置”按钮，弹出“启动和故障恢复”窗口。在“系统失败”栏目中将“自动重新启动”选项前的对勾去掉，点“确定”按钮。<br><a id="more"></a><br><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/01.png" alt="关闭自动重启"></p>
+<p>二、打开控制面板-硬件和声音-电源选项，点击左侧“选择电源按钮的功能”，点击更改当前不可用的设置<br><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/02.png" alt="第一步"></p>
+<p>将启用快速启动关闭</p>
+<p><img src="/2019/12/03/20191203hp%E7%94%B5%E8%84%91%E5%85%B3%E6%9C%BA%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/03.png" alt="第二步"></p>
+<p>三、打开设备管理器，找到了网络适配器下的子条目，右键属性-高级，有一个关机 自动唤醒的选项，改为关闭。</p>
+<p>对于我来说，第一项做完后不起作用，第二项电源选项修改后就不再自动重启了。</p>
 ]]></content>
       <categories>
-        <category>journal</category>
+        <category>others</category>
       </categories>
       <tags>
-        <tag>journal</tag>
+        <tag>computer</tag>
       </tags>
   </entry>
   <entry>
@@ -1332,6 +1319,19 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周年</title>
+    <url>/2020/03/29/20200329%E4%B8%80%E5%91%A8%E5%B9%B4/</url>
+    <content><![CDATA[<p>爱情不是终日彼此对视，而是共同瞭望远方、相伴而行。❤</p>
+<p><img src="/2020/03/29/20200329%E4%B8%80%E5%91%A8%E5%B9%B4/Prince.png" alt="The Little Prince"></p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
       </tags>
   </entry>
   <entry>
@@ -1764,23 +1764,6 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>告别2020</title>
-    <url>/2020/12/30/20201230%E5%91%8A%E5%88%AB2020/</url>
-    <content><![CDATA[<p>2020年，就这样跌跌撞撞地走到了最后。不知道是我终于长大到了“接受这个世界毒打”的年纪，还是恰巧见证了历史洪流里的一次漩涡。这一年像一部魔幻现实主义小说，处处充满着不真实。</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>有时候走在回宿舍的路上，经过文昌小区大门时，会有一种恍惚的感觉，仿佛误入了另一个世界。铁锅与灶台碰撞发出乒乒乓乓的声音，锅里的食物欢快地滋滋啦啦，小饭店老板吆喝着“帅哥/美女吃点啥”。大门口北边有个不起眼的角落，有些破落，靠墙横着一根绳，天气好的时候会晾一排小孩子的衣服，小小的上衣裤子在细细的绳子上晃来晃去。入冬后挂了一排腊肠，每一节都饱满圆润，整整齐齐等着被风干。西装革履和光鲜亮丽只能是生活的点缀，锅碗瓢盆柴米油盐才是生活的本色，朴实却拥有一种让人感到踏实的力量。<br>因为疫情，前半年几乎都是在家度过的。熟悉的家给人的感受是任何人任何事都无法替代的，因为在这里每一个角落都沉淀了十几年的光阴。看到客厅墙上一列横线，就能想起每年在这里记录身高的场景；书桌上深深浅浅的划痕，是小学的我做手工留下的，慢慢长大才知道用刀时要在桌上垫块东西才不会损伤桌面；书房角落里的一块墙上被贴了各种各样的小贴纸，以及从画册上剪下来的卡通人物，也算是那个年代的一点点“艺术启蒙”。为了改善这个20多年的老房子灰头土脸的面貌，3月份在家时集中两天时间把所有墙面都重刷了一遍，收拾东西时把小时候玩的大部分玩具都扔掉了（其实大部分都是各种破烂，装在一个透明塑料袋里）。看着这些东西在眼前消失，终归是有些不舍，但时间永远不会停下脚步，该学会告别就要果断地告别，美好的东西就让它留在回忆里，新的生活依然值得期待。</p>
-<h3 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h3><p>人的潜力是无穷的。在压力之下，我才发现一天里同时处理的事情竟然可以这么多，连续不断工作极限竟然可以这么高。坚持不下去的时候会变成一只不想给自己加油打气的小强，不知道努力的意义在哪里。但当有一点点收获或者肯定时，又会觉得付出的一切还是值得的。今年这种起起伏伏的体会似乎格外多。做科研要坐得住冷板凳，但现实环境逼得大家都不得不追求些东西。怎样找到科研和生活的平衡，以及有意义和获得现实收益之间的平衡，可能是我接下来需要学会的事。<br>这一年最多的负面情绪是压抑和混乱。对于我个人而言，还有焦虑。我始终认为这种焦虑来自自身能力与期望的不匹配。人生就像登山，随着自己位置越来越高，看到的风景也越来越美，但路也愈加坎坷陡峭，身边同行的人也更加强大和优秀。这样的环境会在无形中催促着自己，不要停下来，要继续努力。就像《乘风破浪的姐姐》里，郑希怡说过，姐姐们不是想赢，而是不想输。金字塔尖的位置只有一个，大部分人无意争取，只是不想做塔底罢了。</p>
-<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>今年一大收获是，更清晰地认识到了自己的不足。比如害怕改变和不稳定，因此在大决策面前有点畏手畏脚。还有看问题站的角度不够高，往往只能看到局部而不能从全局考虑。最后是心态不够稳，遇事容易慌张。希望明年的自己可以有更坚定更强大的内心，提高“钝感力”，更勇敢和坦然。<br>当然，也不能忽视这一年自己的成长。过去的很多年，我都很少关注自己内心的声音。按部就班地生活学习，许多事情都是被周围的环境推着走，几乎从来不会思考我自己到底想要什么，不会向别人输出我真正的感受。这一年我一直在有意识地锻炼自己，主动表达，主动选择。虽然事实证明我还没有完全改变，但我能意识到这件事并且为之努力，相信未来会越来越好。</p>
-<h3 id="感恩"><a href="#感恩" class="headerlink" title="感恩"></a>感恩</h3><p>每次回顾和总结时，总会有一些人和事只要一想起来心里就觉得很温暖。这温暖来自家人，伴侣，老师，朋友，甚至陌生人，猫猫狗狗，树叶云彩。那些生活中的小细节就像夜空中的星星，微弱渺小，却让整个昏暗的天空亮了起来。感恩有你。</p>
-<p>虽然世事无常，各种意料之外的事层出不穷，但天大的事也抵不过人的强大。当冲出重围后，再回头看来时的路，心里会多一分平静和从容。再次踏上征程，面前的一切也不过如此。再见2020，新的一年，更强大的我来了。</p>
-]]></content>
-      <categories>
-        <category>journal</category>
-      </categories>
-      <tags>
-        <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>表面张力与极小曲面</title>
     <url>/2020/12/27/20201227%E8%A1%A8%E9%9D%A2%E5%BC%A0%E5%8A%9B%E4%B8%8E%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/</url>
     <content><![CDATA[<blockquote>
@@ -1813,6 +1796,23 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>告别2020</title>
+    <url>/2020/12/30/20201230%E5%91%8A%E5%88%AB2020/</url>
+    <content><![CDATA[<p>2020年，就这样跌跌撞撞地走到了最后。不知道是我终于长大到了“接受这个世界毒打”的年纪，还是恰巧见证了历史洪流里的一次漩涡。这一年像一部魔幻现实主义小说，处处充满着不真实。</p>
+<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>有时候走在回宿舍的路上，经过文昌小区大门时，会有一种恍惚的感觉，仿佛误入了另一个世界。铁锅与灶台碰撞发出乒乒乓乓的声音，锅里的食物欢快地滋滋啦啦，小饭店老板吆喝着“帅哥/美女吃点啥”。大门口北边有个不起眼的角落，有些破落，靠墙横着一根绳，天气好的时候会晾一排小孩子的衣服，小小的上衣裤子在细细的绳子上晃来晃去。入冬后挂了一排腊肠，每一节都饱满圆润，整整齐齐等着被风干。西装革履和光鲜亮丽只能是生活的点缀，锅碗瓢盆柴米油盐才是生活的本色，朴实却拥有一种让人感到踏实的力量。<br>因为疫情，前半年几乎都是在家度过的。熟悉的家给人的感受是任何人任何事都无法替代的，因为在这里每一个角落都沉淀了十几年的光阴。看到客厅墙上一列横线，就能想起每年在这里记录身高的场景；书桌上深深浅浅的划痕，是小学的我做手工留下的，慢慢长大才知道用刀时要在桌上垫块东西才不会损伤桌面；书房角落里的一块墙上被贴了各种各样的小贴纸，以及从画册上剪下来的卡通人物，也算是那个年代的一点点“艺术启蒙”。为了改善这个20多年的老房子灰头土脸的面貌，3月份在家时集中两天时间把所有墙面都重刷了一遍，收拾东西时把小时候玩的大部分玩具都扔掉了（其实大部分都是各种破烂，装在一个透明塑料袋里）。看着这些东西在眼前消失，终归是有些不舍，但时间永远不会停下脚步，该学会告别就要果断地告别，美好的东西就让它留在回忆里，新的生活依然值得期待。</p>
+<h3 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h3><p>人的潜力是无穷的。在压力之下，我才发现一天里同时处理的事情竟然可以这么多，连续不断工作极限竟然可以这么高。坚持不下去的时候会变成一只不想给自己加油打气的小强，不知道努力的意义在哪里。但当有一点点收获或者肯定时，又会觉得付出的一切还是值得的。今年这种起起伏伏的体会似乎格外多。做科研要坐得住冷板凳，但现实环境逼得大家都不得不追求些东西。怎样找到科研和生活的平衡，以及有意义和获得现实收益之间的平衡，可能是我接下来需要学会的事。<br>这一年最多的负面情绪是压抑和混乱。对于我个人而言，还有焦虑。我始终认为这种焦虑来自自身能力与期望的不匹配。人生就像登山，随着自己位置越来越高，看到的风景也越来越美，但路也愈加坎坷陡峭，身边同行的人也更加强大和优秀。这样的环境会在无形中催促着自己，不要停下来，要继续努力。就像《乘风破浪的姐姐》里，郑希怡说过，姐姐们不是想赢，而是不想输。金字塔尖的位置只有一个，大部分人无意争取，只是不想做塔底罢了。</p>
+<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>今年一大收获是，更清晰地认识到了自己的不足。比如害怕改变和不稳定，因此在大决策面前有点畏手畏脚。还有看问题站的角度不够高，往往只能看到局部而不能从全局考虑。最后是心态不够稳，遇事容易慌张。希望明年的自己可以有更坚定更强大的内心，提高“钝感力”，更勇敢和坦然。<br>当然，也不能忽视这一年自己的成长。过去的很多年，我都很少关注自己内心的声音。按部就班地生活学习，许多事情都是被周围的环境推着走，几乎从来不会思考我自己到底想要什么，不会向别人输出我真正的感受。这一年我一直在有意识地锻炼自己，主动表达，主动选择。虽然事实证明我还没有完全改变，但我能意识到这件事并且为之努力，相信未来会越来越好。</p>
+<h3 id="感恩"><a href="#感恩" class="headerlink" title="感恩"></a>感恩</h3><p>每次回顾和总结时，总会有一些人和事只要一想起来心里就觉得很温暖。这温暖来自家人，伴侣，老师，朋友，甚至陌生人，猫猫狗狗，树叶云彩。那些生活中的小细节就像夜空中的星星，微弱渺小，却让整个昏暗的天空亮了起来。感恩有你。</p>
+<p>虽然世事无常，各种意料之外的事层出不穷，但天大的事也抵不过人的强大。当冲出重围后，再回头看来时的路，心里会多一分平静和从容。再次踏上征程，面前的一切也不过如此。再见2020，新的一年，更强大的我来了。</p>
+]]></content>
+      <categories>
+        <category>journal</category>
+      </categories>
+      <tags>
+        <tag>journal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博士生小张的第一年</title>
     <url>/2021/04/22/20210422%E5%8D%9A%E5%A3%AB%E7%94%9F%E5%B0%8F%E5%BC%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B9%B4/</url>
     <content><![CDATA[<p>很久没有更新博客了。每天忙忙碌碌也不知道在忙些啥。从博士入学到现在，算起来有一整年了。其实选择读博这条路的时候，心里就大概知道即将要面对前所未有的挑战，提前做好了心理准备，但真正经历时还是感慨颇多。</p>
@@ -1830,20 +1830,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>journal</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>server2019服务器远程连接桌面每次都出现新桌面新会话解决办法</title>
-    <url>/2021/11/12/202111122019%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%87%BA%E7%8E%B0%E6%96%B0%E6%A1%8C%E9%9D%A2%E6%96%B0%E4%BC%9A%E8%AF%9D/</url>
-    <content><![CDATA[<p><strong>问题</strong>：同样的用户每次远程连接桌面都出现新的桌面，类似于重启后的界面。登录多次后用户中显示多个同名用户。</p>
-<p><strong>应急</strong>：在任务管理器-用户里，右键点用户名，可以对不需要的用户进行注销，也可以跳转重新连接需要的会话。</p>
-<p><strong>解决</strong>：从运行中输入Gpedit.msc 打开组策略管理器。在计算机配置-管理模板-Windows组件-远程桌面服务-远程桌面会话主机-连接，将远程桌面服务用户限制到单独的远程桌面服务会话启用。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>computer</tag>
       </tags>
   </entry>
   <entry>
@@ -1894,6 +1880,20 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>bone regeneration</tag>
         <tag>research</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>server2019服务器远程连接桌面每次都出现新桌面新会话解决办法</title>
+    <url>/2021/11/12/202111122019%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%87%BA%E7%8E%B0%E6%96%B0%E6%A1%8C%E9%9D%A2%E6%96%B0%E4%BC%9A%E8%AF%9D/</url>
+    <content><![CDATA[<p><strong>问题</strong>：同样的用户每次远程连接桌面都出现新的桌面，类似于重启后的界面。登录多次后用户中显示多个同名用户。</p>
+<p><strong>应急</strong>：在任务管理器-用户里，右键点用户名，可以对不需要的用户进行注销，也可以跳转重新连接需要的会话。</p>
+<p><strong>解决</strong>：从运行中输入Gpedit.msc 打开组策略管理器。在计算机配置-管理模板-Windows组件-远程桌面服务-远程桌面会话主机-连接，将远程桌面服务用户限制到单独的远程桌面服务会话启用。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>computer</tag>
       </tags>
   </entry>
   <entry>
