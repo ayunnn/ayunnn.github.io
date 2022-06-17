@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>沥青的味道</title>
-    <url>/2018/08/21/20180821%E6%B2%A5%E9%9D%92%E7%9A%84%E5%91%B3%E9%81%93/</url>
-    <content><![CDATA[<p>四牌楼校区最近正在对路面的沥青进行翻修。经过多年的修补，路面早已是补丁摞补丁，确实也该重新铺了。</p>
-<p>看到一辆小铲车沿着路边，整整齐齐地铲起一块块沥青，我脑海里浮现出许多年前，在奶奶家围观铺路的情景。村子里的主干道是一条土路，每逢夏季暴雨或秋季连阴雨，就会变得相当泥泞，难以行走。因此大家迫切地希望有一条干净硬实的沥青马路。</p>
-<p>那天，我和其他好奇的围观者一起，早早地站在路边，从路面压平，倒上粘稠的沥青，再到用宽大滚轮的车碾压，结结实实地看了一个上午。我依然记得，在那个烈日当头的夏天，随着地面的热气蒸腾而上的沥青的刺鼻味道，实在不好闻，却又那么“诱人”，令人兴奋。</p>
-<p>时代的发展，也许往往就伴随着这种不那么好闻的“味道”，比如工业化时代下的浓烟和污水，信息化时代下的焦虑和不安。身处大时代下的小小的我们，通常只是将这好闻不好闻的，统统贪婪地吸入体内了吧。</p>
+    <title>雨后初晴</title>
+    <url>/2018/08/18/20180818%E9%9B%A8%E5%90%8E%E5%88%9D%E6%99%B4/</url>
+    <content><![CDATA[<p>昨天刚刚到南京，就遇上了狂风暴雨。从上午开始一直下到半夜，待在屋子里只能感受到压抑昏沉的天色，和潮湿闷热。</p>
+<p>今天天空放晴，明晃晃的阳光仿佛挣扎着拼命穿过云层，洒向大地。站在阳光下回想，过去的一个月就像一场梦。从祖国的东南方前往中部，又飞向最西北的新疆，在短短三天里，竟又穿过了大半个中国，重新坐在熟悉的位置上，一切都不太真实。</p>
+<p>如今，我也正站在人生的十字路口上，头顶时而狂风暴雨，时而烈日当空，而我却如身处重重迷雾中，看不清方向。</p>
 ]]></content>
       <categories>
         <category>journal</category>
@@ -16,48 +15,12 @@
       </tags>
   </entry>
   <entry>
-    <title>matlab四维图绘制</title>
-    <url>/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。</p>
-<p>如何绘制四维图，表示这个立方体？</p>
-<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>利用matlab函数slice，通过体数据显示正交切平面。<br><a id="more"></a></p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">slice</span><span class="params">(V,sx,sy,sz)</span></span></span><br><span class="line"><span class="function"><span class="title">slice</span><span class="params">(X,Y,Z,V,sx,sy,sz)</span></span></span><br><span class="line">h = slice(...)</span><br></pre></td></tr></table></figure>
-<p><code>slice(V,sx,sy,sz)</code> 沿三维体 V 中的 x、y、z 方向在 sx、sy 和 sz 向量中的点处绘制切片。V 是一个 m×n×p 的三维体数组，包含在 X = 1:n、Y = 1:m、Z = 1:p 处的数据值。向量 sx、sy 和 sz 中的每个元素在 x、y 或 z 轴方向定义一个切平面。<br><code>slice(X,Y,Z,V,sx,sy,sz)</code>  绘制三维体 V 的切片。X、Y 和 Z 是指定 V 的坐标的三维数组。X、Y 和 Z 必须是单调正交分布的（比如由 meshgrid 函数生成的）。每个点处的颜色由三维体 V 中的三维插值确定。<br><code>h = slice(...)</code> 将句柄向量返回至曲面图形对象。</p>
-<h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = xsize/<span class="number">2</span>; </span><br><span class="line">yslice = [ysize/<span class="number">2</span>, ysize]; </span><br><span class="line">zslice = zsize/<span class="number">2</span>;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
-<p>效果如图</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
-<h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
-<h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
-<h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
-<h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
-<h3 id="色标"><a href="#色标" class="headerlink" title="色标"></a>色标</h3><p><code>colorbar</code><br>在图像一侧显示色标</p>
-<h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
-<p>az为方位角，el为仰角，均以度为单位。</p>
-<p>增加改进后，现在似乎好看了一点点</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
-<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
-<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
-<p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
-<p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
-<p>最后，只显示其中圆柱体的完整的代码如下：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">v(v == <span class="number">1</span>) = NaN;</span><br><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">h=slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line"><span class="keyword">set</span>(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">colorbar</span><br><span class="line">alpha(<span class="number">0.9</span>)</span><br><span class="line">caxis([<span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure></p>
-<p>效果如图：<br><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>雨后初晴</title>
-    <url>/2018/08/18/20180818%E9%9B%A8%E5%90%8E%E5%88%9D%E6%99%B4/</url>
-    <content><![CDATA[<p>昨天刚刚到南京，就遇上了狂风暴雨。从上午开始一直下到半夜，待在屋子里只能感受到压抑昏沉的天色，和潮湿闷热。</p>
-<p>今天天空放晴，明晃晃的阳光仿佛挣扎着拼命穿过云层，洒向大地。站在阳光下回想，过去的一个月就像一场梦。从祖国的东南方前往中部，又飞向最西北的新疆，在短短三天里，竟又穿过了大半个中国，重新坐在熟悉的位置上，一切都不太真实。</p>
-<p>如今，我也正站在人生的十字路口上，头顶时而狂风暴雨，时而烈日当空，而我却如身处重重迷雾中，看不清方向。</p>
+    <title>沥青的味道</title>
+    <url>/2018/08/21/20180821%E6%B2%A5%E9%9D%92%E7%9A%84%E5%91%B3%E9%81%93/</url>
+    <content><![CDATA[<p>四牌楼校区最近正在对路面的沥青进行翻修。经过多年的修补，路面早已是补丁摞补丁，确实也该重新铺了。</p>
+<p>看到一辆小铲车沿着路边，整整齐齐地铲起一块块沥青，我脑海里浮现出许多年前，在奶奶家围观铺路的情景。村子里的主干道是一条土路，每逢夏季暴雨或秋季连阴雨，就会变得相当泥泞，难以行走。因此大家迫切地希望有一条干净硬实的沥青马路。</p>
+<p>那天，我和其他好奇的围观者一起，早早地站在路边，从路面压平，倒上粘稠的沥青，再到用宽大滚轮的车碾压，结结实实地看了一个上午。我依然记得，在那个烈日当头的夏天，随着地面的热气蒸腾而上的沥青的刺鼻味道，实在不好闻，却又那么“诱人”，令人兴奋。</p>
+<p>时代的发展，也许往往就伴随着这种不那么好闻的“味道”，比如工业化时代下的浓烟和污水，信息化时代下的焦虑和不安。身处大时代下的小小的我们，通常只是将这好闻不好闻的，统统贪婪地吸入体内了吧。</p>
 ]]></content>
       <categories>
         <category>journal</category>
@@ -126,6 +89,57 @@
       </tags>
   </entry>
   <entry>
+    <title>matlab四维图绘制</title>
+    <url>/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>假设有一个立方体区域，包含了多孔支架和散布在其中的各种细胞。这个立方体被划分成均匀的单元立方体，每个小单元只可能有一种状态，如孔、支架或者某种细胞。用一个三维矩阵表示该立方体，矩阵中每一个数与相应位置的立方单元对应，用数值来表示这一单元的状态，如0表示孔，1表示支架，2表示某种细胞等。</p>
+<p>如何绘制四维图，表示这个立方体？</p>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>利用matlab函数slice，通过体数据显示正交切平面。<br><a id="more"></a></p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">slice</span><span class="params">(V,sx,sy,sz)</span></span></span><br><span class="line"><span class="function"><span class="title">slice</span><span class="params">(X,Y,Z,V,sx,sy,sz)</span></span></span><br><span class="line">h = slice(...)</span><br></pre></td></tr></table></figure>
+<p><code>slice(V,sx,sy,sz)</code> 沿三维体 V 中的 x、y、z 方向在 sx、sy 和 sz 向量中的点处绘制切片。V 是一个 m×n×p 的三维体数组，包含在 X = 1:n、Y = 1:m、Z = 1:p 处的数据值。向量 sx、sy 和 sz 中的每个元素在 x、y 或 z 轴方向定义一个切平面。<br><code>slice(X,Y,Z,V,sx,sy,sz)</code>  绘制三维体 V 的切片。X、Y 和 Z 是指定 V 的坐标的三维数组。X、Y 和 Z 必须是单调正交分布的（比如由 meshgrid 函数生成的）。每个点处的颜色由三维体 V 中的三维插值确定。<br><code>h = slice(...)</code> 将句柄向量返回至曲面图形对象。</p>
+<h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>设用于存储立方体的矩阵为v，大小为xsize*ysize*zsize。<br>显示其中某几个面的切片代码如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = xsize/<span class="number">2</span>; </span><br><span class="line">yslice = [ysize/<span class="number">2</span>, ysize]; </span><br><span class="line">zslice = zsize/<span class="number">2</span>;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p>效果如图</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/1.png" alt="圆柱状孔，孔内一端有若干细胞"></p>
+<h3 id="整体绘制"><a href="#整体绘制" class="headerlink" title="整体绘制"></a>整体绘制</h3><p>利用上面的方法，修改xslice,yslice,zslice可以将整个立方体绘制出来。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">slice(x,y,z,v,xslice,yslice,zslice)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/2.png" alt="立方体"></p>
+<h2 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h2><p>当然，上面得到的这张图还是过于简陋，并且只能看到外表面的一层，内部完全看不到。下面我们还可以对它做些改进，比如透明度、修改颜色、部分显示等等。</p>
+<h3 id="透明度设置"><a href="#透明度设置" class="headerlink" title="透明度设置"></a>透明度设置</h3><p><code>alpha(0.8)</code><br>括号内的数字可以自己修改，并且应当在0~1之间，1表示完全不透明，0表示完全透明。</p>
+<h3 id="坐标轴设置"><a href="#坐标轴设置" class="headerlink" title="坐标轴设置"></a>坐标轴设置</h3><p><code>axis off</code><br>不显示坐标轴<br><code>axis equal</code><br>保持各个维度坐标轴刻度等长<br><code>caxis([0, 6])</code><br>将颜色的刻度范围设置为0~6，0处为最小值，6处为最大值</p>
+<h3 id="色标"><a href="#色标" class="headerlink" title="色标"></a>色标</h3><p><code>colorbar</code><br>在图像一侧显示色标</p>
+<h3 id="视角设置"><a href="#视角设置" class="headerlink" title="视角设置"></a>视角设置</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure>
+<p>az为方位角，el为仰角，均以度为单位。</p>
+<p>增加改进后，现在似乎好看了一点点</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/3.png" alt="改进"></p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>上面这张图还是啥也看不到哎，能不能只显示其中一部分呢？比如像地球剖面图一样…</p>
+<p><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/timg.jpg" alt="嗯？在说我吗？"></p>
+<p>那就要用到强大的NaN了。在绘图前加上这句：<br><code>v(v == 1) = NaN;</code><br>把不想画出来的值全部替换为NaN，画图时就可以不显示了。</p>
+<p>不过这里还要注意，如果设置为NaN后，相应的位置变成了带黑边的小立方体，是因为slice画图默认的EdgeColor是黑色，所以会显示黑色的边框，只要设置去掉edge显示就可以了。<br><code>set(h,&#39;EdgeColor&#39;,&#39;none&#39;);</code></p>
+<p>最后，只显示其中圆柱体的完整的代码如下：<br><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">v(v == <span class="number">1</span>) = NaN;</span><br><span class="line"><span class="string">[xsize, ysize, zsize]</span> = size(v);</span><br><span class="line"><span class="string">[x,y,z]</span> = meshgrid(<span class="number">1</span>:ysize,<span class="number">1</span>:xsize,<span class="number">1</span>:zsize);</span><br><span class="line">xslice = <span class="number">1</span>:xsize; </span><br><span class="line">yslice = <span class="number">1</span>:ysize; </span><br><span class="line">zslice = <span class="number">1</span>:zsize;</span><br><span class="line">h=slice(x,y,z,v,xslice,yslice,zslice);</span><br><span class="line"><span class="keyword">set</span>(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">colorbar</span><br><span class="line">alpha(<span class="number">0.9</span>)</span><br><span class="line">caxis([<span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">axis off</span><br><span class="line">axis equal</span><br><span class="line">az = <span class="number">-20</span>;</span><br><span class="line">el = <span class="number">10</span>;</span><br><span class="line">view(az, el);</span><br></pre></td></tr></table></figure></p>
+<p>效果如图：<br><img src="/2018/09/03/20180903matlab%E5%9B%9B%E7%BB%B4%E5%9B%BE%E7%BB%98%E5%88%B6/4.png" alt="最终效果"></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>秋分</title>
+    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
+    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
+<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
+<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>世间再无下回分解</title>
     <url>/2018/09/14/20180914%E4%B8%96%E9%97%B4%E5%86%8D%E6%97%A0%E4%B8%8B%E5%9B%9E%E5%88%86%E8%A7%A3/</url>
     <content><![CDATA[<p>2018年9月11日下午，单田芳老先生去世，享年84岁。</p>
@@ -154,20 +168,6 @@
       </categories>
       <tags>
         <tag>matlab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>秋分</title>
-    <url>/2018/09/23/20180923%E7%A7%8B%E5%88%86/</url>
-    <content><![CDATA[<p>“秋分者,阴阳相半也,故昼夜均而寒暑平”。最早对秋分有深刻印象，是高一的地理课上，有一天上课老师突然神秘地问我们知不知道今天是什么日子。大家猜了一大圈也没猜出，最后老师揭晓说是秋分。这一天太阳直射点重回赤道，因此昼夜等长。这是大自然独有的纪念日啊！</p>
-<p>暑退秋澄气转凉，日光夜色两均长。秋分也是暑与寒的分水岭，从这一天起，天气由热转凉，气温普遍降低，真正到了一场秋雨一场寒的时节。</p>
-<p>秋分三候：一候雷始收声；二候蛰虫坯户；三候水始涸。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -235,24 +235,6 @@
       </tags>
   </entry>
   <entry>
-    <title>时逢秋暮露成霜</title>
-    <url>/2018/10/23/20181023%E6%97%B6%E9%80%A2%E7%A7%8B%E6%9A%AE%E9%9C%B2%E6%88%90%E9%9C%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>时逢秋暮露成霜，几份凝结几份阳。<br>荷败千池萧瑟岸，棉白万顷采收忙。<br>——左河水</p>
-</blockquote>
-<p>今天是秋季里最后一个节气，霜降。《二十四节气解》中说：“气肃而霜降，阴始凝也。”真正要到了漫山遍野，如火似锦的登高赏叶时节了。</p>
-<p>霜降三候：<br>豺乃祭兽。“豺乃祭兽”一词最早出现在《逸周书》中：“霜降之日，豺乃祭兽”。在此节气，豺狼开始捕获猎物，并将先猎之物祭兽，以兽而祭天报本，后食用。就如同人类在粮食丰收时，用谷物祭天，祈祷来年的风调雨顺。</p>
-<p>草木黄落。大地上的树叶枯黄飞落，天气逐渐变得寒冷。而人的情感随着天气的变化，也陷入低谷之中，出现悲秋的情绪。</p>
-<p>蛰虫咸俯。大自然在经过了春天的草长莺飞、夏天的烈日炎炎、秋天的金桂飘香，进入了寂静的休眠状态，为经历漫长的冬天而作准备。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>贝塞尔曲线简介</title>
     <url>/2018/10/25/20181025%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<p>贝塞尔曲线（Bézier curve）属于经常听说但又不知道到底是什么的一类词。偶然需要用到，就简单地了解并在这里记录一下。</p>
@@ -285,6 +267,24 @@
       </categories>
       <tags>
         <tag>Bezier</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>时逢秋暮露成霜</title>
+    <url>/2018/10/23/20181023%E6%97%B6%E9%80%A2%E7%A7%8B%E6%9A%AE%E9%9C%B2%E6%88%90%E9%9C%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>时逢秋暮露成霜，几份凝结几份阳。<br>荷败千池萧瑟岸，棉白万顷采收忙。<br>——左河水</p>
+</blockquote>
+<p>今天是秋季里最后一个节气，霜降。《二十四节气解》中说：“气肃而霜降，阴始凝也。”真正要到了漫山遍野，如火似锦的登高赏叶时节了。</p>
+<p>霜降三候：<br>豺乃祭兽。“豺乃祭兽”一词最早出现在《逸周书》中：“霜降之日，豺乃祭兽”。在此节气，豺狼开始捕获猎物，并将先猎之物祭兽，以兽而祭天报本，后食用。就如同人类在粮食丰收时，用谷物祭天，祈祷来年的风调雨顺。</p>
+<p>草木黄落。大地上的树叶枯黄飞落，天气逐渐变得寒冷。而人的情感随着天气的变化，也陷入低谷之中，出现悲秋的情绪。</p>
+<p>蛰虫咸俯。大自然在经过了春天的草长莺飞、夏天的烈日炎炎、秋天的金桂飘香，进入了寂静的休眠状态，为经历漫长的冬天而作准备。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -356,22 +356,6 @@
       </tags>
   </entry>
   <entry>
-    <title>清寒小雪前</title>
-    <url>/2018/11/22/20181122%E6%B8%85%E5%AF%92%E5%B0%8F%E9%9B%AA%E5%89%8D/</url>
-    <content><![CDATA[<blockquote>
-<p>久雨重阳後，清寒小雪前。<br>拾薪椎髻仆，卖菜掘头船。<br>薄米全家粥，空床故物毡。<br>身犹付一歃，名字更须传?<br>         ——陆游《初寒》</p>
-</blockquote>
-<p>今日小雪。《月令七十二候集解》曰：“十月中，雨下而为寒气所薄，故凝而为雪。小者未盛之辞。”前几天得知家里已经迎来了第一场雪，突然觉得冬天真的到了，而南京似乎还更接近深秋的景象。</p>
-<p>小雪三候：“一候虹藏不见；二候天气上升地气下降；三候闭塞而成冬。”由于天空中的阳气上升，地中的阴气下降，导致天地不通，阴阳不交，所以万物失去生机，天地闭塞而转入严寒的冬天。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>明末悲歌《铁冠图》</title>
     <url>/2018/11/26/20181126%E6%98%8E%E6%9C%AB%E6%82%B2%E6%AD%8C%E3%80%8A%E9%93%81%E5%86%A0%E5%9B%BE%E3%80%8B/</url>
     <content><![CDATA[<p>上一周大概是我的“戏曲黄金周”，原本就买了几场戏的票，又通过京昆艺术节的活动得到了一张早就想看却一直没机会的《铁冠图》的票，然后作为交换写了一篇剧评。这里就偷懒一下，直接放原文在此吧。</p>
@@ -386,6 +370,22 @@
       </categories>
       <tags>
         <tag>journal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>清寒小雪前</title>
+    <url>/2018/11/22/20181122%E6%B8%85%E5%AF%92%E5%B0%8F%E9%9B%AA%E5%89%8D/</url>
+    <content><![CDATA[<blockquote>
+<p>久雨重阳後，清寒小雪前。<br>拾薪椎髻仆，卖菜掘头船。<br>薄米全家粥，空床故物毡。<br>身犹付一歃，名字更须传?<br>         ——陆游《初寒》</p>
+</blockquote>
+<p>今日小雪。《月令七十二候集解》曰：“十月中，雨下而为寒气所薄，故凝而为雪。小者未盛之辞。”前几天得知家里已经迎来了第一场雪，突然觉得冬天真的到了，而南京似乎还更接近深秋的景象。</p>
+<p>小雪三候：“一候虹藏不见；二候天气上升地气下降；三候闭塞而成冬。”由于天空中的阳气上升，地中的阴气下降，导致天地不通，阴阳不交，所以万物失去生机，天地闭塞而转入严寒的冬天。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -428,14 +428,11 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>大雪江南未见曾</title>
-    <url>/2018/12/07/20181207%E5%A4%A7%E9%9B%AA%E6%B1%9F%E5%8D%97%E6%9C%AA%E8%A7%81%E6%9B%BE/</url>
-    <content><![CDATA[<blockquote>
-<p>大雪江南见未曾，今年方始是严凝。<br>巧穿帘罅如相觅，重压林梢欲不胜。<br>毡幄掷卢忘夜睡，金羁立马怯晨兴。<br>此生自笑功名晚，空想黄河彻底冰。<br>——陆游《大雪》</p>
-</blockquote>
-<p>今天是大雪。《月令七十二候集解》说：“大雪，十一月节。大者，盛也。至此而雪盛矣。”古人说：“时雪转甚，故以大雪名节。”意味着气温显著下降，降雪量更大，降雪范围更广。</p>
-<p>大雪有三候：一候，鹖鴠（hé dàn）不鸣，二候虎始交，三候荔挺出。鹖鴠也叫寒号鸟，在大雪时节，因感到天气寒冷而不再鸣叫。此时是阴气最盛时期，所谓盛极而衰，阳气已有所萌动，老虎开始有求偶行为。“荔挺”为兰草的一种，感到阳气的萌动而抽出新芽。</p>
-<p>冬天的南京常常只是下雨，每年的降雪也是屈指可数的几场。今天这个大雪节气里，南京竟也应景地飘起了雪花。尽管只是微弱而无法积聚的小雪，却足以带来浓郁的冬的味道，或者说家乡的冬天的味道，让人（以及朋友圈）不由得兴奋起来。不过，站在大雪里的陆游，却是冰冷凄凉的心境了。“空想黄河彻底冰”，读到这句话脑海中只有一个两鬓斑白、苦笑着的面庞。人生就是一场寒冷刺骨的大雪啊，而我们就是要在这雪中起舞！</p>
+    <title>冬至一阳生</title>
+    <url>/2018/12/22/20181222%E5%86%AC%E8%87%B3%E4%B8%80%E9%98%B3%E7%94%9F/</url>
+    <content><![CDATA[<p>在关注二十四节气之前，我记得最清楚的节气大概就是冬至了。尤其是在一中食堂的每一年冬至，所有窗口从早到晚都在卖热气腾腾的饺子。在古代冬至曾经也是一个非常重要的节气，甚至节日。相传冬至是二十四节气中最早制定的一个，为二十四节气之首。《汉书》中说，“冬至阳气起，君道长，故贺。”人们认为冬至过后，白昼一天比一天长，阳气回升，是节气循环的开始，也是一个吉日，应当庆贺。汉朝以冬至为“冬节”，官府举行祝贺仪式，称为“贺冬”。唐宋时期，冬至是祭天祭祖的日子，皇帝要到郊外举行祭天大典，百姓要在这一天向父母尊长祭拜。</p>
+<p>冬至分为三候：初候，蚯蚓结；二候，麋角解；三候，水泉动。冬至时节，阳气虽已生长，但阴气仍然十分强盛，土中的蚯蚓仍然蜷缩着身体；麋与鹿同科，却阴阳不同，古人认为麋的角朝后生，所以为阴，而冬至一阳生，麋感阴气渐退而解角；由于阳气初生，所以山中的泉水可以畅快的流动。</p>
+<p>刚刚结束了北京之行，这一天恰巧是冬至，又是考研。冬日的北京胡同里透过清冷的空气，满眼都是红墙青瓦，孤零零的树枝蜿蜒着伸向天空。第二次去北京，突然又有了一点新的想法。一直都觉得北京人，尤其是北京的小孩子，相比其他地方的人，言谈举止间总是洋溢着乐观自信，听他们讲话似乎自己的情绪都被调动起来了。我大概猜想，其中一个原因可能跟北京话的语调有关，北京话中有很多上扬的声调，抑扬顿挫，听起来非常情绪高昂。另外，这次有机会在北京市区坐车走路，看看周围的建筑，还有另外一个很深的感触。比如在路上，我先后看到了新华社大楼、中央音乐学院、北京电影学院等等曾经只在电视上听到过的地名，突然自己身处在这一幢幢大楼之间，发现那些看起来遥不可及与我毫不相干的地方，其实就在我身边，而且它们也就是在这钢筋水泥的大楼里，由无数个和我一样的人相互联系组成的。这种“置身其中”的感觉让我突然明白自己与这个国家是紧密联系在一起的，我就是这千千万万构建成国家大厦的人中的一份子，让人油然而生一种使命感。我想这可能是另一个重要的原因吧。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -445,11 +442,14 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>冬至一阳生</title>
-    <url>/2018/12/22/20181222%E5%86%AC%E8%87%B3%E4%B8%80%E9%98%B3%E7%94%9F/</url>
-    <content><![CDATA[<p>在关注二十四节气之前，我记得最清楚的节气大概就是冬至了。尤其是在一中食堂的每一年冬至，所有窗口从早到晚都在卖热气腾腾的饺子。在古代冬至曾经也是一个非常重要的节气，甚至节日。相传冬至是二十四节气中最早制定的一个，为二十四节气之首。《汉书》中说，“冬至阳气起，君道长，故贺。”人们认为冬至过后，白昼一天比一天长，阳气回升，是节气循环的开始，也是一个吉日，应当庆贺。汉朝以冬至为“冬节”，官府举行祝贺仪式，称为“贺冬”。唐宋时期，冬至是祭天祭祖的日子，皇帝要到郊外举行祭天大典，百姓要在这一天向父母尊长祭拜。</p>
-<p>冬至分为三候：初候，蚯蚓结；二候，麋角解；三候，水泉动。冬至时节，阳气虽已生长，但阴气仍然十分强盛，土中的蚯蚓仍然蜷缩着身体；麋与鹿同科，却阴阳不同，古人认为麋的角朝后生，所以为阴，而冬至一阳生，麋感阴气渐退而解角；由于阳气初生，所以山中的泉水可以畅快的流动。</p>
-<p>刚刚结束了北京之行，这一天恰巧是冬至，又是考研。冬日的北京胡同里透过清冷的空气，满眼都是红墙青瓦，孤零零的树枝蜿蜒着伸向天空。第二次去北京，突然又有了一点新的想法。一直都觉得北京人，尤其是北京的小孩子，相比其他地方的人，言谈举止间总是洋溢着乐观自信，听他们讲话似乎自己的情绪都被调动起来了。我大概猜想，其中一个原因可能跟北京话的语调有关，北京话中有很多上扬的声调，抑扬顿挫，听起来非常情绪高昂。另外，这次有机会在北京市区坐车走路，看看周围的建筑，还有另外一个很深的感触。比如在路上，我先后看到了新华社大楼、中央音乐学院、北京电影学院等等曾经只在电视上听到过的地名，突然自己身处在这一幢幢大楼之间，发现那些看起来遥不可及与我毫不相干的地方，其实就在我身边，而且它们也就是在这钢筋水泥的大楼里，由无数个和我一样的人相互联系组成的。这种“置身其中”的感觉让我突然明白自己与这个国家是紧密联系在一起的，我就是这千千万万构建成国家大厦的人中的一份子，让人油然而生一种使命感。我想这可能是另一个重要的原因吧。</p>
+    <title>大雪江南未见曾</title>
+    <url>/2018/12/07/20181207%E5%A4%A7%E9%9B%AA%E6%B1%9F%E5%8D%97%E6%9C%AA%E8%A7%81%E6%9B%BE/</url>
+    <content><![CDATA[<blockquote>
+<p>大雪江南见未曾，今年方始是严凝。<br>巧穿帘罅如相觅，重压林梢欲不胜。<br>毡幄掷卢忘夜睡，金羁立马怯晨兴。<br>此生自笑功名晚，空想黄河彻底冰。<br>——陆游《大雪》</p>
+</blockquote>
+<p>今天是大雪。《月令七十二候集解》说：“大雪，十一月节。大者，盛也。至此而雪盛矣。”古人说：“时雪转甚，故以大雪名节。”意味着气温显著下降，降雪量更大，降雪范围更广。</p>
+<p>大雪有三候：一候，鹖鴠（hé dàn）不鸣，二候虎始交，三候荔挺出。鹖鴠也叫寒号鸟，在大雪时节，因感到天气寒冷而不再鸣叫。此时是阴气最盛时期，所谓盛极而衰，阳气已有所萌动，老虎开始有求偶行为。“荔挺”为兰草的一种，感到阳气的萌动而抽出新芽。</p>
+<p>冬天的南京常常只是下雨，每年的降雪也是屈指可数的几场。今天这个大雪节气里，南京竟也应景地飘起了雪花。尽管只是微弱而无法积聚的小雪，却足以带来浓郁的冬的味道，或者说家乡的冬天的味道，让人（以及朋友圈）不由得兴奋起来。不过，站在大雪里的陆游，却是冰冷凄凉的心境了。“空想黄河彻底冰”，读到这句话脑海中只有一个两鬓斑白、苦笑着的面庞。人生就是一场寒冷刺骨的大雪啊，而我们就是要在这雪中起舞！</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -556,6 +556,24 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>岁有大寒知</title>
+    <url>/2019/01/20/20190120%E5%B2%81%E6%9C%89%E5%A4%A7%E5%AF%92%E7%9F%A5/</url>
+    <content><![CDATA[<blockquote>
+<p>坚冰深处春水生，锦鲤寻梅游子归<br>——BON叉叉 #新浪微博# </p>
+</blockquote>
+<p>大寒是二十四节气中最后一个节气。《月令七十二候集解》：“十二月中，解见前（小寒）。”《授时通考·天时》引《三礼义宗》解释道：“大寒为中者，上形于小寒，故谓之大……寒气之逆极，故谓大寒。”极言大寒之冷。</p>
+<p>古代将大寒分为三候：“一候鸡乳，二候征鸟厉疾，三候水泽腹坚”。母鸡感知到春天的气息，开始孵小鸡；鹰隼等猛禽因受饥寒交迫之苦，仍翱翔于天际，追捕猎物；湖泊表面的冰已经坚实地一直冻到水面中央了，按物极必反原理，冻到极点，就要开始走向消融了。</p>
+<p>当寒冷到达了极点，春天也就快要到来。</p>
+<p>p.s. “BON叉叉”是我在微博上关注的一个摄影师，她经常会拍一些节气、传统建筑、昆曲等题材的作品。</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>格子Boltzmann方法（二）——一维扩散方程D1Q2模型</title>
     <url>/2019/01/16/20190116%E6%A0%BC%E5%AD%90Boltzmann%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E4%B8%80%E7%BB%B4%E6%89%A9%E6%95%A3%E6%96%B9%E7%A8%8BD1Q2%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="扩散方程简介"><a href="#扩散方程简介" class="headerlink" title="扩散方程简介"></a>扩散方程简介</h1><p>一维扩散方程可以表示为</p>
@@ -596,24 +614,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>matlab</tag>
         <tag>LBM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>岁有大寒知</title>
-    <url>/2019/01/20/20190120%E5%B2%81%E6%9C%89%E5%A4%A7%E5%AF%92%E7%9F%A5/</url>
-    <content><![CDATA[<blockquote>
-<p>坚冰深处春水生，锦鲤寻梅游子归<br>——BON叉叉 #新浪微博# </p>
-</blockquote>
-<p>大寒是二十四节气中最后一个节气。《月令七十二候集解》：“十二月中，解见前（小寒）。”《授时通考·天时》引《三礼义宗》解释道：“大寒为中者，上形于小寒，故谓之大……寒气之逆极，故谓大寒。”极言大寒之冷。</p>
-<p>古代将大寒分为三候：“一候鸡乳，二候征鸟厉疾，三候水泽腹坚”。母鸡感知到春天的气息，开始孵小鸡；鹰隼等猛禽因受饥寒交迫之苦，仍翱翔于天际，追捕猎物；湖泊表面的冰已经坚实地一直冻到水面中央了，按物极必反原理，冻到极点，就要开始走向消融了。</p>
-<p>当寒冷到达了极点，春天也就快要到来。</p>
-<p>p.s. “BON叉叉”是我在微博上关注的一个摄影师，她经常会拍一些节气、传统建筑、昆曲等题材的作品。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -659,6 +659,22 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>一雷惊蛰始</title>
+    <url>/2019/03/06/20190306%E4%B8%80%E9%9B%B7%E6%83%8A%E8%9B%B0%E5%A7%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>微雨众卉新，一雷惊蛰始。<br>《观田家》韦应物</p>
+</blockquote>
+<p>惊蛰，是二十四节气中的第三个节气，标志着仲春时节的开始。《月令七十二候集解》：“二月节……万物出乎震，震为雷，故曰惊蛰，是蛰虫惊而出走矣。”此前，昆虫入冬藏伏土中，不饮不食，称为“蛰”；到了“惊蛰节”，天上的春雷惊醒蛰居的动物，称为“惊”。故惊蛰时，蛰虫惊醒，天气转暖，渐有春雷，中国大部分地区进入春耕季节。</p>
+<p>古代分惊蛰为三候：“一候桃始华；二候仓庚（黄鹂）鸣；三候鹰化为鸠。”</p>
+]]></content>
+      <categories>
+        <category>solar terms</category>
+      </categories>
+      <tags>
+        <tag>solar terms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vector内存释放</title>
     <url>/2019/02/28/20190228vector%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE/</url>
     <content><![CDATA[<h1 id="vector内存分配特点"><a href="#vector内存分配特点" class="headerlink" title="vector内存分配特点"></a>vector内存分配特点</h1><p>vector有一个特点：内存空间只会增长，不会减小。为了支持快速的随机访问，vector容器的元素以连续方式存放，每添加一个元素时，都需要保证连续存放的特性，若空间不足则需要重新分配空间、拷贝元素。因此在创建vector时，对其分配的内存空间比当前需要的要多一些，也就是说预留一些额外的存储空间用于存放新添加的元素。</p>
@@ -687,22 +703,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一雷惊蛰始</title>
-    <url>/2019/03/06/20190306%E4%B8%80%E9%9B%B7%E6%83%8A%E8%9B%B0%E5%A7%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>微雨众卉新，一雷惊蛰始。<br>《观田家》韦应物</p>
-</blockquote>
-<p>惊蛰，是二十四节气中的第三个节气，标志着仲春时节的开始。《月令七十二候集解》：“二月节……万物出乎震，震为雷，故曰惊蛰，是蛰虫惊而出走矣。”此前，昆虫入冬藏伏土中，不饮不食，称为“蛰”；到了“惊蛰节”，天上的春雷惊醒蛰居的动物，称为“惊”。故惊蛰时，蛰虫惊醒，天气转暖，渐有春雷，中国大部分地区进入春耕季节。</p>
-<p>古代分惊蛰为三候：“一候桃始华；二候仓庚（黄鹂）鸣；三候鹰化为鸠。”</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -744,11 +744,14 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
-    <title>雨生百谷</title>
-    <url>/2019/04/21/20190421%E9%9B%A8%E7%94%9F%E7%99%BE%E8%B0%B7/</url>
-    <content><![CDATA[<p>谷雨是春季最后一个节气。谷雨的到来意味着寒潮天气基本结束，气温回升加快，雨量增多，是万物生长的大好时节。《月令七十二候集解》中说，“三月中，自雨水后，土膏脉动，今又雨其谷于水也……盖谷以此时播种，自下而上也”，谷得雨而生，由此得名。</p>
-<p>谷雨三候：一候萍始生；二候鸣鸠拂其羽；三候戴胜降于桑。谷雨后雨量增多，浮萍开始生长，接着布谷鸟声声鸣叫，在田野里提醒人们要开始播种，进而桑树上开始见到戴胜鸟，是蚕宝宝将要生长的信号。</p>
-<p>在气温适宜浮云蔽日的天气里登上紫金山，站在山顶放眼望去一片翠绿，令人心旷神怡。</p>
+    <title>春分</title>
+    <url>/2019/03/21/20190321%E6%98%A5%E5%88%86/</url>
+    <content><![CDATA[<blockquote>
+<p>雪入春分省见稀，半开桃李不胜威。<br>应惭落地梅花识，却作漫天柳絮飞。<br>不分东君专节物，故将新巧发阴机。<br>从今造物尤难料，更暖须留御腊衣。<br>《癸丑春分后雪》宋·苏轼</p>
+</blockquote>
+<p>春分，是春季九十天的中分点，古时又称“日中”、“日夜分”。《月令七十二候集解》：“二月中，分者半也，此当九十日之半，故谓之分。秋同义。”《春秋繁露·阴阳出入上下篇》说：“春分者，阴阳相半也，故昼夜均而寒暑平。”春分也是节日和祭祀庆典，古代帝王有春天祭日，秋天祭月的礼制。民间活动上，一般算做踏青的正式开始。春分是伊朗、土耳其、阿富汗、乌兹别克斯坦等国的新年，有着3000年的历史。</p>
+<p>中国古代将春分分为三候：“一候元鸟至；二候雷乃发声；三候始电。”春分日后，燕子便从南方飞来了，下雨时天空开始打雷并发出闪电。</p>
+<p>在连续经历了多日艳阳高照后，南京突然迎来了一场雷雨，今天气温就降下来了。本来冬天的厚衣服已经被洗干净收起来，不得不又拿出一件来穿。在这样的情境下读到苏轼的“更暖须留御腊衣”，真是倍感亲切。诗词中不只有宏图远志，也有生活的细枝末节和蕴藏在世间万物的人生智慧。</p>
 ]]></content>
       <categories>
         <category>solar terms</category>
@@ -911,6 +914,62 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>fopen与fopen_s</title>
+    <url>/2019/04/12/20190412fopen%E4%B8%8Efopen-s/</url>
+    <content><![CDATA[<p>两者都是打开文件用的函数，其中fopen_s是c++11之后增加的安全增强版本，增加了安全检测。</p>
+<h1 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h1><p>打开由该文件指示的文件filename并返回指向与该文件关联的文件流的指针。mode用于确定文件访问模式。</p>
+<p>函数形式：<code>FILE * fopen (const char * filename, const char * mode);</code></p>
+<p>用法：<code>fp = fopen(filename, &quot;w&quot;);</code><br>如果打开文件成功，返回文件指针，打开失败则返回NULL。<br><a id="more"></a><br>mode：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">访问模式字符串</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“r”</td>
+<td style="text-align:left"><strong>read</strong>：打开文件进行输入操作。该文件必须存在。</td>
+</tr>
+<tr>
+<td style="text-align:center">“w”</td>
+<td style="text-align:left"><strong>write</strong>：为输出操作创建一个空文件。如果已存在具有相同名称的文件，则会丢弃其内容，并将该文件视为新的空文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">“a”</td>
+<td style="text-align:left"><strong>append</strong>：打开输出文件的末尾。输出操作总是在文件末尾写入数据。重定位操作（fseek，fsetpos，rewind）将被忽略。如果文件不存在，则创建该文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">“r+”</td>
+<td style="text-align:left"><strong>read/update</strong>：打开文件进行更新（包括输入和输出）。该文件必须存在。</td>
+</tr>
+<tr>
+<td style="text-align:center">“w+”</td>
+<td style="text-align:left"><strong>write/update</strong>：创建一个空文件并打开它进行更新（包括输入和输出）。如果已存在具有相同名称的文件，则会丢弃其内容，并将该文件视为新的空文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">“a+”</td>
+<td style="text-align:left"><strong>append/update</strong>：打开一个文件进行更新（包括输入和输出），所有输出操作都在文件末尾写入数据。重定位操作（fseek，fsetpos，rewind）会影响下一个输入操作，但输出操作会将位置移回文件末尾。如果文件不存在，则创建该文件。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>示例：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* fopen example */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  FILE * pFile;</span><br><span class="line">  pFile = fopen (<span class="string">&quot;myfile.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (pFile!=<span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">fputs</span> (<span class="string">&quot;fopen example&quot;</span>,pFile);</span><br><span class="line">    fclose (pFile);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="fopen-s"><a href="#fopen-s" class="headerlink" title="fopen_s"></a>fopen_s</h1><p>与fopen不同的是需要另外定义一个变量errno_t err，用来表示文件是否打开成功。若打开成功返回0，失败返回非0,。</p>
+<p>函数形式：<code>errno_t fopen_s（FILE ** pFile，const char *filename，const char* mode;</code></p>
+<p>用法：<code>err = fopen_s(&amp;fp, filename, &quot;w&quot;);</code><br>mode与fopen相同。</p>
+<p>示例：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* fopen_s example */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  FILE * fp;</span><br><span class="line">  err = fopen_s (&amp;fp, <span class="string">&quot;myfile.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (err == <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The file was opened\n.&quot;</span>);</span><br><span class="line">    fclose (fp);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The file was not opened.\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>东南大学百年校庆碑记</title>
     <url>/2019/06/05/20190605%E4%B8%9C%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%99%BE%E5%B9%B4%E6%A0%A1%E5%BA%86%E7%A2%91%E8%AE%B0/</url>
     <content><![CDATA[<p>&emsp;&emsp;吾校據古城金陵，東枕鍾山，西倚鼓樓，北臨後湖，乃昔日六朝皇宮內苑之所在，古松郁郁，萬木蔥翠，山擁水映，人傑地靈。曩者東吳景帝之立五經博士，劉宋雷次宗之奉诏興學，祖沖之任職華林學省與校試指南車，沈約、蕭衍之開格律詩詞先河，蕭梁昭明太子之編《文選》，明初國子監且修《永樂大典》，清開江甯府學及文昌書院，其地皆在於斯。煌煌千載，其文化積澱之深厚,教育曆史之悠久，鮮有能與之比肩者！</p>
@@ -922,23 +981,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>SEU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>春分</title>
-    <url>/2019/03/21/20190321%E6%98%A5%E5%88%86/</url>
-    <content><![CDATA[<blockquote>
-<p>雪入春分省见稀，半开桃李不胜威。<br>应惭落地梅花识，却作漫天柳絮飞。<br>不分东君专节物，故将新巧发阴机。<br>从今造物尤难料，更暖须留御腊衣。<br>《癸丑春分后雪》宋·苏轼</p>
-</blockquote>
-<p>春分，是春季九十天的中分点，古时又称“日中”、“日夜分”。《月令七十二候集解》：“二月中，分者半也，此当九十日之半，故谓之分。秋同义。”《春秋繁露·阴阳出入上下篇》说：“春分者，阴阳相半也，故昼夜均而寒暑平。”春分也是节日和祭祀庆典，古代帝王有春天祭日，秋天祭月的礼制。民间活动上，一般算做踏青的正式开始。春分是伊朗、土耳其、阿富汗、乌兹别克斯坦等国的新年，有着3000年的历史。</p>
-<p>中国古代将春分分为三候：“一候元鸟至；二候雷乃发声；三候始电。”春分日后，燕子便从南方飞来了，下雨时天空开始打雷并发出闪电。</p>
-<p>在连续经历了多日艳阳高照后，南京突然迎来了一场雷雨，今天气温就降下来了。本来冬天的厚衣服已经被洗干净收起来，不得不又拿出一件来穿。在这样的情境下读到苏轼的“更暖须留御腊衣”，真是倍感亲切。诗词中不只有宏图远志，也有生活的细枝末节和蕴藏在世间万物的人生智慧。</p>
-]]></content>
-      <categories>
-        <category>solar terms</category>
-      </categories>
-      <tags>
-        <tag>solar terms</tag>
       </tags>
   </entry>
   <entry>
@@ -1003,62 +1045,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>solar terms</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>fopen与fopen_s</title>
-    <url>/2019/04/12/20190412fopen%E4%B8%8Efopen-s/</url>
-    <content><![CDATA[<p>两者都是打开文件用的函数，其中fopen_s是c++11之后增加的安全增强版本，增加了安全检测。</p>
-<h1 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h1><p>打开由该文件指示的文件filename并返回指向与该文件关联的文件流的指针。mode用于确定文件访问模式。</p>
-<p>函数形式：<code>FILE * fopen (const char * filename, const char * mode);</code></p>
-<p>用法：<code>fp = fopen(filename, &quot;w&quot;);</code><br>如果打开文件成功，返回文件指针，打开失败则返回NULL。<br><a id="more"></a><br>mode：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">访问模式字符串</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">“r”</td>
-<td style="text-align:left"><strong>read</strong>：打开文件进行输入操作。该文件必须存在。</td>
-</tr>
-<tr>
-<td style="text-align:center">“w”</td>
-<td style="text-align:left"><strong>write</strong>：为输出操作创建一个空文件。如果已存在具有相同名称的文件，则会丢弃其内容，并将该文件视为新的空文件。</td>
-</tr>
-<tr>
-<td style="text-align:center">“a”</td>
-<td style="text-align:left"><strong>append</strong>：打开输出文件的末尾。输出操作总是在文件末尾写入数据。重定位操作（fseek，fsetpos，rewind）将被忽略。如果文件不存在，则创建该文件。</td>
-</tr>
-<tr>
-<td style="text-align:center">“r+”</td>
-<td style="text-align:left"><strong>read/update</strong>：打开文件进行更新（包括输入和输出）。该文件必须存在。</td>
-</tr>
-<tr>
-<td style="text-align:center">“w+”</td>
-<td style="text-align:left"><strong>write/update</strong>：创建一个空文件并打开它进行更新（包括输入和输出）。如果已存在具有相同名称的文件，则会丢弃其内容，并将该文件视为新的空文件。</td>
-</tr>
-<tr>
-<td style="text-align:center">“a+”</td>
-<td style="text-align:left"><strong>append/update</strong>：打开一个文件进行更新（包括输入和输出），所有输出操作都在文件末尾写入数据。重定位操作（fseek，fsetpos，rewind）会影响下一个输入操作，但输出操作会将位置移回文件末尾。如果文件不存在，则创建该文件。</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>示例：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* fopen example */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  FILE * pFile;</span><br><span class="line">  pFile = fopen (<span class="string">&quot;myfile.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (pFile!=<span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">fputs</span> (<span class="string">&quot;fopen example&quot;</span>,pFile);</span><br><span class="line">    fclose (pFile);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="fopen-s"><a href="#fopen-s" class="headerlink" title="fopen_s"></a>fopen_s</h1><p>与fopen不同的是需要另外定义一个变量errno_t err，用来表示文件是否打开成功。若打开成功返回0，失败返回非0,。</p>
-<p>函数形式：<code>errno_t fopen_s（FILE ** pFile，const char *filename，const char* mode;</code></p>
-<p>用法：<code>err = fopen_s(&amp;fp, filename, &quot;w&quot;);</code><br>mode与fopen相同。</p>
-<p>示例：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* fopen_s example */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  FILE * fp;</span><br><span class="line">  err = fopen_s (&amp;fp, <span class="string">&quot;myfile.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (err == <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The file was opened\n.&quot;</span>);</span><br><span class="line">    fclose (fp);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The file was not opened.\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1712,6 +1698,31 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>数学符号的英文读法</title>
+    <url>/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="1-基本数学符号"><a href="#1-基本数学符号" class="headerlink" title="1.基本数学符号"></a>1.基本数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/1.png" alt="基本数学符号"><br>当+做运算符加号时，读作plus。如1+2，读作one plus two<br>当”+”放在数字前表示正数时，读作positive。如+4，读作positive four<br>“-”也有minus和negative两种读法，分别是减号和负数。<br>“×” 两种读法都可以，国外的教授会常常读成times。<br>注意<br>其中plus和minus是不用第三人称单数形式的，因为plus和minus根本就不是动词，而是介词。<br>但是乘和除，的的确确是动词，出现第三人称单数的形式。</p>
+<h2 id="2-比较运算符"><a href="#2-比较运算符" class="headerlink" title="2.比较运算符"></a>2.比较运算符</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/2.png" alt="比较运算符"><br>1+4&gt;3 读作 one plus four is greater thanthree<br>为什么用is？<br>这里one plus four 是介词plus 连接两个名词，但是one plus four 作为一个整体当作主语，因此不用are，而是is<br>4+5=9 读作 four plus five equals nine 或 four plus five is equal to nine</p>
+<h2 id="3-括号"><a href="#3-括号" class="headerlink" title="3.括号"></a>3.括号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/3.jpeg" alt="括号"></p>
+<h2 id="4-级数表示"><a href="#4-级数表示" class="headerlink" title="4.级数表示"></a>4.级数表示</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/4.jpeg" alt="级数表示"></p>
+<h2 id="5-微分和偏微分"><a href="#5-微分和偏微分" class="headerlink" title="5.微分和偏微分"></a>5.微分和偏微分</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/5.png" alt="微分和偏微分"></p>
+<h2 id="6-其他数学符号"><a href="#6-其他数学符号" class="headerlink" title="6.其他数学符号"></a>6.其他数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/6.jpeg" alt="其他数学符号"></p>
+<h2 id="7-代数"><a href="#7-代数" class="headerlink" title="7.代数"></a>7.代数</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/7.jpeg" alt="代数1"></p>
+<p>代数表达式的英文不是一个句子，而是一个名词短语。<br>表达式里的括号不用读出来<br><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/Users/yunzh/OneDrive/个人文件/8.jpeg" alt="代数2"><br>公式里的分数一般都念做over</p>
+<p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/9.jpeg" alt="代数3"></p>
+<h2 id="8-带of的函数"><a href="#8-带of的函数" class="headerlink" title="8.带of的函数"></a>8.带of的函数</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/10.jpeg" alt="带of的函数"></p>
+<h2 id="9-高等数学符号"><a href="#9-高等数学符号" class="headerlink" title="9.高等数学符号"></a>9.高等数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/11.jpeg" alt="高等数学"></p>
+<p>英文 积是 product，是名词</p>
+<h2 id="10-线性代数符号"><a href="#10-线性代数符号" class="headerlink" title="10.线性代数符号"></a>10.线性代数符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/12.jpeg" alt="线性代数"></p>
+<h2 id="11-其他常用表达式"><a href="#11-其他常用表达式" class="headerlink" title="11.其他常用表达式"></a>11.其他常用表达式</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/13.jpeg" alt="其他"><br>读时汉语从不强调 大写delta，英文要读 capital delta y</p>
+]]></content>
+      <categories>
+        <category>learning</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Literature Notes - Substrate curvature as a cue to guide spatiotemporal cell and tissue organization （二）</title>
     <url>/2020/10/23/20201023%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</url>
     <content><![CDATA[<p>S.J.P. Callens, R.J.C. Uyttendaele, L.E. Fratila-Apachitei, A.A. Zadpoor, Substrate curvature as a cue to guide spatiotemporal cell and tissue organization, Biomaterials. 232 (2020) 119739.</p>
@@ -1736,31 +1747,6 @@ x=\phi (t)\\ y=\omega (t)
       </categories>
       <tags>
         <tag>review</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数学符号的英文读法</title>
-    <url>/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="1-基本数学符号"><a href="#1-基本数学符号" class="headerlink" title="1.基本数学符号"></a>1.基本数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/1.png" alt="基本数学符号"><br>当+做运算符加号时，读作plus。如1+2，读作one plus two<br>当”+”放在数字前表示正数时，读作positive。如+4，读作positive four<br>“-”也有minus和negative两种读法，分别是减号和负数。<br>“×” 两种读法都可以，国外的教授会常常读成times。<br>注意<br>其中plus和minus是不用第三人称单数形式的，因为plus和minus根本就不是动词，而是介词。<br>但是乘和除，的的确确是动词，出现第三人称单数的形式。</p>
-<h2 id="2-比较运算符"><a href="#2-比较运算符" class="headerlink" title="2.比较运算符"></a>2.比较运算符</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/2.png" alt="比较运算符"><br>1+4&gt;3 读作 one plus four is greater thanthree<br>为什么用is？<br>这里one plus four 是介词plus 连接两个名词，但是one plus four 作为一个整体当作主语，因此不用are，而是is<br>4+5=9 读作 four plus five equals nine 或 four plus five is equal to nine</p>
-<h2 id="3-括号"><a href="#3-括号" class="headerlink" title="3.括号"></a>3.括号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/3.jpeg" alt="括号"></p>
-<h2 id="4-级数表示"><a href="#4-级数表示" class="headerlink" title="4.级数表示"></a>4.级数表示</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/4.jpeg" alt="级数表示"></p>
-<h2 id="5-微分和偏微分"><a href="#5-微分和偏微分" class="headerlink" title="5.微分和偏微分"></a>5.微分和偏微分</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/5.png" alt="微分和偏微分"></p>
-<h2 id="6-其他数学符号"><a href="#6-其他数学符号" class="headerlink" title="6.其他数学符号"></a>6.其他数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/6.jpeg" alt="其他数学符号"></p>
-<h2 id="7-代数"><a href="#7-代数" class="headerlink" title="7.代数"></a>7.代数</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/7.jpeg" alt="代数1"></p>
-<p>代数表达式的英文不是一个句子，而是一个名词短语。<br>表达式里的括号不用读出来<br><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/Users/yunzh/OneDrive/个人文件/8.jpeg" alt="代数2"><br>公式里的分数一般都念做over</p>
-<p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/9.jpeg" alt="代数3"></p>
-<h2 id="8-带of的函数"><a href="#8-带of的函数" class="headerlink" title="8.带of的函数"></a>8.带of的函数</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/10.jpeg" alt="带of的函数"></p>
-<h2 id="9-高等数学符号"><a href="#9-高等数学符号" class="headerlink" title="9.高等数学符号"></a>9.高等数学符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/11.jpeg" alt="高等数学"></p>
-<p>英文 积是 product，是名词</p>
-<h2 id="10-线性代数符号"><a href="#10-线性代数符号" class="headerlink" title="10.线性代数符号"></a>10.线性代数符号</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/12.jpeg" alt="线性代数"></p>
-<h2 id="11-其他常用表达式"><a href="#11-其他常用表达式" class="headerlink" title="11.其他常用表达式"></a>11.其他常用表达式</h2><p><img src="/2020/11/13/20201113%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%8B%B1%E6%96%87%E8%AF%BB%E6%B3%95/13.jpeg" alt="其他"><br>读时汉语从不强调 大写delta，英文要读 capital delta y</p>
-]]></content>
-      <categories>
-        <category>learning</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1833,6 +1819,20 @@ x=\phi (t)\\ y=\omega (t)
       </tags>
   </entry>
   <entry>
+    <title>server2019服务器远程连接桌面每次都出现新桌面新会话解决办法</title>
+    <url>/2021/11/12/202111122019%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%87%BA%E7%8E%B0%E6%96%B0%E6%A1%8C%E9%9D%A2%E6%96%B0%E4%BC%9A%E8%AF%9D/</url>
+    <content><![CDATA[<p><strong>问题</strong>：同样的用户每次远程连接桌面都出现新的桌面，类似于重启后的界面。登录多次后用户中显示多个同名用户。</p>
+<p><strong>应急</strong>：在任务管理器-用户里，右键点用户名，可以对不需要的用户进行注销，也可以跳转重新连接需要的会话。</p>
+<p><strong>解决</strong>：从运行中输入Gpedit.msc 打开组策略管理器。在计算机配置-管理模板-Windows组件-远程桌面服务-远程桌面会话主机-连接，将远程桌面服务用户限制到单独的远程桌面服务会话启用。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>computer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Literature Notes - Bone tissue regeneration The role of finely tuned pore architecture of bioactive scaffolds before clinical translation</title>
     <url>/2021/06/24/20210624%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</url>
     <content><![CDATA[<p>R. Wu, Y. Li, M. Shen, X. Yang, L. Zhang, X. Ke, G. Yang, C. Gao, Z. Gou, S. Xu, Bone tissue regeneration: The role of finely tuned pore architecture of bioactive scaffolds before clinical translation, Bioactive Materials. 6 (2021) 1242–1254. <a href="https://doi.org/10.1016/j.bioactmat.2020.11.003">https://doi.org/10.1016/j.bioactmat.2020.11.003</a>.</p>
@@ -1880,20 +1880,6 @@ x=\phi (t)\\ y=\omega (t)
       <tags>
         <tag>bone regeneration</tag>
         <tag>research</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>server2019服务器远程连接桌面每次都出现新桌面新会话解决办法</title>
-    <url>/2021/11/12/202111122019%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%87%BA%E7%8E%B0%E6%96%B0%E6%A1%8C%E9%9D%A2%E6%96%B0%E4%BC%9A%E8%AF%9D/</url>
-    <content><![CDATA[<p><strong>问题</strong>：同样的用户每次远程连接桌面都出现新的桌面，类似于重启后的界面。登录多次后用户中显示多个同名用户。</p>
-<p><strong>应急</strong>：在任务管理器-用户里，右键点用户名，可以对不需要的用户进行注销，也可以跳转重新连接需要的会话。</p>
-<p><strong>解决</strong>：从运行中输入Gpedit.msc 打开组策略管理器。在计算机配置-管理模板-Windows组件-远程桌面服务-远程桌面会话主机-连接，将远程桌面服务用户限制到单独的远程桌面服务会话启用。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>computer</tag>
       </tags>
   </entry>
   <entry>
