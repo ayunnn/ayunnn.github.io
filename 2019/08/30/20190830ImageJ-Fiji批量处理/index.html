@@ -1,18 +1,18 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ImageJ/Fiji批量处理 | Ayun的博客</title><meta name="keywords" content="ImageJ,software"><meta name="author" content="Ayun"><meta name="copyright" content="Ayun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。 ImageJ官网上关于宏编程的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Introduction_into_Macro_Programming关于批处理的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Batch_Processing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ImageJ&#x2F;Fiji批量处理">
-<meta property="og:url" content="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/index.html">
+<meta property="og:url" content="http://ayunnn.github.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Ayun的博客">
 <meta property="og:description" content="有时我们需要用ImageJ对大量图片重复进行复杂的处理，无法手动完成，ImageJ中有多种方法可以实现批量处理，本文将介绍一种利用脚本进行批量处理的方法。 ImageJ官网上关于宏编程的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Introduction_into_Macro_Programming关于批处理的介绍： https:&#x2F;&#x2F;imagej.net&#x2F;Batch_Processing">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ayunnn.gitee.io/img/deimg_reduce.jpg">
+<meta property="og:image" content="http://ayunnn.github.io/img/deimg_reduce.jpg">
 <meta property="article:published_time" content="2019-08-30T17:48:13.000Z">
 <meta property="article:modified_time" content="2020-05-16T00:24:40.102Z">
 <meta property="article:author" content="Ayun">
 <meta property="article:tag" content="ImageJ">
 <meta property="article:tag" content="software">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ayunnn.gitee.io/img/deimg_reduce.jpg"><link rel="shortcut icon" href="/img/cloud-32-32.png"><link rel="canonical" href="http://ayunnn.gitee.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="jtaAjnOvMGalF99cNgo3GEShEsS70rxoLRlv3MWJpG4"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="http://ayunnn.github.io/img/deimg_reduce.jpg"><link rel="shortcut icon" href="/img/cloud-32-32.png"><link rel="canonical" href="http://ayunnn.github.io/2019/08/30/20190830ImageJ-Fiji%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="jtaAjnOvMGalF99cNgo3GEShEsS70rxoLRlv3MWJpG4"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?bc4baf14558223b333d92e94a592eeac";
