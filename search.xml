@@ -2334,4 +2334,38 @@ x=\phi (t)\\ y=\omega (t)
         <tag>others</tag>
       </tags>
   </entry>
+  <entry>
+    <title>用BongJ计算多孔结构各向异性</title>
+    <url>/2023/07/24/20230724%E7%94%A8bongj%E8%AE%A1%E7%AE%97%E5%A4%9A%E5%AD%94%E7%BB%93%E6%9E%84%E5%90%84%E5%90%91%E5%BC%82%E6%80%A7/</url>
+    <content><![CDATA[<p>BoneJ是ImageJ的一个插件。各向异性程度 (DA) 是衡量体积内子结构在不同方向上差异程度的指标。BongJ使用平均截距长度（MIL，mean intercept length）来确定各向异性。</p>
+<h2 id="BoneJ安装方法"><a href="#BoneJ安装方法" class="headerlink" title="BoneJ安装方法"></a>BoneJ安装方法</h2><ol>
+<li><a href="https://imagej.net/downloads">Download</a> the latest version of Fiji for your operating system</li>
+<li>Launch Fiji</li>
+<li>Select in the menu <em>Help › Update…</em></li>
+<li>Click <em>Manage update sites</em></li>
+<li>Check <em>BoneJ</em></li>
+<li>Click <em>Close</em></li>
+<li>Click <em>Apply changes</em></li>
+</ol>
+<p>After the downloads have finished, close and restart Fiji.</p>
+<h2 id="计算原理"><a href="#计算原理" class="headerlink" title="计算原理"></a>计算原理</h2><p>在样本的二维切面上绘制大量相同长度的向量。向量的平均截距长度就是向量长度除以交叉点数量，也就是界面与界面之间的平均距离。建立点云，其中每个点代表向量乘以其平均截距长度。为了计算MIL结构张量，将椭球拟合到方向数据MIL，计算各向异性张量以及特征值。DA 的计算方式为 1 - 最小特征值 / 最大特征值（请注意，由于平方倒数关系，最长轴具有最小特征值）。对具有相同向量的新随机点进行采样，并使用新的 MIL 计数更新 DA，直到达到采样点的最小数量或 DA 的变异系数低于阈值。</p>
+<p><img src="/2023/07/24/20230724%E7%94%A8bongj%E8%AE%A1%E7%AE%97%E5%A4%9A%E5%AD%94%E7%BB%93%E6%9E%84%E5%90%84%E5%90%91%E5%BC%82%E6%80%A7/MIL.png" alt="平均截距长度MIL"></p>
+<p>在ImageJ中导入图像序列，首先进行二值化，然后采用插件中的BoneJ分析各向异性，结果为DA。</p>
+<h2 id="结果说明"><a href="#结果说明" class="headerlink" title="结果说明"></a>结果说明</h2><p><strong>Degree of anisotropy</strong>: how much orientation there is in the structure. 0.0 means the image is completely isotropic, the sample has no directionality whatsoever. 1.0 means there is an extreme prevailing orientation in the structure of the image.</p>
+<p>各向异性程度DA是0-1之间的数，其中0表示完全各向同性，1表示完全各向异性。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><p><a href="https://bonej.org/anisotropy">https://bonej.org/anisotropy</a></p>
+</li>
+<li><p>Odgaard A (1997), <em>Three-dimensional methods for quantification of cancellous bone architecture</em>, Bone, 20, 315-328, <a href="http://dx.doi.org/10.1016/S8756-3282(97"></a>00007-0)</p>
+</li>
+<li>Harrigan TP, Mann RW (1984), <em>Characterization of microstructural anisotropy in orthotropic materials using a second rank tensor</em>, J Mater Sci, 19, 761-767, <a href="http://dx.doi.org/10.1007/BF00540446"></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>others</tag>
+      </tags>
+  </entry>
 </search>
